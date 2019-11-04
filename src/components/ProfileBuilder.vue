@@ -217,13 +217,14 @@ export default {
       invalidLinkedIn: false,
       name: '',
       user: {
+        company: '',
         social: {
           linkedin: '',
           github: ''
         }
       },
       role: '',
-      company: {},
+      company: '',
       experiences: [{
         company: '',
         title: '',
@@ -297,12 +298,12 @@ export default {
             },
             user: {id: id}
           }
-          if (!this.user.name || !this.company || !this.user.social.linkedin) {
+          if (!this.user.name  || !this.user.social.linkedin) {
             this.invalidName = false
             this.invalidOrganization = false
             this.invalidLinkedIn = false
             if (!this.user.name) { this.invalidName = true }
-            if (!this.user.company) { this.invalidOrganization = true }
+            // if (!this.user.company) { this.invalidOrganization = true }
             if (!this.user.social.linkedin) { this.invalidLinkedIn = true }
             reject('Please enter required fields')
           }
@@ -320,7 +321,7 @@ export default {
             for (let i = 0; i < this.educations.length; i++) {
               vals.add(this.educations[i].school === "");
               vals.add(this.educations[i].degree === "");
-              vals.add(this.educations[i].location === "");
+              // vals.add(this.educations[i].location === "");
               vals.add(this.educations[i].fieldofstudy === "");
               vals.add(this.educations[i].from === "");
               vals.add(this.educations[i].to === "");
