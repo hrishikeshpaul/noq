@@ -13,6 +13,7 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js"
   },
+  "heroku-postinstall": "npm install && npm run build",
   "dependencies": {
     "@sokratis/passport-linkedin-oauth2": "^2.1.0",
     "async": "^3.1.0",
