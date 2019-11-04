@@ -1,8 +1,10 @@
 <template>
   <div>
-    <NavBar @logout="logout"/>
     <div class="mt-5 container">
       <div class="container main-container">
+        <div class="mr-5">
+          <button class="btn-outline-secondary" style="cursor: pointer; border-radius: 10px; padding-top: 5px;" @click="logout"><i class="ti-back-left"></i></button>
+        </div>
         <b-card style="max-height: 85vh; overflow-y: auto; min-height: 40vh">
           <form-wizard
             v-if="role"
@@ -218,6 +220,7 @@ export default {
       invalidLinkedIn: false,
       name: '',
       user: {
+        bio: ' ',
         company: '',
         social: {
           linkedin: '',
@@ -261,6 +264,16 @@ export default {
       axios.patch(`${url}/api/user/${id}`, {first_time: false}, {headers: params})
         .then(response => {
           localStorage.setItem('user_first_time', 'false')
+          this.$swal({
+            type: 'success',
+            showConfirmButton: true,
+            timer: 4500,
+            width: '400px',
+            imageHeight: 20,
+            imageWidth: 20,
+            html: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;">Your profile has been set up!</span>',
+            title: '<h3 style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 300">Successful!</h3>'
+          })
           this.$router.push({
             name: 'HomePage'
           })
