@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="mySidenav" class="sidenav" v-if="$route.path !== '/login' && $route.path !== '/build_profile' ">
+    <div id="mySidenav" class="sidenav" v-if="$route.path !== '/login' && $route.path !== '/build_profile'">
       <div style="display: flex; justify-content: space-between" class="px-4 text-center">
           <div class="big-title text-center" style="display: inline; margin-left: -13px;" v-if="!navBarCollapsed">
             <span class="px-2 logo-noq">noQ</span>
@@ -95,6 +95,10 @@ export default {
       email: '',
       role: ''
     }
+  },
+  updated () {
+    this.email = localStorage.getItem('email')
+    this.role = localStorage.getItem('role')
   },
   mounted () {
     this.email = localStorage.getItem('email')

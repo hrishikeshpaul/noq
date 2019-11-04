@@ -19,7 +19,6 @@ export default new Router({
       path: '/oauth/:id/:token',
       name: 'OAuth',
       beforeEnter (to, from, next) {
-        console.log(to.params)
         axios.post(`https://ancient-caverns-78426.herokuapp.com/api/auth/login/`, {username: to.params.id, token: to.params.token})
           .then(response => {
             localStorage.setItem('jwtToken', response.data.token)
