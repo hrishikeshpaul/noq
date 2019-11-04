@@ -43,6 +43,7 @@
 <script>
 import axios from 'axios'
 import SkillSelect from './SkillSelect'
+import url from '../config/server_config'
 
 export default {
   name: 'JobInfoModal',
@@ -94,7 +95,7 @@ export default {
       } else {
         var id = this.job._id
 
-        axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/jobs/edit/${id}`, this.newJob, {headers: headers})
+        axios.patch(`${url}/api/jobs/edit/${id}`, this.newJob, {headers: headers})
           .then(response => {
             if (response.status === 200) {
               this.show = false

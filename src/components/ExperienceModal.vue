@@ -58,6 +58,7 @@
 
 <script>
 import axios from 'axios'
+import url from '../config/server_config'
 
 export default {
   name: 'ExperienceModal',
@@ -120,7 +121,7 @@ export default {
         this.showAlert = true
         this.alertText = 'To Date can\'t be after From date'
       } else {
-        axios.post(`https://ancient-caverns-78426.herokuapp.com/api/profile/experience`, {
+        axios.post(`${url}/api/profile/experience`, {
           data: [this.newExperience],
           user: {id: this.user._id}
         }, {headers: headers})
@@ -145,7 +146,7 @@ export default {
 
       var id = this.experience._id
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/profile/experience/${id}`, this.newExperience, {headers: headers})
+      axios.patch(`${url}/api/profile/experience/${id}`, this.newExperience, {headers: headers})
         .then(response => {
           if (response.status === 200) {
             this.show = false

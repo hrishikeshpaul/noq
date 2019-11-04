@@ -46,6 +46,7 @@
 
 <script>
 import axios from 'axios'
+import url from '../config/server_config'
 function validate (pass) {
   var counter = 0
   if (pass.length >= 8) {
@@ -87,7 +88,7 @@ export default {
       evt.preventDefault()
       if (this.register.password === this.register.password2 & validate(this.register.password) === true) {
         this.state = true
-        axios.post(`https://ancient-caverns-78426.herokuapp.com/api/auth/register/`, this.register)
+        axios.post(`${url}/api/auth/register/`, this.register)
           .then(response => {
             this.$emit('registered', true)
           })

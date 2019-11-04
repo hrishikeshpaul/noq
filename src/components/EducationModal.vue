@@ -50,6 +50,7 @@
 
 <script>
 import axios from 'axios'
+import url from '../config/server_config'
 
 export default {
   name: 'EducationModal',
@@ -113,7 +114,7 @@ export default {
         this.showAlert = true
         this.alertText = 'To Date can\'t be after From date'
       } else {
-        axios.post(`https://ancient-caverns-78426.herokuapp.com/api/profile/education`, {data: [this.newEducation], user: {id: this.user._id}}, {headers: headers})
+        axios.post(`${url}/api/profile/education`, {data: [this.newEducation], user: {id: this.user._id}}, {headers: headers})
           .then(response => {
             alert('Education Added')
             this.show = false
@@ -135,7 +136,7 @@ export default {
 
       var id = this.education._id
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/profile/education/${id}`, this.newEducation, {headers: headers})
+      axios.patch(`${url}/api/profile/education/${id}`, this.newEducation, {headers: headers})
         .then(response => {
           if (response.status === 200) {
             this.show = false

@@ -52,6 +52,7 @@
 
 <script>
 import axios from 'axios'
+import url from '../config/server_config'
 
 export default {
   name: 'ProfileInputModal',
@@ -118,7 +119,7 @@ export default {
       } else {
         var id = localStorage.getItem('user_id')
 
-        axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/user/${id}`, this.newUser, {headers: headers})
+        axios.patch(`${url}m/api/user/${id}`, this.newUser, {headers: headers})
           .then(response => {
             if (response.status === 204) {
               this.show = false

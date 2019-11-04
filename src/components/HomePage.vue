@@ -58,6 +58,7 @@
 <script>
 
 import axios from 'axios'
+import url from '../config/server_config'
 
 import NavBar from './NavBar'
 import FilterBar from './FilterBar'
@@ -155,7 +156,7 @@ export default {
         role: localStorage.role
       }
 
-      axios.get(`https://ancient-caverns-78426.herokuapp.com/api/jobs`, {params, headers})
+      axios.get(`${url}/api/jobs`, {params, headers})
         .then(response => {
           if (this.userRole === 'student') {
             this.jobs = response.data
@@ -177,7 +178,7 @@ export default {
         'Content-Type': 'application/json'
       }
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/jobs/reject`, {
+      axios.patch(`${url}/api/jobs/reject`, {
         user: localStorage.getItem('user_id'),
         job: i
       }, {headers})
@@ -205,7 +206,7 @@ export default {
         'Content-Type': 'application/json'
       }
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/jobs/accept`, {
+      axios.patch(`${url}/api/jobs/accept`, {
         user: localStorage.getItem('user_id'),
         job: i,
         role: this.userRole
@@ -231,7 +232,7 @@ export default {
         'Content-Type': 'application/json'
       }
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/jobs/accept`, {
+      axios.patch(`${url}/api/jobs/accept`, {
         user: localStorage.getItem('user_id'),
         userToAccept: i.id,
         job: i.job,
@@ -258,7 +259,7 @@ export default {
         'Content-Type': 'application/json'
       }
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/jobs/reject`, {
+      axios.patch(`${url}/api/jobs/reject`, {
         user: localStorage.getItem('user_id'),
         userToReject: i.id,
         job: i.job,

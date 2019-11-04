@@ -197,6 +197,7 @@
 <script>
 import axios from 'axios'
 import Register from './Register'
+import url from '../config/server_config'
 export default {
   name: 'Login',
   data () {
@@ -230,7 +231,7 @@ export default {
   },
   methods: {
     linkedInLogin () {
-      axios.get(`https://ancient-caverns-78426.herokuapp.com/auth/linkedin`, {
+      axios.get(`${url}/auth/linkedin`, {
         headers: {
           'Access-Control-Allow-Origin': '*'}
         }).then(response => {
@@ -241,7 +242,7 @@ export default {
         })
     },
     resetPassword () {
-      axios.post(`https://ancient-caverns-78426.herokuapp.com/api/auth/forgot/`, {email: this.login.username})
+      axios.post(`${url}/api/auth/forgot/`, {email: this.login.username})
         .then(response => {
           this.error = 'Further Instructions has been send sent to the email id.'
           this.variant = 'success'
@@ -270,7 +271,7 @@ export default {
         grecaptcha.reset()
         return false
       }
-      axios.post(`https://ancient-caverns-78426.herokuapp.com/api/auth/login/`, this.login)
+      axios.post(`${url}/api/auth/login/`, this.login)
         .then(response => {
           localStorage.setItem('jwtToken', response.data.token)
           localStorage.setItem('user_first_time', response.data.user.first_time)
@@ -294,7 +295,7 @@ export default {
 
           if (e.response.data.link) {
             this.variant = 'danger'
-            this.error = this.error + ' Please click <a href="https://ancient-caverns-78426.herokuapp.com/api/auth/resend/' + this.login.username + '" @click.prevent="" >here</a> to resend token.'
+            this.error = this.error + ` Please click <a href="${url}/api/auth/resend/${this.login.username}" @click.prevent="" >here</a> to resend token.`
           }
         })
     },

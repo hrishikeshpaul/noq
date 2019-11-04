@@ -75,6 +75,7 @@
 <script>
   import gravatar from 'gravatar'
   import axios from 'axios'
+  import url from '../config/server_config'
 
   export default {
   name: 'UserInfoModal',
@@ -146,7 +147,7 @@
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.get(`https://ancient-caverns-78426.herokuapp.com/api/user/${user_id}`, {headers: headers})
+      axios.get(`${url}/api/user/${user_id}`, {headers: headers})
         .then(response => {
           this.newUser = response.data
         })

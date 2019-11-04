@@ -371,6 +371,7 @@ import axios from 'axios'
 import Fuse from 'fuse.js'
 import gravatar from 'gravatar'
 import 'font-awesome/css/font-awesome.min.css'
+import url from '../config/server_config'
 
 import NavBar from './NavBar'
 import JobInputModal from './JobInputModal'
@@ -608,7 +609,7 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.delete(`https://ancient-caverns-78426.herokuapp.com/api/profile/experience/${exp._id}`, {headers: headers})
+      axios.delete(`${url}/api/profile/experience/${exp._id}`, {headers: headers})
         .then(response => {
           this.showToast = true
           this.toastContent = 'Deleted Successfully'
@@ -622,7 +623,7 @@ export default {
       var headers = {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
-      axios.delete(`https://ancient-caverns-78426.herokuapp.com/api/profile/education/${edu._id}`, {headers: headers})
+      axios.delete(`${url}/api/profile/education/${edu._id}`, {headers: headers})
         .then(response => {
           this.showToast = true
           this.toastContent = 'Deleted Successfully'
@@ -636,7 +637,7 @@ export default {
       var headers = {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
-      axios.delete(`https://ancient-caverns-78426.herokuapp.com/api/jobs/${id}`, {headers: headers})
+      axios.delete(`${url}/api/jobs/${id}`, {headers: headers})
         .then(response => {
           this.showToast = true
           this.toastContent = 'Deleted Successfully'
@@ -653,7 +654,7 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/jobs/rejectconfirmedapplicant`, {job: job_id, user: user_id}, {headers: headers})
+      axios.patch(`${url}/api/jobs/rejectconfirmedapplicant`, {job: job_id, user: user_id}, {headers: headers})
         .then(response => {
           this.showToast = true
           this.toastContent = 'Rejected Successfully'
@@ -672,7 +673,7 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.post(`https://ancient-caverns-78426.herokuapp.com/api/profile/skills`, {data: this.skillsToUpdate, user: {id: this.user._id}}, {headers: headers})
+      axios.post(`${url}/api/profile/skills`, {data: this.skillsToUpdate, user: {id: this.user._id}}, {headers: headers})
         .then(response => {
           this.$swal({
             position: 'top-right',
@@ -696,7 +697,7 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.get(`https://ancient-caverns-78426.herokuapp.com/api/user/${this.user_id}`, {headers: headers})
+      axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
           this.user = response.data
         })

@@ -30,6 +30,7 @@
 
 <script>
 import axios from 'axios'
+import url from '../config/server_config'
 
 export default {
   name: 'ProfileSettingsModal',
@@ -70,7 +71,7 @@ export default {
       var id = localStorage.getItem('user_id')
 
       if (this.newPassword.length > 0 && this.newPassword === this.newPassword1) {
-        axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/user/changepassword/${id}`, {
+        axios.patch(`${url}/api/user/changepassword/${id}`, {
           oldPassword: this.oldPassword,
           newPassword: this.newPassword,
           newPassword1: this.newPassword1

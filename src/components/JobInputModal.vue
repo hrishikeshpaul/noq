@@ -43,7 +43,7 @@
 <script>
 import SkillSelect from './SkillSelect'
 import axios from 'axios'
-
+import url from '../config/server_config'
 
 export default {
   name: 'JobInputModal',
@@ -93,7 +93,7 @@ export default {
         this.job['employer'] = localStorage.getItem('user_id')
         this.job['company'] = this.user.company
 
-        axios.post(`https://ancient-caverns-78426.herokuapp.com/api/jobs`, this.job, {headers: headers})
+        axios.post(`${url}/api/jobs`, this.job, {headers: headers})
           .then(response => {
             if (response.status == 204) {
               this.show = false

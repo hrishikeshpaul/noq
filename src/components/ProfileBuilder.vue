@@ -201,6 +201,7 @@ import axios from 'axios'
 import NavBar from './NavBar'
 import SkillSelect from './SkillSelect'
 import UniversitySelect from './UniversitySelect'
+import url from '../config/server_config'
 
 export default {
   name: 'ProfileBuilder',
@@ -257,7 +258,7 @@ export default {
         'Content-Type': 'application/json'
       }
       var id = localStorage.getItem('user_id')
-      axios.patch(`https://ancient-caverns-78426.herokuapp.com/api/user/${id}`, {first_time: false}, {headers: params})
+      axios.patch(`${url}/api/user/${id}`, {first_time: false}, {headers: params})
         .then(response => {
           localStorage.setItem('user_first_time', 'false')
           this.$router.push({
@@ -308,7 +309,7 @@ export default {
             reject('Please enter required fields')
           }
 
-          axios.post(`https://ancient-caverns-78426.herokuapp.com/api/profile/personal`, obj, {headers: params})
+          axios.post(`${url}/api/profile/personal`, obj, {headers: params})
             .then(response => {
               resolve(true)
             })
@@ -346,7 +347,7 @@ export default {
               };
 
               axios
-                .post(`https://ancient-caverns-78426.herokuapp.com/api/profile/education`, obj, {
+                .post(`${url}m/api/profile/education`, obj, {
                   headers: params
                 })
                 .then(response => {
@@ -393,7 +394,7 @@ export default {
               };
 
               axios
-                .post(`https://ancient-caverns-78426.herokuapp.com/api/profile/experience`, obj, {
+                .post(`${url}/api/profile/experience`, obj, {
                   headers: params
                 })
                 .then(response => {
@@ -422,7 +423,7 @@ export default {
               user: {id: id}
             }
 
-            axios.post(`https://ancient-caverns-78426.herokuapp.com/api/profile/skills`, obj, {headers: params})
+            axios.post(`${url}/api/profile/skills`, obj, {headers: params})
               .then(response => {
                 resolve(true)
               })
@@ -500,7 +501,7 @@ export default {
                 user: id,
                 role: value
               }
-              axios.post('https://ancient-caverns-78426.herokuapp.com/api/profile/updateRole', obj, {headers: params})
+              axios.post(`${url}/api/profile/updateRole`, obj, {headers: params})
                 .then(resposne => {
                   localStorage.setItem('role', value)
                   this.role = value
