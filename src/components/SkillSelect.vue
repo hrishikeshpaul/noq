@@ -9,7 +9,7 @@
       :options="options"
       :taggable="true"
       :multiple="true"
-      :option-height="154"
+      :option-height="194"
       @search-change="searchQuery"
       @tag="addTag"></multiselect>
   </div>

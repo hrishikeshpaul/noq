@@ -5,7 +5,7 @@
         <div class="mr-5">
           <button class="btn-outline-secondary" style="cursor: pointer; border-radius: 10px; padding-top: 5px;" @click="logout"><i class="ti-back-left"></i></button>
         </div>
-        <b-card style="max-height: 85vh; overflow-y: auto; min-height: 40vh">
+        <b-card style="max-height: 85vh; overflow-y: auto; min-height: 60vh">
           <form-wizard
             v-if="role"
             @on-complete="onComplete"
@@ -352,7 +352,6 @@ export default {
                 }
               }
             }
-
             if (vals.size == 1) {
               var obj = {
                 data: this.educations,
@@ -360,7 +359,7 @@ export default {
               };
 
               axios
-                .post(`${url}m/api/profile/education`, obj, {
+                .post(`${url}/api/profile/education`, obj, {
                   headers: params
                 })
                 .then(response => {
@@ -399,7 +398,6 @@ export default {
                 }
               }
             }
-            console.log(vals)
             if (vals.size === 1) {
               var obj = {
                 data: this.experiences,

@@ -33,9 +33,15 @@
         options: colleges
       }
     },
-    mounted () {
-      var o = this.options.find(x => x.name === this.rVal)
-      this.value = {name: o.name, id: o.id}
+    created () {
+      console.log('herer')
+      console.log(this.rVal)
+      if(this.rVal) {
+        var o = this.options.find(x => x.name === this.rVal)
+        this.value = {name: o.name, id: o.id}
+      } else {
+        this.value = {}
+      }
     },
     watch: {
       value (newVal) {
