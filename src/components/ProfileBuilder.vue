@@ -517,6 +517,7 @@ export default {
     }
   },
   mounted () {
+    document.getElementById("main").style.marginLeft = "0";
     this.role = localStorage.role
   }
 }
