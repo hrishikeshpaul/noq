@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-2">
+  <div class="">
     <multiselect
       v-model="value"
       :max-height="150"
@@ -15,36 +15,55 @@
 </template>
 
 <script>
-    import Multiselect from 'vue-multiselect'
-    import colleges from "../assets/college.json"
+  import Multiselect from 'vue-multiselect'
+  import colleges from '../assets/college.json'
 
-
-    export default {
-        components: {
-            Multiselect
-        },
-        data () {
-            return {
-                value: { keyName: 'Vue.js', id: 'JavaScript' },
-                options: colleges
-            }
-        },
-        watch: {
-            value(newVal) {
-                if (typeof newVal.hasOwnProperty('name') !== null) {
-                    this.$emit('addCompany', newVal);
-                }
-                console.log(JSON.stringify(newVal))
-            }
-        },
-        methods: {
-            nameWithLang ({ name, language }) {
-                return `${name} — [${language}]`
-            }
+  export default {
+    components: {
+      Multiselect
+    },
+    props: {
+      rVal: {
+        type: String
+      }
+    },
+    data () {
+      return {
+        value: {keyName: 'Vue.js', id: 'JavaScript'},
+        options: colleges
+      }
+    },
+    mounted () {
+      var o = this.options.find(x => x.name === this.rVal)
+      this.value = {name: o.name, id: o.id}
+    },
+    watch: {
+      value (newVal) {
+        if (typeof newVal.hasOwnProperty('name') !== null) {
+          this.$emit('addCompany', newVal)
         }
+      }
+    },
+    methods: {
+      nameWithLang ({name, language}) {
+        return `${name} — [${language}]`
+      }
     }
+  }
 </script>
 
 <style scoped>
+  /deep/ .multiselect__single {
+    background-color: #f6f6f6;
+  }
+  /deep/ .multiselect__tags {
+    background-color: #f6f6f6;
+  }
 
+  /deep/ .multiselect__tags:hover {
+    background-color: #f1f1f1;
+  }
+  /deep/ .multiselect__single:hover {
+    background-color: #f1f1f1;
+  }
 </style>

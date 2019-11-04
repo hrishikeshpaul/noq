@@ -10,7 +10,7 @@
     <div class="mx-5">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
         <div style="position: relative;">
-          <h2><div class="mb-3">{{ key }}</div></h2>
+          <h3><div class="mb-3">{{ key }}</div></h3>
           <div
             v-for="(j, index) in job" v-if="job.length > 0"
             style="display: inline-block;"
@@ -31,7 +31,7 @@
 
       <div v-for="(user, key) in computedUsers" class="mb-3" v-if="userRole === 'employer'">
         <div style="position: relative;">
-          <h2><div class="mb-3">{{ key }}</div></h2>
+          <h3><div class="mb-3">{{ key }}</div></h3>
           <div
             v-for="u in user" v-if="user.length > 0"
             style="display: inline-block;"
@@ -122,7 +122,12 @@ export default {
     }
   },
   mounted () {
-    document.getElementById("main").style.marginLeft = "330px";
+    if (localStorage.getItem('navBarCollapsed') == 'false') {
+      console.log('here')
+      document.getElementById("main").style.marginLeft = "330px";
+    }
+    else if (localStorage.navBarCollapsed == 'true')
+      document.getElementById("main").style.marginLeft = "80px"
 
   },
   created () {
@@ -179,10 +184,22 @@ export default {
       }
 
       axios.patch(`${url}/api/jobs/reject`, {
+        role: this.userRole,
         user: localStorage.getItem('user_id'),
         job: i
       }, {headers})
         .then(response => {
+          this.$swal({
+            position: 'top-right',
+            backdrop: false,
+            showConfirmButton: false,
+            timer: 2500,
+            width: '300px',
+            imageHeight: 20,
+            imageWidth: 20,
+            background: 'rgba(92,184,92,0.93)',
+            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected job!</span>'
+          })
           console.log(this.$refs['card'])
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
@@ -212,6 +229,17 @@ export default {
         role: this.userRole
       }, {headers})
         .then(response => {
+          this.$swal({
+            position: 'top-right',
+            backdrop: false,
+            showConfirmButton: false,
+            timer: 2500,
+            width: '300px',
+            imageHeight: 20,
+            imageWidth: 20,
+            background: 'rgba(92,184,92,0.93)',
+            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted job!</span>'
+          })
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
               // card.$el.classList.add('object')
@@ -239,6 +267,17 @@ export default {
         role: this.userRole
       }, {headers})
         .then(response => {
+          this.$swal({
+            position: 'top-right',
+            backdrop: false,
+            showConfirmButton: false,
+            timer: 2500,
+            width: '300px',
+            imageHeight: 20,
+            imageWidth: 20,
+            background: 'rgba(92,184,92,0.93)',
+            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted user!</span>'
+          })
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
               // card.$el.classList.add('object')
@@ -266,6 +305,17 @@ export default {
         role: this.userRole
       }, {headers})
         .then(response => {
+          this.$swal({
+            position: 'top-right',
+            backdrop: false,
+            showConfirmButton: false,
+            timer: 2500,
+            width: '300px',
+            imageHeight: 20,
+            imageWidth: 20,
+            background: 'rgba(92,184,92,0.93)',
+            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected user!</span>'
+          })
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
               // annimations go here

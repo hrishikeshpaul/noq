@@ -533,8 +533,40 @@ export default {
       this.showJobInfoModal = false
     },
     deleteConfirmModal (job) {
-      this.jobInfoToBePassed = job
-      this.showDeleteConfirmModal = !this.showDeleteConfirmModal
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the job with title, ${job.title}</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
+            axios.delete(`${url}/api/jobs/${job._id}`, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert(err.response.data)
+              })
+          }
+        });
+      // this.jobInfoToBePassed = job
+      // this.showDeleteConfirmModal = !this.showDeleteConfirmModal
     },
     hideDeleteConfirmModal () {
       this.$swal({
@@ -557,17 +589,6 @@ export default {
     },
     hideEducationModal () {
       this.showEducationModal = false
-      this.$swal({
-        position: 'top-right',
-        backdrop: false,
-        showConfirmButton: false,
-        timer: 2500,
-        width: '300px',
-        imageHeight: 20,
-        imageWidth: 20,
-        background: 'rgba(92,184,92,0.93)',
-        title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
-      })
       this.getData()
     },
     editExperienceModal (experience) {
@@ -601,69 +622,114 @@ export default {
         description: '',
         current: true
       }
-      this.experienceButtonText = 'Add Education'
+      this.experienceButtonText = 'Add Experience'
       this.showExperienceModal = !this.showExperienceModal
     },
     deleteExperience (exp) {
-      var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
-      }
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
 
-      axios.delete(`${url}/api/profile/experience/${exp._id}`, {headers: headers})
-        .then(response => {
-          this.showToast = true
-          this.toastContent = 'Deleted Successfully'
-          this.getData()
-        })
-        .catch(err => {
-          alert(err.response.data)
-        })
+            axios.delete(`${url}/api/profile/experience/${exp._id}`, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert(err.response.data)
+              })
+          }
+        });
     },
     deleteEducation (edu) {
-      var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
-      }
-      axios.delete(`${url}/api/profile/education/${edu._id}`, {headers: headers})
-        .then(response => {
-          this.showToast = true
-          this.toastContent = 'Deleted Successfully'
-          this.getData()
-        })
-        .catch(err => {
-          alert(err.response.data)
-        })
-    },
-    deleteJobPosting (id) {
-      var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
-      }
-      axios.delete(`${url}/api/jobs/${id}`, {headers: headers})
-        .then(response => {
-          this.showToast = true
-          this.toastContent = 'Deleted Successfully'
-          this.getData()
-          this.hideDeleteConfirmModal()
-          this.getData()
-        })
-        .catch(err => {
-          alert(err.response.data)
-        })
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the education.</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
+            axios.delete(`${url}/api/profile/education/${edu._id}`, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert(err.response.data)
+              })
+          }
+        });
+
     },
     rejectConfirmedApplicant (job_id, user_id) {
-      var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
-      }
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once rejected, you will not be able to message the user again.</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
 
-      axios.patch(`${url}/api/jobs/rejectconfirmedapplicant`, {job: job_id, user: user_id}, {headers: headers})
-        .then(response => {
-          this.showToast = true
-          this.toastContent = 'Rejected Successfully'
-          this.getData()
-          this.getData()
-        })
-        .catch(err => {
-          alert('Delete could not happen.')
-        })
+            axios.patch(`${url}/api/jobs/rejectconfirmedapplicant`, {job: job_id, user: user_id}, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert('Delete could not happen.')
+              })
+          }
+        });
+
     },
     addSkills (skills) {
       this.skillsToUpdate = skills

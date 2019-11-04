@@ -3,12 +3,12 @@
     <div>
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="'Education'">
-        <template v-slot:modal-title>
-          <div style="font-size: 40px;" class="nice-font px-3">
-            Education
-          </div>
-          <p style="font-size: 17px; color: #575e65; margin-top: -7px; padding-left: 2px;" class="mb-0 nice-font px-3">Give some details to describe your education!</p>
-        </template>
+<!--        <template v-slot:modal-title>-->
+<!--          <div style="font-size: 40px;" class="nice-font px-3">-->
+<!--            Education-->
+<!--          </div>-->
+<!--          <p style="font-size: 17px; color: #575e65; margin-top: -7px; padding-left: 2px;" class="mb-0 nice-font px-3">Give some details to describe your education!</p>-->
+<!--        </template>-->
         <div class="d-block text-center px-3 nice-font pb-2">
           <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
           <b-form class="text-left">
@@ -116,7 +116,17 @@ export default {
       } else {
         axios.post(`${url}/api/profile/education`, {data: [this.newEducation], user: {id: this.user._id}}, {headers: headers})
           .then(response => {
-            alert('Education Added')
+            this.$swal({
+              position: 'top-right',
+              backdrop: false,
+              showConfirmButton: false,
+              timer: 2500,
+              width: '300px',
+              imageHeight: 20,
+              imageWidth: 20,
+              background: 'rgba(92,184,92,0.93)',
+              title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully added education!</span>'
+            })
             this.show = false
             this.newEducation = {}
             this.$emit('hideModal')
@@ -139,6 +149,17 @@ export default {
       axios.patch(`${url}/api/profile/education/${id}`, this.newEducation, {headers: headers})
         .then(response => {
           if (response.status === 200) {
+            this.$swal({
+              position: 'top-right',
+              backdrop: false,
+              showConfirmButton: false,
+              timer: 2500,
+              width: '300px',
+              imageHeight: 20,
+              imageWidth: 20,
+              background: 'rgba(92,184,92,0.93)',
+              title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully edited education!</span>'
+            })
             this.show = false
             this.newEducation = {}
             this.$emit('hideModal')
@@ -190,5 +211,36 @@ label {
 }
 .smaller-font {
   font-size: 13px;
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+/deep/ .modal-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  padding-left: 1rem;
+  font-size: 35px;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity .5s ease
 }
 </style>

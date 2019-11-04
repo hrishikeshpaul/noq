@@ -3,12 +3,12 @@
     <div>
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="'Job Posting Settings'">
-        <template v-slot:modal-title>
-          <div style="font-size: 40px;" class="nice-font px-3">
-            Job Posting Settings
-          </div>
-          <p style="font-size: 17px; color: #575e65; margin-top: -3px; padding-left: 2px;" class="mb-0 nice-font px-3">Describe your job opening!</p>
-        </template>
+<!--        <template v-slot:modal-title>-->
+<!--          <div style="font-size: 40px;" class="nice-font px-3">-->
+<!--            Job Posting Settings-->
+<!--          </div>-->
+<!--          <p style="font-size: 17px; color: #575e65; margin-top: -3px; padding-left: 2px;" class="mb-0 nice-font px-3">Describe your job opening!</p>-->
+<!--        </template>-->
         <div class="d-block text-center nice-font px-3" style="max-height: 600px; overflow-y: auto;">
           <b-alert variant="danger" v-if="showAlert" :show="10" dismissible>{{alertText}}</b-alert>
           <b-form class="text-left">
@@ -98,6 +98,17 @@ export default {
         axios.patch(`${url}/api/jobs/edit/${id}`, this.newJob, {headers: headers})
           .then(response => {
             if (response.status === 200) {
+              this.$swal({
+                position: 'top-right',
+                backdrop: false,
+                showConfirmButton: false,
+                timer: 2500,
+                width: '300px',
+                imageHeight: 20,
+                imageWidth: 20,
+                background: 'rgba(92,184,92,0.93)',
+                title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully edited job!</span>'
+              })
               this.show = false
               this.$emit('hideModal')
             }
@@ -141,6 +152,12 @@ export default {
   }
   .smaller-font {
     font-size: 13px;
+  }
+  /deep/ .modal-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    padding-left: 1rem;
+    font-size: 35px;
   }
 
 </style>

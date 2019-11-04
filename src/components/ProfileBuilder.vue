@@ -51,7 +51,7 @@
                    <b-form-input id="linkedin" :class="{'error-border': invalidLinkedIn, 'input-field': 'true'}" v-model.trim="user.social.linkedin"></b-form-input>
                 </b-form-group>
 
-                <label class="smaller-font">GitHub</label>
+                <label class="smaller-font"  v-if="role === 'student'">GitHub</label>
                 <b-form-group
                               v-if="role === 'student'"
                 >

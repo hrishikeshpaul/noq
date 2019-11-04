@@ -3,12 +3,12 @@
     <div >
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="newJob.title" class="nice-font">
-        <template v-slot:modal-title>
-          <div style="font-size: 40px;" class="nice-font px-3">
-            {{newJob.title}}
-          </div>
-          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newJob.company}}</p>
-        </template>
+<!--        <template v-slot:modal-title>-->
+<!--          <div style="font-size: 40px;" class="nice-font px-3">-->
+<!--            {{newJob.title}}-->
+<!--          </div>-->
+<!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newJob.company}}</p>-->
+<!--        </template>-->
         <div style="max-height: 600px !important; overflow-y: auto" class="mb-3">
           <div class="text-center nice-font">
             <img src="../assets/company.jpg" style="height: 150px; width: 150px; border-radius: 50%;"/>
@@ -111,5 +111,11 @@ export default {
   .nice-font {
     font-family: 'Raleway', sans-serif;
     font-weight: 200;
+  }
+  /deep/ .modal-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    padding-left: 1rem;
+    font-size: 35px;
   }
 </style>

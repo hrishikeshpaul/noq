@@ -3,12 +3,12 @@
     <div>
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="'Post a Job'">
-        <template v-slot:modal-title>
-          <div style="font-size: 40px;" class="nice-font px-3">
-            Edit Profile
-          </div>
-          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">Make changes to some basic details of your profile!</p>
-        </template>
+<!--        <template v-slot:modal-title>-->
+<!--          <div style="font-size: 40px;" class="nice-font px-3">-->
+<!--            Edit Profile-->
+<!--          </div>-->
+<!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">Make changes to some basic details of your profile!</p>-->
+<!--        </template>-->
         <div class="d-block text-center px-3 nice-font mb-2" style="max-height: 600px; overflow-y: auto;">
           <b-alert dismissible variant="danger" v-model="showAlert" :show="10"> {{alertText}}</b-alert>
           <b-form class="text-left">
@@ -96,6 +96,21 @@ export default {
         axios.post(`${url}/api/jobs`, this.job, {headers: headers})
           .then(response => {
             if (response.status == 204) {
+              this.$swal({
+                position: 'top-right',
+                backdrop: false,
+                showConfirmButton: false,
+                timer: 2500,
+                width: '300px',
+                imageHeight: 20,
+                imageWidth: 20,
+                background: 'rgba(92,184,92,0.93)',
+                title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully posted job!</span>'
+              })
+              this.job.title = ''
+              this.job.position = ''
+              this.job.location = ''
+              this.job.description = ''
               this.show = false
               this.$emit('hideModal')
               this.$emit('getData')
@@ -136,5 +151,11 @@ export default {
   }
   .smaller-font {
     font-size: 13px;
+  }
+  /deep/ .modal-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    padding-left: 1rem;
+    font-size: 35px;
   }
 </style>

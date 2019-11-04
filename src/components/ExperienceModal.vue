@@ -3,12 +3,12 @@
     <div>
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="'Experience'" header-bg-variant="warnning">
-        <template v-slot:modal-title>
-          <div style="font-size: 40px;" class="nice-font px-3">
-            Experience
-          </div>
-          <p style="font-size: 17px; color: #575e65; margin-top: -7px; padding-left: 2px;" class="mb-0 nice-font px-3">In a few words, describe your work experience!</p>
-        </template>
+<!--        <template v-slot:modal-title>-->
+<!--          <div style="font-size: 40px;" class="nice-font px-3">-->
+<!--            Experience-->
+<!--          </div>-->
+<!--          <p style="font-size: 17px; color: #575e65; margin-top: -7px; padding-left: 2px;" class="mb-0 nice-font px-3">In a few words, describe your work experience!</p>-->
+<!--        </template>-->
         <div class="d-block text-center nice-font px-3 pb-2" style="max-height: 600px; overflow-y: auto;">
           <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
           <b-form class="text-left">
@@ -20,7 +20,7 @@
             <b-form-group>
               <b-form-input id="position" v-model.trim="newExperience.title" class="input-field"></b-form-input>
             </b-form-group>
-            <label> class="mb-0 smaller-font"Position*</label>
+            <label class="mb-0 smaller-font">Position*</label>
             <b-form-group>
               <b-form-input id="position" v-model.trim="newExperience.location" class="input-field"></b-form-input>
             </b-form-group>
@@ -126,7 +126,17 @@ export default {
           user: {id: this.user._id}
         }, {headers: headers})
           .then(response => {
-            alert('CExperience Added')
+            this.$swal({
+              position: 'top-right',
+              backdrop: false,
+              showConfirmButton: false,
+              timer: 2500,
+              width: '300px',
+              imageHeight: 20,
+              imageWidth: 20,
+              background: 'rgba(92,184,92,0.93)',
+              title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully added experience!</span>'
+            })
             this.show = false
             this.newExperience = {}
             this.$emit('hideModal')
@@ -149,6 +159,17 @@ export default {
       axios.patch(`${url}/api/profile/experience/${id}`, this.newExperience, {headers: headers})
         .then(response => {
           if (response.status === 200) {
+            this.$swal({
+              position: 'top-right',
+              backdrop: false,
+              showConfirmButton: false,
+              timer: 2500,
+              width: '300px',
+              imageHeight: 20,
+              imageWidth: 20,
+              background: 'rgba(92,184,92,0.93)',
+              title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully edited experience!</span>'
+            })
             this.show = false
             this.newExperience = {}
             this.$emit('hideModal')
@@ -190,5 +211,11 @@ export default {
   }
   .smaller-font {
     font-size: 13px;
+  }
+  /deep/ .modal-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    padding-left: 1rem;
+    font-size: 35px;
   }
 </style>

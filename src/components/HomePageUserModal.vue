@@ -3,12 +3,12 @@
     <div>
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="newUser.name">
-        <template v-slot:modal-title>
-          <div style="font-size: 40px;" class="nice-font px-3">
-            {{newUser.name}}
-          </div>
-          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newUser.email}}</p>
-        </template>
+<!--        <template v-slot:modal-title>-->
+<!--          <div style="font-size: 40px;" class="nice-font px-3">-->
+<!--            {{newUser.name}}-->
+<!--          </div>-->
+<!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newUser.email}}</p>-->
+<!--        </template>-->
         <div style="max-height: 600px !important; overflow-y: auto">
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.github)"><i class="ti-github"></i></button>
 
@@ -31,7 +31,7 @@
                 <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
                 <div style="font-size: 22px; font-weight: 300">{{exp.company}}</div>
                 <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 7px">{{exp.location}}</div>
-                <div style="color: rgb(116,116,116); font-size: 20px; text-align: justify">{{exp.description}}</div>
+                <div style="color: rgb(116,116,116); font-size: 18px; text-align: justify" class="pb-3">{{exp.description}}</div>
               </div>
             </div>
           </div>
@@ -172,6 +172,12 @@
 
   ::-webkit-scrollbar {
     width: 5px;
+  }
+  /deep/ .modal-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    padding-left: 1rem;
+    font-size: 35px;
   }
 
 </style>

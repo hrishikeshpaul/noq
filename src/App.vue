@@ -35,7 +35,7 @@
             </router-link>
           </a>
         <hr style="background-color: #757d80; height: 1px" class="py-0 my-0"/>
-          <a href="#">
+          <a href="#" style="text-decoration: none;">
             <router-link to="/" :class="{'sidenav-item-active': $route.name === 'HomePage'}">
               <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
                 <span v-if="!navBarCollapsed" class="px-4">Home</span>
@@ -43,15 +43,15 @@
               </div>
             </router-link>
           </a>
-        <a href="#">
-          <router-link to="/">
-            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
-              <span v-if="!navBarCollapsed" class="px-4">Messages</span>
-              <span v-else><i class="ti-comment-alt"></i></span>
-            </div>
-          </router-link>
-        </a>
-        <a href="#">
+<!--        <a href="#">-->
+<!--          <router-link to="/">-->
+<!--            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">-->
+<!--              <span v-if="!navBarCollapsed" class="px-4">Messages</span>-->
+<!--              <span v-else><i class="ti-comment-alt"></i></span>-->
+<!--            </div>-->
+<!--          </router-link>-->
+<!--        </a>-->
+        <a href="#" style="text-decoration: none;">
           <router-link to="/settings" :class="{'sidenav-item-active': $route.name === 'ProfileSettings'}">
             <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
               <span v-if="!navBarCollapsed" class="px-4">Settings</span>
@@ -61,11 +61,11 @@
         </a>
 
         <hr style="background-color: #7e868a; margin-bottom: 0px; padding-bottom: 0px;"/>
-        <a href="#">
+        <a href="#" style="text-decoration: none;">
           <router-link to="/">
             <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}" @click="logout">
               <span v-if="!navBarCollapsed" class="px-4">Logout</span>
-              <span v-else><i class="ti-control-backward"></i></span>
+              <span v-else><i class="ti-back-left"></i></span>
             </div>
           </router-link>
         </a>
@@ -99,6 +99,7 @@ export default {
   mounted () {
     this.email = localStorage.getItem('email')
     this.role = localStorage.getItem('role')
+    localStorage.setItem('navBarCollapsed', false)
     if (this.$route.path === '/build_profile') {
       document.getElementById("main").style.marginLeft = "0";
       var element = document.getElementById("main");
@@ -110,11 +111,13 @@ export default {
       return gravatar.url(email)
     },
     openNav () {
+      localStorage.setItem('navBarCollapsed', false)
       this.navBarCollapsed = false
       document.getElementById("mySidenav").style.width = "330px";
       document.getElementById("main").style.marginLeft = "330px";
     },
     closeNav () {
+      localStorage.setItem('navBarCollapsed', true)
       this.navBarCollapsed = true
       document.getElementById("mySidenav").style.width = "80px";
       document.getElementById("main").style.marginLeft = "80px";
