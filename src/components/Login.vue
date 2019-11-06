@@ -152,8 +152,8 @@
               sub-title="Indiana University"
             >
               <hr width="50%"/>
+              <b-card-text>Junior, Computer Science</b-card-text>
               <b-card-text>cosnorto@iu.edu</b-card-text>
-              <b-card-text></b-card-text>
             </b-card>
           </div>
           <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center  p-5" >
