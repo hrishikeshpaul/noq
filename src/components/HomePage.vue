@@ -1,8 +1,8 @@
 <template>
   <div>
 <!--    <NavBar @logout="logout"/>-->
-    <span style="font-size: 80px;" class="mx-5 mb-0">Home</span>
-    <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Apply to companies that are are a perfect fit for you!' : 'Accept candidates that are a perfect fir for your organisation'}}</p>
+    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Home</div>
+    <p class="" style="color: grey; margin-top: -10px; margin-left: 53px;">{{role === 'student' ? 'Apply to companies that are are a perfect fit for you!' : 'Accept candidates that are a perfect fit for your organisation'}}</p>
     <div class="container">
       <FilterBar @group="callReGroup" :options="filterOptions"/>
     </div>

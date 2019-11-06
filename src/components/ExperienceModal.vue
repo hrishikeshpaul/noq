@@ -43,10 +43,10 @@
               <b-form-textarea id="position" v-model.trim="newExperience.description" rows="4" class="input-field"></b-form-textarea>
             </b-form-group>
           </b-form>
-          <b-button class="mt-3" variant="outline-warning" type="submit" block v-if="buttonText === 'Edit Experience'"
+          <b-button class="mt-3 w-100 btn-outline-primary" type="submit" block v-if="buttonText === 'Edit Experience'"
                     @click="editExperience ">{{buttonText}}
           </b-button>
-          <b-button class="mt-3" variant="outline-warning" type="submit" block v-else @click="addExperience ">
+          <b-button class="mt-3 w-100 btn-outline-primary" type="submit" v-else @click="addExperience ">
             {{buttonText}}
           </b-button>
         </div>

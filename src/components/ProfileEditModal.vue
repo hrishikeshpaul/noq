@@ -44,7 +44,7 @@
               <b-form-textarea id="Bio" v-model.trim="newUser.bio" rows="4" class="input-field"></b-form-textarea>
             </b-form-group>
           </b-form>
-          <button class="mt-3 btn btn-outline-warning w-100" @click="editUser">Edit</button>
+          <button class="mt-3 btn btn-outline-primary w-100" @click="editUser">Edit</button>
         </div>
       </b-modal>
     </div>

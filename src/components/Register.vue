@@ -12,33 +12,28 @@
       or
     </div>
     <b-form @submit="onSubmit" class="p3">
-      <label>Email</label>
-      <b-form-group id="fieldsetHorizontal"
-                    >
+      <label class="smaller-font">Email</label>
+      <b-form-group id="fieldsetHorizontal">
         <b-form-input id="username" v-model.trim="register.username" class="no-border"></b-form-input>
       </b-form-group>
-      <label>Password</label><span></span>
-      <b-form-group id="fieldsetHorizontal"
+      <label class="smaller-font">Password</label><span></span>
+      <b-form-group id="fieldsetHorizontal" class="mb-0"
                     >
         <b-form-input type="password" id="password" :state="state" v-model.trim="register.password" class="no-border"></b-form-input>
       </b-form-group>
-      <ul class="helper-text" style="font-size: 12px;">
-        <li class="length">Must be at least 8 characters long</li>
-        <li class="uppercase">Must contain an uppercase letter</li>
-        <li class="special">Must contain a special character</li>
-      </ul>
-      <label>Re-Enter Password</label>
+      <div style="font-size: 11px; padding-top: 0; margin-bottom: 10px !important; margin-top: 2px;">Must be at least 8 characters, have an uppercase letter and a special character</div>
+      <label class="smaller-font">Re-Enter Password</label>
       <b-form-group id="fieldsetHorizontal"
                     >
         <b-form-input type="password" id="password2" :state="state" v-model.trim="register.password2" class="no-border"></b-form-input>
       </b-form-group>
 
-      <label>Select Role</label>
+      <label class="smaller-font">Select Role</label>
       <b-form-group
         id="fieldsetHorizontal">
-        <b-form-select v-model="register.role" :options="options" size="md" id="role"></b-form-select>
+        <b-form-select v-model="register.role" :options="options" size="md" id="role" class="w-100"></b-form-select>
       </b-form-group>
-      <button type="submit" class="mt-2 btn-outline-warning" style="width: 100%; height: 35px; border-radius: 10px">Register</button>
+      <button type="submit" class="mt-2 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 10px">Register</button>
       <br />
     </b-form>
   </div>
@@ -145,6 +140,10 @@ export default {
 
   .linkedin-btn:hover{
     background-color: #6c9ccb !important;
+  }
+
+  .smaller-font {
+    font-size: 13px;
   }
 
 </style>

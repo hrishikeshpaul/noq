@@ -19,10 +19,10 @@
           <br />
           <div class="row">
             <div class="col-6">
-              <button class=" mr-5 btn-lg btn-danger ml-4" @click="$emit('reject', job._id)">Reject</button>
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', job._id)"><i class="ti-close"></i></button>
             </div>
             <div class="col-6">
-              <button @click="$emit('accept', job._id)" class=" mr-4 btn-lg btn-success">Apply</button>
+              <button @click="$emit('accept', job._id)" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
             </div>
           </div>
         </div>
@@ -108,6 +108,10 @@ export default {
 
   .card-body {
     padding: 0px !important;
+  }
+
+  button{
+    cursor: pointer;
   }
 
 </style>

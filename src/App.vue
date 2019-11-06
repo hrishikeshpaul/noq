@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-9">
                       <span style="font-size: 17px;">{{email}}</span>
-                      <p style="font-size: 15px; margin-top: -10px;">{{role}}</p>
+                      <p style="font-size: 15px; margin-top: -3px;">{{role.charAt(0).toUpperCase() + role.substring(1)}}</p>
                     </div>
                   </div>
                 </div>
@@ -154,7 +154,8 @@ export default {
   top: 0;
   left: 0;
   box-shadow: 1px 1px 5px #6c757d;
-  background-color: rgba(28, 16, 15, 0.85);
+  background-color: #212a31;
+  /*background-color: rgba(28, 16, 15, 0.85);*/
   /*background-color: #fec10f;*/
   overflow-x: hidden;
   transition: 0.5s;
@@ -171,11 +172,11 @@ export default {
 }
 
 .sidenav-item-active {
-  background-color: rgba(138, 82, 77, 0.48);
+  background-color: rgba(146, 146, 146, 0.48);
 }
 
 .sidenav a:hover {
-  color: #78757c;
+  color: #ababab;
 }
 
 .sidenav .closebtn {

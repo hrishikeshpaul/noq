@@ -8,8 +8,10 @@
         <b-card style="max-height: 85vh; overflow-y: auto; min-height: 60vh">
           <form-wizard
             v-if="role"
+            :color="'black'"
             @on-complete="onComplete"
-            step-size="sm" color="orange"
+            step-size="sm"
+            color="#3498db"
             @on-change="handleTabChanged"
             @on-loading="setLoading"
             @on-validate="handleValidation"
@@ -113,10 +115,10 @@
               </div>
               <button
                 v-if="role === 'student'"
-                style="width: 100%; border-radius: 10px;"
-                class="btn-outline-warning mb-2 mt-1 "
+                style="width: 100%; border-radius: 4px;"
+                class="btn-outline-primary mb-2 mt-1 "
                 @click.prevent="addItem('education')">
-                Add</button>
+                <b>Add</b></button>
             </tab-content>
             <!--           EXPERIENCE TAB-->
             <tab-content
@@ -170,8 +172,8 @@
               </div>
               <button
                 v-if="role === 'student'"
-                style="width: 100%; border-radius: 10px;"
-                class="btn-outline-warning mb-2 mt-1 "
+                style="width: 100%; border-radius: 3px;"
+                class="btn-outline-primary mb-2 mt-1 "
                 @click.prevent="addItem('experience')">
                 Add</button>
             </tab-content>

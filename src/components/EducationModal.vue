@@ -40,8 +40,8 @@
               </div>
             </div>
           </b-form>
-          <button class="mt-2 btn btn-outline-warning w-100" v-if="buttonText === 'Edit Education'" @click="editEducation ">{{buttonText}}</button>
-          <button class="mt-2 btn-outline-warning w-100 py-1" type="submit" v-else @click="addEducation ">{{buttonText}}</button>
+          <button class="mt-2 btn btn-outline-primary w-100" v-if="buttonText === 'Edit Education'" @click="editEducation ">{{buttonText}}</button>
+          <button class="mt-2 btn-outline-primary w-100 py-1" type="submit" v-else @click="addEducation ">{{buttonText}}</button>
         </div>
       </b-modal>
     </div>

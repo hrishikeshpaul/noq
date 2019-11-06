@@ -17,7 +17,7 @@
               <span style="font-size: 22px; color: grey;">{{user.company}}</span>
             </div>
             <div>
-              <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-warning" @click="profileInputModal"><i
+              <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-primary" @click="profileInputModal"><i
                 class="ti-pencil"></i></button>
               <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" v-if="user.role === 'student'"
                       @click="showWindow(user.social.github)"><i class="ti-github"></i></button>
@@ -146,8 +146,8 @@
                     </div>
                     <b-button
                       v-if="role === 'student'"
-                      style="width: 100%; border-radius: 10px;"
-                      variant="outline-warning"
+                      style="width: 100%; border-radius: 5px;"
+                      variant="outline-primary"
                       class="mb-2 mt-1 "
                       @click="addEducationModal"
                     >
@@ -213,7 +213,7 @@
                     <b-button
                       v-if="role === 'student'"
                       style="width: 100%; border-radius: 10px;"
-                      variant="outline-warning"
+                      variant="outline-primary"
                       class="mb-2 mt-1 "
                       @click="addExperienceModal"
                     >
@@ -227,7 +227,7 @@
                       <label>Add/Remove Skills:</label>
                       <b-form-group>
                         <SkillSelect @addSkills="addSkills" :recievedValues="user.skills"/>
-                        <button class="btn btn-outline-warning" @click.prevent="updateSkills"
+                        <button class="btn btn-outline-primary" @click.prevent="updateSkills"
                                 style="width: 100%; border-radius: 10px;">Save
                         </button>
                       </b-form-group>
@@ -247,7 +247,7 @@
                     <b-input-group class="mb-3">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob"></b-form-input>
                       <b-input-group-append>
-                        <b-button variant="warning" style="border: 1px solid #dba30e"><i class="ti-search"></i></b-button>
+                        <b-button variant="primary"><i class="ti-search"></i></b-button>
                       </b-input-group-append>
                     </b-input-group>
                     <div v-for="(job, idx) in employerJobs">
@@ -317,7 +317,7 @@
                       @click="jobInputModal"
                       v-if="role === 'employer'"
                       style="width: 100%; border-radius: 10px;"
-                      class="btn-outline-warning mb-2 mt-1"
+                      class="btn-outline-primary mb-2 mt-1"
                     >
                       Post Job
                     </button>

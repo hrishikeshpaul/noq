@@ -2,13 +2,13 @@
   <div>
       <div style="height: 100vh; position: relative; ">
       <div id="video_overlays"></div>
-      <video autoplay loop muted id="video" style="width: auto; height: auto; position: absolute; z-index: -2;">
+      <video autoplay loop muted id="video" style="width: 100%; height: auto; position: absolute; z-index: -2;">
         <source src="../assets/lv2.mp4" type="video/mp4">
       </video>
       <div class="container">
         <div style="display: block;">
-          <div class="mt-5">
-            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); max-height: 700px; overflow-y: auto">
+          <div class="mt-4">
+            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); max-height: 720px; overflow-y: auto; transition: all 0.5s;">
               <div class="text-center big-title">
                 <span class="px-2 logo-noq">noQ</span>
               </div>
@@ -27,19 +27,19 @@
                         or
                       </div>
                       <b-form>
-                        <label>Email</label>
+                        <label class="smaller-font">Email</label>
                         <b-form-group id="fieldsetHorizontal">
                           <b-form-input id="username" v-model.trim="login.username"></b-form-input>
                         </b-form-group>
-                        <label>Password</label>
+                        <label v-if="!forgotPassword" class="smaller-font">Password</label>
                         <b-form-group id="fieldsetHorizontal"
                                       v-if="!forgotPassword"
-                                      class="mb-2"
+                                      class="mb-2 smaller-font"
                                       >
                           <b-form-input type="password" id="password" v-model.trim="login.password" ></b-form-input>
                         </b-form-group>
-                        <button type="submit" class="mt-3 mb-3 btn-outline-warning" style="width: 100%; height: 35px; border-radius: 10px" @click.prevent="onSubmit" v-if="!forgotPassword">{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
-                        <button type="submit" class="mt-1 mb-3 btn-outline-warning" style="width: 100%; height: 35px; border-radius: 10px" @click.prevent="resetPassword" v-else>{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
+                        <button type="submit" class="mt-3 mb-3 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 5px" @click.prevent="onSubmit" v-if="!forgotPassword">{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
+                        <button type="submit" class="mt-1 mb-3 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 10px" @click.prevent="resetPassword" v-else>{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
                         <div class="align-content-center ">
                           <div class="g-recaptcha" id="recaptcha" style="margin-left: 45px;" data-sitekey="6Lf7Ab4UAAAAAMD1Px2wHu6_LKXPd2b02BNTPfBs"></div>
                         </div>
@@ -57,7 +57,6 @@
             </b-card>
           </div>
           <div class="mt-5 pt-5 text-center">
-            <br />
             <a class="align-bottom" href="#"><i class="arrow down down-arrow"></i></a>
           </div>
         </div>
@@ -147,40 +146,45 @@
       <!-- OUR TEAM -->
       <div class="px-5">
         <div class="row" style="align-items: center;" >
+          <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
+            <b-card
+              title="Cole Norton"
+              sub-title="Indiana University"
+            >
+              <hr width="50%"/>
+              <b-card-text>colen81@iu.edu</b-card-text>
+              <b-card-text></b-card-text>
+            </b-card>
+          </div>
           <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center  p-5" >
            <b-card
-             title="Sushi Paul"
+             title="H Paul"
              sub-title="Indiana University"
            >
              <hr width="50%"/>
              <b-card-text>Graduate, Computer Science</b-card-text>
+             <b-card-text>hrpaul@iu.edu</b-card-text>
            </b-card>
           </div>
+
           <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
             <b-card
-              title="Sandwich Cole"
+              title="Rui Zhang"
               sub-title="Indiana University"
             >
               <hr width="50%"/>
               <b-card-text>Junior, Computer Science</b-card-text>
+              <b-card-text>rz1@iu.edu</b-card-text>
             </b-card>
           </div>
           <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
             <b-card
-              title="Ramen Rui"
-              sub-title="Indiana University"
-            >
-              <hr width="50%"/>
-              <b-card-text>Junior, Computer Science</b-card-text>
-            </b-card>
-          </div>
-          <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
-            <b-card
-              title="Sharanya Egg"
+              title="Sharanya R"
               sub-title="Indiana University"
             >
               <hr width="50%"/>
               <b-card-text>Graduate, Computer Science</b-card-text>
+              <b-card-text>sharavi@iu.edu</b-card-text>
             </b-card>
           </div>
         </div>
@@ -385,6 +389,23 @@ export default {
 
   .linkedin-btn:hover{
     background-color: #6c9ccb !important;
+  }
+  .input-field {
+    border: 0;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: none;
+    margin-top: 1px;
+    background-color: #f6f6f6;
+  }
+  .input-field:hover {
+    background-color: #f1f1f1;
+  }
+  .input-field:focus {
+    background-color: #eaeaea;
+  }
+  .smaller-font {
+    font-size: 13px;
   }
 
 </style>

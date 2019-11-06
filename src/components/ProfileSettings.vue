@@ -10,20 +10,20 @@
           <b-form class="text-left">
             <div class="card-title" style="font-size: 35px; margin-top: -10px;">Reset Password</div>
             <hr />
-            <label>Old Password</label>
+            <label class="smaller-font">Old Password</label>
             <b-form-group>
-              <b-form-input id="title" v-model.trim="oldPassword" type="password"></b-form-input>
+              <b-form-input id="title" v-model.trim="oldPassword" type="password" class="input-field"></b-form-input>
             </b-form-group>
-            <label>New Password</label>
+            <label class="smaller-font">New Password</label>
             <b-form-group>
-              <b-form-input id="position" v-model.trim="newPassword" type="password"></b-form-input>
+              <b-form-input id="position" v-model.trim="newPassword" type="password" class="input-field"></b-form-input>
             </b-form-group>
-            <label>Re-Enter Password</label>
+            <label class="smaller-font">Re-Enter Password</label>
             <b-form-group>
-              <b-form-input id="position" v-model.trim="newPassword1" type="password"></b-form-input>
+              <b-form-input id="position" v-model.trim="newPassword1" type="password" class="input-field"></b-form-input>
             </b-form-group>
           </b-form>
-          <button class="mt-2 btn btn-outline-warning w-100" @click="changePassword">Change Password</button>
+          <button class="mt-2 btn btn-outline-primary w-100" @click="changePassword">Change Password</button>
         </div>
       </div>
     </div>
@@ -104,5 +104,25 @@ export default {
 </script>
 
 <style scoped>
-
+  .nice-font {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+  }
+  .input-field {
+    border: 0;
+    border-radius: 2px;
+    outline: none;
+    box-shadow: none;
+    margin-top: 1px;
+    background-color: #f6f6f6;
+  }
+  .input-field:hover {
+    background-color: #f1f1f1;
+  }
+  .input-field:focus {
+    background-color: #eaeaea;
+  }
+  .smaller-font {
+    font-size: 13px;
+  }
 </style>
