@@ -164,7 +164,7 @@
                       </b-form-group>
                     </div>
                   </div>
-                    <label class="smaller-font">Title</label>
+                    <label class="smaller-font">Description</label>
                   <b-form-group>
                     <b-form-textarea id="description" v-model.trim="experience.description" rows="4" class="input-field"></b-form-textarea>
                   </b-form-group>
