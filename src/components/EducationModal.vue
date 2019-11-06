@@ -110,9 +110,6 @@ export default {
       } else if (this.newEducation.fieldofstudy === 0) {
         this.showAlert = true
         this.alertText = 'Field of Study is required'
-      } else if (this.$moment(this.newEducation.from).diff(this.$moment(this.newEducation.to)) < 0) {
-        this.showAlert = true
-        this.alertText = 'To Date can\'t be after From date'
       } else {
         axios.post(`${url}/api/profile/education`, {data: [this.newEducation], user: {id: this.user._id}}, {headers: headers})
           .then(response => {

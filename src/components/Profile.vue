@@ -3,7 +3,7 @@
 <!--    <NavBar @logout="logout"/>-->
     <button style="float: right; padding-top: 5px;" class="mt-5 mr-5 btn-outline-secondary rounded" @click="getData"><i class="ti-reload"></i></button>
     <span style="font-size: 80px;" class="mx-5 mb-0">Profile</span>
-    <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Edit your profile detials and check your acceptances!' : 'Add job postings, and message applicants!'}}</p>
+    <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Edit your profile details and check your acceptances!' : 'Add job postings, and message applicants!'}}</p>
     <hr width="94%" align="left" class="mx-5"/>
     <div class="px-5">
       <div class="row">

@@ -307,7 +307,7 @@ export default {
           var obj = {
             data: {
               name: this.user.name,
-              company: this.company,
+              company: this.user.company,
               website: this.user.website,
               social: this.user.social,
               bio: this.user.bio
