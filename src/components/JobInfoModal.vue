@@ -33,7 +33,7 @@
               <SkillSelect @addSkills="addSkills" :recieved-values="newJob.skills"/>
             </b-form-group>
           </b-form>
-          <button class="mt-1 btn btn-outline-warning w-100" @click="editJob">Edit Job</button>
+          <button class="mt-1 btn btn-outline-primary w-100" @click="editJob">Edit Job</button>
         </div>
       </b-modal>
     </div>

@@ -33,6 +33,13 @@
         id="fieldsetHorizontal">
         <b-form-select v-model="register.role" :options="options" size="md" id="role" class="w-100"></b-form-select>
       </b-form-group>
+
+      <label class="smaller-font" v-if="register.role == 'student'">Gender</label>
+      <b-form-group
+        v-if="register.role === 'student'"
+        id="fieldsetHorizontal">
+        <b-form-select v-model="register.gender" :options="genderOptions" size="md" id="role" class="w-100"></b-form-select>
+      </b-form-group>
       <button type="submit" class="mt-2 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 10px">Register</button>
       <br />
     </b-form>
@@ -60,10 +67,16 @@ export default {
   data () {
     return {
       register: {
-        role: 'student'
+        role: 'student',
+        gender: 'I do not wish to specify'
       },
       error: '',
       state: null,
+      genderOptions: [
+        {value: 'I do not wish to specify', text: 'I do not wish to specify'},
+        {value: 'Male', text: 'Male'},
+        {value: 'Female', text: 'Female'},
+      ],
       options: [
         { value: 'student', text: 'Student' },
         { value: 'employer', text: 'Employer' }

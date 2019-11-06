@@ -2,14 +2,21 @@
   <div id="app">
     <div id="mySidenav" class="sidenav" v-if="$route.path !== '/login' && $route.path !== '/build_profile'">
       <div style="display: flex; justify-content: space-between" class="px-4 text-center">
-          <div class="big-title text-center" style="display: inline; margin-left: -13px;" v-if="!navBarCollapsed">
-            <span class="px-2 logo-noq">noQ</span>
-            <p class="mt-1" style="font-size: 10px; color: white">Making Career Fairs Easier</p>
-          </div>
+<!--          <div class="big-title text-center" style="display: inline; margin-left: -13px;" v-if="!navBarCollapsed">-->
+<!--            <span class="px-2 logo-noq">noQ</span>-->
+<!--            <p class="mt-1" style="font-size: 10px; color: white">Making Career Fairs Easier</p>-->
+<!--          </div>-->
 
-        <div style="display: inline; margin-left: 12px;" >
-          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed">&rang;</a>
-          <a href="javascript:void(0)" class="closebtn" @click="closeNav" v-else style="margin-top: 10px;">&lang;</a>
+        <div v-if="!navBarCollapsed" class="mt-3">
+          <img src="./assets/noQ_0275d8.svg" width="130">
+          <p class="mt-1" style="font-size: 10px; color: white">Making Career Fairs Easier</p>
+        </div>
+
+        <div style="display: inline;" >
+<!--          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed">&rang;</a>-->
+          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed"><img src="./assets/onlyQ.svg" width="40" style="margin-left: -5px !important; margin-top: -5px;"></img></a>
+
+          <a href="javascript:void(0)" class="closebtn" @click="closeNav" v-else style="margin-top: 10px; margin-left: 12px;">&lang;</a>
         </div>
       </div>
 

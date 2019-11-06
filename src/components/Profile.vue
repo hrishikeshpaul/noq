@@ -2,7 +2,7 @@
   <div >
 <!--    <NavBar @logout="logout"/>-->
     <button style="float: right; padding-top: 5px;" class="mt-5 mr-5 btn-outline-secondary rounded" @click="getData"><i class="ti-reload"></i></button>
-    <span style="font-size: 80px;" class="mx-5 mb-0">Profile</span>
+    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Profile</div>
     <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Edit your profile details and check your acceptances!' : 'Add job postings, and message applicants!'}}</p>
     <hr width="94%" align="left" class="mx-5"/>
     <div class="px-5">
@@ -10,11 +10,11 @@
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
           <div class="mt-4">
             <img :src="gravatarImage(user.email)" style="height: 250px; width: 250px;"/>
-            <div>
-              <span style="font-size: 45px;" >{{user.name}}</span>
+            <div class="mt-2">
+              <span style="font-size: 40px; margin-top: 5px;" >{{user.name}}</span>
             </div>
-            <div>
-              <span style="font-size: 22px; color: grey;">{{user.company}}</span>
+            <div style="margin-top: -10px;">
+              <span style="font-size: 18px; color: grey;">{{user.company}}</span>
             </div>
             <div>
               <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-primary" @click="profileInputModal"><i
@@ -35,7 +35,7 @@
         <div class="col-lg-9 col-md-6 col-sm-12">
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
             <b-card no-body>
-              <b-tabs card style="font-size: 17px;">
+              <b-tabs card style="font-size: 16px;">
                 <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body>
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
@@ -52,7 +52,7 @@
                             <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h3 class="card-title">{{job.title}}</h3>
+                            <h5 class="card-title">{{job.title}}</h5>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
@@ -105,7 +105,7 @@
                   </b-card-body>
                 </b-tab>
                 <b-tab title="Education" style="max-height: 1000px; overflow-y: auto;">
-                  <b-card-body style="font-size: 18px;">
+                  <b-card-body style="font-size: 16px;">
                     <div v-for="edu in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover">
                         <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
@@ -113,7 +113,7 @@
                         <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
                                 @click="editEducationModal(edu)"><i class="ti-pencil"></i></button>
                         <p></p>
-                        <h4 class="card-title" style="margin-top: -12px;">{{edu.school}}</h4>
+                        <h5 class="card-title" style="margin-top: -12px;">{{edu.school}}</h5>
                         <hr width="100%" align="left"/>
                         <div class="row">
                           <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -156,12 +156,12 @@
                   </b-card-body>
                 </b-tab>
                 <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto;">
-                  <b-card-body style="font-size: 19px;">
+                  <b-card-body style="font-size: 16px;">
                     <div v-for="exp in user.experience">
                       <b-card class="mb-3 shadow-hover">
                         <div class="row">
                           <div class="col-lg-10 col-md-11 col-sm-12">
-                            <h3 class="card-title">{{exp.company}}</h3>
+                            <h5 class="card-title">{{exp.company}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
                             <button style="float: right; border: none;" class="btn btn-outline-danger ml-2"
@@ -222,7 +222,7 @@
                   </b-card-body>
                 </b-tab>
                 <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px;">
-                  <b-card-body style="font-size: 18px;">
+                  <b-card-body style="font-size: 16px;">
                     <b-form class="text-left">
                       <label>Add/Remove Skills:</label>
                       <b-form-group>
@@ -241,7 +241,7 @@
 
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
             <b-card no-body>
-              <b-tabs card style="font-size: 18px;">
+              <b-tabs card style="font-size: 16px;">
                 <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body>
                     <b-input-group class="mb-3">
@@ -263,7 +263,7 @@
                             <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h3 class="card-title">{{job.title}}</h3>
+                            <h4 class="card-title">{{job.title}}</h4>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
@@ -330,7 +330,7 @@
                         <b-card class="text-left my-2">
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt"></i></button>
-                          <h3 class="card-title user-hover mt-2" style="cursor: pointer;" @click="applicantDataModal(user)">{{user.name}}</h3>
+                          <h4 class="card-title user-hover mt-2" style="cursor: pointer;" @click="applicantDataModal(user)">{{user.name}}</h4>
                           <hr />
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                           <span>{{job.title}}</span>

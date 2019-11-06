@@ -31,7 +31,7 @@
                 <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
                 <div style="font-size: 22px; font-weight: 300">{{exp.company}}</div>
                 <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 7px">{{exp.location}}</div>
-                <div style="color: rgb(116,116,116); font-size: 18px; text-align: justify" class="pb-3">{{exp.description}}</div>
+                <div style="color: rgb(116,116,116); font-size: 16px; text-align: justify" class="pb-3">{{exp.description}}</div>
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
                 <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(edu.from)}} - {{getDate(edu.to)}}</div>
                 <div style="font-size: 22px; font-weight: 300">{{edu.school}}</div>
                 <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 0px">{{edu.location}}</div>
-                <div style="color: rgb(120,120,120); font-size: 20px;">{{edu.degree}} - {{edu.fieldofstudy}}</div>
+                <div style="color: rgb(120,120,120); font-size: 16px;">{{edu.degree}} - {{edu.fieldofstudy}}</div>
                 <p></p>
               </div>
             </div>

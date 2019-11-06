@@ -33,7 +33,7 @@
               <SkillSelect @addSkills="addSkills"/>
             </b-form-group>
           </b-form>
-        <button class="mt-2 btn btn-outline-warning w-100" @click="postJob">Post</button>
+        <button class="mt-2 btn btn-outline-primary w-100" @click="postJob">Post</button>
         </div>
       </b-modal>
     </div>

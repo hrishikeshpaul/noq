@@ -10,7 +10,7 @@
           <div class="mt-4">
             <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); max-height: 720px; overflow-y: auto; transition: all 0.5s;">
               <div class="text-center big-title">
-                <span class="px-2 logo-noq">noQ</span>
+                <img src="../assets/noQ_0275d8.svg" width="160">
               </div>
               <p class="text-center mt-1" style="font-size: 15px; color: gray">Making Career Fairs Easier</p>
               <hr />
@@ -152,7 +152,7 @@
               sub-title="Indiana University"
             >
               <hr width="50%"/>
-              <b-card-text>colen81@iu.edu</b-card-text>
+              <b-card-text>cosnorto@iu.edu</b-card-text>
               <b-card-text></b-card-text>
             </b-card>
           </div>

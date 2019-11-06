@@ -19,10 +19,10 @@
         <br />
         <div class="row">
           <div class="col-6">
-            <button class=" mr-5 btn-lg btn-danger ml-4" @click="$emit('reject', {id: user._id, job: user.job})">Reject</button>
+            <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: user._id, job: user.job})"><i class="ti-close"></i></button>
           </div>
           <div class="col-6">
-            <button @click="$emit('accept', {id: user._id, job: user.job})" class=" mr-4 btn-lg btn-success">Accept</button>
+            <button @click="$emit('accept', {id: user._id, job: user.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
           </div>
         </div>
       </div>

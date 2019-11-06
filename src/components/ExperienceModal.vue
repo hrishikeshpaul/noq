@@ -116,10 +116,7 @@ export default {
         this.alertText = 'From date is required'
       } else if (this.newExperience.location === 0) {
         this.showAlert = true
-        this.alertText = 'Locationn is required'
-      } else if (this.$moment(this.newExperience.from).diff(this.$moment(this.newExperience.to)) < 0) {
-        this.showAlert = true
-        this.alertText = 'To Date can\'t be after From date'
+        this.alertText = 'Location is required'
       } else {
         axios.post(`${url}/api/profile/experience`, {
           data: [this.newExperience],

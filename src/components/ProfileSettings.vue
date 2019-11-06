@@ -1,14 +1,14 @@
 <template>
   <div>
-    <span style="font-size: 80px;" class="mx-5 px-5 mb-0 mt-2">Profile Settings</span>
-    <p class="px-5" style="color: grey; margin-top: -18px; margin-left: 55px; margin-bottom: 50px !important;">{{'Change various profile settings'}}</p>
-    <div class="px-5 mx-5">
+    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Profile</div>
+    <p class="px-5" style="color: grey; margin-top: -18px; margin-left: 5px; margin-bottom: 50px !important;">{{'Change various profile settings'}}</p>
+    <div class=" mx-5">
       <div class="card px-4 py-3 shadow-sm">
         <div class="d-block text-center card-body">
           <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
           <b-alert variant="success" v-if="showAlert2" :show="10">{{alertText2}}</b-alert>
           <b-form class="text-left">
-            <div class="card-title" style="font-size: 35px; margin-top: -10px;">Reset Password</div>
+            <div class="card-title" style="font-size: 25px; margin-top: -10px;">Reset Password</div>
             <hr />
             <label class="smaller-font">Old Password</label>
             <b-form-group>
