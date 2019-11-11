@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <HomePageJobModal :showModal="showHomePageJobModal" @hideModal="hideHomePageJobModal" :job="homePageJobToSend"/>
+    <HomePageJobModal :showModal="showHomePageJobModal" @hideModal="hideHomePageJobModal" :job="homePageJobToSend" @accept="accept" @reject="reject"/>
     <HomePageUserModal :showModal="showHomePageUserModal" @hideModal="hideHomePageUserModal" :user="homePageUserToSend" />
   </div>
 </template>
@@ -123,7 +123,6 @@ export default {
   },
   mounted () {
     if (localStorage.getItem('navBarCollapsed') == 'false') {
-      console.log('here')
       document.getElementById("main").style.marginLeft = "330px";
     }
     else if (localStorage.navBarCollapsed == 'true')

@@ -179,5 +179,12 @@
     padding-left: 1rem;
     font-size: 35px;
   }
+  /deep/ .modal-header {
+    color: white;
+    background-color: #3498db;
+  }
+  /deep/ .close {
+    color: white;
+  }
 
 </style>

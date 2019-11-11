@@ -29,6 +29,19 @@
           <hr />
           <div class="px-3 nice-font">
             <div class="row">
+              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
+                <span><i class="ti-star"></i></span>
+              </div>
+              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
+                <div style="font-size: 18px">
+                  {{displaySkills(newJob.skills)}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="px-3 nice-font">
+            <div class="row">
               <div class="col-lg-1 col-md-1 col-sm-1 mt-1" style="color: gray; font-size: 20px">
                 <span style="margin-top: 5px !important;"><i class="ti-receipt"></i></span>
               </div>
@@ -38,17 +51,15 @@
             </div>
           </div>
           <hr />
-          <div class="px-3 nice-font">
-            <div class="row">
-              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
-                <span><i class="ti-star"></i></span>
-              </div>
-              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
-                <div style="font-size: 20px">
-                  {{displaySkills(newJob.skills)}}
-                </div>
-              </div>
+          <div class="row text-center">
+            <div class="col-3"></div>
+            <div class="col-3">
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', newJob._id)"><i class="ti-close"></i></button>
             </div>
+            <div class="col-3">
+              <button @click="$emit('accept', newJob._id)" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+            </div>
+            <div class="col-3"></div>
           </div>
         </div>
       </b-modal>
@@ -117,5 +128,24 @@ export default {
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;
+  }
+  /deep/ .modal-header {
+    color: white;
+    background-color: #3498db;
+  }
+  /deep/ .close {
+    color: white;
+  }
+  button {
+    cursor: pointer;
+  }
+  .ti-briefcase {
+    color: saddlebrown;
+  }
+  .ti-star {
+    color: #e5b645;
+  }
+  .ti-receipt {
+    color: darkgreen;
   }
 </style>

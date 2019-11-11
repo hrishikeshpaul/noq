@@ -243,7 +243,7 @@
             <b-card no-body>
               <b-tabs card style="font-size: 16px;">
                 <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto;">
-                  <b-card-body>
+                  <b-card-body class="py-2">
                     <b-input-group class="mb-3">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob"></b-form-input>
                       <b-input-group-append>
@@ -251,19 +251,21 @@
                       </b-input-group-append>
                     </b-input-group>
                     <div v-for="(job, idx) in employerJobs">
-                      <b-card class="text-left my-2">
-                        <button href="#" style="float: right; margin-top: 5px !important; border: none;"
-                                class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="deleteConfirmModal(job)"><i
-                          class="ti-close"></i></button>
-                        <button href="#" style="float: right; margin-top: 5px !important; border: none;"
-                                class="mt-3 pt-2 btn btn-outline-info" @click="jobInfoModal(job)"><i class="ti-pencil"></i>
-                        </button>
+                      <b-card class="text-left my-2 card-collapse" style="height: 140px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
+                        <div>
+                          <button href="#" style="float: right; margin-top: -2px !important; border: none;"
+                                  class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="deleteConfirmModal(job)"><i
+                            class="ti-close"></i></button>
+                          <button href="#" style="float: right; margin-top: -2px !important; border: none;"
+                                  class="mt-3 pt-2 btn btn-outline-info" @click="jobInfoModal(job)"><i class="ti-pencil"></i>
+                          </button>
+                        </div>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
                             <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h4 class="card-title">{{job.title}}</h4>
+                            <h4 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
@@ -283,20 +285,20 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="col-lg-1" style="width: 10px !important;">
-                                <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
-                              </div>
-                              <div class="col-lg-11 pl-0">
-                                <span style="white-space: pre-wrap;">{{job.description}}</i></span>
-                              </div>
-                            </div>
-                            <p></p>
-                            <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-star"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
                                 <span>{{job.skills.length > 0 ? job.skills.map(s => s.name).join(', ') : 'None'}}</span>
+                              </div>
+                            </div>
+                            <p></p>
+                            <div class="row">
+                              <div class="col-lg-1" style="width: 10px !important;">
+                                <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
+                              </div>
+                              <div class="col-lg-11 pl-0">
+                                <span style="white-space: pre-wrap;">{{job.description}}</i></span>
                               </div>
                             </div>
                             <p></p>
@@ -316,8 +318,8 @@
                     <button
                       @click="jobInputModal"
                       v-if="role === 'employer'"
-                      style="width: 100%; border-radius: 10px;"
-                      class="btn-outline-primary mb-2 mt-1"
+                      style="width: 100%; border-radius: 5px;"
+                      class="mt-2 btn btn-outline-primary w-100"
                     >
                       Post Job
                     </button>
@@ -468,6 +470,18 @@ export default {
     }
   },
   methods: {
+    expandCollapseItem (idx, collapse, jobId) {
+      if (collapse) {
+        this.employerJobs[idx].collapse = false
+        document.getElementById(idx).style.height = '140px'
+        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+      } else {
+        this.employerJobs[idx].collapse = true
+        document.getElementById(idx).style.height = '100%'
+        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+      }
+
+    },
     logout () {
       localStorage.removeItem('jwtToken')
       this.$router.push({
@@ -767,8 +781,13 @@ export default {
       axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
           this.user = response.data
+          this.user.jobs.forEach(job => {
+            job.collapse = false
+          })
+          console.log(this.user)
         })
         .catch(e => {
+          console.log(e)
           if (e.response.status === 401) {
             this.$router.push({
               name: 'Login'
@@ -804,5 +823,20 @@ export default {
   .swal-wide {
     font-family: 'Raleway', sans-serif !important;
 
+  }
+  .card-collapse {
+    transition: height 0.5s ease-in .5s
+  }
+  .title-collapse {
+    cursor: pointer;
+  }
+  .title-collapse:hover {
+    color: #4c4c4c;
+  }
+  /deep/ .card-header {
+    background-color: rgba(0, 55, 114, 0.78) !important;
+  }
+  /deep/ .nav-link {
+    color: white;
   }
 </style>
