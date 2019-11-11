@@ -51,7 +51,7 @@
       </div>
     </div>
     <HomePageJobModal :showModal="showHomePageJobModal" @hideModal="hideHomePageJobModal" :job="homePageJobToSend" @accept="accept" @reject="reject"/>
-    <HomePageUserModal :showModal="showHomePageUserModal" @hideModal="hideHomePageUserModal" :user="homePageUserToSend" />
+    <HomePageUserModal :showModal="showHomePageUserModal" @hideModal="hideHomePageUserModal" :user="homePageUserToSend" @accept="acceptUser" @reject="rejectUser"/>
   </div>
 </template>
 
@@ -199,7 +199,7 @@ export default {
             background: 'rgba(92,184,92,0.93)',
             title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected job!</span>'
           })
-          console.log(this.$refs['card'])
+          this.showHomePageJobModal = false
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
 
@@ -239,6 +239,7 @@ export default {
             background: 'rgba(92,184,92,0.93)',
             title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted job!</span>'
           })
+          this.showHomePageJobModal = false
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
               // card.$el.classList.add('object')
@@ -277,6 +278,7 @@ export default {
             background: 'rgba(92,184,92,0.93)',
             title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted user!</span>'
           })
+          this.showHomePageUserModal = false
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
               // card.$el.classList.add('object')
@@ -315,6 +317,7 @@ export default {
             background: 'rgba(92,184,92,0.93)',
             title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected user!</span>'
           })
+          this.showHomePageUserModal = false
           this.$refs['card'].forEach(card => {
             if (card.$el.id === i) {
               // annimations go here
