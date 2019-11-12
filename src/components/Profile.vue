@@ -787,7 +787,6 @@ export default {
           console.log(this.user)
         })
         .catch(e => {
-          console.log(e)
           if (e.response.status === 401) {
             this.$router.push({
               name: 'Login'

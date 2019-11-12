@@ -50,14 +50,14 @@
               </div>
             </router-link>
           </a>
-<!--        <a href="#">-->
-<!--          <router-link to="/">-->
-<!--            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">-->
-<!--              <span v-if="!navBarCollapsed" class="px-4">Messages</span>-->
-<!--              <span v-else><i class="ti-comment-alt"></i></span>-->
-<!--            </div>-->
-<!--          </router-link>-->
-<!--        </a>-->
+        <a href="#">
+          <router-link to="/chat" :class="{'sidenav-item-active': $route.name === 'Chat'}">
+            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
+              <span v-if="!navBarCollapsed" class="px-4">Messages</span>
+              <span v-else><i class="ti-comment-alt"></i></span>
+            </div>
+          </router-link>
+        </a>
         <a href="#" style="text-decoration: none;">
           <router-link to="/settings" :class="{'sidenav-item-active': $route.name === 'ProfileSettings'}">
             <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
