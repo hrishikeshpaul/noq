@@ -1,1 +1,1 @@
-module.exports = "https://ancient-caverns-78426.herokuapp.com"
+module.exports = "localhost:3000"
