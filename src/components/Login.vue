@@ -86,7 +86,7 @@
           <div class="col-lg-4 col-xs-1 col-sm-1 col-md-2 text-center" >
             <img src="../assets/filter.png" class="mb-4"/>
             <br />
-            <span class="offer-title">Discover Filtering</span>
+            <span class="offer-title">Smart Selection</span>
             <br />
             <div class="px-5 pt-2">
             <span class="offer-description">Companies and organizations are filtered based on their requirements and a student's skillset
