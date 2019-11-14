@@ -13,7 +13,7 @@
           <b-alert variant="danger" v-model="showAlert"> {{alertText}}</b-alert>
           <div class="text-center nice-font mb-2">
             <div class="wrapper">
-              <img alt="" :src="newUser.profilepicture ? newUser.profilepicture : require('../assets/blank_profile.png')" style="height: 180px; width: 180px; border-radius: 50%;"/>
+              <img alt="" :src="newUser.profilepicture ? newUser.profilepicture : require('../assets/blank_profile.png')" style="height: 180px; width: 180px; border-radius: 50%; object-fit: cover;"/>
               <div class="overlay">
                 <div class="text">
                   <label class="btn-upload">
@@ -132,9 +132,17 @@
         axios.post(`${url}/api/profile/picture`, {image: e.target.result.replace(/^data:image\/[a-z]+;base64,/, ''), user_id: this.newUser._id}, {headers: headers})
           .then(response => {
             if (response.status === 204) {
-              // this.show = false
-              // this.showAlert = false
-              // this.$emit('hideModal')
+              this.$swal({
+                position: 'top-right',
+                backdrop: false,
+                showConfirmButton: false,
+                timer: 2500,
+                width: '300px',
+                imageHeight: 20,
+                imageWidth: 20,
+                background: 'rgba(92,184,92,0.93)',
+                title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully updated profile picture!</span>'
+              })
             }
           })
           .catch(e => {

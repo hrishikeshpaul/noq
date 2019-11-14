@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
           <div class="mt-4">
-            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 250px; width: 250px;"/>
+            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 250px; width: 250px; object-fit: cover"/>
             <div class="mt-2">
               <span style="font-size: 40px; margin-top: 5px;" >{{user.name}}</span>
             </div>
@@ -49,7 +49,7 @@
                         </button>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
-                            <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
+                            <img style="height: 100px; width: 100px; object-fit: cover;" :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
                             <h5 class="card-title">{{job.title}}</h5>
@@ -260,7 +260,7 @@
                         </button>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
-                            <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
+                            <img style="height: 100px; width: 100px; object-fit: cover;" :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
                             <h4 class="card-title">{{job.title}}</h4>
