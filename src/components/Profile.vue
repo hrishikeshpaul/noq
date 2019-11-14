@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
           <div class="mt-4">
-            <img :src="gravatarImage(user.email)" style="height: 250px; width: 250px;"/>
+            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 250px; width: 250px;"/>
             <div class="mt-2">
               <span style="font-size: 40px; margin-top: 5px;" >{{user.name}}</span>
             </div>
@@ -425,6 +425,7 @@ export default {
       experienceButtonText: '',
       user_id: localStorage.getItem('user_id'),
       user: {
+        profilepicture: '',
         acceptances: [],
         bio: '',
         name: '',
