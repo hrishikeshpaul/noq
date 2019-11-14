@@ -113,7 +113,6 @@ export default {
   created () {
     this.getData2()
     this.socket.emit('register', this.user_id)
-    // this.socket.emit('online', this.user_id)
     // window.setInterval(function () {
     //   var elem = document.getElementById('chatBox')
     //   if (elem) { elem.scrollTop = elem.scrollHeight }
@@ -133,7 +132,19 @@ export default {
         if (this.openedChat.hasOwnProperty(id)) { this.openedChat[id] = true }
       })
       if (!this.noChat) { this.getUserStatus() }
-      console.log('op: ', this.openedChat)
+    },
+    messageBody (val) {
+      if (val.length > 0) {
+        if (this.role === 'student')
+          this.socket.emit('typing', {from: this.user_id, to: this.openedChat.users[0]._id, status: 'typing'})
+        else if (this.role === 'employer')
+          this.socket.emit('typing', {from: this.user_id, to: this.openedChat.users[1]._id, status: 'typing'})
+      } else if (val.length === 0) {
+        if (this.role === 'student')
+          this.socket.emit('typing', {from: this.user_id, to: this.openedChat.users[0]._id, status: 'stopped'})
+        else if (this.role === 'employer')
+          this.socket.emit('typing', {from: this.user_id, to: this.openedChat.users[1]._id, status: 'stopped'})
+      }
     }
   },
   mounted () {
@@ -157,8 +168,16 @@ export default {
       this.onlineUsers = data
     })
 
+    this.socket.on('TYPING', data => {
+      if (data.status == 'typing') {
+        this.userStatus = 'typing...'
+      } else if(data.status == 'stopped')
+        this.getUserStatus()
+    })
+
     this.socket.on('PVT_READ', (messages) => {
-      if (this.openedChat) {
+      if (this.openedChat.hasOwnProperty(name)) {
+        console.log(this.openedChat.messages)
         this.openedChat.messages.forEach(message => {
           messages.forEach(newMsg => {
             if (newMsg._id === message._id) { message.read = true }
