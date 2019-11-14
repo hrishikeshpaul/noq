@@ -252,11 +252,13 @@
   }
 
   .btn-upload {
+    cursor: pointer !important;
     position: relative;
     overflow: hidden;
     display: inline-block;
   }
   .btn-upload input[type=file] {
+    cursor: pointer !important;
     position: absolute;
     opacity: 0;
     z-index: 0;
@@ -265,17 +267,18 @@
     display: block;
   }
   .btn-upload .btn{
-    padding: 8px 20px;
-    background: #337ab7;
+    cursor: pointer !important;
+    padding: 8px 12px;
+    background: white;
     border: 1px solid #2e6da4;
-    color: #fff;
-    border: 0;
+    color: black;
+    /*border: /z0;*/
   }
   .btn-upload:hover .btn{
-    padding: 8px 20px;
-    background: #2e6da4;
-    color: #fff;
-    border: 0;
+    cursor: pointer !important;
+    padding: 8px 12px;
+    background: #f5f8f5;
+    color: black;
   }
 
 </style>
