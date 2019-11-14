@@ -45,7 +45,7 @@
                                 class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i
                           class="ti-close"></i></button>
                         <button href="#" style="float: right; margin-top: 5px !important; border: none;"
-                                class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt"></i>
+                                class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i class="ti-comment-alt"></i>
                         </button>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
@@ -331,7 +331,7 @@
                       <div v-for="user in job.confirmed_users">
                         <b-card class="text-left my-2">
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
-                          <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt"></i></button>
+                          <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
                           <h4 class="card-title user-hover mt-2" style="cursor: pointer;" @click="applicantDataModal(user)">{{user.name}}</h4>
                           <hr />
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
@@ -358,7 +358,7 @@
       </div>
     </div>
 
-
+    <MessageUserModal :showModal="showMessageUserModal" @hideModal="hideMessageUserModal" :user="messageUserData" />
     <HomePageUserModal :showModal="showApplicantData" @hideModal="hideHomePageUserModal" :user="applicantData" />
     <JobInputModal :showModal="showJobInputModal" @hideModal="hideJobInputModal" :user="user" @getData="getData"/>
     <ProfileInputModal :showModal="showEditProfileModal" :user="user" @hideModal="hideEditProfileInputModal"/>
@@ -385,6 +385,7 @@ import DeleteConfirmModal from './DeleteConfirmModal'
 import EducationModal from './EducationModal'
 import ExperienceModal from './ExperienceModal'
 import HomePageUserModal from './HomePageUserModal'
+import MessageUserModal from './MessageUserModal'
 
 import Gravatar from 'vue-gravatar'
 import SkillSelect from './SkillSelect'
@@ -402,7 +403,8 @@ export default {
     DeleteConfirmModal,
     EducationModal,
     ExperienceModal,
-    HomePageUserModal
+    HomePageUserModal,
+    MessageUserModal
   },
   data () {
     return {
@@ -423,6 +425,7 @@ export default {
       educationToBePassed: {},
       experienceToBePassed: {},
       applicantData: {},
+      messageUserData: {},
       educationButtonText: '',
       experienceButtonText: '',
       user_id: localStorage.getItem('user_id'),
@@ -447,6 +450,7 @@ export default {
       showEducationModal: false,
       showExperienceModal: false,
       showApplicantData: false,
+      showMessageUserModal: false,
       employerSearchJob: '',
       gravatarIcon: null
     }
@@ -488,6 +492,9 @@ export default {
         name: 'Login'
       })
     },
+    hideMessageUserModal () {
+      this.showMessageUserModal = false
+    },
     showWindow (ref) {
       window.open(ref)
     },
@@ -498,6 +505,10 @@ export default {
       if (date)
         return this.$moment(date).format('MMM Do YY')
       else return 'Present'
+    },
+    messageUserModal (user) {
+      this.messageUserData = user
+      this.showMessageUserModal = !this.showMessageUserModal
     },
     applicantDataModal (user) {
       this.applicantData = user
@@ -804,6 +815,7 @@ export default {
 <style scoped>
   button {
     cursor: pointer;
+    border-radius: 5px;
   },
 .user-hover {
   color: black;

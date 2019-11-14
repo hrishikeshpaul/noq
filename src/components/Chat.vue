@@ -9,17 +9,19 @@
         <div class="col-4 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 700px;">
           <input id="from" type="text"  class="input-field form-control" placeholder="Search.." />
           <hr />
-          <div v-for="message in messages">
-            <div class="py-3 message-card pl-2" @click="openChat(message.id)" :style="{'background-color': openedChat.id == message.id ? '#c4c4c4' : 'none'}">
+          <div v-for="conversation in userConversations">
+<!--            :style="{'background-color': openedChat.name == conversation.name ? 'none' : 'none'}"-->
+            <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name == conversation.conversation_name ? '#b9b9b9' : 'none' }">
               <div class="row">
                 <div class="col-2">
-                  <img :src="message.image" style="height: 65px; width: 65px; object-fit: cover"/>
+                  <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
                 </div>
                 <div class="col-7">
-                  <span style="font-size: 18px; font-weight: 300;">{{message.name}}</span>
-                  <span class="pt-1" style="display: block; font-size: 14px;">{{message.company}}</span>
+                  <span style="font-size: 18px; font-weight: 300;">{{conversation.user.name}}</span>
+                  <span class="pt-1" style="display: block; font-size: 14px;">{{conversation.user.company}}</span>
                 </div>
-                <div class="col-3">
+                <div class="col-3 text-right">
+                  <span style="font-size: 12px; padding-right: 5px;">{{formatDate(conversation.lastUpdatedAt)}}</span>
                 </div>
               </div>
             </div>
@@ -35,28 +37,32 @@
             <div style="background-color: #007bff; height: 72px">
               <div class="pt-2">
                 <span
-                  style="font-size: 20px; font-weight: 400; padding-left: 15px; color: white">{{openedChat.name}}</span>
-                <p style="padding-left: 15px; color: white; margin-bottom: 0px;">{{openedChat.online ? 'Online': 'Offline'}}</p>
+                  style="font-size: 20px; font-weight: 400; padding-left: 15px; color: white">{{!openedChat.group ? role === 'student' ? openedChat.users[0].name : openedChat.users[1].name : 'Group Chat'}}</span>
+                <p style="padding-left: 15px; color: white; margin-bottom: 0px;">{{userStatus}}</p>
               </div>
             </div>
             <div>
-              <div class="chat-box">
+              <div class="chat-box" id="chatBox">
                 <div class="chat-here" style="height: 700px;">
-                  <div v-for="chat in openedChatMessages">
-                    <div class="px-2 mt-2 py-1" :style="{'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'none'}">
-                      <div class="row">
-                        <div class="col-10">
-                          <span style="font-size: 15px; font-weight: 500; padding-left: 15px;">{{chat.from.name}}</span>
-                        </div>
-                        <div class="col-2 text-right">
-                          <span style="font-size: 12px;">{{formatDate2(chat.date)}}</span>
-                        </div>
-                      </div>
+                  <div v-for="chat in openedChat.messages">
+                    <div class="px-2 mt-2 py-1" >
                       <div>
-                        <span style="padding-left: 15px;">{{chat.body}}</span>
+                        <div class="row mt-1 pt-1" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '530px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#D6D6D6'}">
+                          <div class="col-8">
+                            <span style="font-size: 15px; font-weight: 500; padding-left: 15px;">{{getFromName(chat.from.name)}}</span>
+                          </div>
+                          <div class="col-4 text-right">
+                            <span style="font-size: 12px;">{{formatDate2(chat.date)}}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="row mb-1 pb-1" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '530px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#d6d6d6'}">
+                            <div class="col-11"><span style="padding-left: 15px;">{{chat.body}}</span></div>
+                            <div class="col-1 text-right" v-if="chat.from._id === user_id"><i :class="chat.read ? 'ti-eye' : chat.delivered ? 'ti-check' : 'ti-time'" style="font-size: 10px; font-weight: bold"></i></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-<!--                    {{chat.from.name}} ({{formatDate2(chat.date)}}}) : {{formatDate2(chat.date)}}-->
                   </div>
                 </div>
               </div>
@@ -76,30 +82,42 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  import io from 'socket.io-client'
-  import url from '../config/server_config'
+import axios from 'axios'
+import io from 'socket.io-client'
+import url from '../config/server_config'
 
-  export default {
+export default {
   name: 'Chat',
   data () {
     return {
       user: {},
+      user_name: '',
       noChat: true,
-      openedChat: {},
+      openedChat: {
+      },
       messageBody: '',
+      onlineUsers: [],
+      userStatus: 'Offline',
+      userConversations: [],
+      allUserConversations: [],
       openedChatMessages: [],
       messages: [], // all the users that are in the list ot chat with!
       user_id: localStorage.user_id,
+      role: localStorage.role,
       socket: io('localhost:3000'),
       whichChatIsOpened: '',
       isUserOnline: false,
+      total_msg_length: 0
     }
   },
   created () {
-    this.getData()
+    this.getData2()
     this.socket.emit('register', this.user_id)
     // this.socket.emit('online', this.user_id)
+    // window.setInterval(function () {
+    //   var elem = document.getElementById('chatBox')
+    //   if (elem) { elem.scrollTop = elem.scrollHeight }
+    // }, 10000)
   },
   beforeDestroy () {
     // console.log('destroyed: ', this.user_id)
@@ -110,111 +128,146 @@
       // console.log(newVal)
       return newVal
     },
-    messages (newVal) {
-      console.log('newval:', newVal)
+    onlineUsers (newVal) {
+      newVal.forEach(id => {
+        if (this.openedChat.hasOwnProperty(id)) { this.openedChat[id] = true }
+      })
+      if (!this.noChat) { this.getUserStatus() }
+      console.log('op: ', this.openedChat)
     }
   },
   mounted () {
     this.socket.on('MESSAGE', (data) => {
-      this.openedChatMessages.push(data)
+      var indexToRemove = 0
+      for (var i = 0; i < this.openedChat.messages.length; i++) {
+        if (this.openedChat.messages[i].hasOwnProperty('temp')) {
+          indexToRemove = i
+          break
+        }
+      }
+      if (indexToRemove !== 0) {
+        this.openedChat.messages.splice(indexToRemove, 1)
+      }
+      this.openedChat.messages.push(data)
+      // console.log('this is opened chat: ', this.openedChat.messages)
     })
 
     this.socket.on('ONLINE_USERS', data => {
-      this.messages.forEach(user => {
-        data.forEach(id => {
-          if (user.id == id)
-            user.online = true
+      console.log('online user data: ', data)
+      this.onlineUsers = data
+    })
+
+    this.socket.on('PVT_READ', (messages) => {
+      if (this.openedChat) {
+        this.openedChat.messages.forEach(message => {
+          messages.forEach(newMsg => {
+            if (newMsg._id === message._id) { message.read = true }
+          })
         })
-      })
-      console.log(data)
-      console.log('online users: ', this.messages)
+      }
     })
   },
   methods: {
-
+    getUserStatus () {
+      if (this.role === 'student') {
+        if (this.openedChat[this.openedChat.users[0]._id]) { this.userStatus = 'Online' } else this.userStatus = 'Offline'
+      } else if (this.role === 'employer') {
+        if (this.openedChat[this.openedChat.users[1]._id]) { this.userStatus = 'Online' } else this.userStatus = 'Offline'
+      }
+    },
+    getFromName (name) {
+      this.user_name = name
+      return name
+    },
     formatDate (date) {
-      if (date)
-        return this.$moment(date).format('MMM Do YY')
-      else return 'Present'
+      if (date) { return this.$moment(date).format('MMM Do YY') } else return 'Present'
     },
     formatDate2 (date) {
-      if (date)
-        return this.$moment(date).format('hh:mm A, MM/DD')
-      else return 'Present'
+      if (date) { return this.$moment(date).format('hh:mm A, MM/DD') } else return 'Present'
     },
-    openChat (id) {
+    openChat (conversation) {
+      // this.onlineUsers = []
+      this.socket.emit('PVT_ONLINE')
+
       this.noChat = false
-      this.openedChat = this.messages.find(x => x.id === id)
-
-      var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+      this.openedChat = this.allUserConversations.find(x => x.name === conversation.conversation_name)
+      if (!this.openedChat.group) {
+        this.openedChat[this.openedChat.users[0]._id] = false
+        this.openedChat[this.openedChat.users[1]._id] = false
       }
-
-      axios.post(`${url}/api/messages/`, {from: this.user_id, to: id}, {headers: headers})
-        .then(res => {
-
-          this.openedChat.messages = []
-          res.data.sort(function (a, b) {
-            return new Date(a.date) - new Date(b.date);
-          });
-          this.openedChatMessages = res.data
-
-          console.log(this.openedChatMessages)
-        })
-        .catch(e => {
-          console.log(e)
-        })
+      this.socket.emit('PVT_READ', this.openedChat)
+      this.onlineUsers.forEach(id => {
+        if (this.openedChat.hasOwnProperty(id)) { this.openedChat[id] = true }
+      })
+      // console.log('online: ', this.onlineUsers)
+      // console.log(this.openedChat)
     },
     sendMessage () {
-      this.openedChat.messages.push({
-        from: this.user_id,
-        to: this.openedChat.id,
+      var temp_obj = {
+        from: this.user_name,
+        date: new Date(),
         body: this.messageBody,
-        date: new Date()
-      })
-      this.socket.emit('SEND_MESSAGE', {
-        from: this.user_id,
-        to: this.openedChat.id,
-        body: this.messageBody
-      });
+        temp: true,
+        delivered: false
+      }
+
+      this.openedChat.messages.push(temp_obj)
+      window.setInterval(function () {
+        var elem = document.getElementById('chatBox')
+        if (elem) { elem.scrollTop = elem.scrollHeight }
+      }, 10)
+
+      if (this.role === 'student') {
+        this.socket.emit('SEND_MESSAGE', {
+          from: this.user_id,
+          to: [this.openedChat.users[0]._id],
+          group: false,
+          conversation_id: this.openedChat._id,
+          name: this.openedChat.name,
+          body: this.messageBody
+        })
+      } else if (this.role === 'employer') {
+        this.socket.emit('SEND_MESSAGE', {
+          from: this.user_id,
+          to: [this.openedChat.users[1]._id],
+          group: false,
+          conversation_id: this.openedChat._id,
+          name: this.openedChat.name,
+          body: this.messageBody
+        })
+      }
       this.messageBody = ''
-      this.openChat(this.openedChat.id)
     },
-    getData () {
+    getData2 () {
       var headers = {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
+      axios.get(`${url}/api/messages/conversation/${this.user_id}`, {headers: headers})
         .then(response => {
-          this.user = response.data
-          // console.log(this.user)
-          if (this.user.role === 'student') {
-            this.user.acceptances.forEach(a => {
-              this.messages.push({
-                online: false,
-                id: a.employer._id,
-                name: a.employer.name,
-                company: a.employer.company,
-                email: a.employer.email,
-                image: require('../assets/blank_profile.png')
-              })
-            })
-          }
-          if (this.user.role === 'employer') {
-            this.user.jobs.forEach(job => {
-              job.confirmed_users.forEach(a => {
-                this.messages.push({
-                  online: false,
-                  id: a._id,
-                  name: a.name,
-                  company: a.employer.company,
-                  email: a.email,
-                  image: require('../assets/blank_profile.png')
+          // console.log(response.data)
+          this.allUserConversations = response.data
+          this.allUserConversations.forEach(conv => {
+            if (!conv.group) {
+              if (this.role === 'student') {
+                this.userConversations.push({
+                  user: conv.users[0],
+                  conversation_name: conv.name,
+                  lastUpdatedAt: conv.lastUpdatedAt,
+                  lastUpdatedBy: conv.lastUpdatedBy
                 })
-              })
-            })
-          }
+              } else if (this.role === 'employer') {
+                this.userConversations.push({
+                  user: conv.users[1],
+                  conversation_name: conv.name,
+                  lastUpdatedAt: conv.lastUpdatedAt,
+                  lastUpdatedBy: conv.lastUpdatedBy
+                })
+              }
+            }
+          })
+
+          // console.log(this.userConversations)
         })
         .catch(e => {
           if (e.response.status === 401) {
@@ -223,7 +276,7 @@
             })
           }
         })
-    },
+    }
 
   }
 }
@@ -238,9 +291,12 @@
     cursor: pointer;
   }
   .chat-box {
-    max-height: 620px;
+    max-height: 560px;
     overflow-y: auto;
     position: relative;
+    /*display: flex;*/
+    /*flex-direction: column-reverse;*/
+    /*padding-bottom: 20px;*/
   }
   button {
     cursor: pointer;
