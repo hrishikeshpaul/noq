@@ -37,11 +37,6 @@ import url from '../config/server_config'
 export default {
   name: 'ProfileSettings',
   props: {
-    showModal: {
-      type: Boolean,
-      default: false,
-      required: true
-    },
     user: {
       type: Object
     }

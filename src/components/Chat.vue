@@ -1,7 +1,7 @@
 <template>
 <div>
-  <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Messages</div>
-  <p class="" style="color: grey; margin-top: -5px; margin-left: 55px;">Make some conversations!</p>
+  <div style="font-size: 30px;" class="mx-5 mb-0 mt-3">Messages</div>
+<!--  <p class="" style="color: grey; margin-top: -5px; margin-left: 50px;">Make some conversations!</p>-->
   <hr width="94%" align="left" class="mx-5"/>
   <div class="card mx-5">
     <div class="card-body pt-0 px-0" style="height: 78vh;">
@@ -15,8 +15,7 @@
                     <input type="text" class="input-field form-control" placeholder="Search.." v-model="searchConversations"/>
                     <hr />
                     <div v-for="conversation in computedUserConversations">
-                      <!--            :style="{'background-color': openedChat.name == conversation.name ? 'none' : 'none'}"-->
-                      <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name == conversation.conversation_name ? '#c5c5c5' : 'none' }">
+                      <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name === conversation.conversation_name ? '#c5c5c5' : 'transparent' }">
                         <div class="row">
                           <div class="col-2">
                             <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
@@ -26,7 +25,7 @@
                             <span class="pt-1" style="display: block; font-size: 14px;">{{conversation.user.company}}</span>
                           </div>
                           <div class="col-3 text-right">
-                            <span style="font-size: 12px; padding-right: 5px;">{{formatDate(conversation.lastUpdatedAt)}}</span>
+                            <span style="font-size: 12px; padding-right: 8px;">{{formatDate(conversation.lastUpdatedAt)}}</span>
                           </div>
                         </div>
                       </div>
@@ -74,11 +73,11 @@
             <div>
               <div class="chat-box" id="chatBox">
                 <div class="chat-here" style="height: 700px;">
-                  <div v-for="chat in openedChat.messages">
+                  <div v-for="(chat, idx) in openedChat.messages">
                     <div class="px-2 mt-2 py-1" >
                       <div>
-                        <div class="row mt-1 pt-1" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '530px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#D6D6D6'}">
-                          <div class="col-8">
+                        <div class="row mt-1 pt-1 mx-2 chat-border-top" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#D6D6D6'}">
+                          <div class="col-8 pl-0" style="border-radius: 5px;">
                             <span style="font-size: 15px; font-weight: 500; padding-left: 15px;">{{getFromName(chat.from.name)}}</span>
                           </div>
                           <div class="col-4 text-right">
@@ -86,7 +85,7 @@
                           </div>
                         </div>
                         <div>
-                          <div class="row mb-1 pb-1" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '530px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#d6d6d6'}">
+                          <div class="row mb-1 pb-1 mx-2 chat-border-bottom pl-0" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#d6d6d6'}">
                             <div class="col-11"><span style="padding-left: 15px;">{{chat.body}}</span></div>
                             <div class="col-1 text-right" v-if="chat.from._id === user_id"><i :class="chat.read ? 'ti-eye' : chat.delivered ? 'ti-check' : 'ti-time'" style="font-size: 10px; font-weight: bold"></i></div>
                           </div>
@@ -156,6 +155,7 @@ export default {
       },
       messageBody: '',
       onlineUsers: [],
+      onlineOfflineUsers: [],
       userContacts: [],
       userStatus: 'Offline',
       userConversations: [],
@@ -184,7 +184,7 @@ export default {
     // }, 10000)
   },
   beforeDestroy () {
-    // console.log('destroyed: ', this.user_id)
+    console.log('destroyed: ', this.user_id)
     this.socket.emit('disconnect', this.user_id)
   },
   computed: {
@@ -256,9 +256,16 @@ export default {
       // console.log('this is opened chat: ', this.openedChat.messages)
     })
 
+    this.socket.on('OFFLINE_USER', id => {
+      // console.log('online user data: ', data)
+      console.log(id)
+      if (this.openedChat.hasOwnProperty(id)) { this.openedChat[id] = false }
+    })
+
     this.socket.on('ONLINE_USERS', data => {
-      console.log('online user data: ', data)
+      // console.log('online user data: ', data)
       this.onlineUsers = data
+      console.log('online: ', this.onlineUsers)
     })
 
     this.socket.on('TYPING', data => {
@@ -270,7 +277,6 @@ export default {
 
     this.socket.on('PVT_READ', (messages) => {
       if (this.openedChat.hasOwnProperty(name)) {
-        console.log(this.openedChat.messages)
         this.openedChat.messages.forEach(message => {
           messages.forEach(newMsg => {
             if (newMsg._id === message._id) { message.read = true }
@@ -307,7 +313,7 @@ export default {
     openChat (conversation) {
       // this.onlineUsers = []
       this.socket.emit('PVT_ONLINE')
-
+      this.openedChat = []
       this.noChat = false
       this.openedChat = this.allUserConversations.find(x => x.name === conversation.conversation_name)
       if (!this.openedChat.group) {
@@ -442,7 +448,7 @@ export default {
 
 }
   .message-card:hover {
-    background-color: #d1d1d1;
+    background-color: #d1d1d1 !important;
     cursor: pointer;
   }
   .chat-box {
@@ -455,5 +461,13 @@ export default {
   }
   button {
     cursor: pointer;
+  }
+  .chat-border-top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .chat-border-bottom {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
   }
 </style>

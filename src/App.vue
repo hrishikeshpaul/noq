@@ -90,7 +90,7 @@
 <script>
 import Gravatar from 'vue-gravatar'
 import gravatar from 'gravatar'
-
+import io from 'socket.io-client'
 export default {
   name: 'App',
   components: {
@@ -100,12 +100,23 @@ export default {
     return {
       navBarCollapsed: false,
       email: '',
-      role: ''
+      role: '',
+      socket: io('localhost:3000'),
+      prevRouteName: this.$route.name,
+      user_id: localStorage.user_id
     }
   },
   updated () {
     this.email = localStorage.getItem('email')
     this.role = localStorage.getItem('role')
+    if (this.$route.name === 'Chat') {
+      this.prevRouteName = 'Chat'
+    }
+    if (this.prevRouteName === 'Chat' && this.$route.name !== 'Chat') {
+      console.log('here')
+      this.socket.emit('USER_OUT', this.user_id)
+    }
+
   },
   mounted () {
     this.email = localStorage.getItem('email')
