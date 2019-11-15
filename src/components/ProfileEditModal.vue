@@ -11,6 +11,19 @@
 <!--        </template>-->
         <div class="d-block text-center px-3 nice-font mb-2" style="max-height: 600px; overflow-y: auto;">
           <b-alert variant="danger" v-model="showAlert"> {{alertText}}</b-alert>
+          <div class="text-center nice-font mb-2">
+            <div class="wrapper">
+              <img alt="" :src="newUser.profilepicture ? newUser.profilepicture : require('../assets/blank_profile.png')" style="height: 180px; width: 180px; border-radius: 50%; object-fit: cover; border: 3px solid #929292;"/>
+              <div class="overlay">
+                <div class="text">
+                  <label class="btn-upload">
+                    <input type="file" name="fileupload" @change="onFileChanged">
+                    <button class="btn"><i class="ti-pencil"></i></button>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
           <b-form class="text-left">
             <label class="mb-0 smaller-font">Name*</label>
             <b-form-group>
@@ -52,12 +65,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-import url from '../config/server_config'
-import UniversitySelect from './UniversitySelect'
+  import axios from 'axios'
+  import url from '../config/server_config'
+  import UniversitySelect from './UniversitySelect'
 
-
-export default {
+  export default {
   name: 'ProfileInputModal',
   components: {
     UniversitySelect
@@ -82,10 +94,12 @@ export default {
   },
   data () {
     return {
+      selectedImage: null,
       show: false,
       alertText: '',
       showAlert: false,
       newUser: {
+        profilepicture: null,
         social: {
           linkedin: '',
           github: ''
@@ -102,6 +116,44 @@ export default {
     }
   },
   methods: {
+
+    onFileChanged (event) {
+      var headers = {
+        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+      }
+
+      var file = event.target.files[0]
+      let reader = new FileReader()
+      reader.readAsDataURL(file)
+
+      reader.onload = e => {
+        this.newUser.profilepicture = e.target.result
+        console.log({image: e.target.result})
+        axios.post(`${url}/api/profile/picture`, {image: e.target.result.replace(/^data:image\/[a-z]+;base64,/, ''), user_id: this.newUser._id}, {headers: headers})
+          .then(response => {
+            if (response.status === 204) {
+              this.$swal({
+                position: 'top-right',
+                backdrop: false,
+                showConfirmButton: false,
+                timer: 2500,
+                width: '300px',
+                imageHeight: 20,
+                imageWidth: 20,
+                background: 'rgba(92,184,92,0.93)',
+                title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully updated profile picture!</span>'
+              })
+            }
+          })
+          .catch(e => {
+            if (e.response.status === 401) {
+              this.$router.push({
+                name: 'Login'
+              })
+            }
+          })
+      };
+    },
     addCompany (com) {
       this.newUser.company = com.name
     },
@@ -121,7 +173,6 @@ export default {
         this.showAlert = true
       } else {
         var id = localStorage.getItem('user_id')
-
 
         axios.patch(`${url}/api/user/${id}`, this.newUser, {headers: headers})
           .then(response => {
@@ -179,6 +230,70 @@ export default {
   }
   /deep/ .close {
     color: white;
+  }
+
+  .wrapper {
+    position: relative;
+    border-radius: 10px;}
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80%;
+    width: 80%;
+    opacity: 1;
+    border-radius: 10px;
+    transition: .5s ease;
+    /*background-color: #262827;*/
+  }
+
+  .wrapper:hover .overlay {
+    opacity: 0.98;
+  }
+
+  .text {
+    color: white;
+    font-size: 20px;
+    position: relative;
+    top: 100%;
+    left: 75%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .btn-upload {
+    cursor: pointer !important;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .btn-upload input[type=file] {
+    cursor: pointer !important;
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .btn-upload .btn{
+    cursor: pointer !important;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #2e6da4;
+    color: black;
+    /*border: /z0;*/
+  }
+  .btn-upload:hover .btn{
+    cursor: pointer !important;
+    padding: 8px 12px;
+    background: #f5f8f5;
+    color: black;
   }
 
 </style>

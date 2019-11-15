@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
           <div class="mt-4">
-            <img :src="gravatarImage(user.email)" style="height: 250px; width: 250px;"/>
+            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
             <div class="mt-2">
               <span style="font-size: 40px; margin-top: 5px;" >{{user.name}}</span>
             </div>
@@ -49,7 +49,7 @@
                         </button>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
-                            <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
+                            <img style="height: 100px; width: 100px; object-fit: cover;" :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')" class="icon-border">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
                             <h5 class="card-title">{{job.title}}</h5>
@@ -262,7 +262,7 @@
                         </div>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
-                            <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
+                            <img style="height: 100px; width: 100px; object-fit: cover;" class="icon-border" :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
                             <h4 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
@@ -430,6 +430,7 @@ export default {
       experienceButtonText: '',
       user_id: localStorage.getItem('user_id'),
       user: {
+        profilepicture: '',
         acceptances: [],
         bio: '',
         name: '',
@@ -848,5 +849,15 @@ export default {
   }
   /deep/ .nav-link {
     color: white;
+
+  .profile-border {
+    border: 2px solid #929292;
+    border-radius: 5px;
+    /*box-shadow: 3px 3px 5px grey;*/
+  }
+
+  .icon-border {
+    border: 1px solid #bfbfbf;
+    border-radius: 5px;
   }
 </style>

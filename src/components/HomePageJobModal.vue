@@ -11,7 +11,7 @@
 <!--        </template>-->
         <div style="max-height: 600px !important; overflow-y: auto" class="mb-3">
           <div class="text-center nice-font">
-            <img src="../assets/company.jpg" style="height: 150px; width: 150px; border-radius: 50%;"/>
+            <img :src="newJob.employer.profilepicture ? newJob.employer.profilepicture.toString() : require('../assets/company.jpg')" style="height: 150px; width: 150px; border-radius: 50%; object-fit: cover;border: 3px solid #929292;"/>
             <p style="font-size: 30px;" class="pt-2 mb-0 pb-0">{{newJob.company}}</p>
             <p style="color: gray; font-size: 20px">{{newJob.location}}</p>
             <hr />
@@ -87,6 +87,9 @@ export default {
     return {
       show: false,
       newJob: {
+        employer: {
+          profilepicture: ''
+        },
         location: '',
         skills: []
       },
@@ -100,6 +103,7 @@ export default {
     },
     job (newVal) {
       this.newJob = newVal
+      console.log(this.newJob)
     }
   },
   methods: {
