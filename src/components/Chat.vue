@@ -6,28 +6,58 @@
   <div class="card mx-5">
     <div class="card-body pt-0 px-0" style="height: 78vh;">
       <div class="row" style="height: 100%">
-        <div class="col-4 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 700px;">
-          <input id="from" type="text"  class="input-field form-control" placeholder="Search.." />
-          <hr />
-          <div v-for="conversation in userConversations">
-<!--            :style="{'background-color': openedChat.name == conversation.name ? 'none' : 'none'}"-->
-            <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name == conversation.conversation_name ? '#b9b9b9' : 'none' }">
-              <div class="row">
-                <div class="col-2">
-                  <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
-                </div>
-                <div class="col-7">
-                  <span style="font-size: 18px; font-weight: 300;">{{conversation.user.name}}</span>
-                  <span class="pt-1" style="display: block; font-size: 14px;">{{conversation.user.company}}</span>
-                </div>
-                <div class="col-3 text-right">
-                  <span style="font-size: 12px; padding-right: 5px;">{{formatDate(conversation.lastUpdatedAt)}}</span>
-                </div>
-              </div>
-            </div>
+        <div class="col-5 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 700px;">
+          <div>
+            <b-card no-body>
+              <b-tabs card>
+                <b-tab title="Conversations" active @click="getData2">
+                  <b-card-text>
+                    <input type="text" class="input-field form-control" placeholder="Search.." v-model="searchConversations"/>
+                    <hr />
+                    <div v-for="conversation in computedUserConversations">
+                      <!--            :style="{'background-color': openedChat.name == conversation.name ? 'none' : 'none'}"-->
+                      <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name == conversation.conversation_name ? '#c5c5c5' : 'none' }">
+                        <div class="row">
+                          <div class="col-2">
+                            <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
+                          </div>
+                          <div class="col-7">
+                            <span style="font-size: 18px; font-weight: 300;">{{conversation.user.name}}</span>
+                            <span class="pt-1" style="display: block; font-size: 14px;">{{conversation.user.company}}</span>
+                          </div>
+                          <div class="col-3 text-right">
+                            <span style="font-size: 12px; padding-right: 5px;">{{formatDate(conversation.lastUpdatedAt)}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-card-text>
+                </b-tab>
+                <b-tab title="Contacts">
+                  <b-card-text>
+                    <input type="text" class="input-field form-control" placeholder="Search.." v-model="searchContacts"/>
+                    <hr />
+                    <div v-for="contact in computedUserContacts">
+                      <!--            :style="{'background-color': openedChat.name == conversation.name ? 'none' : 'none'}"-->
+                      <div class="py-3 message-card pl-2" @click="messageUserModal(contact)">
+                        <div class="row">
+                          <div class="col-2">
+                            <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
+                          </div>
+                          <div class="col-10">
+                            <span style="font-size: 18px; font-weight: 300;">{{contact.name}}</span>
+                            <span class="pt-1" style="display: block; font-size: 14px;">{{contact.company}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </b-card-text>
+                </b-tab>
+              </b-tabs>
+            </b-card>
           </div>
         </div>
-        <div class="col-8 p-0 pr-3" style="padding-right: 15px !important; border-top-right-radius: 10px !important;">
+        <div class="col-7 p-0 pr-3" style="padding-right: 15px !important; border-top-right-radius: 10px !important;">
           <div v-if="noChat" style="background-color: #007bff; height: 72px">
             <div class="pt-3">
               <span style="font-size: 25px; font-weight: 400; padding-left: 15px; color: white; ">Open a chat!</span>
@@ -78,6 +108,7 @@
       </div>
     </div>
   </div>
+  <MessageUserModal :showModal="showMessageUserModal" @hideModal="hideMessageUserModal" :user="messageUserData" />
 </div>
 </template>
 
@@ -85,11 +116,39 @@
 import axios from 'axios'
 import io from 'socket.io-client'
 import url from '../config/server_config'
+import Fuse from 'fuse.js'
+
+import MessageUserModal from './MessageUserModal'
 
 export default {
   name: 'Chat',
+  components: {
+    MessageUserModal
+  },
   data () {
     return {
+      fuseOptions: {
+        shouldSort: true,
+        threshold: 0.2,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          'name'
+        ]
+      },
+      fuseOptions2: {
+        shouldSort: true,
+        threshold: 0.2,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          'user.name'
+        ]
+      },
       user: {},
       user_name: '',
       noChat: true,
@@ -97,6 +156,7 @@ export default {
       },
       messageBody: '',
       onlineUsers: [],
+      userContacts: [],
       userStatus: 'Offline',
       userConversations: [],
       allUserConversations: [],
@@ -107,11 +167,16 @@ export default {
       socket: io('localhost:3000'),
       whichChatIsOpened: '',
       isUserOnline: false,
-      total_msg_length: 0
+      total_msg_length: 0,
+      showMessageUserModal: false,
+      messageUserData: {},
+      searchConversations: '',
+      searchContacts: ''
     }
   },
   created () {
     this.getData2()
+    this.getContacts()
     this.socket.emit('register', this.user_id)
     // window.setInterval(function () {
     //   var elem = document.getElementById('chatBox')
@@ -121,6 +186,34 @@ export default {
   beforeDestroy () {
     // console.log('destroyed: ', this.user_id)
     this.socket.emit('disconnect', this.user_id)
+  },
+  computed: {
+    computedUserContacts: {
+      get: function (s) {
+        if (!this.searchContacts) {
+          return this.userContacts
+        } else {
+          var fuse = new Fuse(this.userContacts, this.fuseOptions)
+          return fuse.search(this.searchContacts)
+        }
+      },
+      set: function (val) {
+        return val
+      }
+    },
+    computedUserConversations: {
+      get: function (s) {
+        if (!this.searchConversations) {
+          return this.userConversations
+        } else {
+          var fuse = new Fuse(this.userConversations, this.fuseOptions2)
+          return fuse.search(this.searchConversations)
+        }
+      },
+      set: function (val) {
+        return val
+      }
+    }
   },
   watch: {
     openedChat (newVal) {
@@ -187,6 +280,13 @@ export default {
     })
   },
   methods: {
+    hideMessageUserModal () {
+      this.showMessageUserModal = false
+    },
+    messageUserModal (user) {
+      this.messageUserData = user
+      this.showMessageUserModal = !this.showMessageUserModal
+    },
     getUserStatus () {
       if (this.role === 'student') {
         if (this.openedChat[this.openedChat.users[0]._id]) { this.userStatus = 'Online' } else this.userStatus = 'Offline'
@@ -262,6 +362,9 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
+      this.allUserConversations = []
+      this.userConversations = []
+
       axios.get(`${url}/api/messages/conversation/${this.user_id}`, {headers: headers})
         .then(response => {
           // console.log(response.data)
@@ -295,6 +398,39 @@ export default {
             })
           }
         })
+    },
+
+    getContacts () {
+      var headers = {
+        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+      }
+
+      axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
+        .then(response => {
+          this.userContacts = []
+          if (this.role === 'student') {
+            response.data.acceptances.forEach(job => {
+              // this.userContacts.push(job.employer)
+              this.userContacts.findIndex(x => x._id === job.employer._id) === -1 ? this.userContacts.push(job.employer) : console.log("object already exists")
+            })
+          } else if (this.role === 'employer') {
+            response.data.jobs.forEach(job => {
+              job.confirmed_users.forEach(user => {
+                this.userContacts.findIndex(x => x._id === user._id) === -1 ? this.userContacts.push(user) : console.log("object already exists")
+              })
+            })
+          }
+
+          console.log(this.userContacts)
+        })
+        .catch(e => {
+          if (e.response === 401) {
+            this.$router.push({
+              name: 'Login'
+            })
+          }
+        })
+
     }
 
   }

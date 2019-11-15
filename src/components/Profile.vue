@@ -484,7 +484,6 @@ export default {
         document.getElementById(idx).style.height = '100%'
         document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
       }
-
     },
     logout () {
       localStorage.removeItem('jwtToken')
