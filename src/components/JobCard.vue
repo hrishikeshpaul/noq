@@ -3,8 +3,8 @@
       <b-card
         style="height: 300px; border-radius: 10px;"
         >
-          <img src="../assets/company.jpg" class="card-img-top embed-responsive"
-               style="max-height: 299px; height: 100%; border-radius: 10px;" />
+          <img :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')" class="card-img-top embed-responsive"
+               style="max-height: 299px; height: 100%; border-radius: 10px; object-fit: cover;" />
       </b-card>
       <div class="overlay" @click="$emit('showJobModal')">
         <div class="text">

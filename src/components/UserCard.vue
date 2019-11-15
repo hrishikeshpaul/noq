@@ -3,8 +3,8 @@
     <b-card
       style="height: 300px; border-radius: 10px;"
     >
-      <img src="../assets/blank_profile.png" class="card-img-top embed-responsive"
-           style="max-height: 299px; height: 100%; border-radius: 10px;" />
+      <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" class="card-img-top embed-responsive"
+           style="max-height: 299px; height: 100%; border-radius: 10px; object-fit: cover;" />
     </b-card>
     <div class="overlay"  @click="$emit('showUserModal')">
       <div class="text">
@@ -45,6 +45,7 @@ export default {
       type: Object,
       required: true,
       default: {
+        profilepicture: '',
         skills: []
       }
     }
