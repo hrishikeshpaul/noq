@@ -13,7 +13,7 @@
           <b-alert variant="danger" v-model="showAlert"> {{alertText}}</b-alert>
           <div class="text-center nice-font mb-2">
             <div class="wrapper">
-              <img alt="" :src="newUser.profilepicture ? newUser.profilepicture : require('../assets/blank_profile.png')" style="height: 180px; width: 180px; border-radius: 50%; object-fit: cover;"/>
+              <img alt="" :src="newUser.profilepicture ? newUser.profilepicture : require('../assets/blank_profile.png')" style="height: 180px; width: 180px; border-radius: 50%; object-fit: cover; border: 3px solid #929292;"/>
               <div class="overlay">
                 <div class="text">
                   <label class="btn-upload">

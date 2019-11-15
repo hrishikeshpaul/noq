@@ -15,7 +15,7 @@
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.linkedin)"><i class="ti-linkedin"></i></button>
 
         <div class="text-center nice-font">
-          <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover;"/>
+          <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 3px solid #929292;"/>
           <p style="font-size: 30px;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
           <p style="color: gray; font-size: 20px">{{newUser.company}}</p>
           <p style="color: gray">{{newUser.location}}</p>
