@@ -184,7 +184,6 @@ export default {
     // }, 10000)
   },
   beforeDestroy () {
-    console.log('destroyed: ', this.user_id)
     this.socket.emit('disconnect', this.user_id)
   },
   computed: {
@@ -257,15 +256,13 @@ export default {
     })
 
     this.socket.on('OFFLINE_USER', id => {
-      // console.log('online user data: ', data)
-      console.log(id)
+
       if (this.openedChat.hasOwnProperty(id)) { this.openedChat[id] = false }
     })
 
     this.socket.on('ONLINE_USERS', data => {
       // console.log('online user data: ', data)
       this.onlineUsers = data
-      console.log('online: ', this.onlineUsers)
     })
 
     this.socket.on('TYPING', data => {
@@ -324,8 +321,6 @@ export default {
       this.onlineUsers.forEach(id => {
         if (this.openedChat.hasOwnProperty(id)) { this.openedChat[id] = true }
       })
-      // console.log('online: ', this.onlineUsers)
-      // console.log(this.openedChat)
     },
     sendMessage () {
       var temp_obj = {
@@ -373,7 +368,6 @@ export default {
 
       axios.get(`${url}/api/messages/conversation/${this.user_id}`, {headers: headers})
         .then(response => {
-          // console.log(response.data)
           this.allUserConversations = response.data
           this.allUserConversations.forEach(conv => {
             if (!conv.group) {
@@ -394,8 +388,6 @@ export default {
               }
             }
           })
-
-          // console.log(this.userConversations)
         })
         .catch(e => {
           if (e.response.status === 401) {
@@ -426,8 +418,6 @@ export default {
               })
             })
           }
-
-          console.log(this.userContacts)
         })
         .catch(e => {
           if (e.response === 401) {
