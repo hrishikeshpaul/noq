@@ -849,6 +849,7 @@ export default {
   }
   /deep/ .nav-link {
     color: white;
+  }
 
   .profile-border {
     border: 2px solid #929292;
