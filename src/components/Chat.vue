@@ -164,7 +164,7 @@ export default {
       messages: [], // all the users that are in the list ot chat with!
       user_id: localStorage.user_id,
       role: localStorage.role,
-      socket: io('localhost:3000'),
+      socket: io('https://ancient-caverns-78426.herokuapp.com/'),
       whichChatIsOpened: '',
       isUserOnline: false,
       total_msg_length: 0,
