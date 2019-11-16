@@ -221,6 +221,57 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
+				<b-tab title="Honor" style="max-height: 1000px; overflow-y: auto;">
+                  <b-card-body style="font-size: 18px;">
+                    <div v-for="hon in user.honor" :id="edu.title">
+                      <b-card class="mb-3 shadow-hover">
+                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                                @click="deleteHonor(hon)"><i class="ti-close"></i></button>
+                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                                @click="editHonorModal(edu)"><i class="ti-pencil"></i></button>
+                        <p></p>
+                        <h4 class="card-title" style="margin-top: -12px;">{{honor.title}}</h4>
+                        <hr width="100%" align="left"/>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-bookmark-alt"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{hon.issuer}}</span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-agenda"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{hon.description}}</span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-time"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{formatDate(hon.issueDate)}} </span>
+                          </div>
+                        </div>
+                        <p></p>
+                      </b-card>
+                    </div>
+                    <b-button
+                      v-if="role === 'student'"
+                      style="width: 100%; border-radius: 10px;"
+                      variant="outline-warning"
+                      class="mb-2 mt-1 "
+                      @click="addHonorModal"
+                    >
+                      Add
+                    </b-button>
+                  </b-card-body>
+                </b-tab>
                 <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px;">
                   <b-card-body style="font-size: 18px;">
                     <b-form class="text-left">
@@ -382,6 +433,7 @@ import JobInfoModal from './JobInfoModal'
 import DeleteConfirmModal from './DeleteConfirmModal'
 import EducationModal from './EducationModal'
 import ExperienceModal from './ExperienceModal'
+import HonorModal from './HonorModal'
 import HomePageUserModal from './HomePageUserModal'
 
 import Gravatar from 'vue-gravatar'
@@ -399,6 +451,7 @@ export default {
     JobInfoModal,
     DeleteConfirmModal,
     EducationModal,
+	HonorModal,
     ExperienceModal,
     HomePageUserModal
   },
@@ -420,9 +473,11 @@ export default {
       jobInfoToBePassed: {},
       educationToBePassed: {},
       experienceToBePassed: {},
+	  honorToBePassed: {},
       applicantData: {},
       educationButtonText: '',
       experienceButtonText: '',
+	  honorButtonText: '',
       user_id: localStorage.getItem('user_id'),
       user: {
         acceptances: [],
@@ -444,6 +499,7 @@ export default {
       showDeleteConfirmModal: false,
       showEducationModal: false,
       showExperienceModal: false,
+	  showHonorModal: false,
       showApplicantData: false,
       employerSearchJob: '',
       gravatarIcon: null
@@ -601,6 +657,15 @@ export default {
       this.showExperienceModal = false
       this.getData()
     },
+	editHonorModal (honor) {
+      this.honorToBePassed = honor
+      this.honorButtonText = 'Edit Honor'
+      this.showHonorModal = !this.showHonorModal
+    },
+    hideHonorModal () {
+      this.showHonorModal = false
+      this.getData()
+    },
     addEducationModal () {
       this.educationToBePassed = {
         to: null,
@@ -625,6 +690,16 @@ export default {
       }
       this.experienceButtonText = 'Add Experience'
       this.showExperienceModal = !this.showExperienceModal
+    },
+	addHonorModal () {
+      this.honorToBePassed = {
+        issueDate: null,
+        title: '',
+        issuer: '',
+        description: ''    
+      }
+      this.HonorButtonText = 'Add Honor'
+      this.showHonorModal = !this.showHonorModal
     },
     deleteExperience (exp) {
       this.$swal({
@@ -695,6 +770,41 @@ export default {
           }
         });
 
+    },
+    deleteHonor (exp) {
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
+
+            axios.delete(`${url}/api/profile/honor/${hon._id}`, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert(err.response.data)
+              })
+          }
+        });
     },
     rejectConfirmedApplicant (job_id, user_id) {
       this.$swal({
