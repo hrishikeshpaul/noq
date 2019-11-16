@@ -36,9 +36,9 @@
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
             <b-card no-body>
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Interests" active style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body>
-                    <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
+                    <span v-if="user.acceptances.length === 0">You don't have any interests! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover">
                         <button href="#" style="float: right; margin-top: 5px !important; border: none;"
@@ -120,16 +120,7 @@
                             <span><i class="ti-bookmark-alt"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{edu.degree}}</span>
-                          </div>
-                        </div>
-                        <p></p>
-                        <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                            <span><i class="ti-agenda"></i></span>
-                          </div>
-                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{edu.fieldofstudy}}</span>
+                            <span>{{edu.degree +', ' +  edu.fieldofstudy}}</span>
                           </div>
                         </div>
                         <p></p>
@@ -225,7 +216,7 @@
                   <b-card-body style="font-size: 16px;">
                     <b-form class="text-left">
                       <label>Add/Remove Skills:</label>
-                      <b-form-group>
+                      <b-form-group >
                         <SkillSelect @addSkills="addSkills" :recievedValues="user.skills"/>
                         <button class="btn btn-outline-primary" @click.prevent="updateSkills"
                                 style="width: 100%; border-radius: 10px;">Save
@@ -503,7 +494,7 @@ export default {
     },
     formatDate (date) {
       if (date)
-        return this.$moment(date).format('MMM Do YY')
+        return this.$moment(date).format('MMM Do YYYY')
       else return 'Present'
     },
     messageUserModal (user) {
