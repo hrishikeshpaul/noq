@@ -816,7 +816,7 @@ export default {
   button {
     cursor: pointer;
     border-radius: 5px;
-  },
+  }
 .user-hover {
   color: black;
 }
@@ -860,5 +860,8 @@ export default {
   .icon-border {
     border: 1px solid #bfbfbf;
     border-radius: 5px;
+  }
+  /deep/ .multiselect__tag {
+    font-size: 1rem;
   }
 </style>
