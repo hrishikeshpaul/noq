@@ -17,7 +17,8 @@
         <br/>
       </div>
     </b-card>
-    <div class="overlay"  :style="info_bg" @click="$emit('showUserModal')">
+    <div class="overlay"  @click="$emit('showUserModal')">
+      <div class="overlay_bg" :style="info_bg"></div>
       <div class="text">
         <div class="row">
           <div class="col-6">
@@ -106,11 +107,26 @@ export default {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     transition: .5s ease;
-    background-color: #262827;
+    /*background-color: #262827;*/
   }
-
-  .wrapper:hover .overlay {
+  .overlay_bg {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
     opacity: 0.9;
+    /*border-radius: 10px;*/
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: .5s ease;
+    background-color: rgba(39, 233, 228, 0.5);
+  }
+  .wrapper:hover .overlay {
+    opacity: 1;
   }
 
   .info_background{
