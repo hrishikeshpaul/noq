@@ -210,7 +210,7 @@ export default {
             imageHeight: 20,
             imageWidth: 20,
             background: 'rgba(92,184,92,0.93)',
-            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected job!</span>'
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected job!</span>'
           })
           this.showHomePageJobModal = false
           this.$refs['card'].forEach(card => {
@@ -250,7 +250,7 @@ export default {
             imageHeight: 20,
             imageWidth: 20,
             background: 'rgba(92,184,92,0.93)',
-            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted job!</span>'
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted job!</span>'
           })
           this.showHomePageJobModal = false
           this.$refs['card'].forEach(card => {
@@ -289,7 +289,7 @@ export default {
             imageHeight: 20,
             imageWidth: 20,
             background: 'rgba(92,184,92,0.93)',
-            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted user!</span>'
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully accepted user!</span>'
           })
           this.showHomePageUserModal = false
           this.$refs['card'].forEach(card => {
@@ -328,7 +328,7 @@ export default {
             imageHeight: 20,
             imageWidth: 20,
             background: 'rgba(92,184,92,0.93)',
-            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected user!</span>'
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully rejected user!</span>'
           })
           this.showHomePageUserModal = false
           this.$refs['card'].forEach(card => {

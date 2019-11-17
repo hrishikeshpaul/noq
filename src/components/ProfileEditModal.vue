@@ -29,7 +29,7 @@
             <b-form-group>
               <b-form-input id="title" v-model.trim="newUser.name" class="input-field"></b-form-input>
             </b-form-group>
-            <label class="mb-0 smaller-font">Company*</label>
+            <label class="mb-0 smaller-font">{{newUser.role === 'student' ? 'University*' : 'Company*'}}</label>
             <b-form-group>
               <UniversitySelect v-model.trim="newUser.company" @addCompany="addCompany" v-if="newUser.role === 'student'" :rVal="newUser.company"/>
               <b-form-input id="position" v-model.trim="newUser.company" class="input-field" v-if="newUser.role === 'employer'"></b-form-input>
@@ -57,7 +57,10 @@
               <b-form-textarea id="Bio" v-model.trim="newUser.bio" rows="4" class="input-field"></b-form-textarea>
             </b-form-group>
           </b-form>
-          <button class="mt-3 btn btn-outline-primary w-100" @click="editUser">Edit</button>
+         <div class="text-right">
+           <button class="mt-3 btn btn-outline-secondary w-10" @click="$emit('hideModal')">Close</button>
+           <button class="mt-3 btn btn-outline-primary w-25" @click="editUser">Save</button>
+         </div>
         </div>
       </b-modal>
     </div>
@@ -128,7 +131,6 @@
 
       reader.onload = e => {
         this.newUser.profilepicture = e.target.result
-        console.log({image: e.target.result})
         axios.post(`${url}/api/profile/picture`, {image: e.target.result.replace(/^data:image\/[a-z]+;base64,/, ''), user_id: this.newUser._id}, {headers: headers})
           .then(response => {
             if (response.status === 204) {
@@ -141,7 +143,7 @@
                 imageHeight: 20,
                 imageWidth: 20,
                 background: 'rgba(92,184,92,0.93)',
-                title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully updated profile picture!</span>'
+                title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully updated profile picture!</span>'
               })
             }
           })
@@ -177,6 +179,17 @@
         axios.patch(`${url}/api/user/${id}`, this.newUser, {headers: headers})
           .then(response => {
             if (response.status === 204) {
+              this.$swal({
+                position: 'top-right',
+                backdrop: false,
+                showConfirmButton: false,
+                timer: 2500,
+                width: '300px',
+                imageHeight: 20,
+                imageWidth: 20,
+                background: 'rgba(92,184,92,0.93)',
+                title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
+              })
               this.show = false
               this.showAlert = false
               this.$emit('hideModal')
@@ -197,8 +210,8 @@
 
 <style scoped>
   .nice-font {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 200;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
     /*font-family: 'Avenir', Helvetica, Arial, sans-serif !important;*/
   }
   .input-field {
@@ -206,6 +219,7 @@
     border-radius: 2px;
     outline: none;
     box-shadow: none;
+    font-weight: 200;
     margin-top: 1px;
     background-color: #f6f6f6;
   }
@@ -219,17 +233,32 @@
     font-size: 13px;
   }
   /deep/ .modal-title {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;
   }
   /deep/ .modal-header {
     color: white;
-    background-color: #3498db;
+    background-color: #DA9F74;
   }
   /deep/ .close {
     color: white;
+  }
+
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
+
+  button {
+    cursor: pointer;
   }
 
   .wrapper {
@@ -285,7 +314,7 @@
     cursor: pointer !important;
     padding: 8px 12px;
     background: white;
-    border: 1px solid #2e6da4;
+    border: 1px solid #c68967;
     color: black;
     /*border: /z0;*/
   }
@@ -294,6 +323,10 @@
     padding: 8px 12px;
     background: #f5f8f5;
     color: black;
+  }
+
+  /deep/ .modal-body {
+    background-color: rgba(246, 171, 127, 0.05);
   }
 
 </style>

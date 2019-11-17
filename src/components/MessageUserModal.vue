@@ -73,7 +73,7 @@ export default {
             imageHeight: 20,
             imageWidth: 20,
             background: 'rgba(92,184,92,0.93)',
-            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully sent message!</span>'
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully sent message!</span>'
           })
           this.show = false
           this.messageBody = ''
@@ -104,7 +104,7 @@ export default {
     background-color: #6c757d;
   }
   .nice-font {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
   }
   .input-field {
@@ -136,7 +136,7 @@ export default {
     transition: opacity .3s ease;
   }
   /deep/ .modal-title {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;

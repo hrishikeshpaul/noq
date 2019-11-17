@@ -105,7 +105,7 @@ export default {
                 imageHeight: 20,
                 imageWidth: 20,
                 background: 'rgba(92,184,92,0.93)',
-                title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully posted job!</span>'
+                title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully posted job!</span>'
               })
               this.job.title = ''
               this.job.position = ''
@@ -131,7 +131,7 @@ export default {
 
 <style scoped>
   .nice-font {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
     /*font-family: 'Avenir', Helvetica, Arial, sans-serif !important;*/
   }
@@ -153,7 +153,7 @@ export default {
     font-size: 13px;
   }
   /deep/ .modal-title {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;

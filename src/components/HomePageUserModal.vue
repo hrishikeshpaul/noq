@@ -177,7 +177,7 @@
 
 <style scoped>
   .nice-font {
-     font-family: 'Raleway', sans-serif;
+     font-family: 'Roboto', sans-serif;
      font-weight: 200;
      /*font-family: 'Avenir', Helvetica, Arial, sans-serif !important;*/
    }
@@ -186,7 +186,7 @@
     width: 5px;
   }
   /deep/ .modal-title {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;

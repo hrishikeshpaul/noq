@@ -100,7 +100,7 @@ export default {
 
 <style scoped>
   .nice-font {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
   }
   .input-field {

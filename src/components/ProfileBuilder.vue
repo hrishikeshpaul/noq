@@ -273,8 +273,8 @@ export default {
             width: '400px',
             imageHeight: 20,
             imageWidth: 20,
-            html: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;">Your profile has been set up!</span>',
-            title: '<h3 style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 300">Successful!</h3>'
+            html: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;">Your profile has been set up!</span>',
+            title: '<h3 style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 300">Successful!</h3>'
           })
           this.$router.push({
             name: 'HomePage'
@@ -560,7 +560,7 @@ export default {
     color: red;
   }
   .nice-font {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
   }
   .input-field {

@@ -1,10 +1,23 @@
 <template>
   <div >
 <!--    <NavBar @logout="logout"/>-->
-    <button style="float: right; padding-top: 5px;" class="mt-5 mr-5 btn-outline-secondary rounded" @click="getData"><i class="ti-reload"></i></button>
-    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Profile</div>
-    <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Edit your profile details and check your acceptances!' : 'Add job postings, and message applicants!'}}</p>
-    <hr width="94%" align="left" class="mx-5"/>
+    <nav class="navbar navbar-light bg-light shadow-nav">
+      <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Profile</a>
+      <div class="text-center w-50">
+        <div class="row px-5 py-1">
+          <div class="col-11">
+<!--            <FilterBar @group="callReGroup" :options="filterOptions"/>-->
+          </div>
+          <div class="col-1">
+                <button style="float: right; padding-top: 5px;" class="btn-outline-secondary rounded ml-1" @click="getData"><i class="ti-reload"></i></button>
+          </div>
+        </div>
+      </div>
+    </nav>
+<!--    <button style="float: right; padding-top: 5px;" class="mt-5 mr-5 btn-outline-secondary rounded" @click="getData"><i class="ti-reload"></i></button>-->
+<!--    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Profile</div>-->
+<!--    <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Edit your profile details and check your acceptances!' : 'Add job postings, and message applicants!'}}</p>-->
+<!--    <hr width="94%" align="left" class="mx-5"/>-->
     <div class="px-5">
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
@@ -530,7 +543,7 @@ export default {
         imageHeight: 20,
         imageWidth: 20,
         background: 'rgba(92,184,92,0.93)',
-        title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
+        title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
       })
       this.showJobInputModal = false
     },
@@ -538,17 +551,6 @@ export default {
       this.showEditProfileModal = !this.showEditProfileModal
     },
     hideEditProfileInputModal () {
-      this.$swal({
-        position: 'top-right',
-        backdrop: false,
-        showConfirmButton: false,
-        timer: 2500,
-        width: '300px',
-        imageHeight: 20,
-        imageWidth: 20,
-        background: 'rgba(92,184,92,0.93)',
-        title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
-      })
       this.showEditProfileModal = false
     },
     jobInfoModal (job) {
@@ -560,8 +562,8 @@ export default {
     },
     deleteConfirmModal (job) {
       this.$swal({
-        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
-        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the job with title, ${job.title}</span>`,
+        title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the job with title, ${job.title}</span>`,
         type: "warning",
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
@@ -582,7 +584,7 @@ export default {
                   imageHeight: 20,
                   imageWidth: 20,
                   background: 'rgba(92,184,92,0.93)',
-                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                  title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
                 })
                 this.getData()
               })
@@ -604,7 +606,7 @@ export default {
         imageHeight: 20,
         imageWidth: 20,
         background: 'rgba(92,184,92,0.93)',
-        title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
+        title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
       })
       this.showDeleteConfirmModal = false
     },
@@ -653,8 +655,8 @@ export default {
     },
     deleteExperience (exp) {
       this.$swal({
-        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
-        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
+        title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
         type: "warning",
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
@@ -676,7 +678,7 @@ export default {
                   imageHeight: 20,
                   imageWidth: 20,
                   background: 'rgba(92,184,92,0.93)',
-                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                  title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
                 })
                 this.getData()
               })
@@ -688,8 +690,8 @@ export default {
     },
     deleteEducation (edu) {
       this.$swal({
-        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
-        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the education.</span>`,
+        title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the education.</span>`,
         type: "warning",
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
@@ -710,7 +712,7 @@ export default {
                   imageHeight: 20,
                   imageWidth: 20,
                   background: 'rgba(92,184,92,0.93)',
-                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                  title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
                 })
                 this.getData()
               })
@@ -723,8 +725,8 @@ export default {
     },
     rejectConfirmedApplicant (job_id, user_id) {
       this.$swal({
-        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
-        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once rejected, you will not be able to message the user again.</span>`,
+        title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once rejected, you will not be able to message the user again.</span>`,
         type: "warning",
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
@@ -746,7 +748,7 @@ export default {
                   imageHeight: 20,
                   imageWidth: 20,
                   background: 'rgba(92,184,92,0.93)',
-                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                  title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
                 })
                 this.getData()
               })
@@ -776,7 +778,7 @@ export default {
             imageHeight: 20,
             imageWidth: 20,
             background: 'rgba(92,184,92,0.93)',
-            title: '<span style="  font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successful!</span>'
           })
           this.getData()
         })
@@ -832,7 +834,7 @@ export default {
     box-shadow: 1px 2px 7px #bdbdbd;
   }
   .swal-wide {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
 
   }
   .card-collapse {
@@ -844,15 +846,36 @@ export default {
   .title-collapse:hover {
     color: #4c4c4c;
   }
+
   /deep/ .card-header {
-    background-color: rgba(0, 55, 114, 0.78) !important;
-  }
-  /deep/ .nav-link {
-    color: white;
+    background-color: rgba(255, 187, 138, 0.61) !important;
   }
 
+  /deep/ .nav-link {
+    color: #88491C
+  }
+
+  /deep/ .nav-link:hover {
+    border-color: transparent;
+    background-color: #f6af85;
+  }
+
+  /deep/ .nav-link.active {
+    color: white;
+    background-color: #DA9A74;
+    border-color: transparent;
+    /*background-color: #FFD1B1 !important;*/
+  }
+
+  /deep/ .nav-item {
+    margin: 0;
+  }
+
+  /deep/ .card-header {
+    border-bottom: 0;
+  }
   .profile-border {
-    border: 2px solid #929292;
+    border: 1px solid rgba(218, 151, 111, 0.58);
     border-radius: 5px;
     /*box-shadow: 3px 3px 5px grey;*/
   }
@@ -863,5 +886,16 @@ export default {
   }
   /deep/ .multiselect__tag {
     font-size: 1rem;
+  }
+
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
   }
 </style>

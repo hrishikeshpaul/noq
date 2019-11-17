@@ -105,8 +105,8 @@ export default {
               width: '400px',
               imageHeight: 20,
               imageWidth: 20,
-              html: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;">' + response.data.msg + '</span>',
-              title: '<h3 style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 300">Successfully Registered!</h3>'
+              html: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;">' + response.data.msg + '</span>',
+              title: '<h3 style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 300">Successfully Registered!</h3>'
             })
             this.$emit('registered', true)
           })

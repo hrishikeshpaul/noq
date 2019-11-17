@@ -157,7 +157,7 @@ export default {
 <style>
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  /*font-family: 'Raleway', sans-serif;*/
+  /*font-family: 'Roboto', sans-serif;*/
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
