@@ -1,17 +1,15 @@
 <template>
   <div class="wrapper">
     <b-card
-      style="height: 300px; border-radius: 10px;"
+      style="height: 200px; border-radius: 10px; width: 180px"
     >
       <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" class="card-img-top embed-responsive"
            style="max-height: 299px; height: 100%; border-radius: 10px; object-fit: cover;" />
       <div class="info_background" :style="info_bg"></div>
       <div class="info">
-        <span style="font-weight: bold">{{user.name}}</span>
-        <br />
-        <span>{{user.email}}</span>
-        <br />
-        <span>{{displaySkills(user.skills)}}</span>
+        <p style="font-weight: 400; font-size: 16px; margin-top: 4px;" class="mb-0">{{user.name}}</p>
+        <p style="font-size: 12px; margin-top: -3px" class="mb-0">{{user.email}}</p>
+        <p style="font-size: 12px;" class="mb-1">{{displaySkills(user.skills)}}</p>
         <br/>
         <br/>
         <br/>
@@ -21,15 +19,13 @@
       <div class="overlay_bg" :style="info_bg"></div>
       <div class="text">
         <div class="row">
-          <div class="col-6">
-            <div class=" ml-5">Reject</div>
-            <br>
-            <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: user._id, job: user.job})"><i class="ti-close"></i></button>
+          <div class="col-6 pl-5">
+            <div style="margin-left: 35px; font-size: 12px" class="mb-2">Reject</div>
+            <button class="mr-5 btn-sm btn-danger" @click="$emit('reject', {id: user._id, job: user.job})" style="margin-left: 35px;"><i class="ti-close"></i></button>
           </div>
-          <div class="col-6">
-            <div class="mr-4 ">Accept</div>
-            <br>
-            <button @click="$emit('accept', {id: user._id, job: user.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+          <div class="col-6 pr-5">
+            <div style="margin-left: 42px; font-size: 12px" class="mb-2">Accept</div>
+            <button @click="$emit('accept', {id: user._id, job: user.job})" class="btn-sm btn-success" style="margin-left: 45px;"><i class="ti-check"></i></button>
           </div>
         </div>
       </div>
@@ -91,7 +87,7 @@ export default {
 <style scoped>
   .wrapper {
     position: relative;
-  }
+    border-radius: 10px;}
 
   .overlay {
     cursor: pointer;
@@ -107,7 +103,7 @@ export default {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     transition: .5s ease;
-    /*background-color: #262827;*/
+    /*background-color: rgba(38, 40, 39, 0.5);*/
   }
   .overlay_bg {
     cursor: pointer;
@@ -125,10 +121,6 @@ export default {
     transition: .5s ease;
     background-color: rgba(39, 233, 228, 0.5);
   }
-  .wrapper:hover .overlay {
-    opacity: 1;
-  }
-
   .info_background{
     position: absolute;
     top: 66.7%;
@@ -146,23 +138,31 @@ export default {
     color: white;
     font-size: 20px;
     position: absolute;
-    top: 68%;
+    top: 66.66%;
     left: 0;
     height: 33.3%;
     width: 100%;
     text-align: center;
   }
-  .btn-lg{
+
+  .wrapper:hover .overlay {
+    opacity: 1;
+  }
+
+  .btn-lg {
     border-radius: 100px;
     width: 60px;
     height: 60px;
   }
+
   .text {
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     position: relative;
     top: 50%;
-    left: 50%;
+    left: 30%;
+    opacity: 0.98;
+
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -176,4 +176,9 @@ export default {
   .card-body {
     padding: 0px !important;
   }
+
+  button{
+    cursor: pointer;
+  }
+
 </style>

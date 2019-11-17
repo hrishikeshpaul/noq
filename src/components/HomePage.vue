@@ -9,7 +9,7 @@
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
           <div class="col-1">
-            <img :src="profilepicture" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"/>
+<!--            <img :src="profilepicture" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"/>-->
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
 
       <div v-for="(user, key) in computedUsers" class="mb-3" v-if="userRole === 'employer'">
         <div style="position: relative;">
-          <h3><div class="mb-3">{{ key }}</div></h3>
+          <h4 style="font-weight: 300;"><div class="mb-3">{{ key }}</div></h4>
           <div
             v-for="u in user" v-if="user.length > 0"
             style="display: inline-block;"
@@ -57,7 +57,7 @@
               @accept="acceptUser"
               @reject="rejectUser"
               class="mb-3"
-              :style="{'min-width': '200px', 'width': '270px', 'height': '300px'}"/>
+              :style="{'min-width': '180px', 'width': '180px', 'height': '200px'}"/>
           </div>
           <div v-else>You are out of users!</div>
         </div>
@@ -112,8 +112,7 @@ export default {
         { name: 'Company', code: 'company' }
       ],
       employerFilterOptions: [
-        { name: 'Company', code: 'company' },
-        { name: 'Gender', code: 'gender' },
+        { name: 'University', code: 'company' }
       ],
       showHomePageJobModal: false,
       showHomePageUserModal: false
