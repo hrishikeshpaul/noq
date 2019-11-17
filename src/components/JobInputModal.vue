@@ -33,7 +33,10 @@
               <SkillSelect @addSkills="addSkills"/>
             </b-form-group>
           </b-form>
-        <button class="mt-2 btn btn-outline-primary w-100" @click="postJob">Post</button>
+          <div class="text-right">
+            <button class="mt-2 btn btn-outline-secondary w-10" @click="$emit('hideModal')">Close</button>
+            <button class="mt-2 btn btn-outline-primary w-25" @click="postJob">Post</button>
+          </div>
         </div>
       </b-modal>
     </div>
@@ -130,16 +133,21 @@ export default {
 </script>
 
 <style scoped>
+  label {
+    font-size: 15px;
+    color: #6d6d6d;
+  }
+
   .nice-font {
     font-family: 'Roboto', sans-serif;
-    font-weight: 200;
-    /*font-family: 'Avenir', Helvetica, Arial, sans-serif !important;*/
+    font-weight: 300;
   }
   .input-field {
     border: 0;
     border-radius: 2px;
     outline: none;
     box-shadow: none;
+    font-weight: 200;
     margin-top: 1px;
     background-color: #f6f6f6;
   }
@@ -160,9 +168,28 @@ export default {
   }
   /deep/ .modal-header {
     color: white;
-    background-color: #3498db;
+    background-color: #c68967;
   }
   /deep/ .close {
     color: white;
   }
+  /deep/ .multiselect__tag {
+    font-size: 1rem;
+  }
+
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
 </style>

@@ -409,4 +409,20 @@ export default {
     font-size: 13px;
   }
 
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
+
+  /deep/ .nav-link {
+    color: #de9a73;
+  }
+
+
 </style>

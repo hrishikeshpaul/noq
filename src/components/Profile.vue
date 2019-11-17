@@ -24,10 +24,10 @@
           <div class="mt-4">
             <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
             <div class="mt-2">
-              <span style="font-size: 40px; margin-top: 5px;" >{{user.name}}</span>
+              <span style="font-size: 30px; margin-top: 5px;" >{{user.name}}</span>
             </div>
-            <div style="margin-top: -10px;">
-              <span style="font-size: 18px; color: grey;">{{user.company}}</span>
+            <div style="margin-top: -5px;">
+              <span style="font-size: 16px; color: grey;">{{user.company}}</span>
             </div>
             <div>
               <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-primary" @click="profileInputModal"><i
@@ -47,10 +47,10 @@
         </div>
         <div class="col-lg-9 col-md-6 col-sm-12">
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
-            <b-card no-body>
+            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto;">
-                  <b-card-body>
+                <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
+                  <b-card-body class="p-0">
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover">
@@ -117,7 +117,7 @@
                     </div>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
                   <b-card-body style="font-size: 16px;">
                     <div v-for="edu in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover">
@@ -168,7 +168,7 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
                   <b-card-body style="font-size: 16px;">
                     <div v-for="exp in user.experience">
                       <b-card class="mb-3 shadow-hover">
@@ -234,7 +234,7 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px;">
+                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(255,250,250,0.85)">
                   <b-card-body style="font-size: 16px;">
                     <b-form class="text-left">
                       <label>Add/Remove Skills:</label>
@@ -253,14 +253,14 @@
           </div>
 
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
-            <b-card no-body>
+            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
                   <b-card-body class="py-2">
                     <b-input-group class="mb-3">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob"></b-form-input>
                       <b-input-group-append>
-                        <b-button variant="primary"><i class="ti-search"></i></b-button>
+                        <button class="btn btn-primary"><i class="ti-search"></i></button>
                       </b-input-group-append>
                     </b-input-group>
                     <div v-for="(job, idx) in employerJobs">
@@ -278,13 +278,13 @@
                             <img style="height: 100px; width: 100px; object-fit: cover;" class="icon-border" :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h4 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
+                            <h5 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)" style="font-weight: 300;">{{job.title}}</h5>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                                <span>{{job.location}}</span>
+                                <span style="font-size: 15px;">{{job.location}}</span>
                               </div>
                             </div>
                             <p></p>
@@ -293,7 +293,7 @@
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                                <span>{{job.position}}</span>
+                                <span style="font-size: 15px;">{{job.position}}</span>
                               </div>
                             </div>
                             <p></p>
@@ -302,7 +302,7 @@
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-star"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                                <span>{{job.skills.length > 0 ? job.skills.map(s => s.name).join(', ') : 'None'}}</span>
+                                <span style="font-size: 15px;">{{job.skills.length > 0 ? job.skills.map(s => s.name).join(', ') : 'None'}}</span>
                               </div>
                             </div>
                             <p></p>
@@ -311,7 +311,7 @@
                                 <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
                               </div>
                               <div class="col-lg-11 pl-0">
-                                <span style="white-space: pre-wrap;">{{job.description}}</i></span>
+                                <span style="white-space: pre-wrap; font-size: 15px;">{{job.description}}</i></span>
                               </div>
                             </div>
                             <p></p>
@@ -320,7 +320,7 @@
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-stats-up"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                                <span>{{job.applicants.length}}</span>
+                                <span style="font-size: 15px;">{{job.applicants.length}}</span>
                               </div>
                             </div>
                             <p></p>
@@ -338,26 +338,26 @@
                     </button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
                   <b-card-body>
                     <div v-for="job in user.jobs">
                       <div v-for="user in job.confirmed_users">
                         <b-card class="text-left my-2">
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
-                          <h4 class="card-title user-hover mt-2" style="cursor: pointer;" @click="applicantDataModal(user)">{{user.name}}</h4>
+                          <h5 class="card-title user-hover mt-2" style="cursor: pointer; font-weight: 300;" @click="applicantDataModal(user)">{{user.name}}</h5>
                           <hr />
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
-                          <span>{{job.title}}</span>
+                          <span style="font-size: 15px;">{{job.title}}</span>
                           <p></p>
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-book"></i></span>
-                          <span>{{user.company}}</span>
+                          <span style="font-size: 15px;">{{user.company}}</span>
                           <p></p>
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-linkedin"></i></span>
-                          <a href="#" @click="showWindow(user.social.linkedin)">{{user.social.linkedin}}</a>
+                          <a href="#" @click="showWindow(user.social.linkedin)" style="font-size: 15px;">{{user.social.linkedin}}</a>
                           <p></p>
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-star"></i></span>
-                          <span>{{user.skills.map(s => s.name).join(', ')}}</span>
+                          <span style="font-size: 15px;">{{user.skills.map(s => s.name).join(', ')}}</span>
                           <p></p>
                         </b-card>
                       </div>
@@ -901,5 +901,18 @@ export default {
 
   /deep/ .bg-light {
     background-color: #ececec !important;
+  }
+
+  /deep/ .card-header {
+    padding-left: 10px;
+    padding-top: 0px;
+  }
+
+  /deep/ .btn-primary {
+    background-color: #de9a73;
+    color: white;
+    border-color: #c68967 !important;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
   }
 </style>

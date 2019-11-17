@@ -33,7 +33,10 @@
               <SkillSelect @addSkills="addSkills" :recieved-values="newJob.skills"/>
             </b-form-group>
           </b-form>
-          <button class="mt-1 btn btn-outline-primary w-100" @click="editJob">Edit Job</button>
+          <div class="text-right">
+            <button class="mt-1 btn btn-outline-primary w-10" @click="$emit('hideModal')">Close</button>
+            <button class="mt-1 btn btn-outline-primary w-25" @click="editJob">Edit Job</button>
+          </div>
         </div>
       </b-modal>
     </div>
@@ -134,13 +137,14 @@ export default {
 
   .nice-font {
     font-family: 'Roboto', sans-serif;
-    font-weight: 200;
+    font-weight: 300;
   }
   .input-field {
     border: 0;
     border-radius: 2px;
     outline: none;
     box-shadow: none;
+    font-weight: 200;
     margin-top: 1px;
     background-color: #f6f6f6;
   }
@@ -161,7 +165,7 @@ export default {
   }
   /deep/ .modal-header {
     color: white;
-    background-color: #3498db;
+    background-color: #c68967;
   }
   /deep/ .close {
     color: white;
@@ -170,4 +174,18 @@ export default {
     font-size: 1rem;
   }
 
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
+
+  button {
+    cursor: pointer;
+  }
 </style>
