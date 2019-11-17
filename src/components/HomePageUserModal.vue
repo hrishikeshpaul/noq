@@ -16,18 +16,18 @@
 
         <div class="text-center nice-font">
           <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 3px solid #929292;"/>
-          <p style="font-size: 30px;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
-          <p style="color: gray; font-size: 20px">{{newUser.company}}</p>
+          <p style="font-size: 20px;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
+          <p style="color: gray; font-size: 16px">{{newUser.company}}</p>
           <p style="color: gray">{{newUser.location}}</p>
           <hr />
         </div>
           <div class="px-3 nice-font">
             <div class="row">
-              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
+              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px">
                 <span><i class="ti-star"></i></span>
               </div>
-              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
-                <div style="font-size: 18px">
+              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px">
+                <div style="font-size: 16px">
                   {{displaySkills(newUser.skills)}}
                 </div>
               </div>
@@ -36,14 +36,14 @@
           <hr />
         <div class="px-3 nice-font">
           <div class="row">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px">
               <span><i class="ti-briefcase"></i></span>
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
+            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px">
               <div v-for="exp in newUser.experience">
-                <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
-                <div style="font-size: 20px; font-weight: 200">{{exp.company}}</div>
-                <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 7px">{{exp.location}}</div>
+                <div style="float: right; font-size: 14px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
+                <div style="font-size: 16px; font-weight: 200">{{exp.company}}</div>
+                <div style="color: gray; font-size: 14px; margin-top: -3px; margin-bottom: 7px">{{exp.location}}</div>
                 <div style="color: rgb(116,116,116); font-size: 16px; text-align: justify" class="pb-3">{{exp.description}}</div>
               </div>
             </div>
@@ -52,15 +52,15 @@
         <hr />
         <div class="px-3 nice-font">
           <div class="row">
-            <div class="col-lg-1 col-md-1 col-sm-1 mt-1" style="color: gray; font-size: 20px">
+            <div class="col-lg-1 col-md-1 col-sm-1 mt-1" style="color: gray; font-size: 16px">
               <span style="margin-top: 5px !important;"><i class="ti-book"></i></span>
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
+            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px">
               <div v-for="edu in newUser.education">
-                <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(edu.from)}} - {{getDate(edu.to)}}</div>
-                <div style="font-size: 20px; font-weight: 300">{{edu.school}}</div>
-                <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 0px">{{edu.location}}</div>
-                <div style="color: rgb(120,120,120); font-size: 16px;">{{edu.degree}} - {{edu.fieldofstudy}}</div>
+                <div style="float: right; font-size: 14px; color: gray; margin-top: 5px;">{{getDate(edu.from)}} - {{getDate(edu.to)}}</div>
+                <div style="font-size: 16px; font-weight: 300">{{edu.school}}</div>
+                <div style="color: gray; font-size: 14px; margin-top: -3px; margin-bottom: 0px">{{edu.location}}</div>
+                <div style="color: rgb(120,120,120); font-size: 14px;">{{edu.degree}} - {{edu.fieldofstudy}}</div>
                 <p></p>
               </div>
             </div>
@@ -193,7 +193,7 @@
   }
   /deep/ .modal-header {
     color: white;
-    background-color: #3498db;
+    background-color: #DA9F74;
   }
   /deep/ .close {
     color: white;
