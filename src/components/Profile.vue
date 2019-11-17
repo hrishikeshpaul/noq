@@ -252,7 +252,7 @@
           </div>
 
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
-            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">
+            <b-card no-body>
               <b-tabs card style="font-size: 16px;">
                 <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
                   <b-card-body class="py-2">
@@ -899,7 +899,7 @@ export default {
   }
 
   /deep/ .bg-light {
-    background-color: #ececec !important;
+    background-color: #e8e8e8 !important;
   }
 
   /deep/ .card-header {

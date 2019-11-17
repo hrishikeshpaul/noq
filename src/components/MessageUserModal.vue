@@ -167,7 +167,7 @@ export default {
     color: white;
   }
   /deep/ .bg-light {
-    background-color: #ececec !important;
+    background-color: #e8e8e8 !important;
   }
   /deep/ .btn-outline-primary {
     border-color: #c68967 !important;

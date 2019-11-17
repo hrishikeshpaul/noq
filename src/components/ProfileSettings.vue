@@ -1,14 +1,25 @@
 <template>
   <div>
-    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Profile</div>
-    <p class="px-5" style="color: grey; margin-top: -18px; margin-left: 5px; margin-bottom: 50px !important;">{{'Change various profile settings'}}</p>
-    <div class=" mx-5">
-      <div class="card px-4 py-3 shadow-sm">
-        <div class="d-block text-center card-body">
+
+    <nav class="navbar navbar-light bg-light shadow-nav">
+      <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Settings</a>
+      <div class="text-center w-50">
+        <div class="row px-3 py-1">
+          <div class="col-11">
+          </div>
+          <div class="col-1">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mx-5 mt-5">
+      <div class="card px-4 py-2 shadow-sm w-50">
+        <div class=" text-center card-body w-100">
           <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
           <b-alert variant="success" v-if="showAlert2" :show="10">{{alertText2}}</b-alert>
           <b-form class="text-left">
-            <div class="card-title" style="font-size: 25px; margin-top: -10px;">Reset Password</div>
+            <div class="card-title" style="font-size: 20px; margin-top: -10px;">Reset Password</div>
             <hr />
             <label class="smaller-font">Old Password</label>
             <b-form-group>
@@ -119,5 +130,19 @@ export default {
   }
   .smaller-font {
     font-size: 13px;
+  }
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
+
+  /deep/ .bg-light {
+    background-color: #e8e8e8 !important;
   }
 </style>

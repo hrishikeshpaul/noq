@@ -1,24 +1,36 @@
 <template>
 <div>
-  <div style="font-size: 30px;" class="mx-5 mb-0 mt-3">Messages</div>
-<!--  <p class="" style="color: grey; margin-top: -5px; margin-left: 50px;">Make some conversations!</p>-->
-  <hr width="94%" align="left" class="mx-5"/>
-  <div class="card mx-5">
-    <div class="card-body pt-0 px-0" style="height: 78vh;">
-      <div class="row" style="height: 100%">
+<!--  <div style="font-size: 30px;" class="mx-5 mb-0 mt-3">Messages</div>-->
+<!--&lt;!&ndash;  <p class="" style="color: grey; margin-top: -5px; margin-left: 50px;">Make some conversations!</p>&ndash;&gt;-->
+<!--  <hr width="94%" align="left" class="mx-5"/>-->
+  <nav class="navbar navbar-light bg-light shadow-nav">
+    <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Messages</a>
+    <div class="text-center w-50">
+      <div class="row px-3 py-1">
+        <div class="col-11">
+        </div>
+        <div class="col-1">
+          <button style="float: right; padding-top: 5px;" class="btn-outline-secondary rounded ml-1" @click="getData2"><i class="ti-reload"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="card mx-5 mt-5">
+    <div class="card-body pt-0 px-0" style="height: 78vh; background-color: rgba(255,250,250,0.85);">
+      <div class="row" style="height: 100%;">
         <div class="col-5 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 700px;">
           <div>
-            <b-card no-body>
+            <b-card no-body style="border: 0">
               <b-tabs card>
                 <b-tab title="Conversations" active @click="getData2">
-                  <b-card-text>
+                  <b-card-text style="background-color: rgba(255,250,250,0.85) !important;">
                     <input type="text" class="input-field form-control" placeholder="Search.." v-model="searchConversations"/>
                     <hr />
                     <div v-for="conversation in computedUserConversations">
-                      <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name === conversation.conversation_name ? '#c5c5c5' : 'transparent' }">
+                      <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name === conversation.conversation_name ? '#FFD1B1' : 'transparent', 'border-radius': '5px' }">
                         <div class="row">
                           <div class="col-2">
-                            <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
+                            <img :src="conversation.user.profilepicture ? conversation.user.profilepicture : require('../assets/blank_profile.png')" style="height: 65px; width: 65px; object-fit: cover; border-radius: 5px;"/>
                           </div>
                           <div class="col-7">
                             <span style="font-size: 18px; font-weight: 300;">{{conversation.user.name}}</span>
@@ -57,13 +69,13 @@
           </div>
         </div>
         <div class="col-7 p-0 pr-3" style="padding-right: 15px !important; border-top-right-radius: 10px !important;">
-          <div v-if="noChat" style="background-color: #007bff; height: 72px">
+          <div v-if="noChat" style="background-color: #303030; height: 72px">
             <div class="pt-3">
               <span style="font-size: 25px; font-weight: 400; padding-left: 15px; color: white; ">Open a chat!</span>
             </div>
           </div>
           <div v-if="!noChat">
-            <div style="background-color: #007bff; height: 72px">
+            <div style="background-color: #303030; height: 72px">
               <div class="pt-2">
                 <span
                   style="font-size: 20px; font-weight: 400; padding-left: 15px; color: white">{{!openedChat.group ? role === 'student' ? openedChat.users[0].name : openedChat.users[1].name : 'Group Chat'}}</span>
@@ -76,7 +88,7 @@
                   <div v-for="(chat, idx) in openedChat.messages">
                     <div class="px-2 mt-2 py-1" >
                       <div>
-                        <div class="row mt-1 pt-1 mx-2 chat-border-top" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#D6D6D6'}">
+                        <div class="row mt-1 pt-1 mx-2 chat-border-top" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? '#FFD1B1':'#D6D6D6'}">
                           <div class="col-8 pl-0" style="border-radius: 5px;">
                             <span style="font-size: 15px; font-weight: 500; padding-left: 15px;">{{getFromName(chat.from.name)}}</span>
                           </div>
@@ -85,8 +97,8 @@
                           </div>
                         </div>
                         <div>
-                          <div class="row mb-1 pb-1 mx-2 chat-border-bottom pl-0" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? 'rgba(0,123,255,0.12)':'#d6d6d6'}">
-                            <div class="col-11"><span style="padding-left: 15px;">{{chat.body}}</span></div>
+                          <div class="row mb-1 pb-1 mx-2 chat-border-bottom pl-0" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? '#FFD1B1':'#d6d6d6'}">
+                            <div class="col-11"><span style="font-size: 14px">{{chat.body}}</span></div>
                             <div class="col-1 text-right" v-if="chat.from._id === user_id"><i :class="chat.read ? 'ti-eye' : chat.delivered ? 'ti-check' : 'ti-time'" style="font-size: 10px; font-weight: bold"></i></div>
                           </div>
                         </div>
@@ -438,8 +450,9 @@ export default {
 
 }
   .message-card:hover {
-    background-color: #d1d1d1 !important;
+    background-color: rgba(255, 177, 134, 0.84) !important;
     cursor: pointer;
+    border-radius: 5px;
   }
   .chat-box {
     max-height: 560px;
@@ -460,4 +473,48 @@ export default {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
+/deep/ .nav-link {
+  color: #88491C
+}
+
+/deep/ .nav-link:hover {
+  border-color: transparent;
+  background-color: #f6af85;
+}
+
+/deep/ .nav-link.active {
+  color: white;
+  background-color: #DA9A74;
+  border-color: transparent;
+  /*background-color: #FFD1B1 !important;*/
+}
+
+/deep/ .nav-item {
+  margin: 0;
+}
+
+/deep/ .card-header {
+  padding-left: 10px;
+  padding-top: 0px;
+}
+
+/deep/ .card-header {
+  background-color: rgba(255, 187, 138, 0.61) !important;
+  border-bottom: 0;
+}
+
+/deep/ .btn-outline-primary {
+  border-color: #c68967 !important;
+  color: grey;
+}
+
+/deep/ .btn-outline-primary:hover {
+  border-color: #c68967 !important;
+  background-color: #de9a73;
+  color: white;
+}
+/deep/ .bg-light {
+  background-color: #e8e8e8 !important;
+}
 </style>
