@@ -24,15 +24,15 @@
       <div>
         <a href="#">
             <router-link to="/profile" :class="{'sidenav-item-active': $route.name === 'Profile'}">
-              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
+              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true, 'ml-2': true}">
                 <div v-if="!navBarCollapsed" class="px-4">
                   <div class="row">
-                    <div class="col-3">
-                      <img :src="getImage(email)" style="height: 60px; width: 60px; border-radius: 10%;"/>
+                    <div class="col-3 pl-1 pr-1">
+                      <img :src="profilepciture ? profilepciture : require('./assets/blank_profile.png')" style="height: 60px; width: 60px; border-radius: 10%;"/>
 
                     </div>
-                    <div class="col-9">
-                      <span style="font-size: 17px;">{{email}}</span>
+                    <div class="col-9 pl-1">
+                      <span style="font-size: 16px; font-weight: 400; margin-top: 20px;">{{email}}</span>
                       <p style="font-size: 15px; margin-top: -3px;">{{role.charAt(0).toUpperCase() + role.substring(1)}}</p>
                     </div>
                   </div>
@@ -103,7 +103,8 @@ export default {
       role: '',
       socket: io('https://ancient-caverns-78426.herokuapp.com:3984'),
       prevRouteName: this.$route.name,
-      user_id: localStorage.user_id
+      user_id: localStorage.user_id,
+      profilepciture: localStorage.profilepicture
     }
   },
   updated () {
