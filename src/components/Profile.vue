@@ -221,6 +221,114 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
+				 <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto;">
+                  <b-card-body style="font-size: 16px;">
+                    <div v-for="hon in user.honor" :id="hon.title">
+                      <b-card class="mb-3 shadow-hover">
+                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                                @click="deleteHonor(hon)"><i class="ti-close"></i></button>
+                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                                @click="editHonorModal(hon)"><i class="ti-pencil"></i></button>
+                        <p></p>
+                        <h5 class="card-title" style="margin-top: -12px;">{{hon.title}}</h5>
+                        <hr width="100%" align="left"/>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-bookmark-alt"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{hon.issuer}}</span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-agenda"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{hon.description}}</span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-time"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{formatDate(hon.issueDate)}} </span>
+                          </div>
+                        </div>
+                        <p></p>
+                      </b-card>
+                    </div>
+                    <b-button
+                      v-if="role === 'student'"
+                      style="width: 100%; border-radius: 5px;"
+                      variant="outline-primary"
+                      class="mb-2 mt-1 "
+                      @click="addHonorModal"
+                    >
+                      Add
+                    </b-button>
+                  </b-card-body>
+                </b-tab>
+				 <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto;">
+                  <b-card-body style="font-size: 16px;">
+                    <div v-for="cert in user.certification" :id="cert.title">
+                      <b-card class="mb-3 shadow-hover">
+                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                                @click="deleteCertification(cert)"><i class="ti-close"></i></button>
+                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                                @click="editCertificationModal(cert)"><i class="ti-pencil"></i></button>
+                        <p></p>
+                        <h5 class="card-title" style="margin-top: -12px;">{{cert.title}}</h5>
+                        <hr width="100%" align="left"/>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-bookmark-alt"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{cert.issuer}}</span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-agenda"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{cert.description}}</span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-time"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{formatDate(cert.issueDate)}} </span>
+                          </div>
+						  <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-time"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span>{{formatDate(cert.expiryDate)}} </span>
+                          </div>
+                        </div>
+                        <p></p>
+                      </b-card>
+                    </div>
+                    <b-button
+                      v-if="role === 'student'"
+                      style="width: 100%; border-radius: 5px;"
+                      variant="outline-primary"
+                      class="mb-2 mt-1 "
+                      @click="addCertificationModal"
+                    >
+                      Add
+                    </b-button>
+                  </b-card-body>
+                </b-tab>
                 <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px;">
                   <b-card-body style="font-size: 16px;">
                     <b-form class="text-left">
@@ -366,6 +474,8 @@
 <!--    <DeleteConfirmModal :showModal="showDeleteConfirmModal" @hideModal="hideDeleteConfirmModal" @delete="deleteJobPosting" :job="jobInfoToBePassed"/>-->
     <EducationModal :show-modal="showEducationModal" @hideModal="hideEducationModal" :education="educationToBePassed" :buttonText="educationButtonText" :user="user"/>
     <ExperienceModal :show-modal="showExperienceModal" @hideModal="hideExperienceModal" :experience="experienceToBePassed" :button-text="experienceButtonText" :user="user" />
+	<HonorModal :show-modal="showHonorModal" @hideModal="hideHonorModal" :honor="honorToBePassed" :buttonText="honorButtonText" :user="user"/>
+	<CertificationModal :show-modal="showCertificationModal" @hideModal="hideCertificationModal" :certification="certificationToBePassed" :buttonText="certificationButtonText" :user="user"/>
   </div>
 </template>
 
@@ -384,6 +494,8 @@ import JobInfoModal from './JobInfoModal'
 import DeleteConfirmModal from './DeleteConfirmModal'
 import EducationModal from './EducationModal'
 import ExperienceModal from './ExperienceModal'
+import CertificationModal from './CertificationModal'
+import HonorModal from './HonorModal'
 import HomePageUserModal from './HomePageUserModal'
 import MessageUserModal from './MessageUserModal'
 
@@ -403,6 +515,8 @@ export default {
     DeleteConfirmModal,
     EducationModal,
     ExperienceModal,
+	HonorModal,
+	CertificationModal,
     HomePageUserModal,
     MessageUserModal
   },
@@ -424,10 +538,14 @@ export default {
       jobInfoToBePassed: {},
       educationToBePassed: {},
       experienceToBePassed: {},
+	  certificationToBePassed: {},
+	  honorToBePassed: {},
       applicantData: {},
       messageUserData: {},
       educationButtonText: '',
       experienceButtonText: '',
+	  honorButtonText: '',
+	  certificationButtonText: '',
       user_id: localStorage.getItem('user_id'),
       user: {
         profilepicture: '',
@@ -450,6 +568,8 @@ export default {
       showDeleteConfirmModal: false,
       showEducationModal: false,
       showExperienceModal: false,
+	  showHonorModal: false,
+	  showCertificationModal:false,
       showApplicantData: false,
       showMessageUserModal: false,
       employerSearchJob: '',
@@ -626,6 +746,25 @@ export default {
       this.showExperienceModal = false
       this.getData()
     },
+	editHonorModal (honor) {
+      this.honorToBePassed = honor
+      this.honorButtonText = 'Edit Honor'
+      this.showHonorModal = !this.showHonorModal
+    },
+    hideHonorModal () {
+      this.showHonorModal = false
+      this.getData()
+    },
+	editCertificationModal (certification) {
+      this.certificationToBePassed = certification
+      this.certificationButtonText = 'Edit Certification'
+      this.showCertificationModal = !this.showCertificationModal
+    },
+    hideCertificationModal () {
+      this.showCertificationModal = false
+      this.getData()
+    },
+	
     addEducationModal () {
       this.educationToBePassed = {
         to: null,
@@ -650,6 +789,26 @@ export default {
       }
       this.experienceButtonText = 'Add Experience'
       this.showExperienceModal = !this.showExperienceModal
+    },	   
+	addHonorModal () {
+      this.honorToBePassed = {
+        issueDate: null,
+        title: '',
+        issuer: '',
+        description: ''    
+      }
+      this.honorButtonText = 'Add Honor'
+      this.showHonorModal = !this.showHonorModal
+    },	
+	addCertificationModal () {
+      this.certificationToBePassed = {
+        issueDate: null,
+        title: '',
+        issuer: '',
+        description: ''    
+      }
+      this.certificationButtonText = 'Add Certification'
+      this.showCertificationModal = !this.showCertificationModal
     },
     deleteExperience (exp) {
       this.$swal({
@@ -720,6 +879,76 @@ export default {
           }
         });
 
+    },
+	deleteHonor (hon) {
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
+
+            axios.delete(`${url}/api/profile/honor/${hon._id}`, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert(err.response.data)
+              })
+          }
+        });
+    },
+	deleteCertification (cert) {
+      this.$swal({
+        title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
+        html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+      })
+        .then((willDelete) => {
+          if (willDelete.value) {
+            var headers = {
+              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+            }
+
+            axios.delete(`${url}/api/profile/certification/${cert._id}`, {headers: headers})
+              .then(response => {
+                this.$swal({
+                  position: 'top-right',
+                  backdrop: false,
+                  showConfirmButton: false,
+                  timer: 2500,
+                  width: '300px',
+                  imageHeight: 20,
+                  imageWidth: 20,
+                  background: 'rgba(92,184,92,0.93)',
+                  title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully deleted!</span>'
+                })
+                this.getData()
+              })
+              .catch(err => {
+                alert(err.response.data)
+              })
+          }
+        });
     },
     rejectConfirmedApplicant (job_id, user_id) {
       this.$swal({
