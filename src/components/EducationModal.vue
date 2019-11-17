@@ -33,15 +33,18 @@
               </div>
               <div class="col-6">
                 <label class="mb-0 smaller-font">To</label>
-                <span style="background-color: #b4b4b4; color: white; border-radius: 50%; margin-left: 5px;" class="px-2 info-hover" data-toggle="tooltip" data-placement="top" title="If you are currently enrolled, leave this blank">i</span>
+                <span style="background-color: #b4b4b4; color: white; border-radius: 50%; font-size: 8px; padding-top: 3px; padding-bottom: 3px" class="px-2 info-hover" data-toggle="tooltip" data-placement="top" title="If you are currently enrolled, leave this blank">i</span>
                 <b-form-group>
                   <b-form-input id="to" v-model="newEducation.to" type="date" class="input-field"></b-form-input>
                 </b-form-group>
               </div>
             </div>
           </b-form>
-          <button class="mt-2 btn btn-outline-primary w-100" v-if="buttonText === 'Edit Education'" @click="editEducation ">{{buttonText}}</button>
-          <button class="mt-2 btn-outline-primary w-100 py-1" type="submit" v-else @click="addEducation ">{{buttonText}}</button>
+          <div class="text-right">
+            <button class="mt-2 btn btn-outline-secondary w-10"  @click="$emit('hideModal')">Close</button>
+            <button class="mt-2 btn btn-outline-primary w-25" v-if="buttonText === 'Edit Education'" @click="editEducation ">{{buttonText}}</button>
+            <button class="mt-2 btn btn-outline-primary w-25" type="submit" v-else @click="addEducation ">{{buttonText}}</button>
+          </div>
         </div>
       </b-modal>
     </div>
@@ -175,7 +178,8 @@ export default {
 
 <style scoped>
 button {
-  border-radius: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 label {
@@ -190,10 +194,11 @@ label {
   }
 .nice-font {
   font-family: 'Roboto', sans-serif;
-  font-weight: 200;
+  font-weight: 300;
 }
 .input-field {
   border: 0;
+  font-weight: 100;
   border-radius: 2px;
   outline: none;
   box-shadow: none;
@@ -242,9 +247,20 @@ label {
 }
 /deep/ .modal-header {
   color: white;
-  background-color: #3498db;
+  background-color: #c68967;
 }
 /deep/ .close {
+  color: white;
+}
+
+/deep/ .btn-outline-primary {
+  border-color: #c68967 !important;
+  color: grey;
+}
+
+/deep/ .btn-outline-primary:hover {
+  border-color: #c68967 !important;
+  background-color: #de9a73;
   color: white;
 }
 </style>

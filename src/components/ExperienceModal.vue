@@ -43,12 +43,17 @@
               <b-form-textarea id="position" v-model.trim="newExperience.description" rows="4" class="input-field"></b-form-textarea>
             </b-form-group>
           </b-form>
-          <b-button class="mt-3 w-100 btn-outline-primary" type="submit" block v-if="buttonText === 'Edit Experience'"
-                    @click="editExperience ">{{buttonText}}
-          </b-button>
-          <b-button class="mt-3 w-100 btn-outline-primary" type="submit" v-else @click="addExperience ">
-            {{buttonText}}
-          </b-button>
+          <div class="text-right">
+            <button class="mt-3 w-10 btn btn-outline-secondary"
+                      @click="$emit('hideModal') ">Close
+            </button>
+            <button class="mt-3 w-25 btn btn-outline-primary" type="submit" v-if="buttonText === 'Edit Experience'"
+                      @click="editExperience ">{{buttonText}}
+            </button>
+            <button class="mt-3 w-25 btn btn-outline-primary" type="submit" v-else @click="addExperience ">
+              {{buttonText}}
+            </button>
+          </div>
         </div>
 
       </b-modal>
@@ -196,6 +201,7 @@ export default {
     border: 0;
     border-radius: 2px;
     outline: none;
+    font-weight: 100;
     box-shadow: none;
     margin-top: 1px;
     background-color: #f6f6f6;
@@ -215,11 +221,30 @@ export default {
     padding-left: 1rem;
     font-size: 35px;
   }
+
+  /deep/ .close {
+    color: white;
+  }
+
   /deep/ .modal-header {
     color: white;
-    background-color: #3498db;
+    background-color: #c68967;
   }
   /deep/ .close {
     color: white;
+  }
+
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
+  button {
+    cursor: pointer;
   }
 </style>

@@ -898,4 +898,8 @@ export default {
     background-color: #de9a73;
     color: white;
   }
+
+  /deep/ .bg-light {
+    background-color: #ececec !important;
+  }
 </style>

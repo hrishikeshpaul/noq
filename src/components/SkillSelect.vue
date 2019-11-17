@@ -91,5 +91,16 @@
 </script>
 
 <style scoped>
+/deep/ .multiselect__tag {
+  background-color: #c68967;
+}
 
+  /deep/ .multiselect__tag-icon::after {
+    color: white;
+  }
+
+/deep/ .multiselect__tag-icon:hover {
+  color: white;
+  background-color: #a06f53 !important;
+}
 </style>
