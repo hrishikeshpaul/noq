@@ -4,9 +4,8 @@
     <nav class="navbar navbar-light bg-light shadow-nav">
       <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Profile</a>
       <div class="text-center w-50">
-        <div class="row px-5 py-1">
+        <div class="row px-3 py-1">
           <div class="col-11">
-<!--            <FilterBar @group="callReGroup" :options="filterOptions"/>-->
           </div>
           <div class="col-1">
                 <button style="float: right; padding-top: 5px;" class="btn-outline-secondary rounded ml-1" @click="getData"><i class="ti-reload"></i></button>
