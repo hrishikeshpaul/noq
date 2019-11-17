@@ -240,4 +240,11 @@ label {
 .modal-fade-leave-active {
   transition: opacity .5s ease
 }
+/deep/ .modal-header {
+  color: white;
+  background-color: #3498db;
+}
+/deep/ .close {
+  color: white;
+}
 </style>

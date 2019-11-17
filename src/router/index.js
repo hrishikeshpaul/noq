@@ -7,6 +7,7 @@ import NotFound from '@/components/NotFound'
 import ProfileBuilder from '@/components/ProfileBuilder'
 import Profile from '@/components/Profile'
 import ProfileSettings from '@/components/ProfileSettings'
+import Chat from '@/components/Chat'
 
 import axios from 'axios'
 
@@ -115,6 +116,11 @@ export default new Router({
           })
         }
       }
+    },
+    {
+      path: '/chat',
+      name: 'Chat',
+      component: Chat
     },
     {
       path: '/build_profile',

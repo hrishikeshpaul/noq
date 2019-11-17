@@ -21,6 +21,19 @@
           <p style="color: gray">{{newUser.location}}</p>
           <hr />
         </div>
+          <div class="px-3 nice-font">
+            <div class="row">
+              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
+                <span><i class="ti-star"></i></span>
+              </div>
+              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
+                <div style="font-size: 18px">
+                  {{displaySkills(newUser.skills)}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
         <div class="px-3 nice-font">
           <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
@@ -29,7 +42,7 @@
             <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
               <div v-for="exp in newUser.experience">
                 <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
-                <div style="font-size: 22px; font-weight: 300">{{exp.company}}</div>
+                <div style="font-size: 20px; font-weight: 200">{{exp.company}}</div>
                 <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 7px">{{exp.location}}</div>
                 <div style="color: rgb(116,116,116); font-size: 16px; text-align: justify" class="pb-3">{{exp.description}}</div>
               </div>
@@ -45,7 +58,7 @@
             <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
               <div v-for="edu in newUser.education">
                 <div style="float: right; font-size: 15px; color: gray; margin-top: 5px;">{{getDate(edu.from)}} - {{getDate(edu.to)}}</div>
-                <div style="font-size: 22px; font-weight: 300">{{edu.school}}</div>
+                <div style="font-size: 20px; font-weight: 300">{{edu.school}}</div>
                 <div style="color: gray; font-size: 15px; margin-top: -3px; margin-bottom: 0px">{{edu.location}}</div>
                 <div style="color: rgb(120,120,120); font-size: 16px;">{{edu.degree}} - {{edu.fieldofstudy}}</div>
                 <p></p>
@@ -54,18 +67,16 @@
           </div>
         </div>
         <hr />
-        <div class="px-3 nice-font">
-          <div class="row">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
-              <span><i class="ti-star"></i></span>
+          <div class="row text-center">
+            <div class="col-3"></div>
+            <div class="col-3">
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: user._id, job: user.job})"><i class="ti-close"></i></button>
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
-              <div style="font-size: 20px">
-                {{displaySkills(newUser.skills)}}
-              </div>
+            <div class="col-3">
+              <button @click="$emit('accept', {id: user._id, job: user.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
             </div>
+            <div class="col-3"></div>
           </div>
-        </div>
       </div>
       </b-modal>
     </div>
@@ -179,6 +190,25 @@
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;
+  }
+  /deep/ .modal-header {
+    color: white;
+    background-color: #3498db;
+  }
+  /deep/ .close {
+    color: white;
+  }
+  button {
+    cursor: pointer;
+  }
+  .ti-briefcase {
+    color: saddlebrown;
+  }
+  .ti-star {
+    color: #e5b645;
+  }
+  .ti-book {
+    color: darkgreen;
   }
 
 </style>
