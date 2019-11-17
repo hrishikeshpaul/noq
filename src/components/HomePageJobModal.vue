@@ -9,19 +9,19 @@
 <!--          </div>-->
 <!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newJob.company}}</p>-->
 <!--        </template>-->
-        <div style="max-height: 600px !important; overflow-y: auto" class="mb-3">
+        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f0f0f0; padding: 15px !important;">
           <div class="text-center nice-font">
             <img :src="newJob.employer.profilepicture ? newJob.employer.profilepicture.toString() : require('../assets/company.jpg')" style="height: 150px; width: 150px; border-radius: 50%; object-fit: cover;border: 3px solid #929292;"/>
-            <p style="font-size: 30px;" class="pt-2 mb-0 pb-0">{{newJob.company}}</p>
-            <p style="color: gray; font-size: 20px">{{newJob.location}}</p>
+            <p style="font-size: 20px;" class="pt-2 mb-0 pb-0">{{newJob.company}}</p>
+            <p style="color: gray; font-size: 18px">{{newJob.location}}</p>
             <hr />
           </div>
           <div class="px-3 nice-font">
             <div class="row">
-              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
+              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px">
                 <span><i class="ti-briefcase"></i></span>
               </div>
-              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
+              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px">
                 {{newJob.position}}
               </div>
             </div>
@@ -29,11 +29,11 @@
           <hr />
           <div class="px-3 nice-font">
             <div class="row">
-              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 20px">
+              <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px">
                 <span><i class="ti-star"></i></span>
               </div>
-              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
-                <div style="font-size: 18px">
+              <div class="col-lg-11 col-md-11 col-sm-11 pl-0">
+                <div style="font-size: 16px">
                   {{displaySkills(newJob.skills)}}
                 </div>
               </div>
@@ -42,10 +42,10 @@
           <hr />
           <div class="px-3 nice-font">
             <div class="row">
-              <div class="col-lg-1 col-md-1 col-sm-1 mt-1" style="color: gray; font-size: 20px">
+              <div class="col-lg-1 col-md-1 col-sm-1 mt-1" style="color: gray; font-size: 16px;">
                 <span style="margin-top: 5px !important;"><i class="ti-receipt"></i></span>
               </div>
-              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 20px">
+              <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px;">
                 <span style="white-space: pre-wrap;">{{newJob.description}}</span>
               </div>
             </div>
@@ -124,22 +124,25 @@ export default {
 
 <style scoped>
   .nice-font {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
   }
   /deep/ .modal-title {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 200;
     padding-left: 1rem;
     font-size: 35px;
   }
   /deep/ .modal-header {
     color: white;
-    background-color: #3498db;
+    background-color: #DA9F74;
   }
   /deep/ .close {
     color: white;
   }
+  /deep/ .modal-body {
+    padding: 0;
+     }
   button {
     cursor: pointer;
   }

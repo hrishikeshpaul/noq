@@ -184,7 +184,7 @@ export default {
 .sidenav a {
   /*padding: 8px 8px 8px 32px;*/
   text-decoration: none !important;
-  font-size: 18px;
+  font-size: 16px;
   color: #ebebeb;
   display: block;
   transition: 0.3s;

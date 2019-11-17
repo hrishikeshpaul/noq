@@ -23,7 +23,7 @@
     <div class="mx-5 mt-4">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
         <div style="position: relative;">
-          <h4 style="font-weight: 300"><div class="mb-3">{{ key }}</div></h4>
+          <h5 style="font-weight: 300"><div class="mb-3">{{ key }}</div></h5>
           <div
             v-for="(j, index) in job" v-if="job.length > 0"
             style="display: inline-block;"
@@ -44,7 +44,7 @@
 
       <div v-for="(user, key) in computedUsers" class="mb-3" v-if="userRole === 'employer'">
         <div style="position: relative;">
-          <h4 style="font-weight: 300;"><div class="mb-3">{{ key }}</div></h4>
+          <h5 style="font-weight: 300;"><div class="mb-3">{{ key }}</div></h5>
           <div
             v-for="u in user" v-if="user.length > 0"
             style="display: inline-block;"
