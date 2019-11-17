@@ -7,7 +7,7 @@
            style="max-height: 299px; height: 100%; border-radius: 10px; object-fit: cover;" />
       <div class="info_background" :style="info_bg"></div>
       <div class="info">
-        <p style="font-weight: 400; font-size: 16px; margin-top: 4px;" class="mb-0">{{user.name}}</p>
+        <p style="font-weight: 400; font-size: 16px; margin-top: 2px;" class="mb-0">{{user.name}}</p>
         <p style="font-size: 12px; margin-top: -3px" class="mb-0">{{user.email}}</p>
         <p style="font-size: 12px;" class="mb-1">{{displaySkills(user.skills)}}</p>
         <br/>
