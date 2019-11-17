@@ -1,7 +1,8 @@
 <template>
-  <div >
-<!--    <NavBar @logout="logout"/>-->
-    <button style="float: right; padding-top: 5px;" class="mt-5 mr-5 btn-outline-secondary rounded" @click="getData"><i class="ti-reload"></i></button>
+  <div>
+    <!--    <NavBar @logout="logout"/>-->
+    <button style="float: right; padding-top: 5px;" class="mt-5 mr-5 btn-outline-secondary rounded" @click="getData"><i
+      class="ti-reload"></i></button>
     <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Profile</div>
     <p class="" style="color: grey; margin-top: -20px; margin-left: 55px;">{{role === 'student' ? 'Edit your profile details and check your acceptances!' : 'Add job postings, and message applicants!'}}</p>
     <hr width="94%" align="left" class="mx-5"/>
@@ -9,9 +10,10 @@
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
           <div class="mt-4">
-            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
+            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')"
+                 style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
             <div class="mt-2">
-              <span style="font-size: 40px; margin-top: 5px;" >{{user.name}}</span>
+              <span style="font-size: 40px; margin-top: 5px;">{{user.name}}</span>
             </div>
             <div style="margin-top: -10px;">
               <span style="font-size: 18px; color: grey;">{{user.company}}</span>
@@ -26,7 +28,7 @@
               <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" v-if="user.social.linkedin"
                       @click="showWindow(user.website)"><i class="ti-world"></i></button>
             </div>
-            <hr width="100%" />
+            <hr width="100%"/>
             <div style="justify-content: center; text-align: justify;" class='px-1'>
               <span style="font-size: 16px; font-style: italic;">{{user.bio.length > 40 ? user.bio.substring(0, 150) + ' ...' : user.bio}}</span>
             </div>
@@ -42,14 +44,18 @@
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover">
                         <button href="#" style="float: right; margin-top: 5px !important; border: none;"
-                                class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i
+                                class="mt-3 pt-2 ml-2 btn btn-outline-danger"
+                                @click="rejectConfirmedApplicant(job._id, user._id)"><i
                           class="ti-close"></i></button>
                         <button href="#" style="float: right; margin-top: 5px !important; border: none;"
-                                class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i class="ti-comment-alt"></i>
+                                class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i
+                          class="ti-comment-alt"></i>
                         </button>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
-                            <img style="height: 100px; width: 100px; object-fit: cover;" :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')" class="icon-border">
+                            <img style="height: 100px; width: 100px; object-fit: cover;"
+                                 :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')"
+                                 class="icon-border">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
                             <h5 class="card-title">{{job.title}}</h5>
@@ -108,9 +114,11 @@
                   <b-card-body style="font-size: 16px;">
                     <div v-for="edu in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover">
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                        <button style="float: right; border: none; margin-top: 5px !important;"
+                                class="btn btn-outline-danger ml-2"
                                 @click="deleteEducation(edu)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                        <button style="float: right; border: none; margin-top: 5px !important;"
+                                class="btn btn-outline-secondary"
                                 @click="editEducationModal(edu)"><i class="ti-pencil"></i></button>
                         <p></p>
                         <h5 class="card-title" style="margin-top: -12px;">{{edu.school}}</h5>
@@ -221,13 +229,15 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-				 <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body style="font-size: 16px;">
                     <div v-for="hon in user.honor" :id="hon.title">
                       <b-card class="mb-3 shadow-hover">
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                        <button style="float: right; border: none; margin-top: 5px !important;"
+                                class="btn btn-outline-danger ml-2"
                                 @click="deleteHonor(hon)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                        <button style="float: right; border: none; margin-top: 5px !important;"
+                                class="btn btn-outline-secondary"
                                 @click="editHonorModal(hon)"><i class="ti-pencil"></i></button>
                         <p></p>
                         <h5 class="card-title" style="margin-top: -12px;">{{hon.title}}</h5>
@@ -272,13 +282,15 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-				 <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto;">
+                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body style="font-size: 16px;">
                     <div v-for="cert in user.certification" :id="cert.title">
                       <b-card class="mb-3 shadow-hover">
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                        <button style="float: right; border: none; margin-top: 5px !important;"
+                                class="btn btn-outline-danger ml-2"
                                 @click="deleteCertification(cert)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                        <button style="float: right; border: none; margin-top: 5px !important;"
+                                class="btn btn-outline-secondary"
                                 @click="editCertificationModal(cert)"><i class="ti-pencil"></i></button>
                         <p></p>
                         <h5 class="card-title" style="margin-top: -12px;">{{cert.title}}</h5>
@@ -306,13 +318,7 @@
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{formatDate(cert.issueDate)}} </span>
-                          </div>
-						  <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                            <span><i class="ti-time"></i></span>
-                          </div>
-                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{formatDate(cert.expiryDate)}} </span>
+                            <span>{{formatDate(cert.issueDate)}}  - {{formatDate(cert.expiryDate)}} </span>
                           </div>
                         </div>
                         <p></p>
@@ -359,21 +365,25 @@
                       </b-input-group-append>
                     </b-input-group>
                     <div v-for="(job, idx) in employerJobs">
-                      <b-card class="text-left my-2 card-collapse" style="height: 140px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
+                      <b-card class="text-left my-2 card-collapse"
+                              style="height: 140px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
                         <div>
                           <button href="#" style="float: right; margin-top: -2px !important; border: none;"
                                   class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="deleteConfirmModal(job)"><i
                             class="ti-close"></i></button>
                           <button href="#" style="float: right; margin-top: -2px !important; border: none;"
-                                  class="mt-3 pt-2 btn btn-outline-info" @click="jobInfoModal(job)"><i class="ti-pencil"></i>
+                                  class="mt-3 pt-2 btn btn-outline-info" @click="jobInfoModal(job)"><i
+                            class="ti-pencil"></i>
                           </button>
                         </div>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
-                            <img style="height: 100px; width: 100px; object-fit: cover;" class="icon-border" :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
+                            <img style="height: 100px; width: 100px; object-fit: cover;" class="icon-border"
+                                 :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h4 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
+                            <h4 class="card-title title-collapse"
+                                @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
@@ -438,10 +448,16 @@
                     <div v-for="job in user.jobs">
                       <div v-for="user in job.confirmed_users">
                         <b-card class="text-left my-2">
-                          <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
-                          <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
-                          <h4 class="card-title user-hover mt-2" style="cursor: pointer;" @click="applicantDataModal(user)">{{user.name}}</h4>
-                          <hr />
+                          <button href="#" style="float: right; margin-top: 8px !important; border: none;"
+                                  class="mt-3 pt-2 ml-2 btn btn-outline-danger"
+                                  @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
+                          <button href="#" style="float: right; margin-top: 8px !important; border: none;"
+                                  class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt"
+                                                                            @click="messageUserModal(user)"></i>
+                          </button>
+                          <h4 class="card-title user-hover mt-2" style="cursor: pointer;"
+                              @click="applicantDataModal(user)">{{user.name}}</h4>
+                          <hr/>
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                           <span>{{job.title}}</span>
                           <p></p>
@@ -466,16 +482,20 @@
       </div>
     </div>
 
-    <MessageUserModal :showModal="showMessageUserModal" @hideModal="hideMessageUserModal" :user="messageUserData" />
-    <HomePageUserModal :showModal="showApplicantData" @hideModal="hideHomePageUserModal" :user="applicantData" />
+    <MessageUserModal :showModal="showMessageUserModal" @hideModal="hideMessageUserModal" :user="messageUserData"/>
+    <HomePageUserModal :showModal="showApplicantData" @hideModal="hideHomePageUserModal" :user="applicantData"/>
     <JobInputModal :showModal="showJobInputModal" @hideModal="hideJobInputModal" :user="user" @getData="getData"/>
     <ProfileInputModal :showModal="showEditProfileModal" :user="user" @hideModal="hideEditProfileInputModal"/>
     <JobInfoModal :showModal="showJobInfoModal" :job="jobInfoToBePassed" @hideModal="hideJobInfoModal"/>
-<!--    <DeleteConfirmModal :showModal="showDeleteConfirmModal" @hideModal="hideDeleteConfirmModal" @delete="deleteJobPosting" :job="jobInfoToBePassed"/>-->
-    <EducationModal :show-modal="showEducationModal" @hideModal="hideEducationModal" :education="educationToBePassed" :buttonText="educationButtonText" :user="user"/>
-    <ExperienceModal :show-modal="showExperienceModal" @hideModal="hideExperienceModal" :experience="experienceToBePassed" :button-text="experienceButtonText" :user="user" />
-	<HonorModal :show-modal="showHonorModal" @hideModal="hideHonorModal" :honor="honorToBePassed" :buttonText="honorButtonText" :user="user"/>
-	<CertificationModal :show-modal="showCertificationModal" @hideModal="hideCertificationModal" :certification="certificationToBePassed" :buttonText="certificationButtonText" :user="user"/>
+    <!--    <DeleteConfirmModal :showModal="showDeleteConfirmModal" @hideModal="hideDeleteConfirmModal" @delete="deleteJobPosting" :job="jobInfoToBePassed"/>-->
+    <EducationModal :show-modal="showEducationModal" @hideModal="hideEducationModal" :education="educationToBePassed"
+                    :buttonText="educationButtonText" :user="user"/>
+    <ExperienceModal :show-modal="showExperienceModal" @hideModal="hideExperienceModal"
+                     :experience="experienceToBePassed" :button-text="experienceButtonText" :user="user"/>
+    <HonorModal :show-modal="showHonorModal" @hideModal="hideHonorModal" :honor="honorToBePassed"
+                :buttonText="honorButtonText" :user="user"/>
+    <CertificationModal :show-modal="showCertificationModal" @hideModal="hideCertificationModal"
+                        :certification="certificationToBePassed" :buttonText="certificationButtonText" :user="user"/>
   </div>
 </template>
 
@@ -515,8 +535,8 @@ export default {
     DeleteConfirmModal,
     EducationModal,
     ExperienceModal,
-	HonorModal,
-	CertificationModal,
+    HonorModal,
+    CertificationModal,
     HomePageUserModal,
     MessageUserModal
   },
@@ -538,14 +558,14 @@ export default {
       jobInfoToBePassed: {},
       educationToBePassed: {},
       experienceToBePassed: {},
-	  certificationToBePassed: {},
-	  honorToBePassed: {},
+      certificationToBePassed: {},
+      honorToBePassed: {},
       applicantData: {},
       messageUserData: {},
       educationButtonText: '',
       experienceButtonText: '',
-	  honorButtonText: '',
-	  certificationButtonText: '',
+      honorButtonText: '',
+      certificationButtonText: '',
       user_id: localStorage.getItem('user_id'),
       user: {
         profilepicture: '',
@@ -568,8 +588,8 @@ export default {
       showDeleteConfirmModal: false,
       showEducationModal: false,
       showExperienceModal: false,
-	  showHonorModal: false,
-	  showCertificationModal:false,
+      showHonorModal: false,
+      showCertificationModal: false,
       showApplicantData: false,
       showMessageUserModal: false,
       employerSearchJob: '',
@@ -579,7 +599,9 @@ export default {
   computed: {
     employerJobs: {
       get: function (s) {
-        if (!this.employerSearchJob) { return this.user.jobs } else {
+        if (!this.employerSearchJob) {
+          return this.user.jobs
+        } else {
           var fuse = new Fuse(this.user.jobs, this.fuseOptions)
           return fuse.search(this.employerSearchJob)
         }
@@ -622,9 +644,11 @@ export default {
       return gravatar.url(email)
     },
     formatDate (date) {
-      if (date)
+      if (date) {
         return this.$moment(date).format('MMM Do YY')
-      else return 'Present'
+      } else {
+        return 'Present'
+      }
     },
     messageUserModal (user) {
       this.messageUserData = user
@@ -682,9 +706,9 @@ export default {
       this.$swal({
         title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the job with title, ${job.title}</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, delete it!'
       })
         .then((willDelete) => {
           if (willDelete.value) {
@@ -710,9 +734,9 @@ export default {
                 alert(err.response.data)
               })
           }
-        });
-      // this.jobInfoToBePassed = job
-      // this.showDeleteConfirmModal = !this.showDeleteConfirmModal
+        })
+        // this.jobInfoToBePassed = job
+        // this.showDeleteConfirmModal = !this.showDeleteConfirmModal
     },
     hideDeleteConfirmModal () {
       this.$swal({
@@ -746,7 +770,7 @@ export default {
       this.showExperienceModal = false
       this.getData()
     },
-	editHonorModal (honor) {
+    editHonorModal (honor) {
       this.honorToBePassed = honor
       this.honorButtonText = 'Edit Honor'
       this.showHonorModal = !this.showHonorModal
@@ -755,7 +779,7 @@ export default {
       this.showHonorModal = false
       this.getData()
     },
-	editCertificationModal (certification) {
+    editCertificationModal (certification) {
       this.certificationToBePassed = certification
       this.certificationButtonText = 'Edit Certification'
       this.showCertificationModal = !this.showCertificationModal
@@ -764,7 +788,7 @@ export default {
       this.showCertificationModal = false
       this.getData()
     },
-	
+
     addEducationModal () {
       this.educationToBePassed = {
         to: null,
@@ -789,23 +813,23 @@ export default {
       }
       this.experienceButtonText = 'Add Experience'
       this.showExperienceModal = !this.showExperienceModal
-    },	   
-	addHonorModal () {
+    },
+    addHonorModal () {
       this.honorToBePassed = {
         issueDate: null,
         title: '',
         issuer: '',
-        description: ''    
+        description: ''
       }
       this.honorButtonText = 'Add Honor'
       this.showHonorModal = !this.showHonorModal
-    },	
-	addCertificationModal () {
+    },
+    addCertificationModal () {
       this.certificationToBePassed = {
         issueDate: null,
         title: '',
         issuer: '',
-        description: ''    
+        description: ''
       }
       this.certificationButtonText = 'Add Certification'
       this.showCertificationModal = !this.showCertificationModal
@@ -814,9 +838,9 @@ export default {
       this.$swal({
         title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, delete it!'
       })
         .then((willDelete) => {
           if (willDelete.value) {
@@ -843,15 +867,15 @@ export default {
                 alert(err.response.data)
               })
           }
-        });
+        })
     },
     deleteEducation (edu) {
       this.$swal({
         title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the education.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, delete it!'
       })
         .then((willDelete) => {
           if (willDelete.value) {
@@ -877,16 +901,15 @@ export default {
                 alert(err.response.data)
               })
           }
-        });
-
+        })
     },
-	deleteHonor (hon) {
+    deleteHonor (hon) {
       this.$swal({
         title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, delete it!'
       })
         .then((willDelete) => {
           if (willDelete.value) {
@@ -913,15 +936,15 @@ export default {
                 alert(err.response.data)
               })
           }
-        });
+        })
     },
-	deleteCertification (cert) {
+    deleteCertification (cert) {
       this.$swal({
         title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, delete it!'
       })
         .then((willDelete) => {
           if (willDelete.value) {
@@ -948,15 +971,15 @@ export default {
                 alert(err.response.data)
               })
           }
-        });
+        })
     },
     rejectConfirmedApplicant (job_id, user_id) {
       this.$swal({
         title: '<span style="font-family: \'Raleway\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Raleway\', sans-serif; font-size: 16px; font-weight: 200">Once rejected, you will not be able to message the user again.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonText: 'Yes, delete it!'
       })
         .then((willDelete) => {
           if (willDelete.value) {
@@ -983,8 +1006,7 @@ export default {
                 alert('Delete could not happen.')
               })
           }
-        });
-
+        })
     },
     addSkills (skills) {
       this.skillsToUpdate = skills
@@ -994,7 +1016,10 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
-      axios.post(`${url}/api/profile/skills`, {data: this.skillsToUpdate, user: {id: this.user._id}}, {headers: headers})
+      axios.post(`${url}/api/profile/skills`, {
+        data: this.skillsToUpdate,
+        user: {id: this.user._id}
+      }, {headers: headers})
         .then(response => {
           this.$swal({
             position: 'top-right',
@@ -1045,37 +1070,47 @@ export default {
   button {
     cursor: pointer;
     border-radius: 5px;
-  },
-.user-hover {
-  color: black;
-}
+  }
 
-.user-hover:hover {
-  color: grey
-}
-.shadow-hover {
-  box-shadow: none;
-  transition: all 0.4s;
-}
+  ,
+  .user-hover {
+    color: black;
+  }
+
+  .user-hover:hover {
+    color: grey
+  }
+
+  .shadow-hover {
+    box-shadow: none;
+    transition: all 0.4s;
+  }
+
   .shadow-hover:hover {
     box-shadow: 1px 2px 7px #bdbdbd;
   }
+
   .swal-wide {
     font-family: 'Raleway', sans-serif !important;
 
   }
+
   .card-collapse {
     transition: height 0.5s ease-in .5s
   }
+
   .title-collapse {
     cursor: pointer;
   }
+
   .title-collapse:hover {
     color: #4c4c4c;
   }
+
   /deep/ .card-header {
     background-color: rgba(0, 55, 114, 0.78) !important;
   }
+
   /deep/ .nav-link {
     color: white;
   }
