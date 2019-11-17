@@ -245,7 +245,7 @@
             <tab-content
               :title="'Honor'"
               v-if="role === 'student'"
-              :icon="role === 'student' ? 'ti-book' : 'ti-bag'"
+              :icon="role === 'student' ? 'ti-medall' : 'ti-bag'"
               :before-change="validateAsync"
             >
               <div v-for="(honor,index) in honors" v-if="role === 'student'">
@@ -306,7 +306,7 @@
             <tab-content
               :title="'Certification'"
               v-if="role === 'student'"
-              :icon="role === 'student' ? 'ti-book' : 'ti-bag'"
+              :icon="role === 'student' ? 'ti-bookmark-alt' : 'ti-bag'"
               :before-change="validateAsync"
             >
               <div v-for="(certification,index) in certifications" v-if="role === 'student'">
@@ -710,7 +710,7 @@ export default {
               // vals.add(this.educations[i].location === "");
               vals.add(this.certifications[i].description === "");
               vals.add(this.certifications[i].issueDate === "");
-			  vals.add(this.certifications[i].expiryDate === "");
+              vals.add(this.certifications[i].expiryDate === "");
             }
             if (vals.size == 1) {
               var obj = {
@@ -782,24 +782,22 @@ export default {
           current: [],
           description: ""
         });
-      }else if (array === "honor") {
+      } else if (array === "honor") {
         this.honors.push({
           title: "",
           issuer: "",
           issueDate: "",
           description: ""
         });
-      
-	  }else if (array === "certification") {
+      } else if (array === "certification") {
         this.honors.push({
           title: "",
           issuer: "",
           issueDate: "",
-		  expiryDate: "",
+          expiryDate: "",
           description: ""
         });
-	  }
-
+      }
     },
     addSkills(skill) {
       this.skills = skill;
