@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-4 pt-3">
+  <div class="">
     <multiselect
       style="height: 40px;"
       v-model="value"
@@ -59,5 +59,20 @@ export default {
 </script>
 
 <style scoped>
+/deep/ .multiselect__tags {
+  /*background-color: #FFD8B1;*/
+  color: black;
+}
 
+/deep/ .multiselect__single {
+  /*background-color: #FFD8B1;*/
+  color:black;
+}
+/deep/ .multiselect__select::before {
+  /*color: #FFD8B1;*/
+  /*color:black !important;*/
+}
+  /deep/ .multiselect__input {
+    /*background-color: #FFD8B1;*/
+  }
 </style>

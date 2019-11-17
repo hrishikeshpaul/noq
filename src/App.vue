@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="mySidenav" class="sidenav" v-if="$route.path !== '/login' && $route.path !== '/build_profile'">
+    <div id="mySidenav" class="sidenav p-0" v-if="$route.path !== '/login' && $route.path !== '/build_profile'">
       <div style="display: flex; justify-content: space-between" class="px-4 text-center">
 <!--          <div class="big-title text-center" style="display: inline; margin-left: -13px;" v-if="!navBarCollapsed">-->
 <!--            <span class="px-2 logo-noq">noQ</span>-->
@@ -8,13 +8,13 @@
 <!--          </div>-->
 
         <div v-if="!navBarCollapsed" class="mt-3">
-          <img src="./assets/noQ_0275d8.svg" width="130">
+          <img src="./assets/noQ_0275d8.svg" width="100">
           <p class="mt-1" style="font-size: 10px; color: white">Making Career Fairs Easier</p>
         </div>
 
         <div style="display: inline;" >
 <!--          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed">&rang;</a>-->
-          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed"><img src="./assets/onlyQ.svg" width="40" style="margin-left: -5px !important; margin-top: -5px;"></img></a>
+          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed"><img src="./assets/onlyQ.svg" width="35" style="margin-left: -2px;"></img></a>
 
           <a href="javascript:void(0)" class="closebtn" @click="closeNav" v-else style="margin-top: 10px; margin-left: 12px;">&lang;</a>
         </div>
@@ -28,7 +28,7 @@
                 <div v-if="!navBarCollapsed" class="px-4">
                   <div class="row">
                     <div class="col-3">
-                      <img :src="getImage(email)" style="height: 60px; width: 60px; border-radius: 50%;"/>
+                      <img :src="getImage(email)" style="height: 60px; width: 60px; border-radius: 10%;"/>
 
                     </div>
                     <div class="col-9">
@@ -44,7 +44,7 @@
         <hr style="background-color: #757d80; height: 1px" class="py-0 my-0"/>
           <a href="#" style="text-decoration: none;">
             <router-link to="/" :class="{'sidenav-item-active': $route.name === 'HomePage'}">
-              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
+              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
                 <span v-if="!navBarCollapsed" class="px-4">Home</span>
                 <span v-else><i class="ti-home"></i></span>
               </div>
@@ -52,7 +52,7 @@
           </a>
         <a href="#">
           <router-link to="/chat" :class="{'sidenav-item-active': $route.name === 'Chat'}">
-            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
+            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
               <span v-if="!navBarCollapsed" class="px-4">Messages</span>
               <span v-else><i class="ti-comment-alt"></i></span>
             </div>
@@ -60,7 +60,7 @@
         </a>
         <a href="#" style="text-decoration: none;">
           <router-link to="/settings" :class="{'sidenav-item-active': $route.name === 'ProfileSettings'}">
-            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}">
+            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
               <span v-if="!navBarCollapsed" class="px-4">Settings</span>
               <span v-else><i class="ti-settings"></i></span>
             </div>
@@ -70,7 +70,7 @@
         <hr style="background-color: #7e868a; margin-bottom: 0px; padding-bottom: 0px;"/>
         <a href="#" style="text-decoration: none;">
           <router-link to="/">
-            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true}" @click="logout">
+            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}" @click="logout">
               <span v-if="!navBarCollapsed" class="px-4">Logout</span>
               <span v-else><i class="ti-back-left"></i></span>
             </div>
@@ -157,7 +157,8 @@ export default {
 <style>
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway', sans-serif;*/
+  font-family: 'Roboto', sans-serif;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -171,8 +172,8 @@ export default {
   z-index: 100;
   top: 0;
   left: 0;
-  box-shadow: 1px 1px 5px #6c757d;
-  background-color: #212a31;
+  /*box-shadow: 1px 1px 5px #6c757d;*/
+  background-color: #303030;
   /*background-color: rgba(28, 16, 15, 0.85);*/
   /*background-color: #fec10f;*/
   overflow-x: hidden;
@@ -182,19 +183,24 @@ export default {
 
 .sidenav a {
   /*padding: 8px 8px 8px 32px;*/
-  text-decoration: none;
-  font-size: 25px;
+  text-decoration: none !important;
+  font-size: 18px;
   color: #ebebeb;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav-item-active {
-  background-color: rgba(146, 146, 146, 0.48);
+  margin: 15px;
+  font-size: 20px;
+  border-radius: 7px;
+  background-color: #FFD1B1;
+  color: #081b3d !important;
+  /*background-color: rgba(146, 146, 146, 0.48);*/
 }
 
 .sidenav a:hover {
-  color: #ababab;
+  color: #b8b8ba;
 }
 
 .sidenav .closebtn {

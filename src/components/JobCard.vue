@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <b-card
-            style="height: 300px; border-radius: 10px;"
+            style="height: 200px; border-radius: 10px; width: 180px;"
     >
       <img
         :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')"
@@ -9,11 +9,9 @@
         style="max-height: 299px; height: 100%; border-radius: 10px; object-fit: cover;"/>
       <div class="info_background" :style="info_bg"></div>
       <div class="info">
-        <span style="font-weight: bold">{{job.company}}</span>
-        <br/>
-        <span>{{job.location}}</span>
-        <br/>
-        <span>{{displaySkills(job.skills)}}</span>
+        <p style="font-weight: 400; font-size: 16px; margin-top: 4px;" class="mb-0">{{job.company}}</p>
+        <p style="font-size: 12px; margin-top: -3px" class="mb-0">{{job.location}}</p>
+        <p style="font-size: 12px;" class="mb-1">{{displaySkills(job.skills)}}</p>
         <br/>
         <br/>
         <br/>
@@ -23,16 +21,14 @@
       <div class="overlay_bg" :style="info_bg"></div>
       <div class="text">
         <div class="row">
-          <div class="col-6">
-            <div class=" ml-5">Dismiss</div>
-            <br>
-            <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', job._id)" ><i class="ti-close"></i>
+          <div class="col-6 pl-5">
+            <div style="margin-left: 30px; font-size: 12px" class="mb-2">Dismiss</div>
+            <button class="btn-sm btn-danger" @click="$emit('reject', job._id)" style="margin-left: 35px !important;" ><i class="ti-close"></i>
             </button>
           </div>
-          <div class="col-6">
-            <div class="mr-4 ">Apply</div>
-            <br>
-            <button @click="$emit('accept', job._id)" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+          <div class="col-6 pr-5">
+            <div style="margin-left: 45px; font-size: 12px" class="mb-2">Apply</div>
+            <button @click="$emit('accept', job._id)" class="btn-sm btn-success" style="margin-left: 45px"><i class="ti-check"></i></button>
           </div>
         </div>
       </div>
@@ -51,7 +47,7 @@ export default {
         '../assets/company.jpg',
       ],
       info_bg:{
-        backgroundColor:"#16a085"
+        backgroundColor:"#FFD8B1"
       }
     }
   },
@@ -71,7 +67,7 @@ export default {
         this.info_bg.backgroundColor = response.DarkMuted.getHex()
       })
     } else {
-      this.info_bg.backgroundColor = 'rgba(0,0,0,0.57)'
+      this.info_bg.backgroundColor = 'rgba(0,0,0,0.8)'
     }
   },
   methods: {
@@ -144,7 +140,7 @@ export default {
     color: white;
     font-size: 20px;
     position: absolute;
-    top: 68%;
+    top: 66.66%;
     left: 0;
     height: 33.3%;
     width: 100%;
@@ -163,10 +159,10 @@ export default {
 
   .text {
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     position: relative;
     top: 50%;
-    left: 50%;
+    left: 30%;
     opacity: 0.98;
 
     -webkit-transform: translate(-50%, -50%);

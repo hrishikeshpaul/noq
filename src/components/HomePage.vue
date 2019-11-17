@@ -1,16 +1,29 @@
 <template>
   <div>
 <!--    <NavBar @logout="logout"/>-->
-    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Home</div>
-    <p class="" style="color: grey; margin-top: -10px; margin-left: 53px;">{{role === 'student' ? 'Apply to companies that are are a perfect fit for you!' : 'Accept candidates that are a perfect fit for your organisation'}}</p>
-    <div class="container">
-      <FilterBar @group="callReGroup" :options="filterOptions"/>
-    </div>
+    <nav class="navbar navbar-light bg-light shadow-nav">
+      <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
+      <div class="text-center w-50">
+        <div class="row px-5 py-1">
+          <div class="col-11">
+            <FilterBar @group="callReGroup" :options="filterOptions"/>
+          </div>
+          <div class="col-1">
+            <img :src="profilepicture" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"/>
+          </div>
+        </div>
+      </div>
+    </nav>
+<!--    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Home</div>-->
+<!--    <p class="" style="color: grey; margin-top: -10px; margin-left: 53px;">{{role === 'student' ? 'Apply to companies that are are a perfect fit for you!' : 'Accept candidates that are a perfect fit for your organisation'}}</p>-->
+<!--    <div class="container">-->
+<!--      <FilterBar @group="callReGroup" :options="filterOptions"/>-->
+<!--    </div>-->
 
-    <div class="mx-5">
+    <div class="mx-5 mt-4">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
         <div style="position: relative;">
-          <h3><div class="mb-3">{{ key }}</div></h3>
+          <h4 style="font-weight: 300"><div class="mb-3">{{ key }}</div></h4>
           <div
             v-for="(j, index) in job" v-if="job.length > 0"
             style="display: inline-block;"
@@ -23,7 +36,7 @@
               @accept="accept"
               @reject="reject"
               class="mb-3"
-              :style="{'min-width': '200px', 'z-index': index+1, 'width': '270px', 'height': '300px'}"/>
+              :style="{'min-width': '180px', 'z-index': index+1, 'width': '180px', 'height': '200px'}"/>
           </div>
           <div v-else>You are out of companies!</div>
         </div>
@@ -81,6 +94,7 @@ export default {
     return {
       user_id: localStorage.getItem('user_id'),
       jobs: [],
+      profilepicture: localStorage.profilepicture,
       role: '',
       users: [],
       showClass: false,
@@ -407,5 +421,12 @@ export default {
     font-size: 50px;
     color: white;
   }
+  /deep/ .bg-light {
+    background-color: #ececec !important;
+  }
+
+  /*.shadow-nav {*/
+  /*  box-shadow: 1px 1px 1px #b4b4b4;*/
+  /*}*/
 
 </style>
