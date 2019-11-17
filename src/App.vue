@@ -15,7 +15,6 @@
         <div style="display: inline;" >
 <!--          <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed">&rang;</a>-->
           <a href="javascript:void(0)" class="closebtn" @click="openNav" v-if="navBarCollapsed"><img src="./assets/onlyQ.svg" width="35" style="margin-left: -2px;"></img></a>
-
           <a href="javascript:void(0)" class="closebtn" @click="closeNav" v-else style="margin-top: 10px; margin-left: 12px;">&lang;</a>
         </div>
       </div>
@@ -24,14 +23,14 @@
       <div>
         <a href="#">
             <router-link to="/profile" :class="{'sidenav-item-active': $route.name === 'Profile'}">
-              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-3': true, 'ml-2': true}">
+              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true, 'ml-2': !navBarCollapsed ? true : false}">
                 <div v-if="!navBarCollapsed" class="px-4">
-                  <div class="row">
-                    <div class="col-3 pl-1 pr-1">
-                      <img :src="profilepciture ? profilepciture : require('./assets/blank_profile.png')" style="height: 60px; width: 60px; border-radius: 10%;"/>
+                  <div class="row pt-2">
+                    <div class="col-3 pl-1 pr-0">
+                      <img :src="profilepciture ? profilepciture : require('./assets/blank_profile.png')" style="height: 50px; width: 50px; border-radius: 10%;"/>
 
                     </div>
-                    <div class="col-9 pl-1">
+                    <div class="col-9 pl-0">
                       <span style="font-size: 16px; font-weight: 400; margin-top: 20px;">{{email}}</span>
                       <p style="font-size: 15px; margin-top: -3px;">{{role.charAt(0).toUpperCase() + role.substring(1)}}</p>
                     </div>
@@ -195,7 +194,7 @@ export default {
   margin: 15px;
   font-size: 20px;
   border-radius: 7px;
-  background-color: #FFD1B1;
+  background-color: #e5a27a;
   color: #081b3d !important;
   /*background-color: rgba(146, 146, 146, 0.48);*/
 }

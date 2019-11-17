@@ -45,7 +45,8 @@
         </div>
         <div class="col-lg-9 col-md-6 col-sm-12">
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
-            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">
+<!--            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">-->
+            <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
                 <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
                   <b-card-body class="p-0">
@@ -1097,11 +1098,15 @@ export default {
   }
 
   /deep/ .card-header {
-    background-color: rgba(255, 187, 138, 0.61) !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #3e3e3e;
+    /*background-color: rgba(255, 187, 138, 0.61) !important;*/
   }
 
   /deep/ .nav-link {
-    color: #88491C
+    /*color: #88491C*/
+    color: white;
   }
 
   /deep/ .nav-link:hover {
