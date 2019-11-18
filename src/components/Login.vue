@@ -2,9 +2,9 @@
   <div>
       <div style="height: 85vh; position: relative; ">
       <div id="video_overlays"></div>
-<!--      <video autoplay loop muted id="video" style="width: 100%; height: auto; position: absolute; z-index: -2;">-->
-<!--        <source src="../assets/lv2.mp4" type="video/mp4">-->
-<!--      </video>-->
+      <video autoplay loop muted id="video" style="width: 100%; height: auto; position: absolute; z-index: -2;">
+        <source src="../assets/lv2.mp4" type="video/mp4">
+      </video>
       <div class="container">
         <div style="display: block;">
           <div class="mt-4">
