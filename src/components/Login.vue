@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div style="height: 100vh; position: relative; ">
+      <div style="height: 85vh; position: relative; ">
       <div id="video_overlays"></div>
       <video autoplay loop muted id="video" style="width: 100%; height: auto; position: absolute; z-index: -2;">
         <source src="../assets/lv2.mp4" type="video/mp4">
@@ -8,9 +8,9 @@
       <div class="container">
         <div style="display: block;">
           <div class="mt-4">
-            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); max-height: 720px; overflow-y: auto; transition: all 0.5s;">
+            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); max-height: 800px; margin-top: -10px; overflow-y: auto; transition: all 0.5s;">
               <div class="text-center big-title">
-                <img src="../assets/noQ_0275d8.svg" width="160">
+                <img src="../assets/noQ_0275d8.svg" width="140">
               </div>
               <p class="text-center mt-1" style="font-size: 15px; color: gray">Making Career Fairs Easier</p>
               <hr />
@@ -56,19 +56,15 @@
               </div>
             </b-card>
           </div>
-          <div class="mt-5 pt-5 text-center">
-            <a class="align-bottom" href="#"><i class="arrow down down-arrow"></i></a>
-          </div>
         </div>
       </div>
     </div>
     <!-- WHAT DO WE OFFER -->
-    <div style="background-color: white; align-items: center; padding-bottom: 20px;" class="pt-4 pb-5">
+    <div style="background-color: white; align-items: center;" class="pt-3 pb-5">
       <div class="text-center big-title" style="color: black;">
         What do we offer?
         <hr style="width: 50%"/>
       </div>
-
       <div>
         <div class="row mt-5" style="align-items: center" >
           <div class="col-lg-4 col-xs-1 col-sm-2 text-center" >
@@ -85,10 +81,10 @@
           <div class="col-lg-4 col-xs-1 col-sm-1 col-md-2 text-center" >
             <img src="../assets/filter.png" class="mb-4"/>
             <br />
-            <span class="offer-title">Discover Filtering</span>
+            <span class="offer-title">Smart Selection</span>
             <br />
             <div class="px-5 pt-2">
-            <span class="offer-description">Companies and organizations are filtered based on their requirements and a student's skillset
+            <span class="offer-description">Companies and organizations are filtered based on their requirements and a student's skillset, drasitcally reducing queue times.
             </span>
             </div>
           </div>
@@ -104,7 +100,7 @@
           </div>
         </div>
         <div class="row mt-5 " style="align-items: center" >
-          <div class="col-lg-4 col-xs-1 col-sm-2 text-center" >
+          <div class="col-lg-4 col-xs-1 col-sm-2 text-center" style = "position:; left: 300px;" >
             <img src="../assets/profile.png" class="mb-4"/>
             <br />
             <span class="offer-title">Profile Builder</span>
@@ -114,17 +110,7 @@
             </span>
             </div>
           </div>
-          <div class="col-lg-4 col-xs-1 col-sm-1 col-md-2 text-center" >
-            <img src="../assets/queue.png" class="mb-4"/>
-            <br />
-            <span class="offer-title">Queue Reduction</span>
-            <br />
-            <div class="px-5 pt-2">
-            <span class="offer-description"> Drastically reducing queues at career fairs by pre-matching students to employers.
-            </span>
-            </div>
-          </div>
-          <div class="col-lg-4 col-xs-1 col-sm-1 col-md-2 text-center" >
+          <div class="col-lg-4 col-xs-1 col-sm-1 col-md-2 text-center" style = "position; left: 320px;" >
             <img src="../assets/posting.png" class="mb-4"/>
             <br />
             <span class="offer-title">Easy Job Posting</span>
@@ -138,62 +124,6 @@
 
       </div>
     </div>
-    <div style="background-color: #fff0e0; align-items: center" class="pt-4 pb-5">
-      <div class="text-center big-title" style="color: black">
-        Our Team
-        <hr style="width: 50%"/>
-      </div>
-      <!-- OUR TEAM -->
-      <div class="px-5">
-        <div class="row" style="align-items: center;" >
-          <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
-            <b-card
-              title="Cole Norton"
-              sub-title="Indiana University"
-            >
-              <hr width="50%"/>
-              <b-card-text>Junior, Computer Science</b-card-text>
-              <b-card-text>cosnorto@iu.edu</b-card-text>
-            </b-card>
-          </div>
-          <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center  p-5" >
-           <b-card
-             title="H Paul"
-             sub-title="Indiana University"
-           >
-             <hr width="50%"/>
-             <b-card-text>Graduate, Computer Science</b-card-text>
-             <b-card-text>hrpaul@iu.edu</b-card-text>
-           </b-card>
-          </div>
-
-          <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
-            <b-card
-              title="Rui Zhang"
-              sub-title="Indiana University"
-            >
-              <hr width="50%"/>
-              <b-card-text>Junior, Computer Science</b-card-text>
-              <b-card-text>rz1@iu.edu</b-card-text>
-            </b-card>
-          </div>
-          <div class="col-lg-3 col-xs-1 col-sm-1 col-md-2 text-center p-5" >
-            <b-card
-              title="Sharanya R"
-              sub-title="Indiana University"
-            >
-              <hr width="50%"/>
-              <b-card-text>Graduate, Computer Science</b-card-text>
-              <b-card-text>sharavi@iu.edu</b-card-text>
-            </b-card>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="background-color: #6c757d;" class="p-3 text-center">
-      <span style="color: white;">A Project by students from Indiana University, Bloomington</span>
-    </div>
-
   </div>
 
 </template>
@@ -323,14 +253,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .down-arrow {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    height: 30px;
-    width: 30px;
   }
   .down {
     transform: rotate(45deg);
