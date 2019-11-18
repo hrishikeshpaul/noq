@@ -8,7 +8,7 @@
       <div class="container">
         <div style="display: block;">
           <div class="mt-4">
-            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); max-height: 800px; margin-top: -10px; overflow-y: auto; transition: all 0.5s;">
+            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); height: 700px; margin-top: -10px; overflow-y: auto; transition: all 0.5s;">
               <div class="text-center big-title">
                 <img src="../assets/noQ_0275d8.svg" width="140">
               </div>
@@ -29,14 +29,14 @@
                       <b-form>
                         <label class="smaller-font">Email</label>
                         <b-form-group id="fieldsetHorizontal">
-                          <b-form-input id="username" v-model.trim="login.username"></b-form-input>
+                          <b-form-input id="username" v-model.trim="login.username" class="input-field"></b-form-input>
                         </b-form-group>
 
                         <label v-if="forgotPassword" class="smaller-font">Security Question</label>
-                        <b-form-select v-if="forgotPassword" v-model="login.security" :options="securityOptions" size="md" id="security" class="w-100"></b-form-select>
-                        <label v-if="forgotPassword" class="smaller-font">Security Question Answer</label>
+                        <b-form-select v-if="forgotPassword" v-model="login.security" :options="securityOptions" size="md" id="security" class="w-100" style="font-weight: 300;"></b-form-select>
+                        <label v-if="forgotPassword" class="smaller-font mt-3">Security Question Answer</label>
                         <b-form-input v-if="forgotPassword" id="security_answer" placeholder="Please input your answer here"
-                                      v-model.trim="login.security_answer" class="no-border" style="margin-bottom: 10px"></b-form-input>
+                                      v-model.trim="login.security_answer" class="no-border" style="margin-bottom: 10px; font-weight: 300;"></b-form-input>
 
                         <label v-if="!forgotPassword" class="smaller-font">Password</label>
 
@@ -45,10 +45,12 @@
                                       v-if="!forgotPassword"
                                       class="mb-2 smaller-font"
                                       >
-                          <b-form-input type="password" id="password" v-model.trim="login.password" ></b-form-input>
+                          <b-form-input type="password" id="password" v-model.trim="login.password" class="input-field"></b-form-input>
                         </b-form-group>
-                        <button type="submit" class="mt-3 mb-3 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 5px" @click.prevent="onSubmit" v-if="!forgotPassword">{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
-                        <button type="submit" class="mt-1 mb-3 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 10px" @click.prevent="resetPassword" v-else>{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
+                        <div class="text-center">
+                          <button type="submit" class="mt-2 mb-4 btn-outline-primary" style="width: 50%; height: 35px; border-radius: 5px" @click.prevent="onSubmit" v-if="!forgotPassword">{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
+                          <button type="submit" class="mt-1 mb-3 btn-outline-primary" style="width: 50%; height: 35px; border-radius: 5px" @click.prevent="resetPassword" v-else>{{forgotPassword ? 'Reset Password' : 'Login'}}</button>
+                        </div>
                         <div class="align-content-center ">
                           <div class="g-recaptcha" id="recaptcha" style="margin-left: 45px;" data-sitekey="6Lf7Ab4UAAAAAMD1Px2wHu6_LKXPd2b02BNTPfBs"></div>
                         </div>
@@ -344,6 +346,7 @@ export default {
     border: 0;
     border-radius: 2px;
     outline: none;
+    font-weight: 200;
     box-shadow: none;
     margin-top: 1px;
     background-color: #f6f6f6;
@@ -371,6 +374,63 @@ export default {
 
   /deep/ .nav-link {
     color: #de9a73;
+  }
+
+  .nice-font {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+  }
+  .input-field {
+    border: 0;
+    border-radius: 2px;
+    outline: none;
+    font-weight: 300;
+    box-shadow: none;
+    margin-top: 1px;
+    background-color: #f6f6f6;
+  }
+  .input-field:hover {
+    background-color: #f1f1f1;
+  }
+  .input-field:focus {
+    background-color: #eaeaea;
+  }
+  .smaller-font {
+    font-size: 13px;
+  }
+
+  /deep/ .nav-item {
+    width: 50% !important;
+    border: none !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+
+  /deep/ .nav-link {
+    color: #88491C !important;
+  }
+
+  /deep/ .nav-link:hover {
+    border-color: transparent !important;
+    background-color: #f6af85 !important;
+  }
+
+  /deep/ .nav-link.active {
+    color: white !important;
+    background-color: #DA9A74 !important;
+    border-color: transparent !important;
+    /*background-color: #FFD1B1 !important;*/
+  }
+
+  /deep/ .card-header {
+    background-color: #3e3e3e !important;
+    border-radius: 5px !important;
+    border: none !important;
+    /*background-color: rgba(255, 187, 138, 0.61) !important;*/
+  }
+
+  button {
+    cursor: pointer;
   }
 
 </style>

@@ -13,17 +13,17 @@
 <!--    </div>-->
     <b-form @submit="onSubmit" class="p3">
       <label class="smaller-font" style="padding-top: 0;margin-top: 0">Email</label>
-        <b-form-input id="username" v-model.trim="register.username" class="no-border"></b-form-input>
+        <b-form-input id="username" v-model.trim="register.username" class="no-border input-field"></b-form-input>
 
       <label class="smaller-font" >Password</label><span></span>
-        <b-form-input @click="showPassRequirement" type="password" id="password" :state="state" v-model.trim="register.password" class="no-border"></b-form-input>
+        <b-form-input @click="showPassRequirement" type="password" id="password" :state="state" v-model.trim="register.password" class="no-border input-field"></b-form-input>
       <div v-if="on_typing" style="font-size: 11px; padding-top: 0; margin-bottom: 0px !important; margin-top: 2px;">Must be at least 8 characters, have an uppercase letter and a special character</div>
 
       <label class="smaller-font">Re-Enter Password</label>
-        <b-form-input type="password" id="password2" :state="state" v-model.trim="register.password2" class="no-border"></b-form-input>
+        <b-form-input type="password" id="password2" :state="state" v-model.trim="register.password2" class="no-border input-field"></b-form-input>
 
       <label class="smaller-font">Select Role</label>
-        <b-form-select v-model="register.role" :options="options" size="md" id="role" class="w-100"></b-form-select>
+        <b-form-select v-model="register.role" :options="options" size="md" id="role" class="w-100" style="font-weight: 300;"></b-form-select>
 
 <!--      <label class="smaller-font" v-if="register.role == 'student'">Gender</label>-->
 <!--      <b-form-group-->
@@ -33,12 +33,12 @@
 <!--      </b-form-group>-->
 
       <label class="smaller-font">Security Question</label>
-      <b-form-select v-model="register.security" :options="securityOptions" size="md" id="security" class="w-100"></b-form-select>
+      <b-form-select v-model="register.security" :options="securityOptions" size="md" id="security" class="w-100" style="font-weight: 300;"></b-form-select>
       <label class="smaller-font">Security Question Answer</label>
       <b-form-input id="security_answer" placeholder="Please input your answer here"
-                    v-model.trim="register.security_answer" class="no-border" style="margin-bottom: 10px"></b-form-input>
+                    v-model.trim="register.security_answer" class="no-border input-field" style="margin-bottom: 10px"></b-form-input>
 
-      <button type="submit" class="mt-2 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 10px">Register</button>
+      <button type="submit" class="mt-2 btn-outline-primary" style="width: 100%; height: 35px; border-radius: 5px">Register</button>
       <br />
     </b-form>
   </div>
@@ -170,6 +170,29 @@ export default {
     padding-top: 10px;
     margin-bottom: 0px;
     font-size: 13px;
+  }
+  .input-field {
+    border: 0;
+    border-radius: 2px;
+    outline: none;
+    font-weight: 300;
+    box-shadow: none;
+    margin-top: 1px;
+    color: black;
+    background-color: #f6f6f6;
+  }
+  .input-field:hover {
+    background-color: #f1f1f1;
+  }
+  .input-field:focus {
+    background-color: #eaeaea;
+  }
+  .smaller-font {
+    font-size: 13px;
+  }
+
+  button {
+    cursor: pointer;
   }
 
 </style>
