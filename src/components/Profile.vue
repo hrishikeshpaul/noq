@@ -105,18 +105,15 @@
                   </b-card-body>
                 </b-tab>
                 <b-tab title="Education" style="max-height: 1000px; overflow-y: auto;">
-
                   <b-card-body style="font-size: 16px;">
-                    <div v-for="edu in user.education" :id="edu.school">
-                      <a href="#demo" class="btn btn-info" data-toggle="collapse">{{edu.school}}</a>
-                      <div id="demo" class="collapse">
-                      <b-card class="mb-3 shadow-hover">
+                    <div v-for="(edu,idx) in user.education">
+                      <b-card class="text-left card-collapse" style="height: 80px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
                         <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
                                 @click="deleteEducation(edu)"><i class="ti-close"></i></button>
                         <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
                                 @click="editEducationModal(edu)"><i class="ti-pencil"></i></button>
                         <p></p>
-                        <h5 class="card-title" style="margin-top: -12px;">{{edu.school}}</h5>
+                      <h4 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse)">{{edu.school}}</h4>
                         <hr width="100%" align="left"/>
                         <div class="row">
                           <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -137,7 +134,6 @@
                         </div>
                         <p></p>
                       </b-card>
-                    </div>
                     </div>
                     <b-button
                       v-if="role === 'student'"
@@ -493,6 +489,17 @@ export default {
         document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
+    expandCollapseEdu (idx, collapse){
+        if (collapse) {
+        this.user.education[idx].collapse = false
+        document.getElementById(idx).style.height = '100px'
+        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+      } else {
+        this.user.education[idx].collapse = true
+        document.getElementById(idx).style.height = '30%'
+        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+      }
+    },
     logout () {
       localStorage.removeItem('jwtToken')
       this.$router.push({
@@ -804,8 +811,10 @@ export default {
           })
           this.user.experience.forEach(exp =>{
             exp.collapse = false
-          }
-          )
+          })
+          this.user.experience.forEach(edu =>{
+            edu.collapse = false
+          })
           console.log(this.user)
         })
         .catch(e => {
