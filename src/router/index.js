@@ -8,6 +8,7 @@ import ProfileBuilder from '@/components/ProfileBuilder'
 import Profile from '@/components/Profile'
 import ProfileSettings from '@/components/ProfileSettings'
 import Chat from '@/components/Chat'
+import Policy from '@/components/Policy'
 
 import axios from 'axios'
 
@@ -121,6 +122,11 @@ export default new Router({
       path: '/chat',
       name: 'Chat',
       component: Chat
+    },
+    {
+      path: '/policy',
+      name: 'Policy',
+      component: Policy
     },
     {
       path: '/build_profile',

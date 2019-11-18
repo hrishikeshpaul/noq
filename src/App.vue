@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="mySidenav" class="sidenav p-0" v-if="$route.path !== '/login' && $route.path !== '/build_profile'">
+    <div id="mySidenav" class="sidenav p-0" v-if="$route.path !== '/login' && $route.path !== '/build_profile' ">
       <div style="display: flex; justify-content: space-between" class="px-4 text-center">
 <!--          <div class="big-title text-center" style="display: inline; margin-left: -13px;" v-if="!navBarCollapsed">-->
 <!--            <span class="px-2 logo-noq">noQ</span>-->
@@ -100,7 +100,7 @@ export default {
       navBarCollapsed: false,
       email: '',
       role: '',
-      socket: io('https://ancient-caverns-78426.herokuapp.com:34842'),
+      socket: io('https://ancient-caverns-78426.herokuapp.com:55807'),
       prevRouteName: this.$route.name,
       user_id: localStorage.user_id,
       profilepciture: localStorage.profilepicture
