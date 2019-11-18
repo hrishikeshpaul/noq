@@ -153,11 +153,11 @@
                 </b-tab>
                 <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body style="font-size: 16px;">
-                    <div v-for="exp in user.experience">
-                      <b-card class="mb-3 shadow-hover">
+                    <div v-for="(exp,idx) in user.experience">
+                      <b-card class="text-left my-2 card-collapse" style="height: 80px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
                         <div class="row">
                           <div class="col-lg-10 col-md-11 col-sm-12">
-                            <h5 class="card-title">{{exp.company}}</h5>
+                            <h4 class="card-title title-collapse" @click="expandCollapseExp(idx, exp.collapse)">{{exp.company + ' • ' + exp.title}}</h4>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
                             <button style="float: right; border: none;" class="btn btn-outline-danger ml-2"
@@ -257,11 +257,11 @@
                           </button>
                         </div>
                         <div class="row">
-                          <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
+                      <h4 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
+                        <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
                             <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h4 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h4>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
@@ -481,6 +481,17 @@ export default {
         document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
       }
 
+    },
+    expandCollapseExp (idx, collapse){
+        if (collapse) {
+        this.user.experience[idx].collapse = false
+        document.getElementById(idx).style.height = '80px'
+        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+      } else {
+        this.user.experience[idx].collapse = true
+        document.getElementById(idx).style.height = '30%'
+        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+      }
     },
     logout () {
       localStorage.removeItem('jwtToken')
@@ -791,6 +802,10 @@ export default {
           this.user.jobs.forEach(job => {
             job.collapse = false
           })
+          this.user.experience.forEach(exp =>{
+            exp.collapse = false
+          }
+          )
           console.log(this.user)
         })
         .catch(e => {
