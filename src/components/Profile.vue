@@ -223,7 +223,7 @@
                     </div>
                     <b-button
                       v-if="role === 'student'"
-                      style="width: 100%; border-radius: 10px;"
+                      style="width: 100%; border-radius: 5px;"
                       variant="outline-primary"
                       class="mb-2 mt-1 "
                       @click="addExperienceModal"
@@ -1139,36 +1139,36 @@ export default {
   }
 
   /deep/ .card-header {
-    background-color: #3e3e3e;
-    border-radius: 5px;
+    background-color: #3e3e3e !important;
+    border-radius: 5px !important;
     /*background-color: rgba(255, 187, 138, 0.61) !important;*/
   }
 
   /deep/ .nav-link {
-    border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px !important;
     /*color: #88491C*/
-    color: white;
-    font-weight: 300;
+    color: white !important;
+    font-weight: 300 !important;
   }
 
   /deep/ .nav-link:hover {
-    border-color: transparent;
-    background-color: #f6af85;
+    border-color: transparent !important;
+    background-color: #f6af85 !important;
   }
 
   /deep/ .nav-link.active {
-    color: white;
-    background-color: #DA9A74;
-    border-color: transparent;
+    color: white !important;
+    background-color: #DA9A74 !important;
+    border-color: transparent !important;
     /*background-color: #FFD1B1 !important;*/
   }
 
   /deep/ .nav-item {
-    margin: 0;
+    margin: 0 !important;
   }
 
   /deep/ .card-header {
-    border-bottom: 0;
+    border-bottom: 0 !important;
   }
   .profile-border {
     border: 4px solid rgba(227, 222, 222, 0.69);
@@ -1186,13 +1186,13 @@ export default {
 
   /deep/ .btn-outline-primary {
     border-color: #c68967 !important;
-    color: grey;
+    color: grey !important;
   }
 
   /deep/ .btn-outline-primary:hover {
     border-color: #c68967 !important;
-    background-color: #de9a73;
-    color: white;
+    background-color: #de9a73 !important;
+    color: white !important;
   }
 
   /deep/ .bg-light {
@@ -1201,7 +1201,7 @@ export default {
 
   /deep/ .card-header {
     padding-left: 10px;
-    padding-top: 0px;
+    padding-top: 0;
   }
 
   /deep/ .btn-primary {

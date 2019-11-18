@@ -475,23 +475,23 @@ export default {
   }
 
 /deep/ .nav-link {
-  color: #88491C
+  color: #88491C !important;
 }
 
 /deep/ .nav-link:hover {
-  border-color: transparent;
-  background-color: #f6af85;
+  border-color: transparent !important;
+  background-color: #f6af85 !important;
 }
 
 /deep/ .nav-link.active {
-  color: white;
-  background-color: #DA9A74;
-  border-color: transparent;
+  color: white !important;
+  background-color: #DA9A74 !important;
+  border-color: transparent !important;
   /*background-color: #FFD1B1 !important;*/
 }
 
 /deep/ .nav-item {
-  margin: 0;
+  margin: 0 !important;
 }
 
 /deep/ .card-header {
@@ -511,8 +511,8 @@ export default {
 
 /deep/ .btn-outline-primary:hover {
   border-color: #c68967 !important;
-  background-color: #de9a73;
-  color: white;
+  background-color: #de9a73 !important;
+  color: white !important;
 }
 /deep/ .bg-light {
   background-color: #e8e8e8 !important;
