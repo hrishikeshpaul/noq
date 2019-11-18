@@ -9,7 +9,7 @@
 <!--          </div>-->
 <!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newJob.company}}</p>-->
 <!--        </template>-->
-        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f0f0f0; padding: 15px !important;">
+        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f6f6f6; padding: 15px !important;">
           <div class="text-center nice-font">
             <img :src="newJob.employer.profilepicture ? newJob.employer.profilepicture.toString() : require('../assets/company.jpg')" style="height: 150px; width: 150px; border-radius: 50%; object-fit: cover;border: 3px solid #929292;"/>
             <p style="font-size: 20px;" class="pt-2 mb-0 pb-0">{{newJob.company}}</p>
@@ -54,10 +54,10 @@
           <div class="row text-center">
             <div class="col-3"></div>
             <div class="col-3">
-              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', newJob._id)"><i class="ti-close"></i></button>
+              <button class=" mr-5 btn-lg btn-outline-danger ml-5" @click="$emit('reject', newJob._id)"><i class="ti-close"></i></button>
             </div>
             <div class="col-3">
-              <button @click="$emit('accept', newJob._id)" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+              <button @click="$emit('accept', newJob._id)" class=" mr-4 btn-lg btn-outline-success"><i class="ti-check"></i></button>
             </div>
             <div class="col-3"></div>
           </div>

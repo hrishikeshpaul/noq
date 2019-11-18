@@ -17,7 +17,7 @@
             :color="'black'"
             @on-complete="onComplete"
             step-size="sm"
-            color="#3498db"
+            color="#DA9F74"
             @on-change="handleTabChanged"
             @on-loading="setLoading"
             @on-validate="handleValidation"

@@ -52,7 +52,7 @@
                   <b-card-body class="p-0 mt-2">
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
-                      <b-card class="text-left my-2 shadow-hover" :id="'job' + idx" style="height: 136px; overflow-y: hidden;">
+                      <b-card class="text-left my-2 shadow-hover" :id="'job' + idx" style="height: 133px; overflow-y: hidden;">
                         <button href="#" style="float: right; margin-top: -5px !important; border: none;"
                                 class="mt-3 pt-2 ml-2 btn btn-outline-danger"
                                 @click="rejectConfirmedApplicant(job._id, user._id)"><i
@@ -620,39 +620,39 @@ export default {
       if (collapse) {
         this.employerJobs[idx].collapse = false
         document.getElementById(idx).style.height = '136px'
-        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.employerJobs[idx].collapse = true
         document.getElementById(idx).style.height = '100%'
-        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
     expandCollapseExp (idx, collapse, param) {
         if (collapse) {
         this.user.experience[idx].collapse = false
         document.getElementById(param + idx).style.height = '73px'
-        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.experience[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
-        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
     expandCollapseEdu (idx, collapse, param) {
         if (collapse) {
         this.user.education[idx].collapse = false
         document.getElementById(param + idx).style.height = '76px'
-        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.education[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
-        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
     expandCollapseInterests (idx, collapse, param) {
       if (collapse) {
         this.user.acceptances[idx].collapse = false
-        document.getElementById(param + idx).style.height = '136px'
+        document.getElementById(param + idx).style.height = '133px'
         document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.acceptances[idx].collapse = true
@@ -1114,11 +1114,12 @@ export default {
 
   .shadow-hover {
     box-shadow: none;
-    transition: all 0.4s;
+    transition: height 0.5s;
   }
 
   .shadow-hover:hover {
-    box-shadow: 1px 2px 7px #bdbdbd;
+    box-shadow: 1px 2px 5px #bdbdbd;
+    transition: all 0.5s;
   }
 
   .swal-wide {

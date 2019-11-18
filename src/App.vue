@@ -100,7 +100,7 @@ export default {
       navBarCollapsed: false,
       email: '',
       role: '',
-      socket: io('https://ancient-caverns-78426.herokuapp.com:3984'),
+      socket: io('localhost:3000'),
       prevRouteName: this.$route.name,
       user_id: localStorage.user_id,
       profilepciture: localStorage.profilepicture

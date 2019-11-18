@@ -176,7 +176,7 @@ export default {
       messages: [], // all the users that are in the list ot chat with!
       user_id: localStorage.user_id,
       role: localStorage.role,
-      socket: io('https://ancient-caverns-78426.herokuapp.com:3984'),
+      socket: io('localhost:3000'),
       whichChatIsOpened: '',
       isUserOnline: false,
       total_msg_length: 0,
@@ -336,7 +336,10 @@ export default {
     },
     sendMessage () {
       var temp_obj = {
-        from: this.user_name,
+        from: {
+          _id: this.user_id,
+          name: this.user_name
+        },
         date: new Date(),
         body: this.messageBody,
         temp: true,
@@ -344,10 +347,8 @@ export default {
       }
 
       this.openedChat.messages.push(temp_obj)
-      window.setInterval(function () {
-        var elem = document.getElementById('chatBox')
-        if (elem) { elem.scrollTop = elem.scrollHeight }
-      }, 10)
+      // var elem = document.getElementById('chatBox')
+      // if (elem) { elem.scrollTop = elem.scrollHeight }
 
       if (this.role === 'student') {
         this.socket.emit('SEND_MESSAGE', {
