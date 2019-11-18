@@ -1,9 +1,6 @@
 <template>
   <div>
-<!--    <NavBar @logout="logout"/>-->
-<!--    <div class="progress">-->
-<!--      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%; border-radius: 0; height: 2px;"></div>-->
-<!--    </div>-->
+
     <nav class="navbar navbar-light bg-light shadow-nav">
       <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
       <div class="text-center w-50">
@@ -17,12 +14,13 @@
         </div>
       </div>
     </nav>
-<!--    <div style="font-size: 60px;" class="mx-5 mb-0 mt-3">Home</div>-->
-<!--    <p class="" style="color: grey; margin-top: -10px; margin-left: 53px;">{{role === 'student' ? 'Apply to companies that are are a perfect fit for you!' : 'Accept candidates that are a perfect fit for your organisation'}}</p>-->
-<!--    <div class="container">-->
-<!--      <FilterBar @group="callReGroup" :options="filterOptions"/>-->
-<!--    </div>-->
 
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
     <div class="mx-5 mt-4">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
         <div style="position: relative;">
@@ -67,7 +65,7 @@
       </div>
     </div>
     <HomePageJobModal :showModal="showHomePageJobModal" @hideModal="hideHomePageJobModal" :job="homePageJobToSend" @accept="accept" @reject="reject"/>
-    <HomePageUserModal :showModal="showHomePageUserModal" @hideModal="hideHomePageUserModal" :user="homePageUserToSend" @accept="acceptUser" @reject="rejectUser"/>
+    <HomePageUserModal :showModal="showHomePageUserModal" @hideModal="hideHomePageUserModal" :user="homePageUserToSend" @accept="acceptUser" @reject="rejectUser" :showButtons="true"/>
   </div>
 </template>
 

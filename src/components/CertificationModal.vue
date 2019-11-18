@@ -62,17 +62,23 @@
               </div>
             </div>
           </b-form>
-          <button
-            class="mt-2 btn btn-outline-primary w-100"
-            v-if="buttonText === 'Edit Certification'"
-            @click="editCertification"
-          >{{buttonText}}</button>
-          <button
-            class="mt-2 btn-outline-primary w-100 py-1"
-            type="submit"
-            v-else
-            @click="addCertification"
-          >{{buttonText}}</button>
+          <div class="text-right">
+            <button
+              class="mt-2 btn btn-outline-secondary w-10"
+              @click="editCertification"
+            >Close</button>
+            <button
+              class="mt-2 btn btn-outline-primary w-25"
+              v-if="buttonText === 'Edit Certification'"
+              @click="editCertification"
+            >{{buttonText}}</button>
+            <button
+              class="mt-2 btn btn-outline-primary w-25"
+              type="submit"
+              v-else
+              @click="addCertification"
+            >{{buttonText}}</button>
+          </div>
         </div>
       </b-modal>
     </div>
@@ -231,11 +237,13 @@ export default {
 
 <style scoped>
 button {
-  border-radius: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 label {
   font-size: 15px;
+  font-weight: 300;
   color: #6d6d6d;
 }
 .info-hover {
@@ -245,13 +253,14 @@ label {
   background-color: #6c757d;
 }
 .nice-font {
-  font-family: "Raleway", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 200;
 }
 .input-field {
   border: 0;
   border-radius: 2px;
   outline: none;
+  font-weight: 200;
   box-shadow: none;
   margin-top: 1px;
   background-color: #f6f6f6;
@@ -298,9 +307,20 @@ label {
 }
 /deep/ .modal-header {
   color: white;
-  background-color: #3498db;
+  background-color: #c68967;
 }
 /deep/ .close {
+  color: white;
+}
+
+/deep/ .btn-outline-primary {
+  border-color: #c68967 !important;
+  color: grey;
+}
+
+/deep/ .btn-outline-primary:hover {
+  border-color: #c68967 !important;
+  background-color: #de9a73;
   color: white;
 }
 </style>

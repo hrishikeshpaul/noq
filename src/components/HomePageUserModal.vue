@@ -16,8 +16,8 @@
 
         <div class="text-center nice-font">
           <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 3px solid #929292;"/>
-          <p style="font-size: 20px;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
-          <p style="color: gray; font-size: 16px">{{newUser.company}}</p>
+          <p style="font-size: 20px; font-weight: 300;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
+          <p style="color: gray; font-size: 16px;" class="mb-0">{{newUser.company}}</p>
           <p style="color: gray">{{newUser.location}}</p>
           <hr />
         </div>
@@ -67,7 +67,7 @@
           </div>
         </div>
         <hr />
-          <div class="row text-center">
+          <div class="row text-center" v-if="showButtons">
             <div class="col-3"></div>
             <div class="col-3">
               <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: user._id, job: user.job})"><i class="ti-close"></i></button>
@@ -100,6 +100,9 @@
     },
     user: {
       type: Object
+    },
+    showButtons: {
+      type: Boolean
     }
   },
   data () {

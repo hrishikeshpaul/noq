@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import Vibrant from 'node-vibrant'
+
 export default {
   name: 'UserCard',
   data () {
@@ -69,7 +71,6 @@ export default {
 
   methods: {
     displaySkills (skills) {
-      console.log(this.user)
       if (skills.length > 0) {
         if (skills.length > 2) {
           return skills[0].name + ", " + skills[1].name + " & more"

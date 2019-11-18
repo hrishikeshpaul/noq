@@ -50,17 +50,23 @@
               </div>
             </div>
           </b-form>
-          <button
-            class="mt-2 btn btn-outline-primary w-100"
-            v-if="buttonText === 'Edit Honor'"
-            @click="editHonor "
-          >{{buttonText}}</button>
-          <button
-            class="mt-2 btn-outline-primary w-100 py-1"
-            type="submit"
-            v-else
-            @click="addHonor "
-          >{{buttonText}}</button>
+          <div class="text-right">
+            <button
+              class="mt-2 btn btn-outline-secondary w-10"
+              @click="editHonor "
+            >Close</button>
+            <button
+              class="mt-2 btn btn-outline-primary w-25"
+              v-if="buttonText === 'Edit Honor'"
+              @click="editHonor "
+            >{{buttonText}}</button>
+            <button
+              class="mt-2 btn btn-outline-primary w-25 "
+              type="submit"
+              v-else
+              @click="addHonor "
+            >{{buttonText}}</button>
+          </div>
         </div>
       </b-modal>
     </div>
@@ -209,77 +215,91 @@ export default {
 </script>
 
 <style scoped>
-button {
-  border-radius: 10px;
-}
+  button {
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-label {
-  font-size: 15px;
-  color: #6d6d6d;
-}
-.info-hover {
-  cursor: pointer;
-}
-.info-hover:hover {
-  background-color: #6c757d;
-}
-.nice-font {
-  font-family: "Raleway", sans-serif;
-  font-weight: 200;
-}
-.input-field {
-  border: 0;
-  border-radius: 2px;
-  outline: none;
-  box-shadow: none;
-  margin-top: 1px;
-  background-color: #f6f6f6;
-}
-.input-field:hover {
-  background-color: #f1f1f1;
-}
-.input-field:focus {
-  background-color: #eaeaea;
-}
-.smaller-font {
-  font-size: 13px;
-}
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-/deep/ .modal-title {
-  font-family: "Raleway", sans-serif;
-  font-weight: 200;
-  padding-left: 1rem;
-  font-size: 35px;
-}
+  label {
+    font-size: 15px;
+    font-weight: 300;
+    color: #6d6d6d;
+  }
+  .info-hover {
+    cursor: pointer;
+  }
+  .info-hover:hover {
+    background-color: #6c757d;
+  }
+  .nice-font {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+  }
+  .input-field {
+    border: 0;
+    border-radius: 2px;
+    outline: none;
+    font-weight: 200;
+    box-shadow: none;
+    margin-top: 1px;
+    background-color: #f6f6f6;
+  }
+  .input-field:hover {
+    background-color: #f1f1f1;
+  }
+  .input-field:focus {
+    background-color: #eaeaea;
+  }
+  .smaller-font {
+    font-size: 13px;
+  }
+  .modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+  }
+  /deep/ .modal-title {
+    font-family: "Raleway", sans-serif;
+    font-weight: 200;
+    padding-left: 1rem;
+    font-size: 35px;
+  }
 
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-.modal-fade-enter,
-.modal-fade-leave-active {
-  opacity: 0;
-}
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .modal-fade-enter,
+  .modal-fade-leave-active {
+    opacity: 0;
+  }
 
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-/deep/ .modal-header {
-  color: white;
-  background-color: #3498db;
-}
-/deep/ .close {
-  color: white;
-}
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+  /deep/ .modal-header {
+    color: white;
+    background-color: #c68967;
+  }
+  /deep/ .close {
+    color: white;
+  }
+
+  /deep/ .btn-outline-primary {
+    border-color: #c68967 !important;
+    color: grey;
+  }
+
+  /deep/ .btn-outline-primary:hover {
+    border-color: #c68967 !important;
+    background-color: #de9a73;
+    color: white;
+  }
 </style>
