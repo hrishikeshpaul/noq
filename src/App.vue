@@ -40,7 +40,7 @@
               </div>
             </router-link>
           </a>
-        <hr style="background-color: #757d80; height: 1px" class="py-0 my-0"/>
+        <hr style="background-color: #757d80;" class="py-0 my-0"/>
           <a href="#" style="text-decoration: none;">
             <router-link to="/" :class="{'sidenav-item-active': $route.name === 'HomePage'}">
               <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">

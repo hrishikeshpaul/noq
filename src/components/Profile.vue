@@ -9,7 +9,7 @@
           <div class="col-11">
           </div>
           <div class="col-1">
-                <button style="float: right; padding-top: 5px;" class="btn-outline-secondary rounded ml-1" @click="getData"><i class="ti-reload"></i></button>
+                <button style="float: right; padding-top: 5px; border: none" class="btn-outline-secondary rounded ml-1" @click="getData"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>
@@ -48,8 +48,8 @@
 <!--            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">-->
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
-                  <b-card-body class="p-0">
+                <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body class="p-0 mt-2">
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover">
@@ -120,8 +120,8 @@
                     </div>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
-                  <b-card-body style="font-size: 16px;">
+                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="edu in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover">
                         <button style="float: right; border: none; margin-top: 5px !important;"
@@ -173,8 +173,8 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
-                  <b-card-body style="font-size: 16px;">
+                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="exp in user.experience">
                       <b-card class="mb-3 shadow-hover">
                         <div class="row">
@@ -239,8 +239,8 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto;">
-                  <b-card-body style="font-size: 16px;">
+                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="hon in user.honor" :id="hon.title">
                       <b-card class="mb-3 shadow-hover">
                         <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
@@ -290,8 +290,8 @@
                     </b-button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto;">
-                  <b-card-body style="font-size: 16px;">
+                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="cert in user.certification" :id="cert.title">
                       <b-card class="mb-3 shadow-hover">
                         <button style="float: right; border: none; margin-top: 5px !important;"
@@ -345,30 +345,32 @@
                 </b-tab>
 
 
-                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px;">
-                  <b-card-body style="font-size: 16px;">
-                    <b-form class="text-left">
-                      <label>Add/Remove Skills:</label>
-                      <b-form-group>
-                        <SkillSelect @addSkills="addSkills" :recievedValues="user.skills"/>
-                        <button class="btn btn-outline-primary" @click.prevent="updateSkills"
-                                style="width: 100%; border-radius: 10px;">Save
-                        </button>
-                      </b-form-group>
-                    </b-form>
-                    <hr/>
-                  </b-card-body>
+                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                 <div class="card px-0 mt-3" >
+                   <b-card-body style="font-size: 16px;">
+                     <b-form class="text-left">
+                       <label>Add/Remove Skills:</label>
+                       <b-form-group>
+                         <SkillSelect @addSkills="addSkills" :recievedValues="user.skills"/>
+                         <button class="btn btn-outline-primary" @click.prevent="updateSkills"
+                                 style="width: 100%; border-radius: 10px;">Save
+                         </button>
+                       </b-form-group>
+                     </b-form>
+                     <hr/>
+                   </b-card-body>
+                 </div>
                 </b-tab>
               </b-tabs>
             </b-card>
           </div>
 
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
-            <b-card no-body>
+            <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
-                  <b-card-body class="py-2">
-                    <b-input-group class="mb-3">
+                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body class="py-2 px-0">
+                    <b-input-group class="mb-3 w-100">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob"></b-form-input>
                       <b-input-group-append>
                         <button class="btn btn-primary"><i class="ti-search"></i></button>
@@ -452,14 +454,14 @@
                     </button>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)">
-                  <b-card-body>
+                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                  <b-card-body class="px-0 pt-0">
                     <div v-for="job in user.jobs">
                       <div v-for="user in job.confirmed_users">
                         <b-card class="text-left my-2">
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
                           <button href="#" style="float: right; margin-top: 8px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
-                          <h5 class="card-title user-hover mt-2" style="cursor: pointer; font-weight: 300;" @click="applicantDataModal(user)">{{user.name}}</h5>
+                          <h5 class="card-title user-hover mt-1" style="cursor: pointer; font-weight: 300;" @click="applicantDataModal(user)">{{user.name}}</h5>
                           <hr />
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                           <span style="font-size: 15px;">{{job.title}}</span>
@@ -1098,13 +1100,13 @@ export default {
   }
 
   /deep/ .card-header {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     background-color: #3e3e3e;
+    border-radius: 5px;
     /*background-color: rgba(255, 187, 138, 0.61) !important;*/
   }
 
   /deep/ .nav-link {
+    border-bottom-left-radius: 5px;
     /*color: #88491C*/
     color: white;
   }
@@ -1129,7 +1131,7 @@ export default {
     border-bottom: 0;
   }
   .profile-border {
-    border: 1px solid rgba(218, 151, 111, 0.58);
+    border: 4px solid rgba(233, 228, 228, 0.58);
     border-radius: 5px;
     /*box-shadow: 3px 3px 5px grey;*/
   }

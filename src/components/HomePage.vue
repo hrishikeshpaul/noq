@@ -1,6 +1,9 @@
 <template>
   <div>
 <!--    <NavBar @logout="logout"/>-->
+<!--    <div class="progress">-->
+<!--      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%; border-radius: 0; height: 2px;"></div>-->
+<!--    </div>-->
     <nav class="navbar navbar-light bg-light shadow-nav">
       <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
       <div class="text-center w-50">

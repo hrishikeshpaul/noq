@@ -88,7 +88,7 @@
                   <div v-for="(chat, idx) in openedChat.messages">
                     <div class="px-2 mt-2 py-1" >
                       <div>
-                        <div class="row mt-1 pt-1 mx-2 chat-border-top" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? '#FFD1B1':'#D6D6D6'}">
+                        <div class="row mt-1 pt-1 mx-2 chat-border-top" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '490px', 'background-color': chat.from._id == user_id ? '#FFD1B1':'#D6D6D6'}">
                           <div class="col-8 pl-0" style="border-radius: 5px;">
                             <span style="font-size: 15px; font-weight: 500; padding-left: 15px;">{{getFromName(chat.from.name)}}</span>
                           </div>
@@ -97,7 +97,7 @@
                           </div>
                         </div>
                         <div>
-                          <div class="row mb-1 pb-1 mx-2 chat-border-bottom pl-0" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '430px', 'background-color': chat.from._id == user_id ? '#FFD1B1':'#d6d6d6'}">
+                          <div class="row mb-1 pb-1 mx-2 chat-border-bottom pl-0" :style="{'float': chat.from._id == user_id ? 'right' : 'left', 'width': '490px', 'background-color': chat.from._id == user_id ? '#FFD1B1':'#d6d6d6'}">
                             <div class="col-11"><span style="font-size: 14px">{{chat.body}}</span></div>
                             <div class="col-1 text-right" v-if="chat.from._id === user_id"><i :class="chat.read ? 'ti-eye' : chat.delivered ? 'ti-check' : 'ti-time'" style="font-size: 10px; font-weight: bold"></i></div>
                           </div>
