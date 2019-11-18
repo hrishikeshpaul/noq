@@ -40,11 +40,11 @@
                   <b-card-body>
                     <span v-if="user.acceptances.length === 0">You don't have any interests! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
-                      <b-card class="text-left my-2 shadow-hover">
-                        <button href="#" style="float: right; margin-top: 5px !important; border: none;"
+                      <b-card class="text-left my-2 shadow-hover" :id="'job' + idx" style="height: 140px; overflow-y: hidden; background-color: #fdfdfd">
+                        <button href="#" style="float: right; margin-top: -5px !important; border: none;"
                                 class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i
                           class="ti-close"></i></button>
-                        <button href="#" style="float: right; margin-top: 5px !important; border: none;"
+                        <button href="#" style="float: right; margin-top: -5px !important; border: none;"
                                 class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i class="ti-comment-alt"></i>
                         </button>
                         <div class="row">
@@ -52,7 +52,7 @@
                             <img style="height: 100px; width: 100px; object-fit: cover;" src="../assets/company.jpg">
                           </div>
                           <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
-                            <h5 class="card-title">{{job.title}}</h5>
+                            <h5 class="card-title title-collapse" @click="expandCollapseInterests(idx, job.collapse, 'job')">{{job.title}}</h5>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-location-pin"></i></span>
@@ -76,7 +76,7 @@
                                 <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
                               </div>
                               <div class="col-lg-11 pl-0">
-                                <span style="white-space: pre-wrap;">{{job.description}}</i></span>
+                                <span style="white-space: pre-wrap;">{{job.description}}</span>
                               </div>
                             </div>
                             <p></p>
@@ -107,13 +107,12 @@
                 <b-tab title="Education" style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body style="font-size: 16px;">
                     <div v-for="(edu,idx) in user.education">
-                      <b-card class="text-left card-collapse" style="height: 80px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
+                      <b-card class="text-left card-collapse mb-3" style="height: 80px; overflow-y: hidden; background-color: #fdfdfd" :id="'edu' + idx">
+                        <button style="float: right; border: none;" class="btn btn-outline-danger ml-2"
                                 @click="deleteEducation(edu)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
+                        <button style="float: right; border: none;" class="btn btn-outline-secondary"
                                 @click="editEducationModal(edu)"><i class="ti-pencil"></i></button>
-                        <p></p>
-                      <h4 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse)">{{edu.school}}</h4>
+                      <h4 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse, 'edu')">{{edu.school}}</h4>
                         <hr width="100%" align="left"/>
                         <div class="row">
                           <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -150,10 +149,10 @@
                 <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto;">
                   <b-card-body style="font-size: 16px;">
                     <div v-for="(exp,idx) in user.experience">
-                      <b-card class="text-left my-2 card-collapse" style="height: 80px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
+                      <b-card class="text-left mb-3 card-collapse" style="height: 80px; overflow-y: hidden; background-color: #fdfdfd" :id="'exp' + idx">
                         <div class="row">
                           <div class="col-lg-10 col-md-11 col-sm-12">
-                            <h4 class="card-title title-collapse" @click="expandCollapseExp(idx, exp.collapse)">{{exp.company + ' • ' + exp.title}}</h4>
+                            <h4 class="card-title title-collapse" @click="expandCollapseExp(idx, exp.collapse, 'exp')">{{exp.company}}</h4>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
                             <button style="float: right; border: none;" class="btn btn-outline-danger ml-2"
@@ -478,26 +477,37 @@ export default {
       }
 
     },
-    expandCollapseExp (idx, collapse){
+    expandCollapseExp (idx, collapse, param) {
         if (collapse) {
         this.user.experience[idx].collapse = false
-        document.getElementById(idx).style.height = '80px'
-        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById(param + idx).style.height = '80px'
+        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.experience[idx].collapse = true
-        document.getElementById(idx).style.height = '30%'
-        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById(param + idx).style.height = '100%'
+        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
-    expandCollapseEdu (idx, collapse){
+    expandCollapseEdu (idx, collapse, param) {
         if (collapse) {
         this.user.education[idx].collapse = false
-        document.getElementById(idx).style.height = '100px'
-        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById(param + idx).style.height = '80px'
+        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.education[idx].collapse = true
-        document.getElementById(idx).style.height = '30%'
-        document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById(param + idx).style.height = '100%'
+        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      }
+    },
+    expandCollapseInterests (idx, collapse, param) {
+      if (collapse) {
+        this.user.acceptances[idx].collapse = false
+        document.getElementById(param + idx).style.height = '140px'
+        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      } else {
+        this.user.acceptances[idx].collapse = true
+        document.getElementById(param + idx).style.height = '100%'
+        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
     logout () {
@@ -806,16 +816,21 @@ export default {
       axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
           this.user = response.data
+
           this.user.jobs.forEach(job => {
             job.collapse = false
           })
-          this.user.experience.forEach(exp =>{
+          this.user.experience.forEach(exp => {
             exp.collapse = false
           })
-          this.user.experience.forEach(edu =>{
+          this.user.education.forEach(edu => {
             edu.collapse = false
           })
-          console.log(this.user)
+          if (this.user.acceptances.length > 0) {
+            this.user.acceptances.forEach(acc => {
+              acc.collapse = false
+            })
+          }
         })
         .catch(e => {
           if (e.response.status === 401) {
