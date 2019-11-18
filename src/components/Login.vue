@@ -2,9 +2,9 @@
   <div>
       <div style="height: 100vh; position: relative; ">
       <div id="video_overlays"></div>
-      <video autoplay loop muted id="video" style="width: 100%; height: auto; position: absolute; z-index: -2;">
-        <source src="../assets/lv2.mp4" type="video/mp4">
-      </video>
+<!--      <video autoplay loop muted id="video" style="width: 100%; height: auto; position: absolute; z-index: -2;">-->
+<!--        <source src="../assets/lv2.mp4" type="video/mp4">-->
+<!--      </video>-->
       <div class="container">
         <div style="display: block;">
           <div class="mt-4">
@@ -31,7 +31,16 @@
                         <b-form-group id="fieldsetHorizontal">
                           <b-form-input id="username" v-model.trim="login.username"></b-form-input>
                         </b-form-group>
+
+                        <label v-if="forgotPassword" class="smaller-font">Security Question</label>
+                        <b-form-select v-if="forgotPassword" v-model="login.security" :options="securityOptions" size="md" id="security" class="w-100"></b-form-select>
+                        <label v-if="forgotPassword" class="smaller-font">Security Question Answer</label>
+                        <b-form-input v-if="forgotPassword" id="security_answer" placeholder="Please input your answer here"
+                                      v-model.trim="login.security_answer" class="no-border" style="margin-bottom: 10px"></b-form-input>
+
                         <label v-if="!forgotPassword" class="smaller-font">Password</label>
+
+
                         <b-form-group id="fieldsetHorizontal"
                                       v-if="!forgotPassword"
                                       class="mb-2 smaller-font"
@@ -210,7 +219,16 @@ export default {
       error: '',
       tabIndex: 0,
       variant: 'danger',
-      forgotPassword: false
+      forgotPassword: false,
+      security:'What city were you born in?',
+      security_answer:null,
+      securityOptions:[
+        {value: 'What city were you born in?', text: 'What city were you born in?'},
+        {value: 'What is your mother’s maiden name??', text: 'What is your mother’s maiden name?'},
+        {value: 'What is your favorite food?', text: 'What is your favorite food?'},
+        {value: 'Where is your favorite place to vacation?', text: 'Where is your favorite place to vacation?'},
+        {value: 'Where did you go to high school?', text: 'Where did you go to high school?'},
+      ],
     }
   },
   mounted () {
@@ -246,14 +264,23 @@ export default {
         })
     },
     resetPassword () {
-      axios.post(`${url}/api/auth/forgot/`, {email: this.login.username})
-        .then(response => {
-          this.error = 'Further Instructions has been send sent to the email id.'
-          this.variant = 'success'
+      if (!this.login.username | !this.login.security | !this.login.security_answer | grecaptcha.getResponse() == 0) {
+        this.error = 'please complete all the required information and verify reCAPTCHA '
+        grecaptcha.reset()
+      } else {
+        axios.post(`${url}/api/auth/forgot/`, {
+          email: this.login.username,
+          security: this.login.security,
+          security_answer: this.login.security_answer
         })
-        .catch(e => {
-          this.error = e.response.data.msg
-        })
+          .then(response => {
+            this.error = 'Further Instructions has been send sent to the email id.'
+            this.variant = 'success'
+          })
+          .catch(e => {
+            this.error = e.response.data.msg
+          })
+      }
     },
     changeTab (idx) {
       if (idx === 1) {
