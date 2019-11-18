@@ -1,1 +1,1 @@
-module.exports = "https://ancient-caverns-78426.herokuapp.com"
+module.exports = "https://noq-server1.herokuapp.com"
