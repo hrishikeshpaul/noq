@@ -176,7 +176,7 @@ export default {
       messages: [], // all the users that are in the list ot chat with!
       user_id: localStorage.user_id,
       role: localStorage.role,
-      socket: io('https://noq-server1.herokuapp.com:41690'),
+      socket: io('https://noq-server1.herokuapp.com'),
       whichChatIsOpened: '',
       isUserOnline: false,
       total_msg_length: 0,
