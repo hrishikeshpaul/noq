@@ -2,18 +2,23 @@
   <div>
 
     <nav class="navbar navbar-light bg-light shadow-nav">
-      <a class="navbar-brand pl-3" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
-      <div class="text-center w-50">
-        <div class="row px-5 py-1">
-          <div class="col-11">
+      <a class="navbar-brand pl-3 py-0" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
+      <div class="text-center w-75 mt-1">
+        <div class="row px-3 py-1">
+          <div class="col-10 pr-0">
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
-          <div class="col-1">
-<!--            <img :src="profilepicture" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"/>-->
+          <div class="col-1 pr-0">
+            <button :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecommendation = !showRecommendation"><i class="ti-bolt-alt"></i></button>
+          </div>
+          <div class="col-1 pl-0">
+            <button class="btn btn-outline-secondary" @click="getData"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>
     </nav>
+
+    <Recommendation class="mx-5 mt-4" v-if="userRole == 'student' && showRecommendation" :jobs="jobs" @accept="accept" @reject="reject"/>
 
     <div class="mx-5 mt-4">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
@@ -74,6 +79,7 @@ import JobCard from './JobCard'
 import UserCard from './UserCard'
 import HomePageJobModal from './HomePageJobModal'
 import HomePageUserModal from './HomePageUserModal'
+import Recommendation from './Recommendation'
 
 export default {
   name: 'HomePage',
@@ -83,10 +89,12 @@ export default {
     JobCard,
     UserCard,
     HomePageJobModal,
-    HomePageUserModal
+    HomePageUserModal,
+    Recommendation
   },
   data () {
     return {
+      showRecommendation: false,
       user_id: localStorage.getItem('user_id'),
       jobs: [],
       profilepicture: localStorage.profilepicture,
@@ -218,6 +226,7 @@ export default {
           this.jobs.splice(this.jobs.findIndex(function (it) {
             return it._id === i
           }), 1)
+          this.getData()
 
         })
         .catch(e => {
@@ -255,8 +264,9 @@ export default {
             }
           })
           this.jobs.splice(this.jobs.findIndex(function (it) {
-            return it._id === i
+            return it._id === i._id
           }), 1)
+          this.getData()
         })
         .catch(e => {
           console.log(e.data)
@@ -422,5 +432,27 @@ export default {
   /*.shadow-nav {*/
   /*  box-shadow: 1px 1px 1px #b4b4b4;*/
   /*}*/
+
+  /deep/ .btn {
+    cursor: pointer !important;
+  }
+
+  /deep/ .btn:focus {
+    outline: none !important;
+  }
+
+  /deep/ .btn-outline-primary {
+    border-color: #f6af85 !important;
+    background-color: #f4ae84 !important;
+    color: black !important;
+
+  }
+  /deep/ .btn-outline-primary:hover {
+    border-color: #f6af85 !important;
+    background-color: #e6a37c !important;
+    color: black !important;
+
+  }
+
 
 </style>

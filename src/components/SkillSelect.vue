@@ -49,7 +49,7 @@
         .then(result => {
           var arr = result.data.keywords
           arr.forEach(s => {
-            this.options.push({name: s.keyName, id: s.id})
+            this.options.push({name: s.keyName, id: s.id, points: 0})
             if (this.recievedValues.length > 0) {
               this.value = this.recievedValues
             }
@@ -59,6 +59,7 @@
     watch: {
       value (newVal) {
         if (typeof newVal.hasOwnProperty('name') !== null) {
+          console.log(newVal)
           this.$emit('addSkills', newVal)
         }
       },
