@@ -9,7 +9,7 @@
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
           <div class="col-1 pr-0">
-            <button :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecommendation = !showRecommendation"><i class="ti-bolt-alt"></i></button>
+            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecommendation = !showRecommendation"><i class="ti-bolt-alt"></i></button>
           </div>
           <div class="col-1 pl-0">
             <button class="btn btn-outline-secondary" @click="getData"><i class="ti-reload"></i></button>
