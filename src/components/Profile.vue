@@ -338,7 +338,6 @@
                   </b-card-body>
                 </b-tab>
 
-
                 <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
                  <div class="card px-0 mt-3" >
                    <b-card-body style="font-size: 16px;">
@@ -450,11 +449,12 @@
                 </b-tab>
                 <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
                   <b-card-body class="px-0 pt-0">
-                    <div v-for="job in user.jobs">
-                      <div v-for="user in job.confirmed_users">
-                        <b-card class="text-left my-2">
+                    <div v-for="(job, jidx) in user.jobs">
+                      <div v-for="(user, idx) in job.confirmed_users">
+                        <b-card class="text-left my-2" style="height: 76px; overflow-y: hidden;" :id="'applicant' + idx + jidx">
                           <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
-                          <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
+                          <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
+                          <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 btn btn-outline-secondary"><i class="ti-angle-down" :id="'applicant' + 'icon' + idx + jidx" @click="expandCollapseApplicants(idx, jidx, user.collapse, 'applicant')"></i></button>
                           <h5 class="card-title user-hover mt-1" style="cursor: pointer; font-weight: 300;" @click="applicantDataModal(user)">{{user.name}}</h5>
                           <hr />
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
@@ -628,7 +628,7 @@ export default {
       }
     },
     expandCollapseExp (idx, collapse, param) {
-        if (collapse) {
+      if (collapse) {
         this.user.experience[idx].collapse = false
         document.getElementById(param + idx).style.height = '73px'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
@@ -639,7 +639,7 @@ export default {
       }
     },
     expandCollapseEdu (idx, collapse, param) {
-        if (collapse) {
+      if (collapse) {
         this.user.education[idx].collapse = false
         document.getElementById(param + idx).style.height = '76px'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
@@ -653,11 +653,26 @@ export default {
       if (collapse) {
         this.user.acceptances[idx].collapse = false
         document.getElementById(param + idx).style.height = '133px'
-        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.acceptances[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
-        document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      }
+    },
+    expandCollapseApplicants (idx, jobIdx, collapse, param) {
+      if (collapse) {
+        this.user.jobs[jobIdx].confirmed_users[idx].collapse = false
+        document.getElementById(param + idx + jobIdx).style.height = '76px'
+        // document.getElementById(param + idx + jobIdx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById(param + 'icon' + idx + jobIdx).classList.remove('ti-angle-up')
+        document.getElementById(param + 'icon' + idx + jobIdx).classList.add('ti-angle-down')
+      } else {
+        this.user.jobs[jobIdx].confirmed_users[idx].collapse = true
+        document.getElementById(param + idx + jobIdx).style.height = '100%'
+        // document.getElementById(param + idx + jobIdx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById(param + 'icon' + idx + jobIdx).classList.remove('ti-angle-down')
+        document.getElementById(param + 'icon' + idx + jobIdx).classList.add('ti-angle-up')
       }
     },
     logout () {
@@ -676,7 +691,6 @@ export default {
       return gravatar.url(email)
     },
     formatDate (date) {
-
       if (date) {
         return this.$moment(date).format('MMM Do YY')
       } else {
@@ -728,7 +742,7 @@ export default {
       this.$swal({
         title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the job with title, ${job.title}</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!'
       })
@@ -860,7 +874,7 @@ export default {
       this.$swal({
         title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the experience.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!'
       })
@@ -895,7 +909,7 @@ export default {
       this.$swal({
         title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once deleted, you will not be able to recover the education.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!'
       })
@@ -999,7 +1013,7 @@ export default {
       this.$swal({
         title: '<span style="font-family: \'Roboto\', sans-serif; font-size: 28px; font-weight: 400;">Are you sure?</span>',
         html: `<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200">Once rejected, you will not be able to message the user again.</span>`,
-        type: "warning",
+        type: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!'
       })
@@ -1071,6 +1085,9 @@ export default {
 
           this.user.jobs.forEach(job => {
             job.collapse = false
+            job.confirmed_users.forEach(user => {
+              user.collapse = false
+            })
           })
           this.user.experience.forEach(exp => {
             exp.collapse = false
@@ -1083,6 +1100,9 @@ export default {
               acc.collapse = false
             })
           }
+          // this.user.jobs.forEach(job => {
+          //
+          // })
         })
         .catch(e => {
           if (e.response.status === 401) {

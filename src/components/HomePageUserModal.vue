@@ -70,10 +70,10 @@
           <div class="row text-center" v-if="showButtons">
             <div class="col-3"></div>
             <div class="col-3">
-              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: user._id, job: user.job})"><i class="ti-close"></i></button>
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: newUser._id, job: newUser.job})"><i class="ti-close"></i></button>
             </div>
             <div class="col-3">
-              <button @click="$emit('accept', {id: user._id, job: user.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+              <button @click="$emit('accept', {id: newUser._id, job: newUser.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
             </div>
             <div class="col-3"></div>
           </div>
