@@ -80,6 +80,18 @@ export default {
   data () {
     return {
       user_id: localStorage.getItem('user_id'),
+      user: {
+        acceptances: [],
+        bio: '',
+        name: '',
+        location: '',
+        company: '',
+        skills: [],
+        social: {
+          linkedin: '',
+          github: ''
+        }
+      },
       jobs: [],
       role: '',
       users: [],
@@ -352,6 +364,21 @@ export default {
       }
     },
     reGroup (list, key) {
+      var headers = {
+        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+      }
+     axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
+        .then(response => {
+          this.user = response.data
+        }).catch(e => {
+          if (e.response.status === 401) {
+            this.$router.push({
+              name: 'Login'
+            })
+          }
+        })
+      console.log(this.user)
+
       const newGroup = {}
       list.forEach(item => {
         const newItem = Object.assign({}, item)
@@ -364,10 +391,25 @@ export default {
       Object.keys(newGroup).sort().forEach(function (key) {
         ordered[key] = newGroup[key]
       })
-
+      
       for (var k in ordered) {
         ordered[k].forEach(job => {
           job[this.keyToGroup] = k
+        })
+      }
+      var l = new Set()
+      console.log(this.user.skills)
+      this.user.skills.forEach(skill =>{
+          l.add(skill.name)
+      })
+    console.log(l)
+      for (var k in ordered) {
+        ordered[k].forEach(job => {
+          var s = new Set()
+          job.skills.forEach(skill =>{
+            s.add(skill.name)
+          })
+          console.log(s)
         })
       }
       return ordered
