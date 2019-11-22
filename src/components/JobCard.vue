@@ -28,7 +28,7 @@
           </div>
           <div class="col-6 pr-5">
             <div style="margin-left: 46px; font-size: 12px" class="mb-2">Apply</div>
-            <button @click="$emit('accept', job._id)" class="mr-4 btn-sm btn-success" style="margin-left: 45px;"><i class="ti-check"></i></button>
+            <button @click="$emit('accept', job)" class="mr-4 btn-sm btn-success" style="margin-left: 45px;"><i class="ti-check"></i></button>
           </div>
         </div>
       </div>
