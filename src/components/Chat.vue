@@ -16,7 +16,7 @@
     </div>
   </nav>
   <div class="card mx-5 mt-5">
-    <div class="card-body pt-0 px-0" style="height: 78vh; background-color: rgba(255,250,250,0.85);">
+    <div class="card-body pt-0 px-0" style="height: 695px; background-color: rgba(255,250,250,0.85);">
       <div class="row" style="height: 100%;">
         <div class="col-5 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 700px;">
           <div>
