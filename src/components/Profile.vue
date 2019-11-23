@@ -235,30 +235,27 @@
 
                 <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
-                    <div v-for="hon in user.honor" :id="hon.title">
-                      <b-card class="mb-3 shadow-hover">
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-danger ml-2"
-                                @click="deleteHonor(hon)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: 5px !important;" class="btn btn-outline-secondary"
-                                @click="editHonorModal(hon)"><i class="ti-pencil"></i></button>
-                        <p></p>
-                        <h5 class="card-title" style="margin-top: -12px;">{{hon.title}}</h5>
-                        <hr width="100%" align="left"/>
+                    <div v-for="(hon, idx) in user.honor">
+                      <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'hon' + idx">
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                            <span><i class="ti-bookmark-alt"></i></span>
+                          <div class="col-lg-10 col-md-11 col-sm-12">
+                            <h5 class="card-title title-collapse" @click="expandCollapseHon(idx, hon.collapse, 'hon')">{{hon.title}}</h5>
                           </div>
-                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{hon.issuer}}</span>
+                          <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
+                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
+                                    @click="deleteHonor(hon)"><i class="ti-close"></i></button>
+                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
+                                    @click="editHonorModal(hon)"><i class="ti-pencil"></i></button>
                           </div>
                         </div>
+                        <hr width="100%" align="left" class="mt-0"/>
                         <p></p>
                         <div class="row">
                           <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                            <span><i class="ti-agenda"></i></span>
+                            <span><i class="ti-location-pin"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{hon.description}}</span>
+                            <span style="font-size: 14px;">{{hon.issuer}}</span>
                           </div>
                         </div>
                         <p></p>
@@ -267,7 +264,16 @@
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{formatDate(hon.issueDate)}} </span>
+                            <span style="font-size: 14px;">{{formatDate(hon.issueDate) }} </span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-receipt"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span style="text-align: justify; font-size: 14px;">{{hon.description}}</span>
                           </div>
                         </div>
                         <p></p>
@@ -286,32 +292,27 @@
                 </b-tab>
                 <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
-                    <div v-for="cert in user.certification" :id="cert.title">
-                      <b-card class="mb-3 shadow-hover">
-                        <button style="float: right; border: none; margin-top: 5px !important;"
-                                class="btn btn-outline-danger ml-2"
-                                @click="deleteCertification(cert)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: 5px !important;"
-                                class="btn btn-outline-secondary"
-                                @click="editCertificationModal(cert)"><i class="ti-pencil"></i></button>
-                        <p></p>
-                        <h5 class="card-title" style="margin-top: -12px; ">{{cert.title}}</h5>
-                        <hr width="100%" align="left"/>
+                    <div v-for="(cert, idx) in user.certification">
+                      <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'cert' + idx">
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                            <span><i class="ti-bookmark-alt"></i></span>
+                          <div class="col-lg-10 col-md-11 col-sm-12">
+                            <h5 class="card-title title-collapse" @click="expandCollapseCert(idx, cert.collapse, 'cert')">{{cert.title}}</h5>
                           </div>
-                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{cert.issuer}}</span>
+                          <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
+                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
+                                    @click="deleteHonor(cert)"><i class="ti-close"></i></button>
+                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
+                                    @click="editHonorModal(cert)"><i class="ti-pencil"></i></button>
                           </div>
                         </div>
+                        <hr width="100%" align="left" class="mt-0"/>
                         <p></p>
                         <div class="row">
                           <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                            <span><i class="ti-agenda"></i></span>
+                            <span><i class="ti-location-pin"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{cert.description}}</span>
+                            <span style="font-size: 14px;">{{cert.issuer}}</span>
                           </div>
                         </div>
                         <p></p>
@@ -320,7 +321,16 @@
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
-                            <span>{{formatDate(cert.issueDate)}}  - {{formatDate(cert.expiryDate)}} </span>
+                            <span style="font-size: 14px;">{{formatDate(cert.issueDate)}}  - {{formatDate(cert.expiryDate)}} </span>
+                          </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                            <span><i class="ti-receipt"></i></span>
+                          </div>
+                          <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
+                            <span style="text-align: justify; font-size: 14px;">{{cert.description}}</span>
                           </div>
                         </div>
                         <p></p>
@@ -634,6 +644,28 @@ export default {
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.experience[idx].collapse = true
+        document.getElementById(param + idx).style.height = '100%'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      }
+    },
+    expandCollapseHon (idx, collapse, param) {
+      if (collapse) {
+        this.user.honor[idx].collapse = false
+        document.getElementById(param + idx).style.height = '73px'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      } else {
+        this.user.honor[idx].collapse = true
+        document.getElementById(param + idx).style.height = '100%'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      }
+    },
+    expandCollapseCert (idx, collapse, param) {
+      if (collapse) {
+        this.user.certification[idx].collapse = false
+        document.getElementById(param + idx).style.height = '73px'
+        // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+      } else {
+        this.user.certification[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       }
