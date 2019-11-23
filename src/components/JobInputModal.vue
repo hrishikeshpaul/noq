@@ -22,7 +22,9 @@
             </b-form-group>
             <label class="mb-0 smaller-font">Location*</label>
             <b-form-group>
-              <b-form-input id="company" v-model.trim="job.location" class="input-field"></b-form-input>
+              <LocationSelect v-model.trim="job.location" @addLocation="addLocation" />
+<!--              <b-form-input id="company" v-model.trim="job.location" class="input-field"></b-form-input>-->
+
             </b-form-group>
             <label class="mb-0 smaller-font">Job Description</label>
             <b-form-group>
@@ -47,11 +49,13 @@
 import SkillSelect from './SkillSelect'
 import axios from 'axios'
 import url from '../config/server_config'
+import LocationSelect from './LocationSelect'
 
 export default {
   name: 'JobInputModal',
   components: {
-    SkillSelect
+    SkillSelect,
+    LocationSelect
   },
   props: {
     showModal: {
@@ -84,6 +88,10 @@ export default {
     addSkills (skills) {
       this.job.skills = skills
     },
+    addLocation (loc) {
+      this.job.location = loc
+    },
+
     postJob () {
       var headers = {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
@@ -96,6 +104,7 @@ export default {
         this.job['employer'] = localStorage.getItem('user_id')
         this.job['company'] = this.user.company
 
+        console.log(this.job.location)
         axios.post(`${url}/api/jobs`, this.job, {headers: headers})
           .then(response => {
             if (response.status == 204) {
