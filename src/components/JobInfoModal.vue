@@ -22,7 +22,8 @@
             </b-form-group>
             <label class="mb-0 smaller-font">Location*</label>
             <b-form-group>
-              <b-form-input id="position" v-model.trim="newJob.location" class="input-field"></b-form-input>
+              <LocationSelect v-model.trim="newJob.location" @addLocation="addLocation"  :rVal="newJob.location"/>
+<!--              <b-form-input id="position" v-model.trim="newJob.location" class="input-field"></b-form-input>-->
             </b-form-group>
             <label class="mb-0 smaller-font">Description</label>
             <b-form-group>
@@ -43,12 +44,14 @@
 <script>
 import axios from 'axios'
 import SkillSelect from './SkillSelect'
+import LocationSelect from './LocationSelect'
 import url from '../config/server_config'
 
 export default {
   name: 'JobInfoModal',
   components: {
-    SkillSelect
+    SkillSelect,
+    LocationSelect
   },
   props: {
     showModal: {
@@ -83,6 +86,9 @@ export default {
   methods: {
     addSkills (skills) {
       this.newJob.skills = skills
+    },
+    addLocation (loc) {
+      this.job.location = loc.name
     },
     editJob () {
       var headers = {

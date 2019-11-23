@@ -50,7 +50,8 @@
 
             <label class="mb-0 smaller-font">Location</label>
             <b-form-group>
-              <b-form-input id="location" v-model.trim="newUser.location" class="input-field"></b-form-input>
+              <LocationSelect v-model.trim="newUser.location" @addLocation="addLocation" :rVal="newUser.location"/>
+<!--              <b-form-input id="location" v-model.trim="newUser.location" class="input-field"></b-form-input>-->
             </b-form-group>
             <label class="mb-0 smaller-font">Bio</label>
             <b-form-group>
@@ -68,11 +69,13 @@
   import axios from 'axios'
   import url from '../config/server_config'
   import UniversitySelect from './UniversitySelect'
+  import LocationSelect from './LocationSelect'
 
   export default {
   name: 'ProfileInputModal',
   components: {
-    UniversitySelect
+    UniversitySelect,
+    LocationSelect
   },
   props: {
     showModal: {
@@ -156,6 +159,9 @@
     },
     addCompany (com) {
       this.newUser.company = com.name
+    },
+    addLocation (loc) {
+      this.newUser.location = loc.name
     },
     editUser () {
       var headers = {
