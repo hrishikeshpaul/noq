@@ -8,7 +8,7 @@
 <!--          </div>-->
 
         <div v-if="!navBarCollapsed" class="mt-3">
-          <img src="./assets/noQ_0275d8.svg" width="100">
+          <router-link to="/"><img src="./assets/noQ_0275d8.svg" width="100"></router-link>
           <p class="mt-1" style="font-size: 10px; color: white">Making Career Fairs Easier</p>
         </div>
 
