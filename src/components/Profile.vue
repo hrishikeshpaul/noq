@@ -15,6 +15,8 @@
       </div>
     </nav>
 
+    <LoadingBar v-show="isLoading" />
+
     <div class="px-5">
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
@@ -535,6 +537,7 @@ import CertificationModal from './CertificationModal'
 import HonorModal from './HonorModal'
 import HomePageUserModal from './HomePageUserModal'
 import MessageUserModal from './MessageUserModal'
+import LoadingBar from './LoadingBar'
 
 import Gravatar from 'vue-gravatar'
 import SkillSelect from './SkillSelect'
@@ -555,10 +558,12 @@ export default {
     HonorModal,
     CertificationModal,
     HomePageUserModal,
-    MessageUserModal
+    MessageUserModal,
+    LoadingBar
   },
   data () {
     return {
+      isLoading: true,
       fuseOptions: {
         shouldSort: true,
         threshold: 0.4,
@@ -1119,8 +1124,11 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
+      this.isLoading = true
+
       axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
+          this.isLoading = false
           this.user = response.data
 
           this.user.jobs.forEach(job => {
@@ -1140,9 +1148,7 @@ export default {
               acc.collapse = false
             })
           }
-          // this.user.jobs.forEach(job => {
-          //
-          // })
+
         })
         .catch(e => {
           if (e.response.status === 401) {
