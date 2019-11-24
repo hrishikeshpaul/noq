@@ -68,6 +68,14 @@
 
         <hr style="background-color: #7e868a; margin-bottom: 0px; padding-bottom: 0px;"/>
         <a href="#" style="text-decoration: none;">
+          <router-link to="/policy" :class="{'sidenav-item-active': $route.name === 'Policy'}">
+            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
+              <span v-if="!navBarCollapsed" class="px-4">Policy</span>
+              <span v-else><i class="ti-shield"></i></span>
+            </div>
+          </router-link>
+        </a>
+        <a href="#" style="text-decoration: none;">
           <router-link to="/">
             <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}" @click="logout">
               <span v-if="!navBarCollapsed" class="px-4">Logout</span>
