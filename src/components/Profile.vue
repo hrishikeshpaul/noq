@@ -45,7 +45,6 @@
         </div>
         <div class="col-lg-9 col-md-6 col-sm-12">
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
-<!--            <b-card no-body style="border: 1px solid rgba(251,174,131,0.77);">-->
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
                 <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
@@ -153,15 +152,16 @@
                         <p></p>
                       </b-card>
                     </div>
-                    <b-button
-                      v-if="role === 'student'"
-                      style="width: 100%; border-radius: 5px;"
-                      variant="outline-primary"
-                      class="mb-2 mt-1 "
-                      @click="addEducationModal"
-                    >
-                      Add
-                    </b-button>
+                    <div class="text-right">
+                      <button
+                        v-if="role === 'student'"
+                        style="width: 100%; border-radius: 5px;"
+                        class="mb-2 mt-1 btn btn-outline-primary w-25"
+                        @click="addEducationModal"
+                      >
+                        Add
+                      </button>
+                    </div>
                   </b-card-body>
 
                 </b-tab>
@@ -221,15 +221,16 @@
                         <p></p>
                       </b-card>
                     </div>
-                    <b-button
-                      v-if="role === 'student'"
-                      style="width: 100%; border-radius: 5px;"
-                      variant="outline-primary"
-                      class="mb-2 mt-1 "
-                      @click="addExperienceModal"
-                    >
-                      Add
-                    </b-button>
+                    <div class="text-right">
+                      <button
+                        v-if="role === 'student'"
+                        style="width: 100%; border-radius: 5px;"
+                        class="mb-2 mt-1 btn btn-outline-primary w-25"
+                        @click="addExperienceModal"
+                      >
+                        Add
+                      </button>
+                    </div>
                   </b-card-body>
                 </b-tab>
 
@@ -279,15 +280,18 @@
                         <p></p>
                       </b-card>
                     </div>
-                    <b-button
-                      v-if="role === 'student'"
-                      style="width: 100%; border-radius: 5px;"
-                      variant="outline-primary"
-                      class="mb-2 mt-1 "
-                      @click="addHonorModal"
-                    >
-                      Add
-                    </b-button>
+                    <div class="text-right">
+                      <div class="text-right">
+                        <button
+                          v-if="role === 'student'"
+                          style="width: 100%; border-radius: 5px;"
+                          class="mb-2 mt-1 btn btn-outline-primary w-25"
+                          @click="addHonorModal"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
                   </b-card-body>
                 </b-tab>
                 <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
@@ -336,15 +340,16 @@
                         <p></p>
                       </b-card>
                     </div>
-                    <b-button
-                      v-if="role === 'student'"
-                      style="width: 100%; border-radius: 5px;"
-                      variant="outline-primary"
-                      class="mb-2 mt-1 "
-                      @click="addCertificationModal"
-                    >
-                      Add
-                    </b-button>
+                    <div class="text-right">
+                      <button
+                        v-if="role === 'student'"
+                        style="border-radius: 5px;"
+                        class="mb-2 mt-1 btn btn-outline-primary w-25"
+                        @click="addCertificationModal"
+                      >
+                        Add
+                      </button>
+                    </div>
                   </b-card-body>
                 </b-tab>
 
@@ -355,12 +360,13 @@
                        <label>Add/Remove Skills:</label>
                        <b-form-group>
                          <SkillSelect @addSkills="addSkills" :recievedValues="user.skills"/>
-                         <button class="btn btn-outline-primary" @click.prevent="updateSkills"
-                                 style="width: 100%; border-radius: 10px;">Save
-                         </button>
+                         <div class="text-right">
+                           <button class="btn btn-outline-primary w-25" @click.prevent="updateSkills"
+                                   style="border-radius: 5px;">Save
+                           </button>
+                         </div>
                        </b-form-group>
                      </b-form>
-                     <hr/>
                    </b-card-body>
                  </div>
                 </b-tab>
@@ -447,14 +453,16 @@
                         </div>
                       </b-card>
                     </div>
-                    <button
-                      @click="jobInputModal"
-                      v-if="role === 'employer'"
-                      style="width: 100%; border-radius: 5px;"
-                      class="mt-2 btn btn-outline-primary w-100"
-                    >
-                      Post Job
-                    </button>
+                    <div class="text-right">
+                      <button
+                        @click="jobInputModal"
+                        v-if="role === 'employer'"
+                        style="border-radius: 5px;"
+                        class="mt-2 btn btn-outline-primary w-25"
+                      >
+                        Post Job
+                      </button>
+                    </div>
                   </b-card-body>
                 </b-tab>
                 <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
