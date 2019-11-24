@@ -23,7 +23,7 @@
       <div>
         <a href="#">
             <router-link to="/profile" :class="{'sidenav-item-active': $route.name === 'Profile'}">
-              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true, 'ml-2': !navBarCollapsed ? true : false}">
+              <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true, 'ml-2': !navBarCollapsed ? true : false, 'pb-0':  !navBarCollapsed ? false : true}">
                 <div v-if="!navBarCollapsed" class="px-4">
                   <div class="row pt-2">
                     <div class="col-3 pl-1 pr-0">
@@ -40,7 +40,7 @@
               </div>
             </router-link>
           </a>
-        <hr style="background-color: #757d80;" class="py-0 my-0"/>
+<!--        <hr style="background-color: #757d80;" class="py-0 my-0"/>-->
           <a href="#" style="text-decoration: none;">
             <router-link to="/" :class="{'sidenav-item-active': $route.name === 'HomePage'}">
               <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
@@ -68,6 +68,14 @@
 
         <hr style="background-color: #7e868a; margin-bottom: 0px; padding-bottom: 0px;"/>
         <a href="#" style="text-decoration: none;">
+          <router-link to="/termsandconditions" :class="{'sidenav-item-active': $route.name === 'TermsAndConditions'}">
+            <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
+              <span v-if="!navBarCollapsed" class="px-4">Terms and Conditions</span>
+              <span v-else><i class="ti-file"></i></span>
+            </div>
+          </router-link>
+        </a>
+        <a href="#" style="text-decoration: none;">
           <router-link to="/policy" :class="{'sidenav-item-active': $route.name === 'Policy'}">
             <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}">
               <span v-if="!navBarCollapsed" class="px-4">Policy</span>
@@ -75,6 +83,8 @@
             </div>
           </router-link>
         </a>
+
+        <hr style="background-color: #7e868a; margin-bottom: 0px; padding-bottom: 0px;"/>
         <a href="#" style="text-decoration: none;">
           <router-link to="/">
             <div :class="{'text-center': navBarCollapsed, 'text-left': !navBarCollapsed, 'py-2': true}" @click="logout">
