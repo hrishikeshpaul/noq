@@ -14,29 +14,55 @@
     </nav>
 
     <div class="mx-5 mt-5">
-      <div class="card px-4 py-2 shadow-sm w-50">
-        <div class=" text-center card-body w-100">
-          <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
-          <b-alert variant="success" v-if="showAlert2" :show="10">{{alertText2}}</b-alert>
-          <b-form class="text-left">
-            <div class="card-title" style="font-size: 20px; margin-top: -10px;">Reset Password</div>
-            <hr />
-            <label class="smaller-font">Old Password</label>
-            <b-form-group>
-              <b-form-input id="title" v-model.trim="oldPassword" type="password" class="input-field"></b-form-input>
-            </b-form-group>
-            <label class="smaller-font">New Password</label>
-            <b-form-group>
-              <b-form-input id="position" v-model.trim="newPassword" type="password" class="input-field"></b-form-input>
-            </b-form-group>
-            <label class="smaller-font">Re-Enter Password</label>
-            <b-form-group>
-              <b-form-input id="position" v-model.trim="newPassword1" type="password" class="input-field"></b-form-input>
-            </b-form-group>
-          </b-form>
-          <button class="mt-2 btn btn-outline-primary w-100" @click="changePassword">Change Password</button>
+      <div class="row">
+        <div class="col-6">
+          <div class="card px-4 py-2 shadow-sm">
+            <div class=" text-center card-body w-100">
+              <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
+              <b-alert variant="success" v-if="showAlert2" :show="10">{{alertText2}}</b-alert>
+              <b-form class="text-left">
+                <div class="card-title" style="font-size: 20px; margin-top: -10px;">Reset Password</div>
+                <hr />
+                <label class="smaller-font">Old Password</label>
+                <b-form-group>
+                  <b-form-input id="title" v-model.trim="oldPassword" type="password" class="input-field"></b-form-input>
+                </b-form-group>
+                <label class="smaller-font">New Password</label>
+                <b-form-group>
+                  <b-form-input id="position" v-model.trim="newPassword" type="password" class="input-field"></b-form-input>
+                </b-form-group>
+                <label class="smaller-font">Re-Enter Password</label>
+                <b-form-group>
+                  <b-form-input id="position" v-model.trim="newPassword1" type="password" class="input-field"></b-form-input>
+                </b-form-group>
+              </b-form>
+              <button class="mt-2 btn btn-outline-primary w-100" @click="changePassword">Change Password</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card px-4 py-2 shadow-sm">
+            <div class="text-center card-body w-100">
+              <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
+              <b-alert variant="success" v-if="showAlert2" :show="10">{{alertText2}}</b-alert>
+              <b-form class="text-left">
+                <div class="card-title" style="font-size: 20px; margin-top: -10px;">Feedback</div>
+                <hr/>
+                <b-form-group>
+                  <label class="smaller-font">Subject</label>
+                  <b-form-input id="title" v-model.trim="feedback.subject" type="text" class="input-field"></b-form-input>
+                </b-form-group>
+                <b-form-group>
+                  <label class="smaller-font">Message</label>
+                  <b-form-textarea id="title" v-model.trim="feedback.message" type="text" class="input-field form-control-textarea" rows="4"></b-form-textarea>
+                </b-form-group>
+              </b-form>
+              <button class="mt-2 btn btn-outline-primary w-100" @click="sendFeedback">Send Feedback</button>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -61,7 +87,13 @@ export default {
       alertText: '',
       showAlert: false,
       alertText2: '',
-      showAlert2: false
+      showAlert2: false,
+      role: '',
+      email: '',
+      feedback: {
+        subject: '',
+        message: ''
+      }
     }
   },
   watch: {
@@ -69,7 +101,14 @@ export default {
       this.show = newVal
     }
   },
+  created () {
+    this.role = localStorage.role
+    this.email = localStorage.email
+  },
   methods: {
+    sendFeedback() {
+      //put feedback code here once backend is ready!
+    },
     changePassword () {
       var headers = {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
@@ -145,4 +184,9 @@ export default {
   /deep/ .bg-light {
     background-color: #e8e8e8 !important;
   }
+
+   .form-control-textarea {
+    height: 120px !important;
+  }
+
 </style>

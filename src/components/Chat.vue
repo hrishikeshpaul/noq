@@ -15,6 +15,9 @@
       </div>
     </div>
   </nav>
+
+  <LoadingBar v-show="isLoading"/>
+
   <div class="card mx-5 mt-5">
     <div class="card-body pt-0 px-0" style="height: 695px; background-color: rgba(255,250,250,0.85);">
       <div class="row" style="height: 100%;">
@@ -130,14 +133,17 @@ import url from '../config/server_config'
 import Fuse from 'fuse.js'
 
 import MessageUserModal from './MessageUserModal'
+import LoadingBar from './LoadingBar'
 
 export default {
   name: 'Chat',
   components: {
-    MessageUserModal
+    MessageUserModal,
+    LoadingBar
   },
   data () {
     return {
+      isLoading: true,
       fuseOptions: {
         shouldSort: true,
         threshold: 0.2,
@@ -376,11 +382,13 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
+      this.isLoading = true
       this.allUserConversations = []
       this.userConversations = []
 
       axios.get(`${url}/api/messages/conversation/${this.user_id}`, {headers: headers})
         .then(response => {
+          this.isLoading = false
           this.allUserConversations = response.data
           this.allUserConversations.forEach(conv => {
             if (!conv.group) {
@@ -416,8 +424,11 @@ export default {
         Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
+      this.isLoading = true
+
       axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
+          this.isLoading = false
           this.userContacts = []
           if (this.role === 'student') {
             response.data.acceptances.forEach(job => {

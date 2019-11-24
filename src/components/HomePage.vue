@@ -17,6 +17,7 @@
         </div>
       </div>
     </nav>
+    <LoadingBar v-show="isLoading"/>
 
     <Recommendation class="mx-5 mt-4" v-if="userRole == 'student' && showRecommendation" :jobs="jobs" @accept="accept" @reject="reject"/>
 
@@ -80,6 +81,7 @@ import UserCard from './UserCard'
 import HomePageJobModal from './HomePageJobModal'
 import HomePageUserModal from './HomePageUserModal'
 import Recommendation from './Recommendation'
+import LoadingBar from './LoadingBar'
 
 export default {
   name: 'HomePage',
@@ -90,10 +92,12 @@ export default {
     UserCard,
     HomePageJobModal,
     HomePageUserModal,
-    Recommendation
+    Recommendation,
+    LoadingBar
   },
   data () {
     return {
+      isLoading: true,
       showRecommendation: false,
       user_id: localStorage.getItem('user_id'),
       jobs: [],
@@ -175,6 +179,7 @@ export default {
         user: this.user_id,
         role: localStorage.role
       }
+      this.isLoading = true
 
       axios.get(`${url}/api/jobs`, {params, headers})
         .then(response => {
@@ -183,6 +188,7 @@ export default {
           } else {
             this.users = response.data
           }
+          this.isLoading = false
         })
         .catch(e => {
           if (e.response.status === 401) {

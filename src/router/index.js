@@ -9,6 +9,7 @@ import Profile from '@/components/Profile'
 import ProfileSettings from '@/components/ProfileSettings'
 import Chat from '@/components/Chat'
 import Policy from '@/components/Policy'
+import TermsAndConditions from '@/components/TermsAndConditions'
 
 import axios from 'axios'
 
@@ -127,6 +128,11 @@ export default new Router({
       path: '/policy',
       name: 'Policy',
       component: Policy
+    },
+    {
+      path: '/termsandconditions',
+      name: 'TermsAndConditions',
+      component: TermsAndConditions
     },
     {
       path: '/build_profile',
