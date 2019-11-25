@@ -128,13 +128,10 @@ export default {
             background: 'rgba(92,184,92,0.93)',
             title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully sent feedback!</span>'
           })
-
         })
         .catch(e => {
           console.log(e)
         })
-
-
     },
     changePassword () {
       var headers = {
