@@ -92,7 +92,8 @@ export default {
       email: '',
       feedback: {
         subject: '',
-        message: ''
+        message: '',
+        email: ''
       }
     }
   },
@@ -106,8 +107,34 @@ export default {
     this.email = localStorage.email
   },
   methods: {
-    sendFeedback() {
-      //put feedback code here once backend is ready!
+    sendFeedback () {
+      var headers = {
+        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+      }
+      this.feedback.email = this.email
+
+      axios.post(`${url}/api/settings/feedback`, this.feedback, {headers: headers})
+        .then(response => {
+          this.feedback.subject = ''
+          this.feedback.message = ''
+          this.$swal({
+            position: 'top-right',
+            backdrop: false,
+            showConfirmButton: false,
+            timer: 2500,
+            width: '300px',
+            imageHeight: 20,
+            imageWidth: 20,
+            background: 'rgba(92,184,92,0.93)',
+            title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;">Successfully sent feedback!</span>'
+          })
+
+        })
+        .catch(e => {
+          console.log(e)
+        })
+
+
     },
     changePassword () {
       var headers = {
