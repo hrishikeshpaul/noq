@@ -80,21 +80,10 @@ export default {
   data () {
     return {
       user_id: localStorage.getItem('user_id'),
-      user: {
-        acceptances: [],
-        bio: '',
-        name: '',
-        location: '',
-        company: '',
-        skills: [],
-        social: {
-          linkedin: '',
-          github: ''
-        }
-      },
       jobs: [],
       role: '',
       users: [],
+      user: {},
       showClass: false,
       homePageJobToSend: {},
       homePageUserToSend: {},
@@ -171,7 +160,16 @@ export default {
         user: this.user_id,
         role: localStorage.role
       }
-
+      axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
+        .then(response => {
+          this.user = response.data
+        }).catch(e => {
+          if (e.response.status === 401) {
+            this.$router.push({
+              name: 'Login'
+            })
+          }
+        })
       axios.get(`${url}/api/jobs`, {params, headers})
         .then(response => {
           if (this.userRole === 'student') {
@@ -352,10 +350,12 @@ export default {
         name: 'Login'
       })
     },
+
     callReGroup (key) {
       if (this.userRole === 'student') {
         this.keyToGroup = key
         this.studentFilterOptions = key
+
         this.computedJobs = this.reGroup(this.jobs, this.studentFilterOptions)
       } else {
         this.keyToGroup = key
@@ -364,21 +364,29 @@ export default {
       }
     },
     reGroup (list, key) {
-      var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
-      }
-     axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
-        .then(response => {
-          this.user = response.data
-        }).catch(e => {
-          if (e.response.status === 401) {
-            this.$router.push({
-              name: 'Login'
-            })
-          }
+      var io = new Set()
+      this.user.skills.forEach(skill =>{
+        io.add(skill.name)
+      })
+      console.log(io)
+      console.log('yeikd')
+      for (let i = 0; i < list.length; i++){
+        var s = new Set()
+        var copy = io
+        s.add(list[i].skills)
+        var count = 0
+        s.forEach(elem =>{
+          elem.forEach(name =>{
+            if(io.has(name.name)){
+            count++
+            }
+          })
         })
-      console.log(this.user)
-
+        if (count < 2){
+          list.splice(i,1)
+        }
+      }
+      // console.log(list)
       const newGroup = {}
       list.forEach(item => {
         const newItem = Object.assign({}, item)
@@ -386,7 +394,6 @@ export default {
         newGroup[item[key]] = newGroup[item[key]] || []
         newGroup[item[key]].push(newItem)
       })
-
       const ordered = {}
       Object.keys(newGroup).sort().forEach(function (key) {
         ordered[key] = newGroup[key]
@@ -397,21 +404,7 @@ export default {
           job[this.keyToGroup] = k
         })
       }
-      var l = new Set()
-      console.log(this.user.skills)
-      this.user.skills.forEach(skill =>{
-          l.add(skill.name)
-      })
-    console.log(l)
-      for (var k in ordered) {
-        ordered[k].forEach(job => {
-          var s = new Set()
-          job.skills.forEach(skill =>{
-            s.add(skill.name)
-          })
-          console.log(s)
-        })
-      }
+
       return ordered
     }
   }
