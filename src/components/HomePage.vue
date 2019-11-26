@@ -368,25 +368,23 @@ export default {
       this.user.skills.forEach(skill =>{
         io.add(skill.name)
       })
-      console.log(io)
-      console.log('yeikd')
+      if (io.size === 0){
+        return {}
+      }
       for (let i = 0; i < list.length; i++){
-        var s = new Set()
-        var copy = io
-        s.add(list[i].skills)
         var count = 0
-        s.forEach(elem =>{
-          elem.forEach(name =>{
-            if(io.has(name.name)){
-            count++
-            }
-          })
-        })
-        if (count < 2){
+        const skills = list[i].skills
+        for (var x of skills){
+          if (io.has(x.name)){
+            count = count + 1
+          }
+        }
+        var len = Math.ceil(skills.length / 2)
+        if (count < len){
           list.splice(i,1)
         }
+        
       }
-      // console.log(list)
       const newGroup = {}
       list.forEach(item => {
         const newItem = Object.assign({}, item)
