@@ -37,6 +37,28 @@
               :before-change="validateAsync"
             >
               <b-form>
+                <!-- -->
+                <label class="smaller-font">Profile Picture</label>
+
+                <div class="text-center nice-font mb-2">
+                  <div class="wrapper">
+                    <img
+                      alt
+                      :src="user.profilepicture ? user.profilepicture : require('../assets/blank_profile.png')"
+                      style="height: 180px; width: 180px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(233, 228, 228, 0.58);"
+                    />
+                    <div class="overlay">
+                      <div class="text">
+                        <label class="btn-upload">
+                          <input type="file" name="fileupload" @change="onFileChanged" />
+                          <button class="btn">
+                            <i class="ti-pencil"></i>
+                          </button>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <label class="smaller-font">Full Name *</label>
                 <b-form-group :class="{'error-label': invalidName}">
                   <b-form-input
@@ -420,12 +442,14 @@ export default {
     return {
       isError: false,
       invalidName: false,
+      invalidPicture: false,
       invalidOrganization: false,
       invalidLinkedIn: false,
       name: "",
       user: {
         bio: " ",
         company: "",
+        profilepicture: null,
         social: {
           linkedin: "",
           github: ""
@@ -480,6 +504,55 @@ export default {
     };
   },
   methods: {
+    onFileChanged(event) {
+      var headers = {
+        Authorization:
+          "Bearer " +
+          localStorage
+            .getItem("jwtToken")
+            .substring(4, localStorage.getItem("jwtToken").length)
+      };
+
+      var file = event.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = e => {
+        this.user.profilepicture = e.target.result;
+        axios
+          .post(
+            `${url}/api/profile/picture`,
+            {
+              image: e.target.result.replace(/^data:image\/[a-z]+;base64,/, ""),
+              user_id: this.user._id
+            },
+            { headers: headers }
+          )
+          .then(response => {
+            if (response.status === 204) {
+              this.$swal({
+                position: "top-right",
+                backdrop: false,
+                showConfirmButton: false,
+                timer: 2500,
+                width: "300px",
+                imageHeight: 20,
+                imageWidth: 20,
+                background: "rgba(92,184,92,0.93)",
+                title:
+                  "<span style=\"  font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;\">Successfully updated profile picture!</span>"
+              });
+            }
+          })
+          .catch(e => {
+            if (e.response.status === 401) {
+              this.$router.push({
+                name: "Login"
+              });
+            }
+          });
+      };
+    },
     onComplete: function() {
       var params = {
         Authorization:
@@ -505,9 +578,11 @@ export default {
             width: "400px",
             imageHeight: 20,
             imageWidth: 20,
-            html: '<span style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;">Your profile has been set up!</span>',
-            title: '<h3 style="font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 300">Successful!</h3>'
-          })
+            html:
+              "<span style=\"font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;\">Your profile has been set up!</span>",
+            title:
+              "<h3 style=\"font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300\">Successful!</h3>"
+          });
           this.$router.push({
             name: "HomePage"
           });
@@ -546,7 +621,8 @@ export default {
               company: this.user.company,
               website: this.user.website,
               social: this.user.social,
-              bio: this.user.bio
+              bio: this.user.bio,
+              profilepicture: this.user.profilepicture
             },
             user: { id: id }
           };
@@ -892,33 +968,79 @@ export default {
   margin-bottom: 28px;
 }
 
-  .error-border {
-    border-color: red;
-  }
-  .error-label {
-    color: red;
-  }
-  .nice-font {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 200;
-  }
-  .input-field {
-    border: 0;
-    border-radius: 2px;
-    outline: none;
-    box-shadow: none;
-    margin-top: 1px;
-    background-color: #f6f6f6;
-  }
-  .input-field:hover {
-    background-color: #f1f1f1;
-  }
-  .input-field:focus {
-    background-color: #eaeaea;
-  }
-  .smaller-font {
-    font-size: 13px;
-  }
+.error-border {
+  border-color: red;
+}
+.error-label {
+  color: red;
+}
+.nice-font {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+}
+.input-field {
+  border: 0;
+  border-radius: 2px;
+  outline: none;
+  box-shadow: none;
+  margin-top: 1px;
+  background-color: #f6f6f6;
+}
+.input-field:hover {
+  background-color: #f1f1f1;
+}
+.input-field:focus {
+  background-color: #eaeaea;
+}
+.smaller-font {
+  font-size: 13px;
+}
 
+.wrapper {
+  position: relative;
+  border-radius: 10px;
+}
 
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  width: 80%;
+  opacity: 1;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  /*background-color: #262827;*/
+}
+.btn-upload {
+  cursor: pointer !important;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.btn-upload input[type="file"] {
+  cursor: pointer !important;
+  position: absolute;
+  opacity: 0;
+  z-index: 0;
+  max-width: 100%;
+  height: 100%;
+  display: block;
+}
+.btn-upload .btn {
+  cursor: pointer !important;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #c68967;
+  color: black;
+  /*border: /z0;*/
+}
+.btn-upload:hover .btn {
+  cursor: pointer !important;
+  padding: 8px 12px;
+  background: #f5f8f5;
+  color: black;
+}
 </style>
