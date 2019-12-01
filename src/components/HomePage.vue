@@ -107,6 +107,7 @@ export default {
       profilepicture: localStorage.profilepicture,
       role: '',
       users: [],
+      user: {},
       showClass: false,
       homePageJobToSend: {},
       homePageUserToSend: {},
@@ -183,6 +184,17 @@ export default {
         role: localStorage.role
       }
       this.isLoading = true
+
+      axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
+        .then(response => {
+          this.user = response.data
+        }).catch(e => {
+          if (e.response.status === 401) {
+            this.$router.push({
+              name: 'Login'
+            })
+          }
+        })
 
       axios.get(`${url}/api/jobs`, {params, headers})
         .then(response => {
@@ -367,10 +379,12 @@ export default {
         name: 'Login'
       })
     },
+
     callReGroup (key) {
       if (this.userRole === 'student') {
         this.keyToGroup = key
         this.studentFilterOptions = key
+
         this.computedJobs = this.reGroup(this.jobs, this.studentFilterOptions)
       } else {
         this.keyToGroup = key
@@ -379,6 +393,27 @@ export default {
       }
     },
     reGroup (list, key) {
+      var io = new Set()
+      this.user.skills.forEach(skill =>{
+        io.add(skill.name)
+      })
+      if (io.size === 0){
+        return {}
+      }
+      for (let i = 0; i < list.length; i++){
+        var count = 0
+        const skills = list[i].skills
+        for (var x of skills){
+          if (io.has(x.name)){
+            count = count + 1
+          }
+        }
+        var len = Math.ceil(skills.length / 2)
+        if (count < len){
+          list.splice(i,1)
+        }
+
+      }
       const newGroup = {}
       list.forEach(item => {
         const newItem = Object.assign({}, item)
@@ -386,7 +421,6 @@ export default {
         newGroup[item[key]] = newGroup[item[key]] || []
         newGroup[item[key]].push(newItem)
       })
-
       const ordered = {}
       Object.keys(newGroup).sort().forEach(function (key) {
         ordered[key] = newGroup[key]
@@ -397,6 +431,7 @@ export default {
           job[this.keyToGroup] = k
         })
       }
+
       return ordered
     }
   }
