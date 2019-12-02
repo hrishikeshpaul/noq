@@ -363,7 +363,7 @@
                        <b-form-group>
                          <SkillSelect @addSkills="addSkills" :recievedValues="user.skills"/>
                          <div class="text-right">
-                           <button class="btn btn-outline-primary w-25" @click.prevent="updateSkills"
+                           <button class="btn btn-outline-primary w-25 mt-4" @click.prevent="updateSkills"
                                    style="border-radius: 5px;">Save
                            </button>
                          </div>

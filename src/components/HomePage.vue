@@ -9,10 +9,10 @@
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
           <div class="col-1 pr-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecommendation = !showRecommendation"><i class="ti-bolt-alt"></i></button>
+            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showReco()"><i class="ti-bolt-alt"></i></button>
           </div>
           <div class="col-1 pr-0 pl-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecommendation = !showRecommendation"><i class="ti-light-bulb"></i></button>
+            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showWhatif()"><i class="ti-light-bulb"></i></button>
           </div>
           <div class="col-1 pl-0">
             <button class="btn btn-outline-secondary" @click="getData"><i class="ti-reload"></i></button>
@@ -21,6 +21,13 @@
       </div>
     </nav>
     <LoadingBar v-show="isLoading"/>
+
+    <div class="mx-5 mt-4" v-if="userRole == 'student' && showWhatIf">
+      <div class="m-0 jumbotron">
+        <div class="mb-3"><span style="font-size: 18px; font-weight: 300;">Modify your skills to see more/less jobs!</span></div>
+        <SkillSelect :recievedValues="user.skills" @addSkills="addSkill"/>
+      </div>
+    </div>
 
     <Recommendation class="mx-5 mt-4" v-if="userRole == 'student' && showRecommendation" :jobs="jobs" @accept="accept" @reject="reject"/>
 
@@ -40,7 +47,7 @@
               @accept="accept"
               @reject="reject"
               class="mb-3"
-              :style="{'min-width': '180px', 'z-index': index+1, 'width': '180px', 'height': '200px'}"/>
+              :style="{'min-width': '180px', 'z-index': '-1', 'width': '180px', 'height': '200px'}"/>
           </div>
           <div v-else>You are out of companies!</div>
         </div>
@@ -85,6 +92,7 @@ import HomePageJobModal from './HomePageJobModal'
 import HomePageUserModal from './HomePageUserModal'
 import Recommendation from './Recommendation'
 import LoadingBar from './LoadingBar'
+import SkillSelect from './SkillSelect'
 
 export default {
   name: 'HomePage',
@@ -96,11 +104,13 @@ export default {
     HomePageJobModal,
     HomePageUserModal,
     Recommendation,
-    LoadingBar
+    LoadingBar,
+    SkillSelect
   },
   data () {
     return {
       isLoading: true,
+      showWhatIf: false,
       showRecommendation: false,
       user_id: localStorage.getItem('user_id'),
       jobs: [],
@@ -133,7 +143,8 @@ export default {
     jobs (newVal) {
       if (newVal) {
         if (this.userRole === 'student') {
-          this.computedJobs = this.reGroup(this.jobs, this.studentKeyToGroup)
+          var newObject = JSON.parse(JSON.stringify(this.jobs))
+          this.computedJobs = this.reGroup(newObject, this.studentKeyToGroup)
         }
       }
     },
@@ -143,6 +154,14 @@ export default {
           this.computedUsers = this.reGroup(this.users, this.employerKeyToGroup)
         }
       }
+    },
+    user: {
+      handler: function (newValue) {
+        console.log(newValue)
+        if (this.keyToGroup)
+          console.log(this.studentKeyToGroup)
+      },
+      deep: true
     }
   },
   mounted () {
@@ -158,6 +177,29 @@ export default {
     this.filterOptions = localStorage.getItem('role') === 'student' ? this.studentFilterOptions : this.employerFilterOptions
   },
   methods: {
+    addSkill (skill) {
+      this.user.skills = skill
+      // if(this.keyToGroup)
+      //   this.callReGroup(this.keyToGroup)
+      // else if (this.studentKeyToGroup)
+      //   this.callReGroup(this.studentKeyToGroup)
+    },
+    showWhatif () {
+      if (this.showWhatIf)
+        this.showWhatIf = false
+      else {
+        this.showWhatIf = true
+        this.showRecommendation = false
+      }
+    },
+    showReco () {
+      if (this.showRecommendation)
+        this.showRecommendation = false
+      else {
+        this.showWhatIf = false
+        this.showRecommendation = true
+      }
+    },
     homePageUserModal (user, key) {
       this.homePageUserToSend = user
       console.log(this.homePageUserToSend)
@@ -383,9 +425,9 @@ export default {
     callReGroup (key) {
       if (this.userRole === 'student') {
         this.keyToGroup = key
-        this.studentFilterOptions = key
-
-        this.computedJobs = this.reGroup(this.jobs, this.studentFilterOptions)
+        this.studentKeyToGroup = key
+        // var newObject = JSON.parse(JSON.stringify(this.jobs))
+        this.computedJobs = this.reGroup(this.jobs, this.studentKeyToGroup)
       } else {
         this.keyToGroup = key
         this.employerKeyToGroup = key
@@ -394,26 +436,26 @@ export default {
     },
     reGroup (list, key) {
       var io = new Set()
-      this.user.skills.forEach(skill =>{
+      this.user.skills.forEach(skill => {
         io.add(skill.name)
       })
-      if (io.size === 0){
+      if (io.size === 0) {
         return {}
       }
-      for (let i = 0; i < list.length; i++){
+      for (let i = 0; i < list.length; i++) {
         var count = 0
         const skills = list[i].skills
-        for (var x of skills){
-          if (io.has(x.name)){
+        for (var x of skills) {
+          if (io.has(x.name)) {
             count = count + 1
           }
         }
         var len = Math.ceil(skills.length / 2)
-        if (count < len){
-          list.splice(i,1)
+        if (count < len) {
+          list.splice(i, 1)
         }
-
       }
+
       const newGroup = {}
       list.forEach(item => {
         const newItem = Object.assign({}, item)
@@ -498,5 +540,9 @@ export default {
 
   }
 
+  /deep/ .jumbotron {
+    background-color: rgba(255, 182, 139, 0.55) !important;
+    padding: 20px !important;
+  }
 
 </style>

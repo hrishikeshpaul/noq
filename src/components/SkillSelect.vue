@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-2">
+  <div class="">
     <multiselect
       v-model="value"
       :max-height="150"
@@ -59,7 +59,6 @@
     watch: {
       value (newVal) {
         if (typeof newVal.hasOwnProperty('name') !== null) {
-          console.log(newVal)
           this.$emit('addSkills', newVal)
         }
       },
