@@ -1,18 +1,20 @@
 <template>
   <div>
-
     <nav class="navbar navbar-light bg-light shadow-nav">
       <a class="navbar-brand pl-3 py-0" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
       <div class="text-center w-75 mt-1">
         <div class="row px-3 py-1">
-          <div class="col-9 pr-0">
+          <div class="col-5">
+
+          </div>
+          <div class="col-4 pr-0">
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
           <div class="col-1 pr-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showReco()"><i class="ti-bolt-alt"></i></button>
+            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')"><i class="ti-bolt-alt"></i></button>
           </div>
           <div class="col-1 pr-0 pl-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showWhatif()"><i class="ti-light-bulb"></i></button>
+            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')"><i class="ti-light-bulb"></i></button>
           </div>
           <div class="col-1 pl-0">
             <button class="btn btn-outline-secondary" @click="getData"><i class="ti-reload"></i></button>
@@ -22,10 +24,13 @@
     </nav>
     <LoadingBar v-show="isLoading"/>
 
-    <div class="mx-5 mt-4" v-if="userRole == 'student' && showWhatIf">
-      <div class="m-0 jumbotron">
-        <div class="mb-3"><span style="font-size: 18px; font-weight: 300;">Modify your skills to see more/less jobs!</span></div>
-        <SkillSelect :recievedValues="user.skills" @addSkills="addSkill"/>
+    <div class="jumbotron mx-5 mt-4 py-3" v-if="userRole == 'student' && showWhatIf">
+      <div>
+        <div class="pb-2">
+          Modify your skills to see/hide jobs,
+          <button style="float: right; border-radius: 50%; padding-left: 12px; padding-right: 12px; margin-top: -5px;" class="btn btn-sm " @click="whatIfInfoModal()">i</button>
+        </div>
+        <SkillSelect :recievedValues="user.skills" @addSkills="addSkill" class="mb-2"/>
       </div>
     </div>
 
@@ -43,6 +48,7 @@
               :job="j"
               ref="card"
               :id="j._id"
+              :whatIf="showWhatIf"
               @showJobModal="homePageJobModal(j, key)"
               @accept="accept"
               @reject="reject"
@@ -109,6 +115,8 @@ export default {
   },
   data () {
     return {
+      originalJobList: [],
+      originalSkillList: [],
       isLoading: true,
       showWhatIf: false,
       showRecommendation: false,
@@ -155,21 +163,17 @@ export default {
         }
       }
     },
-    user: {
-      handler: function (newValue) {
-        console.log(newValue)
-        if (this.keyToGroup)
-          console.log(this.studentKeyToGroup)
-      },
-      deep: true
+    showWhatIf (newValue) {
+      if (!newValue) {
+        this.callReGroup(this.studentKeyToGroup)
+      }
     }
   },
   mounted () {
-    if (localStorage.getItem('navBarCollapsed') == 'false') {
-      document.getElementById("main").style.marginLeft = "330px";
-    }
-    else if (localStorage.navBarCollapsed == 'true')
-      document.getElementById("main").style.marginLeft = "80px"
+    if (localStorage.getItem('navBarCollapsed') === 'false') {
+      document.getElementById('main').style.marginLeft = '330px';
+    } else if (localStorage.navBarCollapsed === 'true')
+      document.getElementById('main').style.marginLeft = '80px'
 
   },
   created () {
@@ -177,32 +181,39 @@ export default {
     this.filterOptions = localStorage.getItem('role') === 'student' ? this.studentFilterOptions : this.employerFilterOptions
   },
   methods: {
-    addSkill (skill) {
-      this.user.skills = skill
-      // if(this.keyToGroup)
-      //   this.callReGroup(this.keyToGroup)
-      // else if (this.studentKeyToGroup)
-      //   this.callReGroup(this.studentKeyToGroup)
+    whatIfInfoModal () {
+      this.$swal({
+        backdrop: true,
+        position: 'top',
+        showConfirmButton: true,
+        imageHeight: 20,
+        imageWidth: 20,
+        timer: 100000,
+        confirmButtonColor: '#f4ae84',
+        showCanceButton: true,
+        type: 'info',
+        title: '<span style="  font-family: \'Roboto\', sans-serif; font-size: 16px; font-weight: 200; color: black; padding-top: 10px;">Here, you can select or deselect different skills to see the jobs that could have appeared to you as some of the jobs have not been displayed due to the Smart Filtering System.</span>'
+      })
     },
-    showWhatif () {
-      if (this.showWhatIf)
-        this.showWhatIf = false
-      else {
-        this.showWhatIf = true
-        this.showRecommendation = false
-      }
+    addSkill (skills) {
+      this.user.skills = skills
+      this.callReGroup(this.studentKeyToGroup)
     },
-    showReco () {
-      if (this.showRecommendation)
-        this.showRecommendation = false
-      else {
+    showRecoOrWhat (param) {
+      if (param === 'reco') {
+        this.showRecommendation = !this.showRecommendation
         this.showWhatIf = false
-        this.showRecommendation = true
+      } else {
+        this.showRecommendation = false
+        if (this.showWhatIf) {
+          this.user.skills = this.originalSkillList
+          this.reGroup(this.jobs, this.studentKeyToGroup)
+        }
+        this.showWhatIf = !this.showWhatIf
       }
     },
     homePageUserModal (user, key) {
       this.homePageUserToSend = user
-      console.log(this.homePageUserToSend)
       this.homePageUserToSend[this.employerKeyToGroup] = key
       this.showHomePageUserModal = !this.showHomePageUserModal
     },
@@ -226,6 +237,8 @@ export default {
         role: localStorage.role
       }
       this.isLoading = true
+      this.showWhatIf = false
+      this.showRecommendation = false
 
       axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
@@ -242,9 +255,14 @@ export default {
         .then(response => {
           if (this.userRole === 'student') {
             this.jobs = response.data
+            this.jobs.forEach(job => {
+              job.whatif = false
+            })
+            this.getOriginalJobList(this.jobs, this.studentKeyToGroup)
           } else {
             this.users = response.data
           }
+
           this.isLoading = false
         })
         .catch(e => {
@@ -421,12 +439,35 @@ export default {
         name: 'Login'
       })
     },
-
+    getOriginalJobList (list, key) {
+      let rlist = Array.from(list)
+      var io = []
+      list = []
+      this.user.skills.forEach(skill => {
+        io.push(skill.name)
+      })
+      if (io.length === 0) {
+        return {}
+      }
+      for (let i = 0; i < rlist.length; i++) {
+        var count = 0
+        const skills = rlist[i].skills
+        for (var x of skills) {
+          if (io.includes(x.name)) {
+            count = count + 1
+          }
+        }
+        if (count >= 1) {
+          list.push(rlist[i])
+        }
+      }
+      this.originalJobList = Array.from(list)
+      this.originalSkillList = Array.from(this.user.skills)
+    },
     callReGroup (key) {
       if (this.userRole === 'student') {
         this.keyToGroup = key
         this.studentKeyToGroup = key
-        // var newObject = JSON.parse(JSON.stringify(this.jobs))
         this.computedJobs = this.reGroup(this.jobs, this.studentKeyToGroup)
       } else {
         this.keyToGroup = key
@@ -435,46 +476,67 @@ export default {
       }
     },
     reGroup (list, key) {
-      var io = new Set()
-      this.user.skills.forEach(skill => {
-        io.add(skill.name)
-      })
-      if (io.size === 0) {
-        return {}
-      }
-      for (let i = 0; i < list.length; i++) {
-        var count = 0
-        const skills = list[i].skills
-        for (var x of skills) {
-          if (io.has(x.name)) {
-            count = count + 1
+      if (this.user.role === 'student') {
+        let rlist = Array.from(list)
+        var io = []
+        list = []
+        this.user.skills.forEach(skill => {
+          io.push(skill.name)
+        })
+        if (io.length === 0) {
+          return {}
+        }
+        for (let i = 0; i < rlist.length; i++) {
+          var count = 0
+          const skills = rlist[i].skills
+          for (var x of skills) {
+            if (io.includes(x.name)) {
+              count = count + 1
+            }
+          }
+          if (count >= 1) {
+            list.push(rlist[i])
           }
         }
-        var len = Math.ceil(skills.length / 2)
-        if (count < len) {
-          list.splice(i, 1)
-        }
-      }
 
-      const newGroup = {}
-      list.forEach(item => {
-        const newItem = Object.assign({}, item)
-        delete newItem[key]
-        newGroup[item[key]] = newGroup[item[key]] || []
-        newGroup[item[key]].push(newItem)
-      })
-      const ordered = {}
-      Object.keys(newGroup).sort().forEach(function (key) {
-        ordered[key] = newGroup[key]
-      })
-
-      for (var k in ordered) {
-        ordered[k].forEach(job => {
-          job[this.keyToGroup] = k
+        const newGroup = {}
+        list.forEach(item => {
+          const newItem = Object.assign({}, item)
+          delete newItem[key]
+          newGroup[item[key]] = newGroup[item[key]] || []
+          newGroup[item[key]].push(newItem)
         })
-      }
+        const ordered = {}
+        Object.keys(newGroup).sort().forEach(function (key) {
+          ordered[key] = newGroup[key]
+        })
 
-      return ordered
+        for (var k in ordered) {
+          ordered[k].forEach(job => {
+            job[this.keyToGroup] = k
+          })
+        }
+        return ordered
+      } else {
+        const newGroup = {}
+        list.forEach(item => {
+          const newItem = Object.assign({}, item)
+          delete newItem[key]
+          newGroup[item[key]] = newGroup[item[key]] || []
+          newGroup[item[key]].push(newItem)
+        })
+        const ordered = {}
+        Object.keys(newGroup).sort().forEach(function (key) {
+          ordered[key] = newGroup[key]
+        })
+
+        for (var k in ordered) {
+          ordered[k].forEach(job => {
+            job[this.keyToGroup] = k
+          })
+        }
+        return ordered
+      }
     }
   }
 }
@@ -539,10 +601,8 @@ export default {
     color: black !important;
 
   }
-
   /deep/ .jumbotron {
-    background-color: rgba(255, 182, 139, 0.55) !important;
-    padding: 20px !important;
+    background-color: rgba(255, 182, 139, 0.55);
   }
 
 </style>

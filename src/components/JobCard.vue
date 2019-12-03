@@ -2,8 +2,7 @@
   <div>
     <div class="wrapper">
       <b-card
-        class="whatifborder"
-              style="height: 200px; border-radius: 10px; width: 180px;"
+        style="height: 200px; border-radius: 10px; width: 180px;"
       >
         <img
           :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')"
@@ -19,7 +18,7 @@
           <br/>
         </div>
       </b-card>
-      <div class="overlay"  @click="$emit('showJobModal')">
+      <div class="overlay"  @click="$emit('showJobModal')" v-if="!whatIf">
         <div class="overlay_bg" :style="info_bg"></div>
         <div class="text">
           <div class="row">
@@ -36,6 +35,7 @@
         </div>
     </div>
     </div>
+
   </div>
 </template>
 
@@ -61,6 +61,9 @@ export default {
       default: {
         skills: []
       }
+    },
+    whatIf: {
+      type: Boolean
     }
   },
 
@@ -93,7 +96,6 @@ export default {
   .wrapper {
     position: relative;
     border-radius: 10px;}
-
 
   .overlay {
     cursor: pointer;
