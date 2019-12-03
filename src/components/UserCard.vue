@@ -21,11 +21,11 @@
         <div class="row">
           <div class="col-6 pl-5">
             <div style="margin-left: 35px; font-size: 12px" class="mb-2">Reject</div>
-            <button class="mr-5 btn-sm btn-danger" @click="$emit('reject', {id: user._id, job: user.job})" style="margin-left: 35px;"><i class="ti-close"></i></button>
+            <button class="mr-5 btn-sm btn-danger" @click="$emit('reject', {id: user._id, job: user.job})" style="margin-left: 35px; border: none;"><i class="ti-close"></i></button>
           </div>
           <div class="col-6 pr-5">
             <div style="margin-left: 42px; font-size: 12px" class="mb-2">Accept</div>
-            <button @click="$emit('accept', {id: user._id, job: user.job})" class="btn-sm btn-success" style="margin-left: 45px;"><i class="ti-check"></i></button>
+            <button @click="$emit('accept', {id: user._id, job: user.job})" class="btn-sm btn-success" style="margin-left: 45px; border: none;"><i class="ti-check"></i></button>
           </div>
         </div>
       </div>

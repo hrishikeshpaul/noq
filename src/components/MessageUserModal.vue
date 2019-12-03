@@ -170,13 +170,13 @@ export default {
     background-color: #e8e8e8 !important;
   }
   /deep/ .btn-outline-primary {
-    border-color: #c68967 !important;
-    color: grey;
+    border: 1px solid #c68967 !important;
+    color: grey !important;
   }
 
   /deep/ .btn-outline-primary:hover {
     border-color: #c68967 !important;
-    background-color: #de9a73;
-    color: white;
+    background-color: #de9a73 !important;
+    color: white !important;
   }
 </style>

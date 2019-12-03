@@ -517,12 +517,12 @@ export default {
 }
 
 /deep/ .btn-outline-primary {
-  border-color: #c68967 !important;
+  border: 1px solid #c68967 !important;
   color: grey;
 }
 
 /deep/ .btn-outline-primary:hover {
-  border-color: #c68967 !important;
+  border: 1px solid #c68967 !important;
   background-color: #de9a73 !important;
   color: white !important;
 }

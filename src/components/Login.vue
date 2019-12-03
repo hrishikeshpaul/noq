@@ -362,15 +362,23 @@ export default {
   }
 
   /deep/ .btn-outline-primary {
-    border-color: #c68967 !important;
-    color: grey;
+    /*border: none;*/
+    border: 1px solid #c68967 !important;
+    /*border-color: #c68967 !important;*/
+    color: grey !important;
   }
 
   /deep/ .btn-outline-primary:hover {
     border-color: #c68967 !important;
-    background-color: #de9a73;
-    color: white;
+    background-color: #de9a73 !important;
+    color: white !important;
   }
+  /deep/ .btn-outline-primary.active {
+    border-color: #c68967 !important;
+    background-color: #de9a73 !important;
+    color: white !important;
+  }
+
 
   /deep/ .nav-link {
     color: #de9a73;

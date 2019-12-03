@@ -590,7 +590,7 @@ export default {
   }
 
   /deep/ .btn-outline-primary {
-    border-color: #f6af85 !important;
+    border: 1px solid #c68967 !important;
     background-color: #f4ae84 !important;
     color: black !important;
 

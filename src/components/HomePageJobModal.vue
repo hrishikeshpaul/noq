@@ -54,10 +54,10 @@
           <div class="row text-center">
             <div class="col-3"></div>
             <div class="col-3">
-              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', newJob._id)"><i class="ti-close"></i></button>
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', newJob._id)" style="border: none;"><i class="ti-close"></i></button>
             </div>
             <div class="col-3">
-              <button @click="$emit('accept', newJob)" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+              <button @click="$emit('accept', newJob)" class=" mr-4 btn-lg btn-success" style="border: none;"><i class="ti-check"></i></button>
             </div>
             <div class="col-3"></div>
           </div>

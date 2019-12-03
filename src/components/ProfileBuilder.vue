@@ -5,10 +5,10 @@
         <div class="mr-5">
           <button
             class="btn-outline-secondary"
-            style="cursor: pointer; border-radius: 10px; padding-top: 5px;"
+            style="cursor: pointer; border-radius: 10px; padding-top: 5px; padding-bottom: 5px !important; border: none !important;"
             @click="logout"
           >
-            <i class="ti-back-left"></i>
+            Logout <i class="ti-back-left"></i>
           </button>
         </div>
         <b-card style="max-height: 85vh; overflow-y: auto; min-height: 60vh">
@@ -56,9 +56,10 @@
                   />
                   <b-form-input
                     id="name"
+                    class="input-field"
                     :class="{'error-border': invalidOrganization}"
                     v-model.trim="user.company"
-                    v-if="role==='employer'"
+                    v-if="role === 'employer'"
                   ></b-form-input>
                 </b-form-group>
 
@@ -280,7 +281,7 @@
                     ></b-form-input>
                   </b-form-group>
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                       <label class="smaller-font">Issue Date</label>
                       <b-form-group>
                         <b-form-input
@@ -564,6 +565,7 @@ export default {
             reject("Please enter required fields");
           }
 
+          console.log(obj)
           axios
             .post(`${url}/api/profile/personal`, obj, { headers: params })
             .then(response => {
@@ -801,7 +803,7 @@ export default {
       this.skills = skill;
     },
     addCompany(skill) {
-      this.company = skill.name;
+      this.user.company = skill.name;
     },
     deleteItem(index, array) {
       if (array === "education") {
@@ -920,5 +922,16 @@ export default {
     font-size: 13px;
   }
 
+/deep/ .btn-outline-primary {
+  cursor: pointer !important;
+  border: 1px solid #c68967 !important;
+  color: grey !important;
+}
+
+/deep/ .btn-outline-primary:hover {
+  border-color: #c68967 !important;
+  background-color: #de9a73 !important;
+  color: white !important;
+}
 
 </style>
