@@ -737,7 +737,7 @@ export default {
     },
     formatDate (date) {
       if (date) {
-        return this.$moment(date).format('MMM Do YY')
+        return this.$moment(date).format('MMM D, YYYY')
       } else {
         return 'Present'
       }
