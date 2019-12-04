@@ -53,6 +53,8 @@
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover" :id="'job' + idx" style="height: 133px; overflow-y: hidden;">
+                        <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                          <i class="ti-angle-down" :id="'icon' + idx + 'job'" @click="expandCollapseInterests(idx, job.collapse, 'job')"></i></button>
                         <button href="#" style="float: right; margin-top: -5px !important; border: none;"
                                 class="mt-3 pt-2 ml-2 btn btn-outline-danger"
                                 @click="rejectConfirmedApplicant(job._id, user._id)"><i
@@ -107,7 +109,7 @@
                             <p></p>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
-                                <span class="mt-5" style="margin-right: 4px"><i class="ti-stats-up"></i></span>
+                                <span class="mt-5" style="margin-right: 4px"><i class=""></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
                                 <span style="font-size: 14px;">{{job.applicants.length}}</span>
@@ -125,13 +127,15 @@
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(edu, idx) in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover" style="height: 76px; overflow-y: hidden;" :id="'edu' + idx">
+                        <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                          <i class="ti-angle-down" :id="'icon' + idx + 'edu'" @click="expandCollapseEdu(idx, edu.collapse, 'edu')"></i></button>
                         <button style="float: right; border: none; margin-top: -5px !important;"
                                 class="btn btn-outline-danger ml-2"
                                 @click="deleteEducation(edu)"><i class="ti-close"></i></button>
                         <button style="float: right; border: none; margin-top: -5px !important;"
                                 class="btn btn-outline-secondary"
                                 @click="editEducationModal(edu)"><i class="ti-pencil"></i></button>
-                      <h5 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse, 'edu')">{{edu.school}}</h5>
+                      <h5 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse, 'edu')">{{edu.school}} </h5>
                         <hr width="100%" align="left"/>
                         <div class="row">
                           <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -175,6 +179,8 @@
                             <h5 class="card-title title-collapse" @click="expandCollapseExp(idx, exp.collapse, 'exp')">{{exp.company}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
+                            <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                              <i class="ti-angle-down" :id="'icon' + idx + 'exp'" @click="expandCollapseExp(idx, exp.collapse, 'exp')"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
                                     @click="deleteExperience(exp)"><i class="ti-close"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
@@ -242,6 +248,8 @@
                             <h5 class="card-title title-collapse" @click="expandCollapseHon(idx, hon.collapse, 'hon')">{{hon.title}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
+                            <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                              <i class="ti-angle-down" :id="'icon' + idx + 'hon'" @click="expandCollapseHon(idx, hon.collapse, 'hon')"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
                                     @click="deleteHonor(hon)"><i class="ti-close"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
@@ -299,6 +307,8 @@
                             <h5 class="card-title title-collapse" @click="expandCollapseCert(idx, cert.collapse, 'cert')">{{cert.title}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
+                            <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                              <i class="ti-angle-down" :id="'icon' + idx + 'cert'" @click="expandCollapseCert(idx, cert.collapse, 'cert')"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
                                     @click="deleteHonor(cert)"><i class="ti-close"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
@@ -371,7 +381,7 @@
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0" >
                   <b-card-body class="py-2 px-0">
                     <b-input-group class="mb-3 w-100">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob" style="font-weight: 300;"></b-form-input>
@@ -383,6 +393,8 @@
                       <b-card class="text-left my-2 card-collapse"
                               style="height: 136px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
                         <div>
+                          <button href="#" style="float: right; margin-top: -2px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                            <i class="ti-angle-down" :id="'icon' + idx + job._id" @click="expandCollapseItem(idx, job.collapse, job._id)"></i></button>
                           <button href="#" style="float: right; margin-top: -2px !important; border: none;"
                                   class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="deleteConfirmModal(job)"><i
                             class="ti-close"></i></button>
@@ -631,9 +643,13 @@ export default {
         this.employerJobs[idx].collapse = false
         document.getElementById(idx).style.height = '136px'
         // document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + jobId).classList.remove('ti-angle-up')
+        document.getElementById('icon' + idx + jobId).classList.add('ti-angle-down')
       } else {
         this.employerJobs[idx].collapse = true
         document.getElementById(idx).style.height = '100%'
+        document.getElementById('icon' + idx + jobId).classList.remove('ti-angle-down')
+        document.getElementById('icon' + idx + jobId).classList.add('ti-angle-up')
         // document.getElementById(idx).style.transition = 'height 0.5s ease-in 0s'
       }
     },
@@ -641,33 +657,45 @@ export default {
       if (collapse) {
         this.user.experience[idx].collapse = false
         document.getElementById(param + idx).style.height = '73px'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-up')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-down')
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.experience[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-down')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-up')
       }
     },
     expandCollapseHon (idx, collapse, param) {
       if (collapse) {
         this.user.honor[idx].collapse = false
         document.getElementById(param + idx).style.height = '73px'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-up')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-down')
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.honor[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-down')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-up')
       }
     },
     expandCollapseCert (idx, collapse, param) {
       if (collapse) {
         this.user.certification[idx].collapse = false
         document.getElementById(param + idx).style.height = '73px'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-up')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-down')
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.certification[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-down')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-up')
       }
     },
     expandCollapseEdu (idx, collapse, param) {
@@ -675,21 +703,29 @@ export default {
         this.user.education[idx].collapse = false
         document.getElementById(param + idx).style.height = '76px'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-up')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-down')
       } else {
         this.user.education[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-down')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-up')
       }
     },
     expandCollapseInterests (idx, collapse, param) {
       if (collapse) {
         this.user.acceptances[idx].collapse = false
         document.getElementById(param + idx).style.height = '133px'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-up')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-down')
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
       } else {
         this.user.acceptances[idx].collapse = true
         document.getElementById(param + idx).style.height = '100%'
         // document.getElementById(param + idx).style.transition = 'height 0.5s ease-in 0s'
+        document.getElementById('icon' + idx + param).classList.remove('ti-angle-down')
+        document.getElementById('icon' + idx + param).classList.add('ti-angle-up')
       }
     },
     expandCollapseApplicants (idx, jobIdx, collapse, param) {
