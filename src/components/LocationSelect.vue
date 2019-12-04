@@ -72,5 +72,26 @@ export default {
 </script>
 
 <style scoped>
+  /deep/ .multiselect__single {
+    background-color: #f6f6f6 !important;
+    font-weight: 200 !important;
+  }
+  /deep/ .multiselect__tags {
+    background-color: #f6f6f6 !important;
+    border: none !important;
+    font-weight: 200 !important;
+  }
 
+  /deep/ .multiselect__tags:hover {
+    background-color: #f1f1f1 !important;
+    font-weight: 200 !important;
+  }
+  /deep/ .multiselect__single:hover {
+    background-color: #f1f1f1 !important;
+    font-weight: 200 !important;
+  }
+  /deep/ .multiselect__input {
+    background-color: #f1f1f1 !important;
+    font-weight: 200 !important;
+  }
 </style>

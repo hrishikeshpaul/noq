@@ -65,6 +65,7 @@
   }
   /deep/ .multiselect__tags {
     background-color: #f6f6f6;
+    border: none !important;
     font-weight: 200 !important;
   }
 
@@ -77,7 +78,7 @@
     font-weight: 200 !important;
   }
   /deep/ .multiselect__input {
-    background-color: #f1f1f1;
+    background-color: #f6f6f6;
     font-weight: 200 !important;
   }
 </style>

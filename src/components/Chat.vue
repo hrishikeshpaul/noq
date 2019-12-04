@@ -529,4 +529,7 @@ export default {
 /deep/ .bg-light {
   background-color: #e8e8e8 !important;
 }
+  /deep/ .tab-content {
+    background-color: rgba(222, 154, 115, 0.04) !important;
+  }
 </style>

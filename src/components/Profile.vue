@@ -54,21 +54,13 @@
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover" :id="'job' + idx" style="height: 133px; overflow-y: hidden;">
-                        <button href="#" style="float: right; margin-top: -5px !important; border: none;"
-                                class="mt-3 pt-2 ml-2 btn btn-outline-danger"
-                                @click="rejectConfirmedApplicant(job._id, user._id)"><i
-                          class="ti-close"></i></button>
-                        <button href="#" style="float: right; margin-top: -5px !important; border: none;"
-                                class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i
-                          class="ti-comment-alt"></i>
-                        </button>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
                             <img style="height: 100px; width: 100px; object-fit: cover;"
                                  :src="job.employer.profilepicture ? job.employer.profilepicture.toString() : require('../assets/company.jpg')"
                                  class="icon-border">
                           </div>
-                          <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
+                          <div style="text-align: justify" class="col-lg-8 col-md-8 col-sm-12">
                             <h5 class="card-title title-collapse" @click="expandCollapseInterests(idx, job.collapse, 'job')">{{job.title}}</h5>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -116,6 +108,16 @@
                             </div>
                             <p></p>
                           </div>
+                          <div class="col-lg-2 col-md-2 col-sm-1">
+                            <button href="#" style="margin-top: -5px !important; border: none;"
+                                    class="mt-3 pt-2 ml-2 btn btn-outline-danger"
+                                    @click="rejectConfirmedApplicant(job._id, user._id)"><i
+                              class="ti-close"></i></button>
+                            <button href="#" style="margin-top: -5px !important; border: none;"
+                                    class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i
+                              class="ti-comment-alt"></i>
+                            </button>
+                          </div>
                         </div>
                       </b-card>
                     </div>
@@ -126,10 +128,10 @@
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(edu, idx) in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover" style="height: 76px; overflow-y: hidden;" :id="'edu' + idx">
-                        <button style="float: right; border: none; margin-top: -5px !important;"
+                        <button style="float: right; border: none; margin-top: -7px !important;"
                                 class="btn btn-outline-danger ml-2"
                                 @click="deleteEducation(edu)"><i class="ti-close"></i></button>
-                        <button style="float: right; border: none; margin-top: -5px !important;"
+                        <button style="float: right; border: none; margin-top: -7px !important;"
                                 class="btn btn-outline-secondary"
                                 @click="editEducationModal(edu)"><i class="ti-pencil"></i></button>
                       <h5 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse, 'edu')">{{edu.school}}</h5>
@@ -177,9 +179,9 @@
                             <h5 class="card-title title-collapse" @click="expandCollapseExp(idx, exp.collapse, 'exp')">{{exp.company}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
-                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
+                            <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-danger ml-2"
                                     @click="deleteExperience(exp)"><i class="ti-close"></i></button>
-                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
+                            <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-secondary"
                                     @click="editExperienceModal(exp)"><i class="ti-pencil"></i></button>
                           </div>
                         </div>
@@ -245,9 +247,9 @@
                             <h5 class="card-title title-collapse" @click="expandCollapseHon(idx, hon.collapse, 'hon')">{{hon.title}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
-                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
+                            <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-danger ml-2"
                                     @click="deleteHonor(hon)"><i class="ti-close"></i></button>
-                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
+                            <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-secondary"
                                     @click="editHonorModal(hon)"><i class="ti-pencil"></i></button>
                           </div>
                         </div>
@@ -305,9 +307,9 @@
                             <h5 class="card-title title-collapse" @click="expandCollapseCert(idx, cert.collapse, 'cert')">{{cert.title}}</h5>
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-12 pl-0">
-                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
+                            <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-danger ml-2"
                                     @click="deleteHonor(cert)"><i class="ti-close"></i></button>
-                            <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-secondary"
+                            <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-secondary"
                                     @click="editHonorModal(cert)"><i class="ti-pencil"></i></button>
                           </div>
                         </div>

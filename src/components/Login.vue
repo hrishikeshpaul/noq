@@ -363,6 +363,7 @@ export default {
 
   /deep/ .btn-outline-primary {
     /*border: none;*/
+    background-color: white !important;
     border: 1px solid #c68967 !important;
     /*border-color: #c68967 !important;*/
     color: grey !important;
