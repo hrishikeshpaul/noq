@@ -924,6 +924,7 @@ export default {
 
 /deep/ .btn-outline-primary {
   cursor: pointer !important;
+  background-color: white;
   border: 1px solid #c68967 !important;
   color: grey !important;
 }
@@ -931,6 +932,11 @@ export default {
 /deep/ .btn-outline-primary:hover {
   border-color: #c68967 !important;
   background-color: #de9a73 !important;
+  color: white !important;
+}
+/deep/ .btn-outline-primary.active {
+  border-color: #c68967 !important;
+  background-color: #bf8463 !important;
   color: white !important;
 }
 
