@@ -7,8 +7,8 @@
       </video>
       <div class="container">
         <div style="display: block;">
-          <div class="mt-4">
-            <b-card style="border-radius: 8px !important; background-color: rgb(252,252,252); height: 700px; margin-top: -10px; overflow-y: auto; transition: all 0.5s;">
+          <div class="mt-4" >
+            <b-card style="border-radius: 8px !important; background-color: rgb(255,244,234); height: 700px; margin-top: -10px; overflow-y: auto; transition: all 0.5s;">
               <div class="text-center big-title">
                 <img src="../assets/noQ_0275d8.svg" width="140">
               </div>
@@ -276,6 +276,13 @@ export default {
 </script>
 
 <style scoped>
+  .blur-on {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+  }
   .container {
     height: 100%;
     width: 100% !important;
@@ -396,13 +403,13 @@ export default {
     font-weight: 300;
     box-shadow: none;
     margin-top: 1px;
-    background-color: #f6f6f6;
+    background-color: #ededed;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #e6e6e6;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #dddddd;
   }
   .smaller-font {
     font-size: 13px;
