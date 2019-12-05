@@ -206,7 +206,7 @@ export default {
   }
 
   /deep/ .bg-light {
-    background-color: #e8e8e8 !important;
+    background-color: #e1e1e1 !important;
   }
 
    .form-control-textarea {

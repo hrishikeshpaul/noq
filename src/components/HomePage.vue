@@ -574,7 +574,7 @@ export default {
     color: white;
   }
   /deep/ .bg-light {
-    background-color: #e8e8e8 !important;
+    background-color: #e1e1e1 !important;
   }
 
   /*.shadow-nav {*/
