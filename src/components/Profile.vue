@@ -318,9 +318,9 @@
                             <button href="#" style="float: right; margin-top: -7px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
                               <i class="ti-angle-down" :id="'icon' + idx + 'cert'" @click="expandCollapseCert(idx, cert.collapse, 'cert')"></i></button>
                             <button style="float: right; border: none; margin-top: -5px;" class="btn btn-outline-danger ml-2"
-                                    @click="deleteHonor(cert)"><i class="ti-close"></i></button>
+                                    @click="deleteCertification(cert)"><i class="ti-close"></i></button>
                             <button style="float: right; border: none; margin-top: -7px;" class="btn btn-outline-secondary"
-                                    @click="editHonorModal(cert)"><i class="ti-pencil"></i></button>
+                                    @click="editCertificationModal(cert)"><i class="ti-pencil"></i></button>
                           </div>
                         </div>
                         <hr width="100%" align="left" class="mt-0"/>
