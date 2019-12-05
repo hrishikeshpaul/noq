@@ -573,7 +573,7 @@ export default {
     color: white;
   }
   /deep/ .bg-light {
-    background-color: #e1e1e1 !important;
+    background-color: rgba(211, 211, 211, 0.4) !important;
   }
 
   /*.shadow-nav {*/
@@ -603,5 +603,11 @@ export default {
   /deep/ .jumbotron {
     background-color: rgba(255, 182, 139, 0.55);
   }
+
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
+  }
+
+
 
 </style>

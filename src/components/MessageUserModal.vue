@@ -3,7 +3,7 @@
     <div>
       <b-modal ref="modal" hide-footer v-model="show" data-keyboard="false" size="lg"
                data-backdrop="static" :title="'Message'">
-        <div class="d-block text-center px-3 nice-font pb-2">
+        <div class="d-block text-center mx-3 nice-font mb-2">
           <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
           <b-form class="text-left">
             <label class="mb-0 smaller-font">To</label>
@@ -108,22 +108,22 @@ export default {
   }
   .nice-font {
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
   }
   .input-field {
     border: 0;
-    font-weight: 100;
-    border-radius: 2px;
+    font-weight: 300;
+    border-radius: 5px;
     outline: none;
     box-shadow: none;
     margin-top: 1px;
-    background-color: #f6f6f6;
+    background-color: #e6e6e6;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #E3E3E3;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;
@@ -179,4 +179,14 @@ export default {
     background-color: #de9a73 !important;
     color: white !important;
   }
+
+  /deep/ .modal-body {
+    background-color: rgba(246, 171, 127, 0.11);
+  }
+
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
+  }
+
+
 </style>

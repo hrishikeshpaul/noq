@@ -125,7 +125,7 @@ export default {
 <style scoped>
   .nice-font {
     font-family: 'Roboto', sans-serif;
-    font-weight: 200;
+    font-weight: 300;
   }
   /deep/ .modal-title {
     font-family: 'Roboto', sans-serif;
@@ -155,4 +155,8 @@ export default {
   .ti-receipt {
     color: darkgreen;
   }
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
+  }
+
 </style>

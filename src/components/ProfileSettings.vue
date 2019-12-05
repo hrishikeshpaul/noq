@@ -179,8 +179,9 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
+    font-weight: 300;
     box-shadow: none;
     margin-top: 1px;
     background-color: #f6f6f6;

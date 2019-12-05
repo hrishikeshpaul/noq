@@ -9,7 +9,7 @@
 <!--          </div>-->
 <!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newUser.email}}</p>-->
 <!--        </template>-->
-        <div style="max-height: 600px !important; overflow-y: auto">
+        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f6f6f6;" class="p-3">
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.github)"><i class="ti-github"></i></button>
 
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.linkedin)"><i class="ti-linkedin"></i></button>
@@ -36,10 +36,10 @@
           <hr />
         <div class="px-3 nice-font">
           <div class="row">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px; font-weight: 300;">
               <span><i class="ti-briefcase"></i></span>
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px">
+            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px; font-weight: 300;">
               <div v-for="exp in newUser.experience">
                 <div style="float: right; font-size: 14px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
                 <div style="font-size: 16px; font-weight: 200">{{exp.company}}</div>
@@ -181,7 +181,7 @@
 <style scoped>
   .nice-font {
      font-family: 'Roboto', sans-serif;
-     font-weight: 200;
+     font-weight: 300;
      /*font-family: 'Avenir', Helvetica, Arial, sans-serif !important;*/
    }
 
@@ -212,6 +212,13 @@
   }
   .ti-book {
     color: darkgreen;
+  }
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
+  }
+
+  /deep/ .modal-body {
+    padding: 0 !important;
   }
 
 </style>

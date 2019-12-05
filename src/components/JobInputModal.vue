@@ -153,18 +153,18 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
     box-shadow: none;
-    font-weight: 200;
+    font-weight: 300;
     margin-top: 1px;
-    background-color: #f6f6f6;
+    background-color: #e6e6e6;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #E3E3E3;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;
@@ -192,13 +192,17 @@ export default {
   }
 
   /deep/ .btn-outline-primary:hover {
-    border-color: 1px solid #c68967 !important;
+    border: 1px solid #c68967 !important;
     background-color: #de9a73;
     color: white;
   }
 
   button {
     cursor: pointer;
+  }
+
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
   }
 
 </style>

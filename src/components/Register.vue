@@ -23,7 +23,7 @@
         <b-form-input type="password" id="password2" :state="state" v-model.trim="register.password2" class="no-border input-field"></b-form-input>
 
       <label class="smaller-font">Select Role</label>
-        <b-form-select v-model="register.role" :options="options" size="md" id="role" class="w-100" style="font-weight: 300;"></b-form-select>
+        <b-form-select v-model="register.role" :options="options" size="md" id="role" class="w-100 input-field" style="font-weight: 300; background-color: #e6e6e6; border: none;"></b-form-select>
 
 <!--      <label class="smaller-font" v-if="register.role == 'student'">Gender</label>-->
 <!--      <b-form-group-->
@@ -33,7 +33,7 @@
 <!--      </b-form-group>-->
 
       <label class="smaller-font">Security Question</label>
-      <b-form-select v-model="register.security" :options="securityOptions" size="md" id="security" class="w-100" style="font-weight: 300;"></b-form-select>
+      <b-form-select v-model="register.security" :options="securityOptions" size="md" id="security" class="w-100 input-field" style="font-weight: 300; background-color: #e6e6e6; border: none;"></b-form-select>
       <label class="smaller-font">Security Question Answer</label>
       <b-form-input id="security_answer" placeholder="Please input your answer here"
                     v-model.trim="register.security_answer" class="no-border input-field" style="margin-bottom: 10px"></b-form-input>
@@ -173,19 +173,19 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
     font-weight: 300;
     box-shadow: none;
     margin-top: 1px;
     color: black;
-    background-color: #f6f6f6;
+    background-color: #e6e6e6;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #E3E3E3;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;

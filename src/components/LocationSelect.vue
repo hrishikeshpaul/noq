@@ -73,25 +73,25 @@ export default {
 
 <style scoped>
   /deep/ .multiselect__single {
-    background-color: #f6f6f6 !important;
-    font-weight: 200 !important;
+    background-color: #e6e6e6 !important;
+    font-weight: 300 !important;
   }
   /deep/ .multiselect__tags {
-    background-color: #f6f6f6 !important;
+    background-color: #e6e6e6 !important;
     border: none !important;
-    font-weight: 200 !important;
+    font-weight: 300 !important;
   }
 
   /deep/ .multiselect__tags:hover {
-    background-color: #f1f1f1 !important;
-    font-weight: 200 !important;
+    background-color: #E3E3E3 !important;
+    font-weight: 300 !important;
   }
   /deep/ .multiselect__single:hover {
-    background-color: #f1f1f1 !important;
-    font-weight: 200 !important;
+    background-color: #E3E3E3 !important;
+    font-weight: 300 !important;
   }
   /deep/ .multiselect__input {
-    background-color: #f1f1f1 !important;
-    font-weight: 200 !important;
+    background-color: #e6e6e6 !important;
+    font-weight: 300 !important;
   }
 </style>

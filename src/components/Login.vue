@@ -8,7 +8,7 @@
       <div class="container">
         <div style="display: block;">
           <div class="mt-4" >
-            <b-card style="border-radius: 8px !important; background-color: rgb(255,244,234); height: 700px; margin-top: -10px; overflow-y: auto; transition: all 0.5s;">
+            <b-card style="border-radius: 8px !important; background-color: #f4f4f4; height: 700px; margin-top: -10px; overflow-y: auto; transition: all 0.5s; outline: none !important;">
               <div class="text-center big-title">
                 <img src="../assets/noQ_0275d8.svg" width="140">
               </div>
@@ -317,8 +317,9 @@ export default {
   }
 
   #video_overlays {
+    backdrop-filter: saturate(120%) blur(12px);
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.46);
+    background-color: rgba(0, 0, 0, 0.25);
     z-index: -1;
     left: 0;
     right: 0;
@@ -351,18 +352,18 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
-    font-weight: 200;
+    font-weight: 300;
     box-shadow: none;
     margin-top: 1px;
-    background-color: #f6f6f6;
+    background-color: #e6e6e6;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #E3E3E3;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;
@@ -370,7 +371,7 @@ export default {
 
   /deep/ .btn-outline-primary {
     /*border: none;*/
-    background-color: white !important;
+    background-color: transparent !important;
     border: 1px solid #c68967 !important;
     /*border-color: #c68967 !important;*/
     color: grey !important;
@@ -398,18 +399,18 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
     font-weight: 300;
     box-shadow: none;
     margin-top: 1px;
-    background-color: #ededed;
-  }
-  .input-field:hover {
     background-color: #e6e6e6;
   }
+  .input-field:hover {
+    background-color: #E3E3E3;
+  }
   .input-field:focus {
-    background-color: #dddddd;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;

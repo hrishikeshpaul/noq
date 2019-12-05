@@ -258,9 +258,9 @@ label {
 }
 .input-field {
   border: 0;
-  border-radius: 2px;
+  border-radius: 5px;
   outline: none;
-  font-weight: 200;
+  font-weight: 300;
   box-shadow: none;
   margin-top: 1px;
   background-color: #f6f6f6;
@@ -323,4 +323,8 @@ label {
   background-color: #de9a73 !important;
   color: white !important;
 }
+/deep/ .modal {
+  backdrop-filter: saturate(180%) blur(5px) !important;
+}
+
 </style>
