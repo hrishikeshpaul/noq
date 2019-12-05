@@ -159,7 +159,7 @@
     },
     getData (user_id) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       axios.get(`${url}/api/user/${user_id}`, {headers: headers})

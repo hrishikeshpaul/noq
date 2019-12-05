@@ -105,7 +105,7 @@ export default {
   methods: {
     addExperience () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       if (this.newExperience.company.length === 0) {
@@ -153,7 +153,7 @@ export default {
     },
     editExperience () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       var id = this.experience._id

@@ -96,7 +96,7 @@ export default {
   methods: {
     addEducation () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       if (this.newEducation.school.length === 0) {
@@ -141,7 +141,7 @@ export default {
     },
     editEducation () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       var id = this.education._id

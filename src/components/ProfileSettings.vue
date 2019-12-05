@@ -109,7 +109,7 @@ export default {
   methods: {
     sendFeedback () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
       this.feedback.email = this.email
 
@@ -135,7 +135,7 @@ export default {
     },
     changePassword () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       var id = localStorage.getItem('user_id')

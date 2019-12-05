@@ -95,7 +95,7 @@ export default {
     },
     editJob () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       if (this.newJob.title.length === 0 || this.newJob.position === 0 || this.newJob.location === 0) {

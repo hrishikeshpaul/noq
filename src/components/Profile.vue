@@ -832,7 +832,7 @@ export default {
         .then((willDelete) => {
           if (willDelete.value) {
             var headers = {
-              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+              // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
             }
             axios.delete(`${url}/api/jobs/${job._id}`, {headers: headers})
               .then(response => {
@@ -964,7 +964,7 @@ export default {
         .then((willDelete) => {
           if (willDelete.value) {
             var headers = {
-              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+              // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
             }
 
             axios.delete(`${url}/api/profile/experience/${exp._id}`, {headers: headers})
@@ -999,7 +999,7 @@ export default {
         .then((willDelete) => {
           if (willDelete.value) {
             var headers = {
-              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+              // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
             }
             axios.delete(`${url}/api/profile/education/${edu._id}`, {headers: headers})
               .then(response => {
@@ -1033,7 +1033,7 @@ export default {
         .then((willDelete) => {
           if (willDelete.value) {
             var headers = {
-              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+              // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
             }
 
             axios.delete(`${url}/api/profile/honor/${hon._id}`, {headers: headers})
@@ -1068,7 +1068,7 @@ export default {
         .then((willDelete) => {
           if (willDelete.value) {
             var headers = {
-              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+              // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
             }
 
             axios.delete(`${url}/api/profile/certification/${cert._id}`, {headers: headers})
@@ -1103,7 +1103,7 @@ export default {
         .then((willDelete) => {
           if (willDelete.value) {
             var headers = {
-              Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+              // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
             }
 
             axios.patch(`${url}/api/jobs/rejectconfirmedapplicant`, {job: job_id, user: user_id}, {headers: headers})
@@ -1132,7 +1132,7 @@ export default {
     },
     updateSkills () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       axios.post(`${url}/api/profile/skills`, {
@@ -1159,7 +1159,7 @@ export default {
     },
     getData () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       this.isLoading = true
@@ -1168,7 +1168,7 @@ export default {
         .then(response => {
           this.isLoading = false
           this.user = response.data
-
+          console.log(this.user)
           this.user.jobs.forEach(job => {
             job.collapse = false
             job.confirmed_users.forEach(user => {

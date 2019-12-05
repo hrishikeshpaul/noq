@@ -229,7 +229,8 @@ export default {
     },
     getData () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'content-type': 'application/x-www-form-urlencoded'
       }
       var params = {
         user: this.user_id,
@@ -274,8 +275,8 @@ export default {
     },
     reject (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/reject`, {
@@ -315,8 +316,8 @@ export default {
     },
     accept (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/accept`, {
@@ -354,8 +355,8 @@ export default {
     },
     acceptUser (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/accept`, {
@@ -393,8 +394,8 @@ export default {
     },
     rejectUser (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/reject`, {

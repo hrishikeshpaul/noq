@@ -94,7 +94,7 @@ export default {
 
     postJob () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       if (this.job.title.length === 0 || this.job.position === 0 || this.job.location === 0) {

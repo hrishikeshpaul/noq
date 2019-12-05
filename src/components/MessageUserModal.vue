@@ -62,7 +62,7 @@ export default {
   methods: {
     sendMessage () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       axios.post(`${url}/api/messages/`, {from: this.user_id, to: [this.user._id], body: this.messageBody}, {headers: headers})

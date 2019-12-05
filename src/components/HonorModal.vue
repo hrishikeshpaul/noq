@@ -118,11 +118,11 @@ export default {
   methods: {
     addHonor() {
       var headers = {
-        Authorization:
-          "Bearer " +
-          localStorage
-            .getItem("jwtToken")
-            .substring(4, localStorage.getItem("jwtToken").length)
+        // Authorization:
+        //   "Bearer " +
+        //   localStorage
+        //     .getItem("jwtToken")
+        //     .substring(4, localStorage.getItem("jwtToken").length)
       };
 
       if (this.newHonor.title.length === 0) {
@@ -171,11 +171,11 @@ export default {
     },
     editHonor() {
       var headers = {
-        Authorization:
-          "Bearer " +
-          localStorage
-            .getItem("jwtToken")
-            .substring(4, localStorage.getItem("jwtToken").length)
+        // Authorization:
+        //   "Bearer " +
+        //   localStorage
+        //     .getItem("jwtToken")
+        //     .substring(4, localStorage.getItem("jwtToken").length)
       };
 
       var id = this.honor._id;
