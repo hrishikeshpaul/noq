@@ -27,7 +27,7 @@
       <div>
         <div class="pb-2">
           Modify your skills to see/hide jobs,
-          <button style="float: right; border-radius: 50%; padding-left: 12px; padding-right: 12px; margin-top: -5px;" class="btn btn-sm " @click="whatIfInfoModal()">i</button>
+          <button style="float: right; border-radius: 50%; padding-left: 12px; padding-right: 12px; margin-top: -5px;" class="btn btn-sm btn-outline-info" @click="whatIfInfoModal()">i</button>
         </div>
         <SkillSelect :recievedValues="user.skills" @addSkills="addSkill" class="mb-2"/>
       </div>

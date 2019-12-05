@@ -174,4 +174,8 @@
   h4, h5{
     font-weight: 400;
   }
+
+  /deep/ .bg-light {
+    background-color: #e1e1e1 !important;
+  }
 </style>
