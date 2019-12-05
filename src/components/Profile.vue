@@ -126,7 +126,7 @@
                   </b-card-body>
                 </b-tab>
 
-                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(edu, idx) in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover" style="height: 76px; overflow-y: hidden;" :id="'edu' + idx">
@@ -174,7 +174,7 @@
 
                 </b-tab>
 
-                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(exp, idx) in user.experience">
                       <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'exp' + idx">
@@ -244,7 +244,7 @@
                   </b-card-body>
                 </b-tab>
 
-                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(hon, idx) in user.honor">
                       <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'hon' + idx">
@@ -306,7 +306,7 @@
                     </div>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(cert, idx) in user.certification">
                       <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'cert' + idx">
@@ -367,7 +367,7 @@
                   </b-card-body>
                 </b-tab>
 
-                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                  <div class="card px-0 mt-3" >
                    <b-card-body style="font-size: 16px;">
                      <b-form class="text-left">
@@ -391,7 +391,7 @@
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0" >
+                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0" >
                   <b-card-body class="py-2 px-0">
                     <b-input-group class="mb-3 w-100">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob" style="font-weight: 300;"></b-form-input>
@@ -481,7 +481,7 @@
                     </div>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body class="px-0 pt-0">
                     <div v-for="(job, jidx) in user.jobs">
                       <div v-for="(user, idx) in job.confirmed_users">
