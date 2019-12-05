@@ -4,20 +4,19 @@
       <a class="navbar-brand pl-3 py-0" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
       <div class="text-center w-75 mt-1">
         <div class="row px-3 py-1">
-          <div class="col-5">
-
+          <div :class="{'col-5': userRole === 'student', 'col-6': userRole !== 'student'}">
           </div>
-          <div class="col-4 pr-0">
+          <div :class="{'col-4': userRole === 'student',  'pr-0': true, 'col-5': userRole !== 'student'}">
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
-          <div class="col-1 pr-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')"><i class="ti-bolt-alt"></i></button>
+          <div class="col-1 pr-0" v-if="userRole === 'student'">
+            <button  :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')" style="border: none;"><i class="ti-bolt-alt"></i></button>
           </div>
-          <div class="col-1 pr-0 pl-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')"><i class="ti-light-bulb"></i></button>
+          <div class="col-1 pr-0 pl-0" v-if="userRole === 'student'">
+            <button v-if="userRole === 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')" style="border: none;"><i class="ti-light-bulb"></i></button>
           </div>
           <div class="col-1 pl-0">
-            <button class="btn btn-outline-secondary" @click="getData"><i class="ti-reload"></i></button>
+            <button class="btn btn-outline-secondary" @click="getData" style="border: none;"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.linkedin)"><i class="ti-linkedin"></i></button>
 
         <div class="text-center nice-font">
-          <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 3px solid #929292;"/>
+          <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 4px solid rgba(204,198,198,0.69);"/>
           <p style="font-size: 20px; font-weight: 300;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
           <p style="color: gray; font-size: 16px;" class="mb-0">{{newUser.company}}</p>
           <p style="color: gray">{{newUser.location}}</p>
@@ -70,10 +70,10 @@
           <div class="row text-center" v-if="showButtons">
             <div class="col-3"></div>
             <div class="col-3">
-              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: newUser._id, job: newUser.job})"><i class="ti-close"></i></button>
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: newUser._id, job: newUser.job})" style="border: none;"><i class="ti-close"></i></button>
             </div>
             <div class="col-3">
-              <button @click="$emit('accept', {id: newUser._id, job: newUser.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+              <button @click="$emit('accept', {id: newUser._id, job: newUser.job})" class=" mr-4 btn-lg btn-success" style="border: none;"><i class="ti-check"></i></button>
             </div>
             <div class="col-3"></div>
           </div>
