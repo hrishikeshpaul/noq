@@ -28,7 +28,7 @@
             </b-form-group>
             <label class="mb-0 smaller-font">Job Description</label>
             <b-form-group>
-              <b-form-textarea id="company" v-model.trim="job.description" rows="3" class="input-field"></b-form-textarea>
+              <b-form-textarea id="company" v-model.trim="job.description" rows="4" class="input-field"></b-form-textarea>
             </b-form-group>
             <label class="mb-0 smaller-font">Preferred</label>
             <b-form-group>
