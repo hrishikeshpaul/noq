@@ -125,7 +125,7 @@
 
     onFileChanged (event) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
       }
 
       var file = event.target.files[0]
@@ -167,7 +167,7 @@
     },
     editUser () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       if (this.newUser.name.length === 0) {
@@ -222,18 +222,18 @@
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
     box-shadow: none;
-    font-weight: 200;
+    font-weight: 300;
     margin-top: 1px;
-    background-color: #f6f6f6;
+    background-color: #e6e6e6;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #E3E3E3;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;
@@ -253,14 +253,14 @@
   }
 
   /deep/ .btn-outline-primary {
-    border-color: #c68967 !important;
-    color: grey;
+    border: 1px solid #c68967 !important;
+    color: grey !important;
   }
 
   /deep/ .btn-outline-primary:hover {
-    border-color: #c68967 !important;
-    background-color: #de9a73;
-    color: white;
+    border-color: 1px solid #c68967 !important;
+    background-color: #de9a73 !important;
+    color: white !important;
   }
 
   button {
@@ -333,6 +333,10 @@
 
   /deep/ .modal-body {
     background-color: rgba(246, 171, 127, 0.05);
+  }
+
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
   }
 
 </style>

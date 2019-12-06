@@ -42,8 +42,10 @@
                           <div class="col-3 text-right">
                             <span style="font-size: 12px; padding-right: 8px;">{{formatDate(conversation.lastUpdatedAt)}}</span>
                           </div>
+
                         </div>
                       </div>
+                      <hr />
                     </div>
                   </b-card-text>
                 </b-tab>
@@ -379,7 +381,7 @@ export default {
     },
     getData2 () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       this.isLoading = true
@@ -421,7 +423,7 @@ export default {
 
     getContacts () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       this.isLoading = true
@@ -517,16 +519,23 @@ export default {
 }
 
 /deep/ .btn-outline-primary {
-  border-color: #c68967 !important;
+  border: 1px solid #c68967 !important;
   color: grey;
 }
 
 /deep/ .btn-outline-primary:hover {
-  border-color: #c68967 !important;
+  border: 1px solid #c68967 !important;
   background-color: #de9a73 !important;
   color: white !important;
 }
-/deep/ .bg-light {
-  background-color: #e8e8e8 !important;
+
+/deep/ .btn-outline-secondary {
+  border:none;
 }
+/deep/ .bg-light {
+  background-color: #e1e1e1 !important;
+}
+  /deep/ .tab-content {
+    background-color: rgba(222, 154, 115, 0.04) !important;
+  }
 </style>

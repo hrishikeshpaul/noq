@@ -28,7 +28,7 @@
             </b-form-group>
             <label class="mb-0 smaller-font">Job Description</label>
             <b-form-group>
-              <b-form-textarea id="company" v-model.trim="job.description" rows="3" class="input-field"></b-form-textarea>
+              <b-form-textarea id="company" v-model.trim="job.description" rows="4" class="input-field"></b-form-textarea>
             </b-form-group>
             <label class="mb-0 smaller-font">Preferred</label>
             <b-form-group>
@@ -94,7 +94,7 @@ export default {
 
     postJob () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       if (this.job.title.length === 0 || this.job.position === 0 || this.job.location === 0) {
@@ -153,18 +153,18 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
     box-shadow: none;
-    font-weight: 200;
+    font-weight: 300;
     margin-top: 1px;
-    background-color: #f6f6f6;
+    background-color: #e6e6e6;
   }
   .input-field:hover {
-    background-color: #f1f1f1;
+    background-color: #E3E3E3;
   }
   .input-field:focus {
-    background-color: #eaeaea;
+    background-color: #E3E3E3;
   }
   .smaller-font {
     font-size: 13px;
@@ -187,18 +187,22 @@ export default {
   }
 
   /deep/ .btn-outline-primary {
-    border-color: #c68967 !important;
+    border: 1px solid #c68967 !important;
     color: grey;
   }
 
   /deep/ .btn-outline-primary:hover {
-    border-color: #c68967 !important;
+    border: 1px solid #c68967 !important;
     background-color: #de9a73;
     color: white;
   }
 
   button {
     cursor: pointer;
+  }
+
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
   }
 
 </style>

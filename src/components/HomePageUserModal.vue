@@ -9,13 +9,13 @@
 <!--          </div>-->
 <!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newUser.email}}</p>-->
 <!--        </template>-->
-        <div style="max-height: 600px !important; overflow-y: auto">
+        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f6f6f6;" class="p-3">
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.github)"><i class="ti-github"></i></button>
 
         <button href="#" style="float: right;" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" @click="showWindow(newUser.social.linkedin)"><i class="ti-linkedin"></i></button>
 
         <div class="text-center nice-font">
-          <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 3px solid #929292;"/>
+          <img :src="newUser.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')" style="height: 150px; width: 150px; border-radius: 50%; margin-left: 100px; object-fit: cover; border: 4px solid rgba(204,198,198,0.69);"/>
           <p style="font-size: 20px; font-weight: 300;" class="pt-2 mb-0 pb-0">{{newUser.name}}</p>
           <p style="color: gray; font-size: 16px;" class="mb-0">{{newUser.company}}</p>
           <p style="color: gray">{{newUser.location}}</p>
@@ -36,10 +36,10 @@
           <hr />
         <div class="px-3 nice-font">
           <div class="row">
-            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px">
+            <div class="col-lg-1 col-md-1 col-sm-1" style="color: gray; font-size: 16px; font-weight: 300;">
               <span><i class="ti-briefcase"></i></span>
             </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px">
+            <div class="col-lg-11 col-md-11 col-sm-11 pl-0" style="font-size: 16px; font-weight: 300;">
               <div v-for="exp in newUser.experience">
                 <div style="float: right; font-size: 14px; color: gray; margin-top: 5px;">{{getDate(exp.from)}} - {{getDate(exp.to)}}</div>
                 <div style="font-size: 16px; font-weight: 200">{{exp.company}}</div>
@@ -70,10 +70,10 @@
           <div class="row text-center" v-if="showButtons">
             <div class="col-3"></div>
             <div class="col-3">
-              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: newUser._id, job: newUser.job})"><i class="ti-close"></i></button>
+              <button class=" mr-5 btn-lg btn-danger ml-5" @click="$emit('reject', {id: newUser._id, job: newUser.job})" style="border: none;"><i class="ti-close"></i></button>
             </div>
             <div class="col-3">
-              <button @click="$emit('accept', {id: newUser._id, job: newUser.job})" class=" mr-4 btn-lg btn-success"><i class="ti-check"></i></button>
+              <button @click="$emit('accept', {id: newUser._id, job: newUser.job})" class=" mr-4 btn-lg btn-success" style="border: none;"><i class="ti-check"></i></button>
             </div>
             <div class="col-3"></div>
           </div>
@@ -159,7 +159,7 @@
     },
     getData (user_id) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       axios.get(`${url}/api/user/${user_id}`, {headers: headers})
@@ -181,7 +181,7 @@
 <style scoped>
   .nice-font {
      font-family: 'Roboto', sans-serif;
-     font-weight: 200;
+     font-weight: 300;
      /*font-family: 'Avenir', Helvetica, Arial, sans-serif !important;*/
    }
 
@@ -212,6 +212,13 @@
   }
   .ti-book {
     color: darkgreen;
+  }
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
+  }
+
+  /deep/ .modal-body {
+    padding: 0 !important;
   }
 
 </style>

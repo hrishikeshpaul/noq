@@ -83,6 +83,7 @@ export default {
           })
         })
     },
+
     addTag (newTag) {
       const tag = {
         name: newTag,
@@ -108,4 +109,6 @@ export default {
   color: white;
   background-color: #a06f53 !important;
 }
+
+
 </style>

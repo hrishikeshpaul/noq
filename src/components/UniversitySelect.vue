@@ -60,24 +60,25 @@
 
 <style scoped>
   /deep/ .multiselect__single {
-    background-color: #f6f6f6;
-    font-weight: 200 !important;
+    background-color: #e6e6e6;
+    font-weight: 300 !important;
   }
   /deep/ .multiselect__tags {
-    background-color: #f6f6f6;
-    font-weight: 200 !important;
+    background-color: #e6e6e6;
+    border: none !important;
+    font-weight: 300 !important;
   }
 
   /deep/ .multiselect__tags:hover {
-    background-color: #f1f1f1;
-    font-weight: 200 !important;
+    background-color: #e3e3e3;
+    font-weight: 300 !important;
   }
   /deep/ .multiselect__single:hover {
-    background-color: #f1f1f1;
-    font-weight: 200 !important;
+    background-color: #e3e3e3;
+    font-weight: 300 !important;
   }
   /deep/ .multiselect__input {
-    background-color: #f1f1f1;
-    font-weight: 200 !important;
+    background-color: #e6e6e6;
+    font-weight: 300 !important;
   }
 </style>

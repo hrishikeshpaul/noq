@@ -6,23 +6,27 @@
         <div class="row px-3 py-1">
           <div class="col-6"  v-if=!showFilterSkills>
           </div>
-
-          <div class="filter_bg col-6 pr-0" v-if="userRole == 'student' && showFilterSkills">
-              <SkillFilter :existingSkills="user.skills" @filterSkills="filterSkill"/>
+          <div class="col-1"  v-if="userRole !== 'student'">
           </div>
 
-          <div class="col-3 pr-0">
+          <div class="filter_bg col-6 pr-0" v-if="userRole == 'student' && showFilterSkills">
+            <SkillFilter :existingSkills="user.skills" @filterSkills="filterSkill"/>
+          </div>
+
+          <div :class="{'col-3': userRole === 'student',  'pr-0': true, 'col-4': userRole !== 'student'}">
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
 
-          <div class="col-1 pr-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')"><i class="ti-bolt-alt"></i></button>
+          <div class="col-1 pr-0" v-if="userRole === 'student'">
+            <button  :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')" style="border: none;"><i class="ti-bolt-alt"></i></button>
+ 
           </div>
-          <div class="col-1 pr-0 pl-0">
-            <button v-if="userRole == 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')"><i class="ti-light-bulb"></i></button>
+          <div class="col-1 pr-0 pl-0" v-if="userRole === 'student'">
+            <button v-if="userRole === 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')" style="border: none;"><i class="ti-light-bulb"></i></button>
           </div>
-          <div class="col-1 pl-0 ">
-            <button class="btn btn-outline-secondary" @click="getData"><i class="ti-reload"></i></button>
+
+          <div class="col-1 pl-0">
+            <button class="btn btn-outline-secondary" @click="getData" style="border: none;"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>
@@ -35,7 +39,7 @@
       <div>
         <div class="pb-2">
           Modify your skills to see/hide jobs,
-          <button style="float: right; border-radius: 50%; padding-left: 12px; padding-right: 12px; margin-top: -5px;" class="btn btn-sm " @click="whatIfInfoModal()">i</button>
+          <button style="float: right; border-radius: 50%; padding-left: 12px; padding-right: 12px; margin-top: -5px;" class="btn btn-sm btn-outline-info" @click="whatIfInfoModal()">i</button>
         </div>
         <SkillSelect :recievedValues="user.skills" @addSkills="addSkill" class="mb-2"/>
       </div>
@@ -60,7 +64,7 @@
               @accept="accept"
               @reject="reject"
               class="mb-3"
-              :style="{'min-width': '180px', 'z-index': index+1, 'width': '180px', 'height': '200px'}"/>
+              :style="{'min-width': '180px', 'z-index': '-1', 'width': '180px', 'height': '200px'}"/>
           </div>
           <div v-else>You are out of companies!</div>
         </div>
@@ -163,7 +167,8 @@ export default {
     jobs (newVal) {
       if (newVal) {
         if (this.userRole === 'student') {
-          this.computedJobs = this.reGroup(this.jobs, this.studentKeyToGroup)
+          var newObject = JSON.parse(JSON.stringify(this.jobs))
+          this.computedJobs = this.reGroup(newObject, this.studentKeyToGroup)
         }
       }
     },
@@ -231,7 +236,6 @@ export default {
     },
     homePageUserModal (user, key) {
       this.homePageUserToSend = user
-      console.log(this.homePageUserToSend)
       this.homePageUserToSend[this.employerKeyToGroup] = key
       this.showHomePageUserModal = !this.showHomePageUserModal
     },
@@ -248,7 +252,8 @@ export default {
     },
     getData () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'content-type': 'application/x-www-form-urlencoded'
       }
       var params = {
         user: this.user_id,
@@ -294,8 +299,8 @@ export default {
     },
     reject (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/reject`, {
@@ -335,8 +340,8 @@ export default {
     },
     accept (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/accept`, {
@@ -374,8 +379,8 @@ export default {
     },
     acceptUser (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/accept`, {
@@ -413,8 +418,8 @@ export default {
     },
     rejectUser (i) {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        // 'Content-Type': 'application/json'
       }
 
       axios.patch(`${url}/api/jobs/reject`, {
@@ -626,7 +631,7 @@ export default {
     color: white;
   }
   /deep/ .bg-light {
-    background-color: #e8e8e8 !important;
+    background-color: rgba(211, 211, 211, 0.4) !important;
   }
 
   /*.shadow-nav {*/
@@ -642,7 +647,7 @@ export default {
   }
 
   /deep/ .btn-outline-primary {
-    border-color: #f6af85 !important;
+    border: 1px solid #c68967 !important;
     background-color: #f4ae84 !important;
     color: black !important;
 
@@ -666,17 +671,16 @@ export default {
    margin-bottom: -100px;
   }
 
-
-
   /deep/ .swal2-styled {
     border-color: #f6af85 !important;
     background-color: #f4ae84 !important;
     color: black !important;
   }
 
-  /deep/ .swal2-styled:hover {
-    border-color: #f6af85 !important;
-    background-color: #e6a37c !important;
-    color: black !important;
+  /deep/ .modal {
+    backdrop-filter: saturate(180%) blur(5px) !important;
   }
+
+
+
 </style>

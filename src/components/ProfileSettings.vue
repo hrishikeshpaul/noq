@@ -109,7 +109,7 @@ export default {
   methods: {
     sendFeedback () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
       this.feedback.email = this.email
 
@@ -135,7 +135,7 @@ export default {
     },
     changePassword () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       var id = localStorage.getItem('user_id')
@@ -179,8 +179,9 @@ export default {
   }
   .input-field {
     border: 0;
-    border-radius: 2px;
+    border-radius: 5px;
     outline: none;
+    font-weight: 300;
     box-shadow: none;
     margin-top: 1px;
     background-color: #f6f6f6;
@@ -195,18 +196,18 @@ export default {
     font-size: 13px;
   }
   /deep/ .btn-outline-primary {
-    border-color: #c68967 !important;
+    border: 1px solid #c68967 !important;
     color: grey;
   }
 
   /deep/ .btn-outline-primary:hover {
-    border-color: #c68967 !important;
+    border-color: 1px solid #c68967 !important;
     background-color: #de9a73;
     color: white;
   }
 
   /deep/ .bg-light {
-    background-color: #e8e8e8 !important;
+    background-color: #e1e1e1 !important;
   }
 
    .form-control-textarea {

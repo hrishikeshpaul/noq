@@ -24,16 +24,16 @@
           <div class="row">
             <div class="col-6 pl-5">
               <div style="margin-left: 30px; font-size: 12px" class="mb-2">Dismiss</div>
-              <button class="mr-5 btn-sm btn-danger" @click="$emit('reject', job._id)" style="margin-left: 35px;" ><i class="ti-close"></i>
+              <button class="mr-5 btn-sm btn-danger" @click="$emit('reject', job._id)" style="margin-left: 35px; border: none;" ><i class="ti-close"></i>
               </button>
             </div>
             <div class="col-6 pr-5">
               <div style="margin-left: 46px; font-size: 12px" class="mb-2">Apply</div>
-              <button @click="$emit('accept', job)" class="mr-4 btn-sm btn-success" style="margin-left: 45px;"><i class="ti-check"></i></button>
+              <button @click="$emit('accept', job)" class="mr-4 btn-sm btn-success" style="margin-left: 45px; border: none;"><i class="ti-check"></i></button>
             </div>
           </div>
         </div>
-      </div>
+    </div>
     </div>
 
   </div>
@@ -187,6 +187,9 @@ export default {
 
   button{
     cursor: pointer;
+  }
+  .whatifborder {
+    border: 3px solid rgba(250,177,135,0.7)
   }
 
 </style>

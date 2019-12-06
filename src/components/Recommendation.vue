@@ -78,7 +78,7 @@ export default {
     },
     getData () {
       var headers = {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
+        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length)
       }
 
       axios.get(`${url}/api/jobs/recommendation/${this.user_id}`, {headers})

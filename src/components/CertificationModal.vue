@@ -133,11 +133,11 @@ export default {
   methods: {
     addCertification() {
       var headers = {
-        Authorization:
-          "Bearer " +
-          localStorage
-            .getItem("jwtToken")
-            .substring(4, localStorage.getItem("jwtToken").length)
+        // Authorization:
+        //   "Bearer " +
+        //   localStorage
+        //     .getItem("jwtToken")
+        //     .substring(4, localStorage.getItem("jwtToken").length)
       };
 
       if (this.newCertification.title.length === 0) {
@@ -188,11 +188,11 @@ export default {
     },
     editCertification() {
       var headers = {
-        Authorization:
-          "Bearer " +
-          localStorage
-            .getItem("jwtToken")
-            .substring(4, localStorage.getItem("jwtToken").length)
+        // Authorization:
+        //   "Bearer " +
+        //   localStorage
+        //     .getItem("jwtToken")
+        //     .substring(4, localStorage.getItem("jwtToken").length)
       };
 
       var id = this.certification._id;
@@ -258,9 +258,9 @@ label {
 }
 .input-field {
   border: 0;
-  border-radius: 2px;
+  border-radius: 5px;
   outline: none;
-  font-weight: 200;
+  font-weight: 300;
   box-shadow: none;
   margin-top: 1px;
   background-color: #f6f6f6;
@@ -314,13 +314,17 @@ label {
 }
 
 /deep/ .btn-outline-primary {
-  border-color: #c68967 !important;
-  color: grey;
+  border: 1px solid #c68967 !important;
+  color: grey !important;
 }
 
 /deep/ .btn-outline-primary:hover {
   border-color: #c68967 !important;
-  background-color: #de9a73;
-  color: white;
+  background-color: #de9a73 !important;
+  color: white !important;
 }
+/deep/ .modal {
+  backdrop-filter: saturate(180%) blur(5px) !important;
+}
+
 </style>
