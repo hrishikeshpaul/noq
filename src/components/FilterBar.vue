@@ -3,13 +3,17 @@
     <multiselect
       style="height: 40px;"
       v-model="value"
-      :max-height="150"
+      :max-height="180"
       tag-placeholder="Add this as new tag"
-      placeholder="Search or add a tag"
+      placeholder="Select a criteria to group cards"
       label="name" track-by="code"
       :options="options"
-      :taggable="true"
-      :option-height="104"
+      :taggable="false"
+      :searchable="false"
+      :multiple="false"
+      :show-labels="false"
+      :allow-empty="false"
+      :option-height="180"
       @tag="addTag"></multiselect>
   </div>
 </template>

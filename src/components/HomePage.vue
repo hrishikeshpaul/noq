@@ -3,18 +3,28 @@
     <nav class="navbar navbar-light bg-light shadow-nav">
       <a class="navbar-brand pl-3 py-0" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
       <div class="text-center w-75 mt-1">
-        <div class="row px-3 py-1 offset-5">
-          <div :class="{'col-5': userRole === 'student', 'col-6': userRole !== 'student'}">
+        <div class="row px-3 py-1 offset-3">
+          <div class="col-6"  v-if=!showFilterSkills>
           </div>
-          <div :class="{'col-4': userRole === 'student',  'pr-0': true, 'col-5': userRole !== 'student'}">
+          <div class="col-1"  v-if="userRole !== 'student'">
+          </div>
+
+          <div class="filter_bg col-6 pr-0" v-if="userRole == 'student' && showFilterSkills">
+            <SkillFilter :existingSkills="user.skills" @filterSkills="filterSkill"/>
+          </div>
+
+          <div :class="{'col-3': userRole === 'student',  'pr-0': true, 'col-4': userRole !== 'student'}">
             <FilterBar @group="callReGroup" :options="filterOptions"/>
           </div>
+
           <div class="col-1 pr-0" v-if="userRole === 'student'">
             <button  :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')" style="border: none;"><i class="ti-bolt-alt"></i></button>
+
           </div>
           <div class="col-1 pr-0 pl-0" v-if="userRole === 'student'">
             <button v-if="userRole === 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')" style="border: none;"><i class="ti-light-bulb"></i></button>
           </div>
+
           <div class="col-1 pl-0">
             <button class="btn btn-outline-secondary" @click="getData" style="border: none;"><i class="ti-reload"></i></button>
           </div>
@@ -22,6 +32,8 @@
       </div>
     </nav>
     <LoadingBar v-show="isLoading"/>
+
+
 
     <div class="jumbotron mx-5 mt-4 py-3" v-if="userRole == 'student' && showWhatIf">
       <div>
@@ -98,6 +110,7 @@ import HomePageUserModal from './HomePageUserModal'
 import Recommendation from './Recommendation'
 import LoadingBar from './LoadingBar'
 import SkillSelect from './SkillSelect'
+import SkillFilter from './SkillFilter'
 
 export default {
   name: 'HomePage',
@@ -110,7 +123,8 @@ export default {
     HomePageUserModal,
     Recommendation,
     LoadingBar,
-    SkillSelect
+    SkillSelect,
+    SkillFilter
   },
   data () {
     return {
@@ -118,6 +132,7 @@ export default {
       originalSkillList: [],
       isLoading: true,
       showWhatIf: false,
+      showFilterSkills: false,
       showRecommendation: false,
       user_id: localStorage.getItem('user_id'),
       jobs: [],
@@ -128,6 +143,7 @@ export default {
       showClass: false,
       homePageJobToSend: {},
       homePageUserToSend: {},
+      skillsToSend:{},
       computedJobs: {},
       computedUsers: {},
       studentKeyToGroup: 'position',
@@ -137,7 +153,8 @@ export default {
       studentFilterOptions: [
         { name: 'Position', code: 'position' },
         { name: 'Location', code: 'location' },
-        { name: 'Company', code: 'company' }
+        { name: 'Company', code: 'company' },
+        { name: 'Skills', code: 'skills' }
       ],
       employerFilterOptions: [
         { name: 'University', code: 'company' }
@@ -198,12 +215,18 @@ export default {
       this.user.skills = skills
       this.callReGroup(this.studentKeyToGroup)
     },
+    filterSkill(skills){
+      this.user.skills = skills
+      this.callReGroup(this.studentKeyToGroup)
+    },
     showRecoOrWhat (param) {
       if (param === 'reco') {
         this.showRecommendation = !this.showRecommendation
         this.showWhatIf = false
+        this.showFilterSkills=false
       } else {
         this.showRecommendation = false
+        this.showFilterSkills=false
         if (this.showWhatIf) {
           this.user.skills = this.originalSkillList
           this.reGroup(this.jobs, this.studentKeyToGroup)
@@ -239,6 +262,7 @@ export default {
       this.isLoading = true
       this.showWhatIf = false
       this.showRecommendation = false
+      this.showFilterSkills=false
 
       axios.get(`${url}/api/user/${this.user_id}`, {headers: headers})
         .then(response => {
@@ -466,9 +490,29 @@ export default {
     },
     callReGroup (key) {
       if (this.userRole === 'student') {
-        this.keyToGroup = key
-        this.studentKeyToGroup = key
-        this.computedJobs = this.reGroup(this.jobs, this.studentKeyToGroup)
+        if (key.toString() === ('skills')) {
+          this.showFilterSkills=true
+          // this.showWhatIf=false
+          this.showRecommendation=false
+        }
+        else{
+          this.showFilterSkills=false
+        }
+          this.keyToGroup = key
+          this.studentKeyToGroup = key
+          this.computedJobs = this.reGroup(this.jobs, this.studentKeyToGroup)
+          // let skills=[]
+          //  this.user.skills.forEach(s=>{skills.push(s.name)})
+          // const { value: skill } = this.$swal({
+          //   title: "Select a skill",
+          //   input: "select",
+          //   inputOptions:skills,
+          //   allowOutsideClick: true,
+          //   showCancelButton: false,
+          //   inputPlaceholder: this.user.skills[0].name,
+          //   confirmButtonColor: "#f0ad4e",
+          // });
+
       } else {
         this.keyToGroup = key
         this.employerKeyToGroup = key
@@ -503,8 +547,19 @@ export default {
         list.forEach(item => {
           const newItem = Object.assign({}, item)
           delete newItem[key]
-          newGroup[item[key]] = newGroup[item[key]] || []
-          newGroup[item[key]].push(newItem)
+          console.log(item[key])
+          let group = ''
+          if (key==='skills'){
+            item[key].forEach(skill=>{
+              group+=skill.name+', '
+            })
+            group=group.substring(0,group.length-2)
+          }
+          else
+            group=item[key]
+
+          newGroup[group] = newGroup[group] || []
+          newGroup[group].push(newItem)
         })
         const ordered = {}
         Object.keys(newGroup).sort().forEach(function (key) {
@@ -522,8 +577,9 @@ export default {
         list.forEach(item => {
           const newItem = Object.assign({}, item)
           delete newItem[key]
-          newGroup[item[key]] = newGroup[item[key]] || []
-          newGroup[item[key]].push(newItem)
+          let group=item[key]
+          newGroup[group] = newGroup[group] || []
+          newGroup[group].push(newItem)
         })
         const ordered = {}
         Object.keys(newGroup).sort().forEach(function (key) {
@@ -537,6 +593,7 @@ export default {
         }
         return ordered
       }
+
     }
   }
 }
@@ -605,10 +662,23 @@ export default {
     background-color: rgba(255, 182, 139, 0.55);
   }
 
+ .filter_bg {
+   position: relative;
+   top: -30px;
+   padding: 30px;
+   /*height: 10px;*/
+   /*max-height: 10px;*/
+   margin-bottom: -100px;
+  }
+
+  /deep/ .swal2-styled {
+    border-color: #f6af85 !important;
+    background-color: #f4ae84 !important;
+    color: black !important;
+  }
+
   /deep/ .modal {
     backdrop-filter: saturate(180%) blur(5px) !important;
   }
-
-
 
 </style>
