@@ -3,7 +3,7 @@
     <nav class="navbar navbar-light bg-light shadow-nav">
       <a class="navbar-brand pl-3 py-0" href="#" style="color: #17252A; font-weight: 300; font-size: 25px;">Home</a>
       <div class="text-center w-75 mt-1">
-        <div class="row px-3 py-1">
+        <div class="row px-3 py-1 offset-5">
           <div :class="{'col-5': userRole === 'student', 'col-6': userRole !== 'student'}">
           </div>
           <div :class="{'col-4': userRole === 'student',  'pr-0': true, 'col-5': userRole !== 'student'}">
@@ -38,7 +38,7 @@
     <div class="mx-5 mt-4">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
         <div style="position: relative;">
-          <h5 style="font-weight: 300"><div class="mb-3">{{ key }}</div></h5>
+          <h5 style="font-weight: 300"><div class="mb-3">{{ key }} ({{job.length}})</div></h5>
           <div
             v-for="(j, index) in job" v-if="job.length > 0"
             style="display: inline-block;"

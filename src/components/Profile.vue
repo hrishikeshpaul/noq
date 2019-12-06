@@ -49,7 +49,7 @@
           <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Acceptances" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
+                <b-tab title="Interests" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
                   <b-card-body class="p-0 mt-2">
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
@@ -402,23 +402,12 @@
                     <div v-for="(job, idx) in employerJobs">
                       <b-card class="text-left my-2 card-collapse"
                               style="height: 136px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
-                        <div>
-                          <button href="#" style="float: right; margin-top: -2px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
-                            <i class="ti-angle-down" :id="'icon' + idx + job._id" @click="expandCollapseItem(idx, job.collapse, job._id)"></i></button>
-                          <button href="#" style="float: right; margin-top: -2px !important; border: none;"
-                                  class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="deleteConfirmModal(job)"><i
-                            class="ti-close"></i></button>
-                          <button href="#" style="float: right; margin-top: -2px !important; border: none;"
-                                  class="mt-3 pt-2 btn btn-outline-info" @click="jobInfoModal(job)"><i
-                            class="ti-pencil"></i>
-                          </button>
-                        </div>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
                             <img style="height: 100px; width: 100px; object-fit: cover;" class="icon-border"
                                  :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
-                          <div style="text-align: justify" class="col-lg-10 col-md-10 col-sm-12">
+                          <div style="text-align: justify" class="col-lg-8 col-md-8 col-sm-12">
                             <h5 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h5>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -465,6 +454,17 @@
                               </div>
                             </div>
                             <p></p>
+                          </div>
+                          <div class="col-lg-2 col-md-2 col-sm-12">
+                            <button href="#" style="float: right; margin-top: -2px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
+                              <i class="ti-angle-down" :id="'icon' + idx + job._id" @click="expandCollapseItem(idx, job.collapse, job._id)"></i></button>
+                            <button href="#" style="float: right; margin-top: -2px !important; border: none;"
+                                    class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="deleteConfirmModal(job)"><i
+                              class="ti-close"></i></button>
+                            <button href="#" style="float: right; margin-top: -2px !important; border: none;"
+                                    class="mt-3 pt-2 btn btn-outline-info" @click="jobInfoModal(job)"><i
+                              class="ti-pencil"></i>
+                            </button>
                           </div>
                         </div>
                       </b-card>
