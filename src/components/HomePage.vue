@@ -252,7 +252,7 @@ export default {
     },
     getData () {
       var headers = {
-        // Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
+        Authorization: 'Bearer ' + localStorage.getItem('jwtToken').substring(4, localStorage.getItem('jwtToken').length),
         // 'content-type': 'application/x-www-form-urlencoded'
       }
       var params = {
