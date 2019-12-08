@@ -53,7 +53,8 @@
                   <b-card-body class="p-0 mt-2">
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
-                      <b-card class="text-left my-2 shadow-hover" :id="'job' + idx" style="height: 133px; overflow-y: hidden;">
+                      <b-card class="text-left my-2 shadow-hover show-hover-indicator" :id="'job' + idx" style="height: 133px; overflow-y: hidden;">
+                        <div class="hover-indicator"></div>
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
                             <img style="height: 100px; width: 100px; object-fit: cover;"
@@ -129,7 +130,8 @@
                 <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(edu, idx) in user.education" :id="edu.school">
-                      <b-card class="mb-3 shadow-hover" style="height: 76px; overflow-y: hidden;" :id="'edu' + idx">
+                      <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 76px; overflow-y: hidden;" :id="'edu' + idx">
+                        <div class="hover-indicator"></div>
                         <button href="#" style="float: right; margin-top: -7px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
                           <i class="ti-angle-down" :id="'icon' + idx + 'edu'" @click="expandCollapseEdu(idx, edu.collapse, 'edu')"></i></button>
                         <button style="float: right; border: none; margin-top: -5px !important;"
@@ -177,7 +179,8 @@
                 <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(exp, idx) in user.experience">
-                      <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'exp' + idx">
+                      <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 73px; overflow-y: hidden;" :id="'exp' + idx">
+                        <div class="hover-indicator"></div>
                         <div class="row">
                           <div class="col-lg-10 col-md-11 col-sm-12">
                             <h5 class="card-title title-collapse" @click="expandCollapseExp(idx, exp.collapse, 'exp')">{{exp.company}}</h5>
@@ -247,7 +250,8 @@
                 <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(hon, idx) in user.honor">
-                      <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'hon' + idx">
+                      <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 73px; overflow-y: hidden;" :id="'hon' + idx">
+                        <div class="hover-indicator"></div>
                         <div class="row">
                           <div class="col-lg-10 col-md-11 col-sm-12">
                             <h5 class="card-title title-collapse" @click="expandCollapseHon(idx, hon.collapse, 'hon')">{{hon.title}}</h5>
@@ -309,7 +313,8 @@
                 <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(cert, idx) in user.certification">
-                      <b-card class="mb-3 shadow-hover" style="height: 73px; overflow-y: hidden;" :id="'cert' + idx">
+                      <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 73px; overflow-y: hidden;" :id="'cert' + idx">
+                        <div class="hover-indicator"></div>
                         <div class="row">
                           <div class="col-lg-10 col-md-11 col-sm-12">
                             <h5 class="card-title title-collapse" @click="expandCollapseCert(idx, cert.collapse, 'cert')">{{cert.title}}</h5>
@@ -1208,6 +1213,7 @@ export default {
     cursor: pointer;
     border-radius: 5px;
   }
+
   .user-hover {
     color: black;
   }
@@ -1222,8 +1228,28 @@ export default {
   }
 
   .shadow-hover:hover {
+    /*outline: 10px solid #f6af85;*/
+    /*outline-offset: -10px;*/
+    border-color: #DA9A74;
+    border-width: 1px;
+    background-color: rgba(218, 154, 116, 0.02);
     box-shadow: 1px 2px 5px #bdbdbd;
     transition: all 0.5s;
+  }
+  .hover-indicator{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    /*width: 10px;*/
+    background-color: #DA9A74;
+    display: none;
+    transition: all 0.5s;
+  }
+
+  .show-hover-indicator:hover .hover-indicator{
+    display: block;    transition: all 0.5s;
+
   }
 
   .swal-wide {
