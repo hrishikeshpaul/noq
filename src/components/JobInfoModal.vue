@@ -91,7 +91,7 @@ export default {
       this.newJob.skills = skills
     },
     addLocation (loc) {
-      this.job.location = loc.name
+      this.job.location = loc
     },
     editJob () {
       var headers = {
