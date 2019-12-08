@@ -1,3 +1,4 @@
+  
 <template>
   <div>
     <div class="mt-5 container">
@@ -8,7 +9,8 @@
             style="cursor: pointer; border-radius: 10px; padding-top: 5px; padding-bottom: 5px !important; border: none !important;"
             @click="logout"
           >
-            Logout <i class="ti-back-left"></i>
+            Logout
+            <i class="ti-back-left"></i>
           </button>
         </div>
         <b-card style="max-height: 85vh; overflow-y: auto; min-height: 60vh">
@@ -426,73 +428,72 @@
 </template>
 
 <script>
-import axios from 'axios'
-import NavBar from './NavBar'
-import SkillSelect from './SkillSelect'
-import UniversitySelect from './UniversitySelect'
-import url from '../config/server_config'
-
+import axios from "axios";
+import NavBar from "./NavBar";
+import SkillSelect from "./SkillSelect";
+import UniversitySelect from "./UniversitySelect";
+import url from "../config/server_config";
 export default {
-  name: 'ProfileBuilder',
+  name: "ProfileBuilder",
   components: {
     NavBar,
     SkillSelect,
     UniversitySelect
   },
-  data () {
+  data() {
     return {
       isError: false,
       invalidName: false,
       invalidPicture: false,
       invalidOrganization: false,
       invalidLinkedIn: false,
-      name: '',
+      name: "",
       user: {
-        bio: ' ',
-        company: '',
+        bio: " ",
+        company: "",
         profilepicture: null,
         social: {
-          linkedin: '',
-          github: ''
+          linkedin: "",
+          github: ""
         }
       },
-      role: '',
-      company: '',
+      role: "",
+      company: "",
       experiences: [
         {
-          company: '',
-          title: '',
-          location: '',
-          from: '',
-          to: '',
-          description: ''
+          company: "",
+          title: "",
+          location: "",
+          from: "",
+          to: "",
+          description: ""
         }
       ],
       educations: [
         {
-          school: '',
-          degree: '',
-          location: '',
-          fieldofstudy: '',
-          from: '',
-          to: ''
+          school: "",
+          degree: "",
+          location: "",
+          fieldofstudy: "",
+          from: "",
+          to: ""
         }
       ],
       honors: [
         {
-          title: '',
-          issuer: '',
-          description: '',
-          issueDate: ''
+          title: "",
+          issuer: "",
+          description: "",
+          issueDate: ""
         }
       ],
       certifications: [
         {
-          title: '',
-          issuer: '',
-          description: '',
-          issueDate: '',
-          expiryDate: ''
+          title: "",
+          issuer: "",
+          description: "",
+          issueDate: "",
+          expiryDate: ""
         }
       ],
       skills: [],
@@ -501,30 +502,28 @@ export default {
       errorMsg: null,
       goNextIfNoError: false,
       showNoError: false,
-      noError: ''
-    }
+      noError: ""
+    };
   },
   methods: {
-    onFileChanged (event) {
+    onFileChanged(event) {
       var headers = {
         Authorization:
-          'Bearer ' +
+          "Bearer " +
           localStorage
-            .getItem('jwtToken')
-            .substring(4, localStorage.getItem('jwtToken').length)
-      }
-
-      var file = event.target.files[0]
-      let reader = new FileReader()
-      reader.readAsDataURL(file)
-
+            .getItem("jwtToken")
+            .substring(4, localStorage.getItem("jwtToken").length)
+      };
+      var file = event.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
       reader.onload = e => {
-        this.user.profilepicture = e.target.result
+        this.user.profilepicture = e.target.result;
         axios
           .post(
             `${url}/api/profile/picture`,
             {
-              image: e.target.result.replace(/^data:image\/[a-z]+;base64,/, ''),
+              image: e.target.result.replace(/^data:image\/[a-z]+;base64,/, ""),
               user_id: this.user._id
             },
             { headers: headers }
@@ -532,38 +531,38 @@ export default {
           .then(response => {
             if (response.status === 204) {
               this.$swal({
-                position: 'top-right',
+                position: "top-right",
                 backdrop: false,
                 showConfirmButton: false,
                 timer: 2500,
-                width: '300px',
+                width: "300px",
                 imageHeight: 20,
                 imageWidth: 20,
-                background: 'rgba(92,184,92,0.93)',
+                background: "rgba(92,184,92,0.93)",
                 title:
                   "<span style=\"  font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 200; color: white; padding-top: 10px;\">Successfully updated profile picture!</span>"
-              })
+              });
             }
           })
           .catch(e => {
             if (e.response.status === 401) {
               this.$router.push({
-                name: 'Login'
-              })
+                name: "Login"
+              });
             }
-          })
-      }
+          });
+      };
     },
-    onComplete: function () {
+    onComplete: function() {
       var params = {
         Authorization:
-          'Bearer ' +
+          "Bearer " +
           localStorage
-            .getItem('jwtToken')
-            .substring(4, localStorage.getItem('jwtToken').length),
-        'Content-Type': 'application/json'
-      }
-      var id = localStorage.getItem('user_id')
+            .getItem("jwtToken")
+            .substring(4, localStorage.getItem("jwtToken").length),
+        "Content-Type": "application/json"
+      };
+      var id = localStorage.getItem("user_id");
       axios
         .patch(
           `${url}/api/user/${id}`,
@@ -571,50 +570,50 @@ export default {
           { headers: params }
         )
         .then(response => {
-          localStorage.setItem('user_first_time', 'false')
+          localStorage.setItem("user_first_time", "false");
           this.$swal({
-            type: 'success',
+            type: "success",
             showConfirmButton: true,
             timer: 4500,
-            width: '400px',
+            width: "400px",
             imageHeight: 20,
             imageWidth: 20,
             html:
               "<span style=\"font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 200;padding-top: 10px;\">Your profile has been set up!</span>",
             title:
               "<h3 style=\"font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 300\">Successful!</h3>"
-          })
+          });
           this.$router.push({
-            name: 'HomePage'
-          })
+            name: "HomePage"
+          });
         })
         .catch(e => {
-          console.log(e.response.data)
-        })
+          console.log(e.response.data);
+        });
     },
-    handleTabChanged (prevIndex, nextIndex) {
-      this.activeIndex = nextIndex
+    handleTabChanged(prevIndex, nextIndex) {
+      this.activeIndex = nextIndex;
     },
-    setLoading: function (value) {
-      this.loadingWizard = value
+    setLoading: function(value) {
+      this.loadingWizard = value;
     },
-    handleValidation: function (isValid, tabIndex) {
-      console.log('Tab: ' + tabIndex + ' valid: ' + isValid)
+    handleValidation: function(isValid, tabIndex) {
+      console.log("Tab: " + tabIndex + " valid: " + isValid);
     },
-    handleErrorMessage: function (errorMsg) {
-      this.errorMsg = errorMsg
+    handleErrorMessage: function(errorMsg) {
+      this.errorMsg = errorMsg;
     },
-    validateAsync: function () {
+    validateAsync: function() {
       return new Promise((resolve, reject) => {
-        var id = localStorage.getItem('user_id')
+        var id = localStorage.getItem("user_id");
         var params = {
           Authorization:
-            'Bearer ' +
+            "Bearer " +
             localStorage
-              .getItem('jwtToken')
-              .substring(4, localStorage.getItem('jwtToken').length),
-          'Content-Type': 'application/json'
-        }
+              .getItem("jwtToken")
+              .substring(4, localStorage.getItem("jwtToken").length),
+          "Content-Type": "application/json"
+        };
         if (this.activeIndex === 0) {
           var obj = {
             data: {
@@ -626,191 +625,226 @@ export default {
               profilepicture: this.user.profilepicture
             },
             user: { id: id }
-          }
+          };
           if (!this.user.name || !this.user.social.linkedin) {
-            this.invalidName = false
-            this.invalidOrganization = false
-            this.invalidLinkedIn = false
+            this.invalidName = false;
+            this.invalidOrganization = false;
+            this.invalidLinkedIn = false;
             if (!this.user.name) {
-              this.invalidName = true
+              this.invalidName = true;
             }
             // if (!this.user.company) { this.invalidOrganization = true }
             if (!this.user.social.linkedin) {
-              this.invalidLinkedIn = true
+              this.invalidLinkedIn = true;
             }
-            reject('Please enter required fields')
+            reject("Please enter required fields");
           }
-
-          console.log(obj)
+          console.log(obj);
           axios
             .post(`${url}/api/profile/personal`, obj, { headers: params })
             .then(response => {
-              resolve(true)
+              resolve(true);
             })
             .catch(e => {
-              reject(e.response.data)
-            })
+              reject(e.response.data);
+            });
         } else if (this.activeIndex === 1) {
-          if (this.role === 'student') {
-            let vals = new Set()
+          if (this.role === "student") {
+            let vals = new Set();
             for (let i = 0; i < this.educations.length; i++) {
-              vals.add(this.educations[i].school === '')
-              vals.add(this.educations[i].degree === '')
+              vals.add(this.educations[i].school === "");
+              vals.add(this.educations[i].degree === "");
               // vals.add(this.educations[i].location === "");
-              vals.add(this.educations[i].fieldofstudy === '')
-              vals.add(this.educations[i].from === '')
-              vals.add(this.educations[i].to === '')
+              vals.add(this.educations[i].fieldofstudy === "");
+              vals.add(this.educations[i].from === "");
+              vals.add(this.educations[i].to === "");
               if (
-                this.educations[i].from != '' &&
-                this.educations[i].to != ''
+                this.educations[i].from != "" &&
+                this.educations[i].to != ""
               ) {
-                let from = new Date(this.educations[i].from)
-                let to = new Date(this.educations[i].to)
+                let from = new Date(this.educations[i].from);
+                let to = new Date(this.educations[i].to);
                 if (from > to) {
                   reject(
-                    'Please make sure the to date appears after the from date'
-                  )
+                    "Please make sure the to date appears after the from date"
+                  );
                 }
               }
             }
             if (vals.size == 1) {
-              var obj = {
-                data: this.educations,
-                user: { id: id }
+              //get iterator:
+              var it = vals.values();
+              //get first entry:
+              var first = it.next();
+              //get value out of the iterator entry:
+              var value = first.value;
+              if (value === false) {
+                var obj = {
+                  data: this.educations,
+                  user: { id: id }
+                };
+                axios
+                  .post(`${url}/api/profile/education`, obj, {
+                    headers: params
+                  })
+                  .then(response => {
+                    resolve(true);
+                  })
+                  .catch(e => {
+                    reject(e.response.data);
+                  });
+              } else {
+                resolve(true);
               }
-
-              axios
-                .post(`${url}/api/profile/education`, obj, {
-                  headers: params
-                })
-                .then(response => {
-                  resolve(true)
-                })
-                .catch(e => {
-                  reject(e.response.data)
-                })
             } else {
               reject(
-                'Please complete all fields, or return to this section later.'
-              )
+                "Please complete all fields, or return to this section later."
+              );
             }
           } else {
-            console.log('pt employer code')
+            console.log("pt employer code");
           }
         } else if (this.activeIndex === 2) {
-          if (this.role === 'student') {
-            let vals = new Set()
+          if (this.role === "student") {
+            let vals = new Set();
             for (let i = 0; i < this.experiences.length; i++) {
-              vals.add(this.experiences[i].company === '')
-              vals.add(this.experiences[i].title === '')
-              vals.add(this.experiences[i].location === '')
-              vals.add(this.experiences[i].from === '')
-              vals.add(this.experiences[i].description === '')
+              vals.add(this.experiences[i].company === "");
+              vals.add(this.experiences[i].title === "");
+              vals.add(this.experiences[i].location === "");
+              vals.add(this.experiences[i].from === "");
+              vals.add(this.experiences[i].description === "");
               if (
-                this.experiences[i].from != '' &&
-                this.experiences[i].to != ''
+                this.experiences[i].from != "" &&
+                this.experiences[i].to != ""
               ) {
-                let from = new Date(this.experiences[i].from)
-                let to = new Date(this.experiences[i].to)
+                let from = new Date(this.experiences[i].from);
+                let to = new Date(this.experiences[i].to);
                 if (from > to) {
                   reject(
-                    'Please make sure the to date appears after the from date'
-                  )
+                    "Please make sure the to date appears after the from date"
+                  );
                 }
               }
             }
             if (vals.size === 1) {
-              var obj = {
-                data: this.experiences,
-                user: { id: id }
+              //get iterator:
+              var it = vals.values();
+              //get first entry:
+              var first = it.next();
+              //get value out of the iterator entry:
+              var value = first.value;
+              if (value === false) {
+                var obj = {
+                  data: this.experiences,
+                  user: { id: id }
+                };
+                axios
+                  .post(`${url}/api/profile/experience`, obj, {
+                    headers: params
+                  })
+                  .then(response => {
+                    resolve(true);
+                  })
+                  .catch(e => {
+                    reject(e.response.data);
+                  });
+              } else {
+                resolve(true);
               }
-
-              axios
-                .post(`${url}/api/profile/experience`, obj, {
-                  headers: params
-                })
-                .then(response => {
-                  resolve(true)
-                })
-                .catch(e => {
-                  reject(e.response.data)
-                })
             } else {
               reject(
-                'Please complete all fields, or return to this section later.'
-              )
+                "Please complete all fields, or return to this section later."
+              );
             }
           } else {
-            console.log('pt employer code')
+            console.log("pt employer code");
           }
         } else if (this.activeIndex === 3) {
-          if (this.role === 'student') {
-            let vals = new Set()
+          if (this.role === "student") {
+            let vals = new Set();
             for (let i = 0; i < this.honors.length; i++) {
-              vals.add(this.honors[i].title === '')
-              vals.add(this.honors[i].issuer === '')
+              vals.add(this.honors[i].title === "");
+              vals.add(this.honors[i].issuer === "");
               // vals.add(this.educations[i].location === "");
-              vals.add(this.honors[i].description === '')
-              vals.add(this.honors[i].issueDate === '')
+              vals.add(this.honors[i].description === "");
+              vals.add(this.honors[i].issueDate === "");
             }
             if (vals.size == 1) {
-              var obj = {
-                data: this.honors,
-                user: { id: id }
+              //get iterator:
+              var it = vals.values();
+              //get first entry:
+              var first = it.next();
+              //get value out of the iterator entry:
+              var value = first.value;
+              if (value === false) {
+                var obj = {
+                  data: this.honors,
+                  user: { id: id }
+                };
+                axios
+                  .post(`${url}/api/profile/honor`, obj, {
+                    headers: params
+                  })
+                  .then(response => {
+                    resolve(true);
+                  })
+                  .catch(e => {
+                    reject(e.response.data);
+                  });
+              } else {
+                resolve(true);
               }
-
-              axios
-                .post(`${url}/api/profile/honor`, obj, {
-                  headers: params
-                })
-                .then(response => {
-                  resolve(true)
-                })
-                .catch(e => {
-                  reject(e.response.data)
-                })
             } else {
               reject(
-                'Please complete all fields, or return to this section later.'
-              )
+                "Please complete all fields, or return to this section later."
+              );
             }
           } else {
-            console.log('pt employer code')
+            console.log("pt employer code");
           }
         } else if (this.activeIndex === 4) {
-          if (this.role === 'student') {
-            let vals = new Set()
+          if (this.role === "student") {
+            let vals = new Set();
             for (let i = 0; i < this.certifications.length; i++) {
-              vals.add(this.certifications[i].title === '')
-              vals.add(this.certifications[i].issuer === '')
+              vals.add(this.certifications[i].title === "");
+              vals.add(this.certifications[i].issuer === "");
               // vals.add(this.educations[i].location === "");
-              vals.add(this.certifications[i].description === '')
-              vals.add(this.certifications[i].issueDate === '')
-              vals.add(this.certifications[i].expiryDate === '')
+              vals.add(this.certifications[i].description === "");
+              vals.add(this.certifications[i].issueDate === "");
+              vals.add(this.certifications[i].expiryDate === "");
             }
             if (vals.size == 1) {
-              var obj = {
-                data: this.certifications,
-                user: { id: id }
+              //get iterator:
+              var it = vals.values();
+              //get first entry:
+              var first = it.next();
+              //get value out of the iterator entry:
+              var value = first.value;
+              if (value === false) {
+                var obj = {
+                  data: this.certifications,
+                  user: { id: id }
+                };
+                axios
+                  .post(`${url}/api/profile/certification`, obj, {
+                    headers: params
+                  })
+                  .then(response => {
+                    resolve(true);
+                  })
+                  .catch(e => {
+                    reject(e.response.data);
+                  });
+              } else {
+                resolve(true);
               }
-
-              axios
-                .post(`${url}/api/profile/certification`, obj, {
-                  headers: params
-                })
-                .then(response => {
-                  resolve(true)
-                })
-                .catch(e => {
-                  reject(e.response.data)
-                })
             } else {
               reject(
-                'Please complete all fields, or return to this section later.'
-              )
+                "Please complete all fields, or return to this section later."
+              );
             }
           } else {
-            console.log('pt employer code')
+            console.log("pt employer code");
           }
         } else if (this.activeIndex === 5) {
           if (this.skills.length > 0) {
@@ -818,141 +852,139 @@ export default {
             // this.skills.forEach(skill => {
             //   skillsArray.push(skill.name)
             // })
-
             var obj = {
               data: this.skills,
               user: { id: id }
-            }
-
+            };
             axios
               .post(`${url}/api/profile/skills`, obj, { headers: params })
               .then(response => {
-                resolve(true)
+                resolve(true);
               })
               .catch(e => {
-                reject(e.response.data)
-              })
+                reject(e.response.data);
+              });
           } else {
-            resolve(true)
+            resolve(true);
           }
         }
-      })
+      });
     },
-    addItem (array) {
-      if (array === 'education') {
+    addItem(array) {
+      if (array === "education") {
         this.educations.push({
-          school: '',
-          degree: '',
-          fieldofstudy: '',
-          from: '',
-          to: '',
+          school: "",
+          degree: "",
+          fieldofstudy: "",
+          from: "",
+          to: "",
           current: true
-        })
-      } else if (array === 'experience') {
+        });
+      } else if (array === "experience") {
         this.experiences.push({
-          company: '',
-          title: '',
-          location: '',
-          from: '',
-          to: '',
+          company: "",
+          title: "",
+          location: "",
+          from: "",
+          to: "",
           current: [],
-          description: ''
-        })
-      } else if (array === 'honor') {
+          description: ""
+        });
+      } else if (array === "honor") {
         this.honors.push({
-          title: '',
-          issuer: '',
-          issueDate: '',
-          description: ''
-        })
-      } else if (array === 'certification') {
+          title: "",
+          issuer: "",
+          issueDate: "",
+          description: ""
+        });
+      } else if (array === "certification") {
         this.honors.push({
-          title: '',
-          issuer: '',
-          issueDate: '',
-          expiryDate: '',
-          description: ''
-        })
+          title: "",
+          issuer: "",
+          issueDate: "",
+          expiryDate: "",
+          description: ""
+        });
       }
     },
-    addSkills (skill) {
-      this.skills = skill
+    addSkills(skill) {
+      this.skills = skill;
     },
-    addCompany (skill) {
-      this.user.company = skill.name
+    addCompany(skill) {
+      this.user.company = skill.name;
     },
-    deleteItem (index, array) {
-      if (array === 'education') {
+    deleteItem(index, array) {
+      if (array === "education") {
         this.educations = this.educations.splice(
           this.educations.indexOf(index),
           1
-        )
-      } else if (array === 'experience') {
+        );
+      } else if (array === "experience") {
         this.experiences = this.experiences.splice(
           this.experiences.indexOf(index),
           1
-        )
+        );
       }
     },
-    logout () {
-      localStorage.removeItem('jwtToken')
+    logout() {
+      localStorage.removeItem("jwtToken");
       this.$router.push({
-        name: 'Login'
-      })
+        name: "Login"
+      });
     }
   },
-  created () {
-    if (localStorage.getItem('role') == 'null') {
+  created() {
+    if (localStorage.getItem("role") == "null") {
       const { value: role } = this.$swal({
-        title: 'Select Role',
-        input: 'select',
+        title: "Select Role",
+        input: "select",
         inputOptions: {
-          student: 'Student',
-          employer: 'Employer'
+          student: "Student",
+          employer: "Employer"
         },
         allowOutsideClick: false,
         showCancelButton: false,
-        inputPlaceholder: 'Select role',
-        confirmButtonColor: '#f0ad4e',
+        inputPlaceholder: "Select role",
+        confirmButtonColor: "#f0ad4e",
         inputValidator: value => {
           return new Promise((resolve, reject) => {
-            if (value === 'student' || value === 'employer') {
-              var id = localStorage.getItem('user_id')
+            if (value === "student" || value === "employer") {
+              var id = localStorage.getItem("user_id");
               var params = {
                 Authorization:
-                  'Bearer ' +
+                  "Bearer " +
                   localStorage
-                    .getItem('jwtToken')
-                    .substring(4, localStorage.getItem('jwtToken').length),
-                'Content-Type': 'application/json'
-              }
+                    .getItem("jwtToken")
+                    .substring(4, localStorage.getItem("jwtToken").length),
+                "Content-Type": "application/json"
+              };
               var obj = {
                 user: id,
                 role: value
-              }
+              };
               axios
                 .post(`${url}/api/profile/updateRole`, obj, { headers: params })
                 .then(resposne => {
-                  localStorage.setItem('role', value)
-                  this.role = value
-                  resolve()
+                  localStorage.setItem("role", value);
+                  this.role = value;
+                  resolve();
                 })
                 .catch(e => {
-                  reject('Error')
-                })
+                  reject("Error");
+                });
             } else {
-              resolve('You need to select a role :)')
+              resolve("You need to select a role :)");
             }
-          })
+          });
         }
-      })
+      });
     }
   },
-  mounted () {
-    document.getElementById('main').style.marginLeft = '0'
-    this.role = localStorage.role
+  mounted() {
+    document.getElementById("main").style.marginLeft = "0";
+    this.role = localStorage.role;
   }
-}
+};
 </script>
 
 <style scoped>
@@ -969,43 +1001,40 @@ export default {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
   margin-bottom: 28px;
 }
-
-  .error-border {
-    border-color: red;
-  }
-  .error-label {
-    color: red;
-  }
-  .nice-font {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 200;
-  }
-  .input-field {
-    border: 0;
-    border-radius: 5px;
-    outline: none;
-    font-weight: 300;
-    box-shadow: none;
-    margin-top: 1px;
-    background-color: #f6f6f6;
-  }
-  .input-field:hover {
-    background-color: #f1f1f1;
-  }
-  .input-field:focus {
-    background-color: #eaeaea;
-  }
-  .smaller-font {
-    font-size: 13px;
-  }
-
+.error-border {
+  border-color: red;
+}
+.error-label {
+  color: red;
+}
+.nice-font {
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+}
+.input-field {
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  font-weight: 300;
+  box-shadow: none;
+  margin-top: 1px;
+  background-color: #f6f6f6;
+}
+.input-field:hover {
+  background-color: #f1f1f1;
+}
+.input-field:focus {
+  background-color: #eaeaea;
+}
+.smaller-font {
+  font-size: 13px;
+}
 /deep/ .btn-outline-primary {
   cursor: pointer !important;
   background-color: white;
   border: 1px solid #c68967 !important;
   color: grey !important;
 }
-
 /deep/ .btn-outline-primary:hover {
   border-color: #c68967 !important;
   background-color: #de9a73 !important;
@@ -1016,12 +1045,10 @@ export default {
   background-color: #bf8463 !important;
   color: white !important;
 }
-
 .wrapper {
   position: relative;
   border-radius: 10px;
 }
-
 .overlay {
   position: absolute;
   top: 0;
