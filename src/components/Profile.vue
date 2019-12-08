@@ -407,7 +407,7 @@
                             <img style="height: 100px; width: 100px; object-fit: cover;" class="icon-border"
                                  :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/company.jpg')">
                           </div>
-                          <div style="text-align: justify" class="col-lg-8 col-md-8 col-sm-12">
+                          <div style="text-align: justify" class="col-lg-7 col-md-7 col-sm-12">
                             <h5 class="card-title title-collapse" @click="expandCollapseItem(idx, job.collapse, job._id)">{{job.title}}</h5>
                             <div class="row">
                               <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
@@ -441,7 +441,7 @@
                                 <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
                               </div>
                               <div class="col-lg-11 pl-0">
-                                <span style="white-space: pre-wrap; font-size: 14px;">{{job.description}}</i></span>
+                                <span style="white-space: pre-wrap; font-size: 14px;">{{job.description}}</span>
                               </div>
                             </div>
                             <p></p>
@@ -455,7 +455,7 @@
                             </div>
                             <p></p>
                           </div>
-                          <div class="col-lg-2 col-md-2 col-sm-12">
+                          <div class="col-lg-3 col-md-3 col-sm-12">
                             <button href="#" style="float: right; margin-top: -2px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-secondary">
                               <i class="ti-angle-down" :id="'icon' + idx + job._id" @click="expandCollapseItem(idx, job.collapse, job._id)"></i></button>
                             <button href="#" style="float: right; margin-top: -2px !important; border: none;"
