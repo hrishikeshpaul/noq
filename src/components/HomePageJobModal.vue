@@ -9,7 +9,7 @@
 <!--          </div>-->
 <!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">{{newJob.company}}</p>-->
 <!--        </template>-->
-        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f6f6f6; padding: 15px !important;">
+        <div style="max-height: 600px !important; overflow-y: auto; background-color: #f6f6f6;">
           <div class="text-center nice-font">
             <img :src="newJob.employer.profilepicture ? newJob.employer.profilepicture.toString() : require('../assets/company.jpg')" style="height: 150px; width: 150px; border-radius: 50%; object-fit: cover;border: 3px solid #929292;"/>
             <p style="font-size: 20px;" class="pt-2 mb-0 pb-0">{{newJob.company}}</p>
@@ -134,14 +134,15 @@ export default {
     font-size: 35px;
   }
   /deep/ .modal-header {
-    color: white;
-    background-color: #DA9F74;
+    color: white !important;
+    background-color: #DA9F74 !important;
   }
   /deep/ .close {
     color: white;
   }
   /deep/ .modal-body {
-    padding: 0;
+    padding: 15px !important;
+    background-color: #f6f6f6 !important;
      }
   button {
     cursor: pointer;

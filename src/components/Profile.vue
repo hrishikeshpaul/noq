@@ -1231,7 +1231,7 @@ export default {
     /*outline: 10px solid #f6af85;*/
     /*outline-offset: -10px;*/
     border-color: #DA9A74;
-    border-width: 3px;
+    border-width: 1px;
     background-color: rgba(218, 154, 116, 0.02);
     box-shadow: 1px 2px 5px #bdbdbd;
     transition: all 0.5s;
