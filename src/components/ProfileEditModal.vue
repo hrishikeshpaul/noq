@@ -9,7 +9,7 @@
 <!--          </div>-->
 <!--          <p style="font-size: 17px; color: #7f8993; margin-top: -7px; padding-left: 5px;" class="mb-0 px-3 nice-font">Make changes to some basic details of your profile!</p>-->
 <!--        </template>-->
-        <div class="d-block text-center px-3 nice-font mb-2" style="max-height: 600px; overflow-y: auto;">
+        <div class="d-block text-center px-3 nice-font mb-2" style="max-height: 1000px; overflow-y: auto;">
           <b-alert variant="danger" v-model="showAlert"> {{alertText}}</b-alert>
           <div class="text-center nice-font mb-2">
             <div class="wrapper">
@@ -163,7 +163,7 @@
       this.newUser.company = com.name
     },
     addLocation (loc) {
-      this.newUser.location = loc.name
+      this.newUser.location = loc
     },
     editUser () {
       var headers = {

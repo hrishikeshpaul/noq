@@ -5,70 +5,70 @@
       :max-height="150"
       tag-placeholder="Add this as new tag"
       placeholder="Search for a city"
-      label="name" track-by="name"
       :options="options"
+      :show-labels="false"
       :taggable="false"
       :multiple="false"
       :option-height="194"
       @search-change="searchQuery"
-    ></multiselect>
+    />
   </div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import 'vue-multiselect/dist/vue-multiselect.min.css'
-import axios from 'axios'
+  import Multiselect from 'vue-multiselect'
+  import 'vue-multiselect/dist/vue-multiselect.min.css'
+  import axios from 'axios'
 
-export default {
-  name: 'Location select',
-  components: {
-    Multiselect
-  },
-  data () {
-    return {
-      value: {name: this.rVal},
-      options: []
-    }
-  },
-  props: {
-    rVal: {
-      type: String
-    }
-  },
-  created () {
-    this.options = [{name: 'search for a city'}]
-  },
-  watch: {
-    value (newVal) {
-      if (typeof newVal.hasOwnProperty('name') !== null) {
-        this.$emit('addLocation', newVal)
+  export default {
+    name: 'LocationSelect',
+    components: {
+      Multiselect
+    },
+    data () {
+      return {
+        value: this.rVal,
+        options: []
       }
-    }
-  },
-  methods: {
-    searchQuery (newVal) {
-      axios({
-        method: 'GET',
-        'url': 'https://cors-anywhere.herokuapp.com/' +
+    },
+    props: {
+      rVal: {
+        type: String
+      }
+    },
+    created () {
+      this.options = ['search for your city']
+    },
+    watch: {
+      value (newVal) {
+        if (typeof newVal.hasOwnProperty('name') !== null) {
+          this.$emit('addLocation', newVal)
+        }
+      }
+    },
+    methods: {
+      searchQuery (newVal) {
+        this.options=['search for your city']
+        axios({
+          method: 'GET',
+          'url':
+          // 'https://cors-anywhere.herokuapp.com/' +
             'http://api.geonames.org/postalCodeSearchJSON?placename_startsWith=' +
             newVal +
             '&username=rayzhang001'
-      })
-        .then(result => {
-          // this.options=[]
-          var arr = result.data.postalCodes
-          arr.forEach(s => {
-            let address = s.placeName + ', ' + s['ISO3166-2']
-            if (!this.options.includes({name: address})) {
-              this.options.push({name: address})
-            }
-          })
-          console.log(this.options[0])
         })
+          .then(result => {
+            var arr = result.data.postalCodes
+            arr.forEach(s => {
+              let address = s.placeName + ', ' + s['ISO3166-2']
+              if (!this.options.includes(address)) {
+                this.options.push(address)
+              }
+            })
+          })
+      }
     }
   }
-}
 </script>
 
 <style scoped>
