@@ -33,10 +33,10 @@
                         </b-form-group>
 
                         <label v-if="forgotPassword" class="smaller-font">Security Question</label>
-                        <b-form-select v-if="forgotPassword" v-model="login.security" :options="securityOptions" size="md" id="security" class="w-100" style="font-weight: 300;"></b-form-select>
+                        <b-form-select v-if="forgotPassword" v-model="login.security" :options="securityOptions" size="md" id="security" class="w-100 input-field" style="font-weight: 300;"></b-form-select>
                         <label v-if="forgotPassword" class="smaller-font mt-3">Security Question Answer</label>
                         <b-form-input v-if="forgotPassword" id="security_answer" placeholder="Please input your answer here"
-                                      v-model.trim="login.security_answer" class="no-border" style="margin-bottom: 10px; font-weight: 300;"></b-form-input>
+                                      v-model.trim="login.security_answer" class="no-border input-field" style="margin-bottom: 10px; font-weight: 300;"></b-form-input>
 
                         <label v-if="!forgotPassword" class="smaller-font">Password</label>
 
