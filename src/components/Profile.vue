@@ -405,7 +405,7 @@
                       </b-input-group-append>
                     </b-input-group>
                     <div v-for="(job, idx) in employerJobs">
-                      <b-card class="text-left my-2 card-collapse"
+                      <b-card class="text-left my-2 card-collapse shadow-hover"
                               style="height: 136px; overflow-y: hidden; background-color: #fdfdfd" :id="idx">
                         <div class="row">
                           <div style="" class="col-lg-2 col-md-2 col-sm-12 pr-1">
@@ -490,11 +490,11 @@
                   <b-card-body class="px-0 pt-0">
                     <div v-for="(job, jidx) in user.jobs">
                       <div v-for="(user, idx) in job.confirmed_users">
-                        <b-card class="text-left my-2" style="height: 76px; overflow-y: hidden;" :id="'applicant' + idx + jidx">
+                        <b-card class="text-left shadow-hover my-2" style="height: 76px; overflow-y: hidden;" :id="'applicant' + idx + jidx">
+                          <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 btn btn-outline-secondary"><i class="ti-angle-down" :id="'applicant' + 'icon' + idx + jidx" @click="expandCollapseApplicants(idx, jidx, user.collapse, 'applicant')"></i></button>
                           <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-danger" @click="rejectConfirmedApplicant(job._id, user._id)"><i class="ti-close"></i></button>
                           <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 ml-2 btn btn-outline-info"><i class="ti-comment-alt" @click="messageUserModal(user)"></i></button>
-                          <button href="#" style="float: right; margin-top: -5px !important; border: none;" class="mt-3 pt-2 btn btn-outline-secondary"><i class="ti-angle-down" :id="'applicant' + 'icon' + idx + jidx" @click="expandCollapseApplicants(idx, jidx, user.collapse, 'applicant')"></i></button>
-                          <h5 class="card-title user-hover mt-1" style="cursor: pointer; font-weight: 300;" @click="applicantDataModal(user)">{{user.name}}</h5>
+                          <h5 class="card-title user-hover  mt-1" style="cursor: pointer; font-weight: 300;" @click="applicantDataModal(user)">{{user.name}}</h5>
                           <hr />
                           <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                           <span style="font-size: 15px;">{{job.title}}</span>
@@ -1232,7 +1232,7 @@ export default {
     /*outline-offset: -10px;*/
     border-color: #DA9A74;
     border-width: 1px;
-    background-color: rgba(218, 154, 116, 0.02);
+    background-color: rgba(218, 154, 116, 0.02) !important;
     box-shadow: 1px 2px 5px #bdbdbd;
     transition: all 0.5s;
   }
