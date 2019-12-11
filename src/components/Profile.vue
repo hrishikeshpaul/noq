@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="col-lg-9 col-md-6 col-sm-12">
-          <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'student'">
+          <div class="mb-5 mt-4 container px-0 mb-5 bg-white rounded" v-if="role === 'student'" style="outline: none !important;">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
                 <b-tab title="Interests" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
@@ -393,7 +393,7 @@
             </b-card>
           </div>
 
-          <div class="mb-5 mt-4 container px-0 shadow-sm mb-5 bg-white rounded" v-if="role === 'employer'">
+          <div class="mb-5 mt-4 container px-0 mb-5 bg-white rounded" v-if="role === 'employer'" style="outline: none !important;">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
                 <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0" >
