@@ -157,7 +157,8 @@ export default {
         { name: 'Skills', code: 'skills' }
       ],
       employerFilterOptions: [
-        { name: 'University', code: 'company' }
+        { name: 'University', code: 'company' },
+        { name: 'Job', code: 'job'}
       ],
       showHomePageJobModal: false,
       showHomePageUserModal: false
@@ -285,6 +286,7 @@ export default {
             this.getOriginalJobList(this.jobs, this.studentKeyToGroup)
           } else {
             this.users = response.data
+            console.log(this.users)
           }
 
           this.isLoading = false
@@ -547,9 +549,8 @@ export default {
         list.forEach(item => {
           const newItem = Object.assign({}, item)
           delete newItem[key]
-          console.log(item[key])
           let group = ''
-          if (key==='skills'){
+          if (key=== 'skills'){
             item[key].forEach(skill=>{
               group+=skill.name+', '
             })
@@ -577,7 +578,11 @@ export default {
         list.forEach(item => {
           const newItem = Object.assign({}, item)
           delete newItem[key]
-          let group=item[key]
+          let group = item[key]
+          if (key === 'job') {
+            group = item[key].title
+          }
+
           newGroup[group] = newGroup[group] || []
           newGroup[group].push(newItem)
         })
