@@ -75,8 +75,8 @@
           <h5 style="font-weight: 300;"><div class="mb-3">{{ key }}</div></h5>
           <div
             v-for="u in user" v-if="user.length > 0"
-            style="display: inline-block;"
-            class="mr-5">
+            style="display: inline-block; margin-right: 40px"
+            >
             <UserCard
               :user="u"
               ref="card"
