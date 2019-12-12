@@ -36,7 +36,7 @@
                   <b-form-input id="position" v-model.trim="newPassword1" type="password" class="input-field"></b-form-input>
                 </b-form-group>
               </b-form>
-              <button class="mt-2 btn btn-primary w-25" @click="changePassword">Change Password</button>
+              <button class="mt-2 btn btn-primary w-25" @click="changePassword">Change</button>
             </div>
           </div>
         </div>
