@@ -52,7 +52,7 @@
         axios({
           method: 'GET',
           'url':
-          // 'https://cors-anywhere.herokuapp.com/' +
+          'https://cors-anywhere.herokuapp.com/' +
             'http://api.geonames.org/postalCodeSearchJSON?placename_startsWith=' +
             newVal +
             '&username=rayzhang001'
