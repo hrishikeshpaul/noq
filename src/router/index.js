@@ -22,7 +22,7 @@ export default new Router({
       path: '/oauth/:id/:token',
       name: 'OAuth',
       beforeEnter (to, from, next) {
-        axios.post(`https://ancient-caverns-78426.herokuapp.com/api/auth/login/`, {username: to.params.id, token: to.params.token})
+        axios.post(`https://noq-server1.herokuapp.com/api/auth/login/`, {username: to.params.id, token: to.params.token})
           .then(response => {
             localStorage.setItem('jwtToken', response.data.token)
             localStorage.setItem('user_first_time', response.data.user.first_time)
