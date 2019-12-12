@@ -117,7 +117,7 @@ export default {
         axios.post(`${url}/api/profile/education`, {data: [this.newEducation], user: {id: this.user._id}}, {headers: headers})
           .then(response => {
             this.$swal({
-              position: 'top-right',
+              position: 'bottom-right',
               backdrop: false,
               showConfirmButton: false,
               timer: 2500,
@@ -150,7 +150,7 @@ export default {
         .then(response => {
           if (response.status === 200) {
             this.$swal({
-              position: 'top-right',
+              position: 'bottom-right',
               backdrop: false,
               showConfirmButton: false,
               timer: 2500,

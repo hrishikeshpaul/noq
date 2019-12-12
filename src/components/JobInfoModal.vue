@@ -108,7 +108,7 @@ export default {
           .then(response => {
             if (response.status === 200) {
               this.$swal({
-                position: 'top-right',
+                position: 'bottom-right',
                 backdrop: false,
                 showConfirmButton: false,
                 timer: 2500,

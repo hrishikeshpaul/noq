@@ -116,7 +116,7 @@ export default {
           this.feedback.subject = ''
           this.feedback.message = ''
           this.$swal({
-            position: 'top-right',
+            position: 'bottom-right',
             backdrop: false,
             showConfirmButton: false,
             timer: 2500,

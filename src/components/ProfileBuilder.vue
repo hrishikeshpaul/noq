@@ -1,4 +1,4 @@
-  
+
 <template>
   <div>
     <div class="mt-5 container">
@@ -531,7 +531,7 @@ export default {
           .then(response => {
             if (response.status === 204) {
               this.$swal({
-                position: "top-right",
+                position: "bottom-right",
                 backdrop: false,
                 showConfirmButton: false,
                 timer: 2500,

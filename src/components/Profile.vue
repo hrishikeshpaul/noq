@@ -804,7 +804,7 @@ export default {
     },
     hideJobInputModal () {
       this.$swal({
-        position: 'top-right',
+        position: 'bottom-right',
         backdrop: false,
         showConfirmButton: false,
         timer: 2500,
@@ -845,7 +845,7 @@ export default {
             axios.delete(`${url}/api/jobs/${job._id}`, {headers: headers})
               .then(response => {
                 this.$swal({
-                  position: 'top-right',
+                  position: 'bottom-right',
                   backdrop: false,
                   showConfirmButton: false,
                   timer: 2500,
@@ -867,7 +867,7 @@ export default {
     },
     hideDeleteConfirmModal () {
       this.$swal({
-        position: 'top-right',
+        position: 'bottom-right',
         backdrop: false,
         showConfirmButton: false,
         timer: 2500,
@@ -978,7 +978,7 @@ export default {
             axios.delete(`${url}/api/profile/experience/${exp._id}`, {headers: headers})
               .then(response => {
                 this.$swal({
-                  position: 'top-right',
+                  position: 'bottom-right',
                   backdrop: false,
                   showConfirmButton: false,
                   timer: 2500,
@@ -1012,7 +1012,7 @@ export default {
             axios.delete(`${url}/api/profile/education/${edu._id}`, {headers: headers})
               .then(response => {
                 this.$swal({
-                  position: 'top-right',
+                  position: 'bottom-right',
                   backdrop: false,
                   showConfirmButton: false,
                   timer: 2500,
@@ -1047,7 +1047,7 @@ export default {
             axios.delete(`${url}/api/profile/honor/${hon._id}`, {headers: headers})
               .then(response => {
                 this.$swal({
-                  position: 'top-right',
+                  position: 'bottom-right',
                   backdrop: false,
                   showConfirmButton: false,
                   timer: 2500,
@@ -1082,7 +1082,7 @@ export default {
             axios.delete(`${url}/api/profile/certification/${cert._id}`, {headers: headers})
               .then(response => {
                 this.$swal({
-                  position: 'top-right',
+                  position: 'bottom-right',
                   backdrop: false,
                   showConfirmButton: false,
                   timer: 2500,
@@ -1117,7 +1117,7 @@ export default {
             axios.patch(`${url}/api/jobs/rejectconfirmedapplicant`, {job: job_id, user: user_id}, {headers: headers})
               .then(response => {
                 this.$swal({
-                  position: 'top-right',
+                  position: 'bottom-right',
                   backdrop: false,
                   showConfirmButton: false,
                   timer: 2500,
@@ -1149,7 +1149,7 @@ export default {
       }, {headers: headers})
         .then(response => {
           this.$swal({
-            position: 'top-right',
+            position: 'bottom-right',
             backdrop: false,
             showConfirmButton: false,
             timer: 2500,

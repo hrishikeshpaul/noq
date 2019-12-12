@@ -310,7 +310,7 @@ export default {
       }, {headers})
         .then(response => {
           this.$swal({
-            position: 'top-right',
+            position: 'bottom-right',
             backdrop: false,
             showConfirmButton: false,
             timer: 2500,
@@ -351,7 +351,7 @@ export default {
       }, {headers})
         .then(response => {
           this.$swal({
-            position: 'top-right',
+            position: 'bottom-right',
             backdrop: false,
             showConfirmButton: false,
             timer: 2500,
@@ -391,7 +391,7 @@ export default {
       }, {headers})
         .then(response => {
           this.$swal({
-            position: 'top-right',
+            position: 'bottom-right',
             backdrop: false,
             showConfirmButton: false,
             timer: 2500,
@@ -430,7 +430,7 @@ export default {
       }, {headers})
         .then(response => {
           this.$swal({
-            position: 'top-right',
+            position: 'bottom-right',
             backdrop: false,
             showConfirmButton: false,
             timer: 2500,
