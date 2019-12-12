@@ -18,15 +18,15 @@
 
   <LoadingBar v-show="isLoading"/>
 
-  <div class="card mx-5 mt-5">
-    <div class="card-body pt-0 px-0" style="height: 695px; background-color: rgba(255,250,250,0.85);">
+  <div class="card">
+    <div class="card-body pt-0 px-0" style="height: 93vh; background-color: rgba(255,250,250,0.85);">
       <div class="row" style="height: 100%;">
-        <div class="col-5 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 690px;">
+        <div class="col-lg-4 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; ">
           <div>
             <b-card no-body style="border: 0">
               <b-tabs card>
                 <b-tab title="Conversations" active @click="getData2">
-                  <b-card-text style="background-color: rgba(255,250,250,0.85) !important;">
+                  <b-card-text style="background-color: rgba(255,250,250,0.85) !important; overflow-y: auto; max-height: 80vh;">
                     <input type="text" class="input-field form-control" placeholder="Search.." v-model="searchConversations"/>
                     <hr />
                     <div v-for="conversation in computedUserConversations">
@@ -74,7 +74,7 @@
             </b-card>
           </div>
         </div>
-        <div class="col-7 p-0 pr-3" style="padding-right: 15px !important; border-top-right-radius: 10px !important;">
+        <div class="col-lg-8 p-0 pr-3" style="padding-right: 15px !important; border-top-right-radius: 10px !important;">
           <div v-if="noChat" style="background-color: #303030; height: 72px">
             <div class="pt-3">
               <span style="font-size: 25px; font-weight: 400; padding-left: 15px; color: white; ">Open a chat!</span>
@@ -90,7 +90,7 @@
             </div>
             <div>
               <div class="chat-box" id="chatBox">
-                <div class="chat-here" style="height: 700px;">
+                <div class="chat-here" style="height: 800px;">
                   <div v-for="(chat, idx) in openedChat.messages">
                     <div class="px-2 mt-2 py-1" >
                       <div>
@@ -113,10 +113,10 @@
                   </div>
                 </div>
               </div>
-              <div class="input-group mb-3 px-3 pt-2">
+              <div class="input-group px-3 pt-3 pb-3" style="background-color: #303030;">
                 <input type="text" class="form-control" placeholder="Type your message..." v-model="messageBody">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-primary" type="button" @click="sendMessage">Send</button>
+                  <button class="btn btn-primary" type="button" @click="sendMessage">Send</button>
                 </div>
               </div>
             </div>
@@ -470,9 +470,12 @@ export default {
     border-radius: 5px;
   }
   .chat-box {
-    max-height: 560px;
+    padding-right: 30px;
+    padding-left: 30px;
+    max-height: 77vh;
     overflow-y: auto;
     position: relative;
+    background-color: white;
     /*display: flex;*/
     /*flex-direction: column-reverse;*/
     /*padding-bottom: 20px;*/
@@ -555,4 +558,23 @@ export default {
   /deep/ .tab-content {
     background-color: rgba(222, 154, 115, 0.04) !important;
   }
+
+/deep/ .btn-primary {
+  background-color: #de9a73 !important;
+  color: white !important;
+  border-color: #de9a73 !important;
+}
+
+/deep/ .btn-primary:active {
+  outline: none !important;
+  background-color: #b07a5b !important;
+  color: white !important;
+  border-color: #de9a73 !important;
+}
+
+/deep/ .btn-primary:hover {
+  background-color: #cf906b !important;
+  color: white !important;
+  border-color: #cf906b !important;
+}
 </style>

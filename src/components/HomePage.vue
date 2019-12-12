@@ -25,8 +25,8 @@
             <button v-if="userRole === 'student'" :class="{'btn': true, 'btn-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')" style="border: none;"><i class="ti-light-bulb"></i></button>
           </div>
 
-          <div class="col-1 pl-0">
-            <button class="btn btn-secondary" @click="getData" style="border: none;"><i class="ti-reload"></i></button>
+          <div class="col-1">
+            <button class="btn btn-secondary " @click="getData" style="border: none;"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>

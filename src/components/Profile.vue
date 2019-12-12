@@ -427,7 +427,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="px-30">
+                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -436,7 +436,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="px-3">
+                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-star"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -445,7 +445,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="px-3" style="width: 10px !important;">
+                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0" style="width: 10px !important;">
                                 <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
                               </div>
                               <div class="col-lg-11 pl-0">
@@ -454,7 +454,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="px-3">
+                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-stats-up"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
