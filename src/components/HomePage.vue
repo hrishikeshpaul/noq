@@ -147,7 +147,7 @@ export default {
       computedJobs: {},
       computedUsers: {},
       studentKeyToGroup: 'position',
-      employerKeyToGroup: 'company',
+      employerKeyToGroup: 'job',
       userRole: localStorage.getItem('role'),
       filterOptions: [],
       studentFilterOptions: [
@@ -157,8 +157,8 @@ export default {
         { name: 'Skills', code: 'skills' }
       ],
       employerFilterOptions: [
+        { name: 'Job', code: 'job'},
         { name: 'University', code: 'company' },
-        { name: 'Job', code: 'job'}
       ],
       showHomePageJobModal: false,
       showHomePageUserModal: false
