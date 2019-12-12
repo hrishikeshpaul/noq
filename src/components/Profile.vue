@@ -20,7 +20,7 @@
     <div class="px-5">
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
-          <div class="mt-4 card py-4 px-4" style="max-height: 760px;">
+          <div class="mt-4 card py-4 px-4" style="height: 773px;">
             <div class="">
               <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')"
                    style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
@@ -146,7 +146,7 @@
                       <h5 class="card-title title-collapse" @click="expandCollapseEdu(idx, edu.collapse, 'edu')">{{edu.school}} </h5>
                         <hr width="100%" align="left" />
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-bookmark-alt"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -155,7 +155,7 @@
                         </div>
                         <p></p>
                         <div class= "row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -200,7 +200,7 @@
                         <hr width="100%" align="left" class="mt-0"/>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-briefcase"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -209,7 +209,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-location-pin"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -218,7 +218,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -227,7 +227,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-receipt"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -271,7 +271,7 @@
                         <hr width="100%" align="left" class="mt-0"/>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-location-pin"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -280,7 +280,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -289,7 +289,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-receipt"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -334,7 +334,7 @@
                         <hr width="100%" align="left" class="mt-0"/>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-location-pin"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -343,7 +343,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-time"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -352,7 +352,7 @@
                         </div>
                         <p></p>
                         <div class="row">
-                          <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                          <div class="px-3">
                             <span><i class="ti-receipt"></i></span>
                           </div>
                           <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -427,7 +427,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                              <div class="px-30">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-briefcase"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -436,7 +436,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                              <div class="px-3">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-star"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
@@ -445,7 +445,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="col-lg-1" style="width: 10px !important;">
+                              <div class="px-3" style="width: 10px !important;">
                                 <span style="font-weight: bold;"><i class="ti-receipt"></i></span>
                               </div>
                               <div class="col-lg-11 pl-0">
@@ -454,7 +454,7 @@
                             </div>
                             <p></p>
                             <div class="row">
-                              <div class="col-lg-1 col-md-1 col-sm-12 pr-0">
+                              <div class="px-3">
                                 <span class="mt-5" style="margin-right: 4px"><i class="ti-stats-up"></i></span>
                               </div>
                               <div class="col-lg-11 col-md-11 col-sm-12 pl-0">
