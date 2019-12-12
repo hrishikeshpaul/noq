@@ -36,15 +36,13 @@
                   <b-form-input id="position" v-model.trim="newPassword1" type="password" class="input-field"></b-form-input>
                 </b-form-group>
               </b-form>
-              <button class="mt-2 btn btn-outline-primary w-100" @click="changePassword">Change Password</button>
+              <button class="mt-2 btn btn-primary w-25" @click="changePassword">Change Password</button>
             </div>
           </div>
         </div>
         <div class="col-6">
           <div class="card px-4 py-2 shadow-sm">
             <div class="text-center card-body w-100">
-              <b-alert variant="danger" v-if="showAlert" :show="10">{{alertText}}</b-alert>
-              <b-alert variant="success" v-if="showAlert2" :show="10">{{alertText2}}</b-alert>
               <b-form class="text-left">
                 <div class="card-title" style="font-size: 20px; margin-top: -10px;">Feedback</div>
                 <hr/>
@@ -57,7 +55,7 @@
                   <b-form-textarea id="title" v-model.trim="feedback.message" type="text" class="input-field form-control-textarea" rows="4"></b-form-textarea>
                 </b-form-group>
               </b-form>
-              <button class="mt-2 btn btn-outline-primary w-100" @click="sendFeedback">Send Feedback</button>
+              <button class="mt-2 btn btn-primary w-25" @click="sendFeedback">Send Feedback</button>
             </div>
           </div>
         </div>
@@ -197,17 +195,38 @@ export default {
   }
   /deep/ .btn-outline-primary {
     border: 1px solid #c68967 !important;
-    color: grey;
+    color: grey !important;
+    cursor: pointer !important;
   }
 
   /deep/ .btn-outline-primary:hover {
-    border-color: 1px solid #c68967 !important;
-    background-color: #de9a73;
-    color: white;
+    border-color: #de9a73 !important;
+    background-color: #de9a73 !important;
+    color: white !important;
+  }
+
+  /deep/ .btn-primary {
+    background-color: #de9a73 !important;
+    color: white !important;
+    cursor: pointer !important;
+    border-color: #de9a73 !important;
+  }
+
+  /deep/ .btn-primary:active {
+    outline: none !important;
+    background-color: #b07a5b !important;
+    color: white !important;
+    border-color: #de9a73 !important;
+  }
+
+  /deep/ .btn-primary:hover {
+    background-color: #cf906b !important;
+    color: white !important;
+    border-color: #cf906b !important;
   }
 
   /deep/ .bg-light {
-    background-color: #e1e1e1 !important;
+    background-color: rgba(202, 202, 202, 0.98) !important;
   }
 
    .form-control-textarea {

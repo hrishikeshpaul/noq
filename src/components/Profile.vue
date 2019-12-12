@@ -9,7 +9,7 @@
           <div class="col-11">
           </div>
           <div class="col-1">
-                <button style="float: right; padding-top: 5px; border: none" class="btn-outline-secondary rounded ml-1" @click="getData"><i class="ti-reload"></i></button>
+                <button style="float: right; border: none" class="btn-secondary btn rounded ml-1" @click="getData"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>
@@ -20,28 +20,31 @@
     <div class="px-5">
       <div class="row">
         <div class="col-lg-3 col-md-5 col-sm-12 text-center">
-          <div class="mt-4">
-            <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')"
-                 style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
-            <div class="mt-2">
-              <span style="font-size: 30px; margin-top: 5px;" >{{user.name}}</span>
-            </div>
-            <div style="margin-top: -5px;">
-              <span style="font-size: 16px; color: grey;">{{user.company}}</span>
-            </div>
-            <div>
-              <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-primary" @click="profileInputModal"><i
-                class="ti-pencil"></i></button>
-              <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" v-if="user.role === 'student'"
-                      @click="showWindow(user.social.github)"><i class="ti-github"></i></button>
-              <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" v-if="user.social.linkedin"
-                      @click="showWindow(user.social.linkedin)"><i class="ti-linkedin"></i></button>
-              <button href="#" class="mt-3 pt-2 mr-2 btn btn-outline-secondary" v-if="user.social.linkedin"
-                      @click="showWindow(user.website)"><i class="ti-world"></i></button>
-            </div>
-            <hr width="100%"/>
-            <div style="justify-content: center; text-align: justify;" class='px-1'>
-              <span style="font-size: 16px; font-style: italic;">{{user.bio.length > 40 ? user.bio.substring(0, 150) + ' ...' : user.bio}}</span>
+          <div class="mt-4 card py-4 px-4" style="max-height: 760px;">
+            <div class="">
+              <img :src="user.profilepicture ? user.profilepicture.toString() : require('../assets/blank_profile.png')"
+                   style="height: 250px; width: 250px; object-fit: cover" class="profile-border"/>
+              <div class="mt-2">
+                <span style="font-size: 30px; margin-top: 5px;" >{{user.name}}</span>
+              </div>
+              <div style="margin-top: -5px;">
+                <span style="font-size: 16px; color: grey;">{{user.company}}</span>
+              </div>
+              <div>
+                <button href="#" class="mt-3 pt-2 mr-2 btn btn-primary" @click="profileInputModal"><i
+                  class="ti-pencil"></i></button>
+                <button href="#" class="mt-3 pt-2 mr-2 btn btn-secondary" v-if="user.role === 'student'"
+                        @click="showWindow(user.social.github)"><i class="ti-github"></i></button>
+                <button href="#" class="mt-3 pt-2 mr-2 btn btn-secondary" v-if="user.social.linkedin"
+                        @click="showWindow(user.social.linkedin)"><i class="ti-linkedin"></i></button>
+                <button href="#" class="mt-3 pt-2 mr-2 btn btn-secondary" v-if="user.social.linkedin"
+                        @click="showWindow(user.website)"><i class="ti-world"></i></button>
+              </div>
+              <hr width="100%"/>
+              <div style="justify-content: center; text-align: justify; overflow-y: auto; max-height: 300px;" class='px-1'>
+                <span style="font-size: 16px; font-style: italic;">{{user.bio}}</span>
+<!--                <span style="font-size: 16px; font-style: italic;">{{user.bio.length > 40 ? user.bio.substring(0, 150) + ' ...' : user.bio}}</span>-->
+              </div>
             </div>
           </div>
         </div>
@@ -49,8 +52,8 @@
           <div class="mb-5 mt-4 container px-0 mb-5 bg-white rounded" v-if="role === 'student'" style="outline: none !important;">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Interests" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85)" class="px-0 pt-0">
-                  <b-card-body class="p-0 mt-2">
+                <b-tab title="Interests" active style="max-height: 730px; overflow-y: auto; background-color: rgba(196,196,196,0.24)" class="px-0 pt-0">
+                  <b-card-body class="p-0 mt-4">
                     <span v-if="user.acceptances.length === 0">You don't have any acceptances! Start applying!</span>
                     <div v-for="(job, idx) in user.acceptances" class="text-left mt-2">
                       <b-card class="text-left my-2 shadow-hover show-hover-indicator" :id="'job' + idx" style="height: 133px; overflow-y: hidden;">
@@ -111,13 +114,13 @@
                           </div>
                           <div class="col-lg-2 col-md-2 col-sm-1 pr-0">
                             <button href="#" style="margin-top: -5px !important; border: none;"
-                                    class="mt-3 pt-2 ml-2 btn btn-outline-danger"
-                                    @click="rejectConfirmedApplicant(job._id, user._id)"><i
-                              class="ti-close"></i></button>
-                            <button href="#" style="margin-top: -5px !important; border: none;"
                                     class="mt-3 pt-2 btn btn-outline-info" @click="messageUserModal(job.employer)"><i
                               class="ti-comment-alt"></i>
                             </button>
+                            <button href="#" style="margin-top: -5px !important; border: none;"
+                                    class="mt-3 pt-2 ml-2 btn btn-outline-danger"
+                                    @click="rejectConfirmedApplicant(job._id, user._id)"><i
+                              class="ti-close"></i></button>
                             <button href="#" style="margin-top: -5px !important; border: none;" class="mt-3 pt-2 btn btn-outline-secondary">
                               <i class="ti-angle-down" :id="'icon' + idx + 'job'" @click="expandCollapseInterests(idx, job.collapse, 'job')"></i></button>
                           </div>
@@ -127,7 +130,7 @@
                   </b-card-body>
                 </b-tab>
 
-                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
+                <b-tab title="Education" style="max-height: 1000px; overflow-y: auto; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(edu, idx) in user.education" :id="edu.school">
                       <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 76px; overflow-y: hidden;" :id="'edu' + idx">
@@ -166,7 +169,7 @@
                       <button
                         v-if="role === 'student'"
                         style="width: 100%; border-radius: 5px;"
-                        class="mb-2 mt-1 btn btn-outline-primary w-25"
+                        class="mb-2 mt-1 btn btn-primary w-25"
                         @click="addEducationModal"
                       >
                         Add
@@ -176,7 +179,7 @@
 
                 </b-tab>
 
-                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
+                <b-tab title="Experiences" style="max-height: 1000px; overflow-y: auto; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(exp, idx) in user.experience">
                       <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 73px; overflow-y: hidden;" :id="'exp' + idx">
@@ -238,7 +241,7 @@
                       <button
                         v-if="role === 'student'"
                         style="width: 100%; border-radius: 5px;"
-                        class="mb-2 mt-1 btn btn-outline-primary w-25"
+                        class="mb-2 mt-1 btn btn-primary w-25"
                         @click="addExperienceModal"
                       >
                         Add
@@ -247,7 +250,7 @@
                   </b-card-body>
                 </b-tab>
 
-                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
+                <b-tab title="Honor" style="max-height: 1000px; overflow-y: auto; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(hon, idx) in user.honor">
                       <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 73px; overflow-y: hidden;" :id="'hon' + idx">
@@ -301,7 +304,7 @@
                         <button
                           v-if="role === 'student'"
                           style="width: 100%; border-radius: 5px;"
-                          class="mb-2 mt-1 btn btn-outline-primary w-25"
+                          class="mb-2 mt-1 btn btn-primary w-25"
                           @click="addHonorModal"
                         >
                           Add
@@ -310,7 +313,7 @@
                     </div>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
+                <b-tab title="Certification" style="max-height: 1000px; overflow-y: auto; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body style="font-size: 16px;" class="px-0">
                     <div v-for="(cert, idx) in user.certification">
                       <b-card class="mb-3 shadow-hover show-hover-indicator" style="height: 73px; overflow-y: hidden;" :id="'cert' + idx">
@@ -372,7 +375,7 @@
                   </b-card-body>
                 </b-tab>
 
-                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
+                <b-tab title="Skills" style="max-height: 1000px; overflow-y: auto; min-height: 400px; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0">
                  <div class="card px-0 mt-3" >
                    <b-card-body style="font-size: 16px;">
                      <b-form class="text-left">
@@ -396,7 +399,7 @@
           <div class="mb-5 mt-4 container px-0 mb-5 bg-white rounded" v-if="role === 'employer'" style="outline: none !important;">
             <b-card no-body style="border: none;">
               <b-tabs card style="font-size: 16px;">
-                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0" >
+                <b-tab title="Job Posting" active style="max-height: 1000px; overflow-y: auto; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0" >
                   <b-card-body class="py-2 px-0">
                     <b-input-group class="mb-3 w-100">
                       <b-form-input placeholder="Search for job" v-model="employerSearchJob" style="font-weight: 300;"></b-form-input>
@@ -479,14 +482,14 @@
                         @click="jobInputModal"
                         v-if="role === 'employer'"
                         style="border-radius: 5px;"
-                        class="mt-2 btn btn-outline-primary w-25"
+                        class="mt-2 btn btn-primary w-25"
                       >
                         Post Job
                       </button>
                     </div>
                   </b-card-body>
                 </b-tab>
-                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(255,250,250,0.85); box-shadow: none;" class="px-0 pt-0">
+                <b-tab title="Applicants" style="max-height: 1000px; overflow-y: auto; background-color: rgba(196,196,196,0.24); box-shadow: none;" class="px-0 pt-0">
                   <b-card-body class="px-0 pt-0">
                     <div v-for="(job, jidx) in user.jobs">
                       <div v-for="(user, idx) in job.confirmed_users">
@@ -1231,7 +1234,7 @@ export default {
     /*outline-offset: -10px;*/
     border-color: #DA9A74;
     border-width: 1px;
-    background-color: rgba(218, 154, 116, 0.02) !important;
+    background-color: rgb(255, 246, 242) !important;
     box-shadow: 1px 2px 5px #bdbdbd;
     transition: all 0.5s;
   }
@@ -1241,7 +1244,7 @@ export default {
     top: 0;
     height: 100%;
     /*width: 10px;*/
-    background-color: #DA9A74;
+    background-color: #DA9A74 !important;
     display: none;
     transition: all 0.5s;
   }
@@ -1326,7 +1329,8 @@ export default {
   }
 
   /deep/ .bg-light {
-    background-color: #e1e1e1 !important;
+    background-color: rgba(202, 202, 202, 0.98) !important;
+    /*background-color: #e1e1e1 !important;*/
   }
 
   /deep/ .card-header {
@@ -1335,12 +1339,24 @@ export default {
   }
 
   /deep/ .btn-primary {
-    background-color: #de9a73;
-    color: white;
-    border-color: #c68967 !important;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
+    background-color: #de9a73 !important;
+    color: white !important;
+    border-color: #de9a73 !important;
   }
+
+  /deep/ .btn-primary:active {
+    outline: none !important;
+    background-color: #b07a5b !important;
+    color: white !important;
+    border-color: #de9a73 !important;
+  }
+
+  /deep/ .btn-primary:hover {
+    background-color: #cf906b !important;
+    color: white !important;
+    border-color: #cf906b !important;
+  }
+
   h5 {
     font-size: 16px;
     font-weight: 400;

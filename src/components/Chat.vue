@@ -10,7 +10,7 @@
         <div class="col-11">
         </div>
         <div class="col-1">
-          <button style="float: right; padding-top: 5px;" class="btn-outline-secondary rounded ml-1" @click="getData2"><i class="ti-reload"></i></button>
+          <button style="float: right; padding-top: 5px;" class="btn-secondary rounded ml-1" @click="getData2"><i class="ti-reload"></i></button>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
   <div class="card mx-5 mt-5">
     <div class="card-body pt-0 px-0" style="height: 695px; background-color: rgba(255,250,250,0.85);">
       <div class="row" style="height: 100%;">
-        <div class="col-5 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 700px;">
+        <div class="col-5 p-0 pl-4 pr-2 pt-3" style="border-right: 1px solid #c4c4c4; overflow-y: auto; max-height: 690px;">
           <div>
             <b-card no-body style="border: 0">
               <b-tabs card>
@@ -535,7 +535,6 @@ export default {
   background-color: #f6af85 !important;
 }
 
-
 /deep/ .btn-outline-primary {
   border: 1px solid #c68967 !important;
   color: grey;
@@ -551,7 +550,7 @@ export default {
   border:none;
 }
 /deep/ .bg-light {
-  background-color: #e1e1e1 !important;
+  background-color: rgba(202, 202, 202, 0.98) !important;
 }
   /deep/ .tab-content {
     background-color: rgba(222, 154, 115, 0.04) !important;

@@ -18,15 +18,15 @@
           </div>
 
           <div class="col-1 pr-0" v-if="userRole === 'student'">
-            <button  :class="{'btn': true, 'btn-outline-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')" style="border: none;"><i class="ti-bolt-alt"></i></button>
+            <button  :class="{'btn': true, 'btn-secondary': !showRecommendation, 'btn-outline-primary': showRecommendation}" @click="showRecoOrWhat('reco')" style="border: none;"><i class="ti-bolt-alt"></i></button>
 
           </div>
           <div class="col-1 pr-0 pl-0" v-if="userRole === 'student'">
-            <button v-if="userRole === 'student'" :class="{'btn': true, 'btn-outline-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')" style="border: none;"><i class="ti-light-bulb"></i></button>
+            <button v-if="userRole === 'student'" :class="{'btn': true, 'btn-secondary': !showWhatIf, 'btn-outline-primary': showWhatIf}" @click="showRecoOrWhat('what')" style="border: none;"><i class="ti-light-bulb"></i></button>
           </div>
 
           <div class="col-1 pl-0">
-            <button class="btn btn-outline-secondary" @click="getData" style="border: none;"><i class="ti-reload"></i></button>
+            <button class="btn btn-secondary" @click="getData" style="border: none;"><i class="ti-reload"></i></button>
           </div>
         </div>
       </div>
@@ -47,14 +47,14 @@
 
     <Recommendation class="mx-5 mt-4" v-if="userRole == 'student' && showRecommendation" :jobs="jobs" @accept="accept" @reject="reject"/>
 
-    <div class="mx-5 mt-4">
+    <div class="ml-5 mt-4">
       <div v-for="(job, key) in computedJobs" class="mb-3" v-if="userRole === 'student'" >
         <div style="position: relative;">
           <h5 style="font-weight: 300"><div class="mb-3">{{ key }} ({{job.length}})</div></h5>
           <div
             v-for="(j, index) in job" v-if="job.length > 0"
-            style="display: inline-block;"
-            class="mr-5">
+            style="display: inline-block; margin-right: 40px;"
+            class="">
             <JobCard
               :job="j"
               ref="card"
@@ -631,7 +631,7 @@ export default {
     color: white;
   }
   /deep/ .bg-light {
-    background-color: rgba(211, 211, 211, 0.4) !important;
+    background-color: rgba(202, 202, 202, 0.98) !important;
   }
 
   /*.shadow-nav {*/

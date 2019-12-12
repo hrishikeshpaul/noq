@@ -119,6 +119,6 @@ h3 {
     font-weight: 400;
   }
   /deep/ .bg-light {
-    background-color: #e1e1e1 !important;
+    background-color: rgba(202, 202, 202, 0.98) !important;
   }
 </style>
