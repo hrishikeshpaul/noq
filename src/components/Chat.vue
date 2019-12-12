@@ -33,7 +33,7 @@
                       <div class="py-3 message-card pl-2" @click="openChat(conversation)" :style="{'background-color': openedChat.name === conversation.conversation_name ? '#FFD1B1' : 'transparent', 'border-radius': '5px' }">
                         <div class="row">
                           <div class="col-2">
-                            <img :src="conversation.user.profilepicture ? conversation.user.profilepicture : require('../assets/blank_profile.png')" style="height: 65px; width: 65px; object-fit: cover; border-radius: 5px;"/>
+                            <img :src="conversation.user.profilepicture ? conversation.user.profilepicture : require('../assets/blank_profile.png')" style="height: 65px; width: 65px; object-fit: cover; border-radius: 5px;border: 1px #c9a087 solid;"/>
                           </div>
                           <div class="col-7">
                             <span style="font-size: 18px; font-weight: 300;">{{conversation.user.name}}</span>
@@ -58,7 +58,7 @@
                       <div class="py-3 message-card pl-2" @click="messageUserModal(contact)">
                         <div class="row">
                           <div class="col-2">
-                            <img src="../assets/blank_profile.png" style="height: 65px; width: 65px; object-fit: cover"/>
+                            <img :src="contact.profilepicture ? contact.profilepicture : require('../assets/blank_profile.png')" style="height: 65px; width: 65px; object-fit: cover; border: 1px #c9a087 solid; border-radius: 5px;"/>
                           </div>
                           <div class="col-10">
                             <span style="font-size: 18px; font-weight: 300;">{{contact.name}}</span>
@@ -66,6 +66,7 @@
                           </div>
                         </div>
                       </div>
+                      <hr />
                     </div>
                   </b-card-text>
                 </b-tab>
@@ -514,9 +515,26 @@ export default {
 }
 
 /deep/ .card-header {
-  background-color: rgba(255, 187, 138, 0.61) !important;
+  /*background-color: rgba(255, 187, 138, 0.61) !important;*/
   border-bottom: 0;
+  background-color: #3e3e3e !important;
+  border-radius: 5px !important;
+  color: white;
+  /*background-color: rgba(255, 187, 138, 0.61) !important;*/
 }
+
+/deep/ .nav-link {
+  border-bottom-left-radius: 5px !important;
+  /*color: #88491C*/
+  color: white !important;
+  font-weight: 300 !important;
+}
+
+/deep/ .nav-link:hover {
+  border-color: transparent !important;
+  background-color: #f6af85 !important;
+}
+
 
 /deep/ .btn-outline-primary {
   border: 1px solid #c68967 !important;

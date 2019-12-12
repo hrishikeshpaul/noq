@@ -247,6 +247,10 @@ export default {
   .sidenav a {font-size: 18px;}
 }
 
+button {
+  outline: none !important;
+}
+
 .logo-noq {
   /*background-color: #600d00;*/
   /*border-radius: 10px;*/

@@ -1173,7 +1173,6 @@ export default {
         .then(response => {
           this.isLoading = false
           this.user = response.data
-          console.log(this.user)
           this.user.jobs.forEach(job => {
             job.collapse = false
             job.confirmed_users.forEach(user => {
