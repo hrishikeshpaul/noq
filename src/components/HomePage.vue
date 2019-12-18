@@ -147,7 +147,7 @@ export default {
       computedJobs: {},
       computedUsers: {},
       studentKeyToGroup: 'position',
-      employerKeyToGroup: 'job',
+      employerKeyToGroup: 'company',
       userRole: localStorage.getItem('role'),
       filterOptions: [],
       studentFilterOptions: [
@@ -157,7 +157,6 @@ export default {
         { name: 'Skills', code: 'skills' }
       ],
       employerFilterOptions: [
-        { name: 'Job', code: 'job'},
         { name: 'University', code: 'company' },
       ],
       showHomePageJobModal: false,
@@ -311,6 +310,7 @@ export default {
         job: i
       }, {headers})
         .then(response => {
+          console.log(response.data)
           this.$swal({
             position: 'bottom-right',
             backdrop: false,
@@ -424,12 +424,14 @@ export default {
         // 'Content-Type': 'application/json'
       }
 
-      axios.patch(`${url}/api/jobs/reject`, {
+      var obj = {
         user: localStorage.getItem('user_id'),
         userToReject: i.id,
-        job: i.job,
+        job: i.job._id,
         role: this.userRole
-      }, {headers})
+      }
+
+      axios.patch(`${url}/api/jobs/reject`, obj)
         .then(response => {
           this.$swal({
             position: 'bottom-right',

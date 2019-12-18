@@ -20,7 +20,7 @@
       <div class="text">
         <div class="row">
           <div class="col-6 pl-5">
-            <div style="margin-left: 35px; font-size: 12px" class="mb-2">Reject</div>
+            <div style="margin-left: 35px; font-size: 12px" class="mb-2">{{user.job._id}}</div>
             <button class="mr-5 btn-sm btn-danger" @click="$emit('reject', {id: user._id, job: user.job})" style="margin-left: 35px; border: none;"><i class="ti-close"></i></button>
           </div>
           <div class="col-6 pr-5">
@@ -60,6 +60,7 @@ export default {
   },
 
   mounted () {
+    console.log(this.user)
     if (this.user.profilepicture) {
       Vibrant.from(this.user.profilepicture.toString()).getPalette().then(response => {
         this.info_bg.backgroundColor = response.DarkMuted.getHex()
