@@ -106,7 +106,7 @@ No Q, is a revolutionary tool which allows for both employers and students to sk
    $ cd noq
    $ npm run dev
    ```
-5. If you want to run the backend for the website, you will have to follow [this guide]().
+5. If you want to run the backend for the website, you will have to follow [this guide](https://github.com/hrishikeshpaul/noq-server).
 
 
 <!-- USAGE EXAMPLES -->
@@ -120,7 +120,7 @@ _For more information, please refer to the [Documentation](https://github.com/hr
 ## The Team
 - [Hrishikesh Paul](https://github.com/hrishikeshpaul)
 - [Norton Cole](https://github.com/colen81)
-- [Rui Zhand](https://github.com/ruizhang0)
+- [Rui Zhang](https://github.com/ruizhang0)
 - [Sharanya Ravichandran](https://github.com/sharanya17410)
 
 <!-- CONTRIBUTING -->
