@@ -112,7 +112,7 @@ No Q, is a revolutionary tool which allows for both employers and students to sk
 <!-- USAGE EXAMPLES -->
 ## Documentation
 
-_For more information, please refer to the [Documentation](https://example.com)_
+_For more information, please refer to the [Documentation](https://github.com/hrishikeshpaul/noq/blob/master/public/Software%20Users%20Manual%20Template.pdf)_
 
 
 
